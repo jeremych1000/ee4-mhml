@@ -2,9 +2,13 @@
 
 ## current best idea
 room temperature, link to smart home products
+
 predict going home or after exercise, change temp of room
+
 detcet body and ambient temperature
+
 say how hot cold you want your room to be so it can auto adjust
+
 check stages of REM sleep, auto adjust room temp
 
 ---
