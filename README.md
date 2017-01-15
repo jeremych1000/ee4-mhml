@@ -1,4 +1,5 @@
 # ee4-mhml
+[project progress and activity tracking](https://github.com/jeremych1000/ee4-mhml/projects/1)
 
 ## current best idea
 room temperature, link to smart home products
