@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block header_text %}Your To-Do list{% endblock %}
+{% block form_action %}/lists/{{ listID }}/items/new/{% endblock %}
+{% block table_text %}List Item(s):{% endblock %}
+{% block table %}
+    <table class="table" id="id_list_table">
+        <thead>
+        <tr>
+            <td>#</td>
+            <td>Item(s)</td>
+        </tr>
+        </thead>
+
+        <tbody>
+         {% for item in items %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <div class="col"><p>{{ item.text }}</p></div>
+                    </td>
+                    <td>
+                         <form method='POST' action="/lists/{{listID}}/delete/{{ item.id }}/">
+                     <button class="btn btn-danger">delete</button>{% csrf_token %}
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
