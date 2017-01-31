@@ -1,0 +1,11 @@
+{% extends "personal/header.html" %}
+
+{% block content %}
+    <h3> {{ post.title }} </h3>
+    <h6> on {{ post.date }} </h6>
+
+    <!-- safe converts html tags to actual tags instead of plaintext,
+    careful if have scripts as it will run the script! -->
+    {{ post.body|safe|linebreaks }}
+
+{% endblock %}
