@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Success</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Success</h1>
+        <table>
+            <thead><th>Sensor</th><th>Data Samples</th></thead>
+            <tbody>
+                <tr>
+                    <td>Accelerometer</td>
+                    <td>{{ acc_count }}</td>
+                </tr>
+                 <tr>
+                    <td>Temperature</td>
+                    <td>{{ temp_count }}</td>
+                </tr>
+                 <tr>
+                    <td>Skin Impedance</td>
+                    <td>{{ gsr_count }}</td>
+                </tr>
+                 <tr>
+                    <td>Heart Rate</td>
+                    <td>{{ hr_count }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

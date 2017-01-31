@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^lists/(?P<listID>\d+)/delete/(?P<itemID>\d+)/$', list_views.delete_item, name='delete_item'),
     url(r'^lists/(?P<listID>\d+)/delete/$', list_views.delete_list, name='delete_list'),
     url(r'^ml/upload/$', ml_views.upload, name='ml_file_upload'),
+    url(r'^ml/success/$', ml_views.success, name='ml_success'),
 ]
