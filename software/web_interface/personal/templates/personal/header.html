@@ -2,67 +2,117 @@
 <html lang="en">
 
 <head>
-	<title>Harrison Kinsley</title>
-	<meta charset="utf-8" />
-	{% load staticfiles %}
-	<link rel="stylesheet" href="{% static "bootstrap-3.3.7-dist/css/bootstrap.min.css" %}" type = "text/css"/>
-	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+    <title>Sleepify</title>
+    <meta charset="utf-8"/>
 
-	<style type="text/css">
-		html,
-		body {
-		  height:100%
-		}
-	</style>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "bootstrap-3.3.7-dist/css/bootstrap.min.css" %}" type="text/css"/>
+    <script src="{% static "bootstrap-3.3.7-dist/js/jquery-3.1.1.min.js" %}"></script>
+    <script src="{% static "bootstrap-3.3.7-dist/js/bootstrap.min.js" %}"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%
+        }
+    </style>
+
+    <!-- script to set current navbar id as active -->
+    {% block set_navbar_active %}
+    {% endblock %}
+
 </head>
 
 <body class="body" style="background-color:#f6f6f6">
-	<div class="container-fluid" style="min-height:95%; ">
-		<div class="row">
-			  <div class="col-sm-2">
-				  <br>
-				  <center>
-					<img src="{% static "img/profile.png" %}" class="responsive-img" style='max-height:100px;' alt="face">
-				  </center>
-			  </div>
-			  <div class="col-sm-10">
-				  <br>
-				  <center>
-				  <h3>Programming, Teaching, Entrepreneurship</h3>
-				  </center>
-			  </div>
-		</div><hr>
 
-		<div class="row">
-		  <div class="col-sm-2">
-		  <br>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Sleepify</a>
+        </div>
 
-		  <br>
-		   <!-- Great, til you resize. -->
-			<!--<div class="well bs-sidebar affix" id="sidebar" style="background-color:#fff">-->
-			<div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
-			  <ul class="nav nav-pills nav-stacked">
-				<li><a href='/'>Home</a></li>
-				<li><a href='/blog/'>Blog</a></li>
-				<li><a href='/contact/'>Contact</a></li>
-			  </ul>
-			</div> <!--well bs-sidebar affix-->
-		  </div> <!--col-sm-2-->
-		  <div class="col-sm-10">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li id="home" class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+                <li id="profile"><a href="/profile">My Profile</a></li>
+                <li id="pref"><a href="/preferences">My Preferences</a></li>
+                <li id="stats" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Recent Statistics <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Body Temperature</a></li>
+                        <li><a href="#">Heartrate</a></li>
+                        <li><a href="#">Accelerometer</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Room Temperature</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Sleep Duration</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="This doesn't really do anything...">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li id="contact"><a href="/contact">Contact</a></li>
+                <li id="help" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Help <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">FAQ</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                <button type="button" class="btn btn-default navbar-btn">Sign In</button>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
-			<div class='container-fluid'>
-			<br><br>
-			   {% block content %}
-			   {% endblock %}
-			</div>
-		  </div>
-		</div>
-	</div>
-	<footer>
-		<div class="container-fluid" style='margin-left:15px'>
-			<p><a href="#" target="blank">Contact</a> | <a href="#" target="blank">LinkedIn</a> | <a href="#" target="blank">Twitter</a> | <a href="#" target="blank">Google+</a></p>
-		</div>
-	</footer>
+{% block jumbotron %}
+{% endblock %}
+
+<div class="container-fluid" style="min-height:95%; ">
+    <div class="row">
+        <div class="col-sm-2">
+            <br>
+
+            <br>
+            <div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href='/'>Home</a></li>
+                    <li><a href='/blog/'>Blog</a></li>
+                    <li><a href='/contact/'>Contact</a></li>
+                </ul>
+            </div> <!--well bs-sidebar affix-->
+        </div> <!--col-sm-2-->
+        <div class="col-sm-10">
+            <div class="container-fluid">
+                <br><br>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 
