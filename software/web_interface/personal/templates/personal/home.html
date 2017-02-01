@@ -1,7 +1,79 @@
 {% extends "personal/header.html" %}
 
-{% block content %}
-    <p>hello, welcome to my website</p>
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#home").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
 
-    {% include "personal/include/htmlsnippet.html" %}
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+            height: 25em;
+            padding-top: 5em;
+            margin-bottom: 1em;
+            background-image: url(http://i.imgur.com/Sbh58eU.jpg);
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            ">
+        <div class="container">
+            <h1>Welcome to Sleepify!</h1>
+            <p>This project will make your life better.</p>
+            <p><a class="btn btn-primary btn-lg" href="about" role="button">Learn More</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel quam est. Nunc mattis purus massa, eget
+        accumsan tortor vehicula non. Quisque gravida tellus in tincidunt efficitur. Fusce varius laoreet tempor. Nulla
+        varius sapien non tortor luctus fringilla. Quisque consequat tempor felis. Proin gravida malesuada mattis.
+        Praesent
+        finibus porttitor augue, in malesuada dui scelerisque sed. Cras viverra quam in leo scelerisque ornare.
+        Suspendisse
+        purus sapien, faucibus vel dui vel, commodo dignissim ex. Proin non justo quis sapien porttitor hendrerit.</p>
+
+    <p>Vivamus risus elit, dignissim quis aliquam tempus, sodales eget mi. Nam sit amet purus ultrices, molestie lorem
+        in,
+        mattis lacus. Aenean luctus sagittis nisl malesuada congue. Pellentesque dictum ultricies aliquet. Vestibulum
+        ante
+        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cum sociis natoque penatibus et magnis
+        dis
+        parturient montes, nascetur ridiculus mus. Vestibulum efficitur erat quis lectus faucibus, sed dictum nibh
+        vehicula.
+        Nunc sed euismod sem. Suspendisse eget arcu iaculis, lacinia est ut, semper tellus.</p>
+
+    <p>Cras tincidunt nibh ac dolor lacinia, et consectetur tellus ullamcorper. Vivamus malesuada, purus quis sagittis
+        pellentesque, enim tellus dapibus risus, cursus molestie nibh sapien in urna. Phasellus non eleifend sapien.
+        Curabitur consectetur leo sed lacus dapibus fermentum. Suspendisse potenti. Suspendisse potenti. Fusce arcu dui,
+        luctus non egestas vel, tincidunt sed lacus.</p>
+
+    <p>Ut interdum nisl sem, eget finibus ligula eleifend quis. Phasellus condimentum arcu arcu, non dapibus velit
+        tristique id. Integer volutpat et turpis non euismod. Nulla scelerisque gravida mi sed rutrum. Sed consectetur
+        cursus felis, at tincidunt tortor elementum non. Aliquam sed felis eget lorem congue luctus. Fusce augue ante,
+        hendrerit vel suscipit eu, ullamcorper eu lectus. Vestibulum sem eros, placerat nec vestibulum a, varius at
+        augue.
+        Sed placerat commodo leo, ac hendrerit magna tristique ac. Nulla consequat ex in eros eleifend luctus. Aliquam
+        id
+        luctus mauris, et fermentum dui. Ut faucibus posuere ligula, vel rutrum eros dignissim at. Integer vulputate,
+        erat
+        et tincidunt vehicula, dui sapien sodales tellus, a faucibus augue quam vitae ligula. Ut sed dapibus nunc. Nunc
+        accumsan pharetra massa, sit amet auctor ante placerat nec. Sed eget orci vel turpis vehicula varius.</p>
+
+    <p>Quisque consequat porta feugiat. Donec mattis faucibus urna, vel fringilla turpis convallis tincidunt. Sed vitae
+        sapien ac quam hendrerit faucibus. Morbi eu lectus a ligula feugiat pellentesque. Maecenas mollis malesuada
+        nisl.
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus et sem a
+        nunc
+        feugiat ultrices ac in leo. Maecenas vitae massa risus. Integer sodales orci dui, id pretium velit efficitur et.
+        Aliquam tempus ante eu libero interdum, eu scelerisque enim rutrum. Nam nibh nulla, blandit et facilisis sed,
+        tincidunt at purus. Pellentesque quis tellus quis purus condimentum mattis et malesuada enim. Ut eu scelerisque
+        mi,
+        sit amet facilisis tellus. Nullam at lacinia orci. Vivamus commodo sem tellus, quis venenatis metus vehicula id.
+        Sedfeugiat rutrum pharetra.</p>
 {% endblock %}

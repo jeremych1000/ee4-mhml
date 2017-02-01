@@ -25,7 +25,7 @@ SECRET_KEY = '7dn+jianr!9+v(e-zs3*-wybiz#h)4r^+9=_(=*uq0!)fq#t22'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jeremych.zapto.org', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['jeremych.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100']
 
 
 # Application definition
