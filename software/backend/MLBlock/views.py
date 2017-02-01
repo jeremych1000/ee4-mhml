@@ -11,18 +11,22 @@ def check_duplicate(name):
     return os.path.isfile(os.path.join(settings.MEDIA_ROOT, name))
 
 
-def read_raw_file(f, classHandle, datestring):
+def read_raw_file(classHandle, datestring):
     obj = classHandle.objects.get(file__contains=datestring)
     fHandle=open(obj.file.path)
     reader = csv.reader(fHandle)
     date_format_string = '%d.%m.%y %H:%M:%S'
     n_param = len(reader.__next__())
-    data = [[]] * n_param
+    data=[]
+    for i in range(0, n_param):
+        data.append([])
     for row in reader:
         data[0].append(datetime.strptime(row[0][0:len(row[0]) - 4], date_format_string))
+        #Data Processing
         for i in range(1, n_param):
-            data[i].append()
+            data[i].append(row[i])
     fHandle.close()
+    return data
 
 
 def upload(request):
@@ -32,9 +36,8 @@ def upload(request):
             name = request.FILES['file'].name
             print(os.path.join(settings.MEDIA_ROOT, name))
             print(os.path.isfile(os.path.join(settings.MEDIA_ROOT, name)))
-            if not (check_duplicate(name, RawHRData) or check_duplicate(name, RawAccData) or check_duplicate(name,
-                                                                                                             RawTempData) or check_duplicate(
-                name, RawGSRData)):
+            if not (check_duplicate(name) or check_duplicate(name) or check_duplicate(name) or check_duplicate(
+                name)):
                 if name.find('Acc') > -1:
                     obj = RawAccData(file=request.FILES['file'])
                     obj.save()
