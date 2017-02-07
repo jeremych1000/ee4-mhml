@@ -16,9 +16,24 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views
+from accounts.forms import LoginForm
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^blog/', include("blog.urls")),
+
+    #login stuff
+    #url(r'^accounts/login/$', views.login),
+    #url(r'^accounts/auth/$', views.auth_view),
+    #url(r'^accounts/logout/$', views.logout),
+    #url(r'^accounts/loggedin/$', views.loggedin),
+    #url(r'^accounts/invalid/$', views.invalid_login),
+
+    url(r'^accounts/', include('accounts.urls')),
+    url(r'accounts/login/$', views.login, {'template_name': 'accounts/login.html', 'authentication_form': LoginForm}, name='login'),
+    url(r'accounts/logout/$', views.logout, {'next_page': 'accounts/login'}, name='logout'),
+
+    #webapps
+    #url(r'^blog/', include("blog.urls")),
     url(r'^', include("personal.urls")),
 ]

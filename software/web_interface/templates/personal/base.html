@@ -1,0 +1,177 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sleepify</title>
+    <meta charset="utf-8"/>
+
+    <link rel="shortcut icon" href="{% static 'icons/favicon.ico' %}"/>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%
+        }
+    </style>
+
+    <!-- script to set current navbar id as active -->
+    {% block set_navbar_active %}
+    {% endblock %}
+
+</head>
+
+<body class="body" style="background-color:#f6f6f6">
+
+<nav class="navbar navbar-inverse" style="margin-bottom: 0em; border-radius: 0px;">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="{% static "img/logo_inverted.png" %}" alt="Brand" style="max-width: 100px; margin-top: -10px; height: 200%; width: auto;"></img>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li id="home" class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+                <li id="profile"><a href="/profile">My Profile</a></li>
+                <li id="pref"><a href="/preferences">My Preferences</a></li>
+                <li id="stats" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Recent Statistics <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Body Temperature</a></li>
+                        <li><a href="#">Heartrate</a></li>
+                        <li><a href="#">Accelerometer</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Room Temperature</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Sleep Duration</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Doesn't do anything...">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li id="contact"><a href="/contact">Contact</a></li>
+                <li id="help" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Help <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">FAQ</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+                {% if user.is_authenticated %}
+                    <a href={% url 'logout' %}>
+                        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".modal">Logout</button>
+                    </a>
+                {% else %}
+                <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal"
+                        data-target=".modal">Login
+                </button>
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">Log in</h4>
+			</div> <!-- /.modal-header -->
+
+			<div class="modal-body">
+				<form role="form" method="POST" action="{% url 'login' %}">
+					{% csrf_token %}
+                    <div class="form-group">
+						<div class="input-group">
+							<input type="text" class="form-control" id="uLogin" placeholder="Login">
+							<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+						</div>
+					</div> <!-- /.form-group -->
+
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" class="form-control" id="uPassword" placeholder="Password">
+							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+						</div> <!-- /.input-group -->
+					</div> <!-- /.form-group -->
+
+					<div class="checkbox">
+						<label><input type="checkbox"> Remember me</label>
+					</div> <!-- /.checkbox -->
+
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <button class="form-control btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Login</button>
+
+				</form>
+
+			</div> <!-- /.modal-body -->
+
+			<div class="modal-footer">
+				<p><a href="#">I want to register.</a></p>
+                <p><a href="#">I forgot my password.</a></p>
+            </div> <!-- /.modal-footer -->
+
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% block jumbotron %}
+{% endblock %}
+
+<div class="container-fluid" style="min-height:95%; ">
+    <div class="row">
+        <div class="col-sm-2">
+            <br>
+
+            <br>
+            <div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href='/'>Home</a></li>
+                    <li><a href='/contact/'>Contact</a></li>
+                </ul>
+            </div> <!--well bs-sidebar affix-->
+        </div> <!--col-sm-2-->
+        <div class="col-sm-10">
+            <div class="container-fluid">
+                <br><br>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
