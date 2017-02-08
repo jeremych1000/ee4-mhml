@@ -1,4 +1,5 @@
 {% extends "personal/base.html" %}
+{% load bootstrap3 %}
 
 {% block set_navbar_active %}
     <script>
@@ -16,7 +17,7 @@
             height: 25em;
             padding-top: 5em;
             margin-bottom: 1em;
-            background-image: url(http://i.imgur.com/Sbh58eU.jpg);
+            background-image: url('/media/img/jumbotron.jpg');
             background-size: cover;
             color: #ffffff;
             text-align: center;
@@ -30,6 +31,9 @@
 {% endblock %}
 
 {% block content %}
+    {% if user.is_authenticated %}
+        {% bootstrap_messages %}
+    {% endif %}
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel quam est. Nunc mattis purus massa, eget
         accumsan tortor vehicula non. Quisque gravida tellus in tincidunt efficitur. Fusce varius laoreet tempor. Nulla
         varius sapien non tortor luctus fringilla. Quisque consequat tempor felis. Proin gravida malesuada mattis.
@@ -68,8 +72,6 @@
     <p>Quisque consequat porta feugiat. Donec mattis faucibus urna, vel fringilla turpis convallis tincidunt. Sed vitae
         sapien ac quam hendrerit faucibus. Morbi eu lectus a ligula feugiat pellentesque. Maecenas mollis malesuada
         nisl.
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus et sem a
-        nunc
         feugiat ultrices ac in leo. Maecenas vitae massa risus. Integer sodales orci dui, id pretium velit efficitur et.
         Aliquam tempus ante eu libero interdum, eu scelerisque enim rutrum. Nam nibh nulla, blandit et facilisis sed,
         tincidunt at purus. Pellentesque quis tellus quis purus condimentum mattis et malesuada enim. Ut eu scelerisque

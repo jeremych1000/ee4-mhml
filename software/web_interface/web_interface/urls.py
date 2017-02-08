@@ -19,8 +19,13 @@ from django.contrib import admin
 from django.contrib.auth import views
 from accounts.forms import LoginForm
 
+#for static media
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls, name='admin'),
+    url(r'^', include("personal.urls"), name='home'),
 
     #login stuff
     #url(r'^accounts/login/$', views.login),
@@ -30,10 +35,7 @@ urlpatterns = [
     #url(r'^accounts/invalid/$', views.invalid_login),
 
     url(r'^accounts/', include('accounts.urls')),
-    url(r'accounts/login/$', views.login, {'template_name': 'accounts/login.html', 'authentication_form': LoginForm}, name='login'),
-    url(r'accounts/logout/$', views.logout, {'next_page': 'accounts/login'}, name='logout'),
+    #url(r'accounts/login/$', views.login, {'template_name': 'accounts/login.html', 'authentication_form': LoginForm}, name='login'),
+    #url(r'accounts/logout/$', views.logout, {'next_page': '/'}, name='logout'),
 
-    #webapps
-    #url(r'^blog/', include("blog.urls")),
-    url(r'^', include("personal.urls")),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

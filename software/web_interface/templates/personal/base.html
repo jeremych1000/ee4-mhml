@@ -8,7 +8,7 @@
     <title>Sleepify</title>
     <meta charset="utf-8"/>
 
-    <link rel="shortcut icon" href="{% static 'icons/favicon.ico' %}"/>
+    <link rel="shortcut icon" href="/media/icons/favicon.ico"/>
 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -42,7 +42,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-                <img src="{% static "img/logo_inverted.png" %}" alt="Brand" style="max-width: 100px; margin-top: -10px; height: 200%; width: auto;"></img>
+                <img src="/media/img/logo_inverted.png" alt="Brand" style="max-width: 100px; margin-top: -10px; height: 200%; width: auto;"></img>
             </a>
         </div>
 
@@ -110,35 +110,37 @@
 			</div> <!-- /.modal-header -->
 
 			<div class="modal-body">
-				<form role="form" method="POST" action="{% url 'login' %}">
+
+				<form id="login_form" method="post" action="/accounts/login/">
 					{% csrf_token %}
+
                     <div class="form-group">
 						<div class="input-group">
-							<input type="text" class="form-control" id="uLogin" placeholder="Login">
+							<input type="text" class="form-control" name="username" value="" placeholder="Login">
 							<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
 						</div>
-					</div> <!-- /.form-group -->
+					</div>
 
 					<div class="form-group">
 						<div class="input-group">
-							<input type="password" class="form-control" id="uPassword" placeholder="Password">
+							<input type="password" class="form-control" name="password" value="" placeholder="Password">
 							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
-						</div> <!-- /.input-group -->
-					</div> <!-- /.form-group -->
+						</div>
+					</div>
+
 
 					<div class="checkbox">
 						<label><input type="checkbox"> Remember me</label>
-					</div> <!-- /.checkbox -->
+					</div>
 
-                    <input type="hidden" name="next" value="{{ next }}" />
                     <button class="form-control btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Login</button>
 
-				</form>
+                </form>
 
 			</div> <!-- /.modal-body -->
 
 			<div class="modal-footer">
-				<p><a href="#">I want to register.</a></p>
+				<p><a href="/accounts/register/">I want to register.</a></p>
                 <p><a href="#">I forgot my password.</a></p>
             </div> <!-- /.modal-footer -->
 

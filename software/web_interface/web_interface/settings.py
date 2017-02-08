@@ -119,14 +119,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_URL = '/static/'
+# List of directories where "./manage.py collectstatic" will look for files, which it puts all together into STATIC_ROOT. Each app that you have can have it's own "static" files directory.
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR,'static'),
+    os.path.join(BASE_DIR, 'static'), # This is the "static" files directory where say most of the CSS/JS/IMG files are stored for the project.
 )
+
+# Physical system path where the static files are stored. Files that are being uploaded by the user.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# URL that your MEDIA files will be accessible through the browser.
+MEDIA_URL = '/media/'
+
 #others
 
 LOGIN_REDIRECT_URL = '/'  # It means home view
