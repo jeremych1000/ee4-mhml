@@ -70,7 +70,7 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied.")
 
     else:
-        return render(request, 'accounts/login.html')
+        return HttpResponseRedirect('/')
 
 @login_required
 def user_logout(request):

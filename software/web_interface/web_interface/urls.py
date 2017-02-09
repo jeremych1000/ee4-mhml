@@ -34,7 +34,7 @@ urlpatterns = [
     #url(r'^accounts/loggedin/$', views.loggedin),
     #url(r'^accounts/invalid/$', views.invalid_login),
 
-    url(r'^accounts/', include('accounts.urls')),
+    url(r'^accounts/', include('accounts.urls'), name='accounts'),
     #url(r'accounts/login/$', views.login, {'template_name': 'accounts/login.html', 'authentication_form': LoginForm}, name='login'),
     #url(r'accounts/logout/$', views.logout, {'next_page': '/'}, name='logout'),
 

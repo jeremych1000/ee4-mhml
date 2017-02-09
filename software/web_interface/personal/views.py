@@ -13,11 +13,3 @@ def contact(request):
         {'name': 'Nathalie Wong', 'email': 'nw813@ic.ac.uk'},
     ]
     return render(request, "personal/contact.html", {'details': details})
-
-def logged_in(request, user=None):
-    if user.is_authenticated:
-        messages.info(request, "authenticated")
-    else:
-        messages.warning(request, "no")
-
-    return render(request, "personal/home.html", {'user_model': user})

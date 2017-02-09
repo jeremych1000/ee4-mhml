@@ -88,12 +88,10 @@
                 </li>
                 {% if user.is_authenticated %}
                     <a href={% url 'logout' %}>
-                        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".modal">Logout</button>
+                        <button type="button" class="btn btn-danger navbar-btn" data-toggle="modal" data-target=".modal">Logout</button>
                     </a>
                 {% else %}
-                <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal"
-                        data-target=".modal">Login
-                </button>
+                    <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".modal">Login</button>
                 {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -111,7 +109,7 @@
 
 			<div class="modal-body">
 
-				<form id="login_form" method="post" action="/accounts/login/">
+				<form id="login_form" method="post" action="{% url 'login' %}">
 					{% csrf_token %}
 
                     <div class="form-group">
