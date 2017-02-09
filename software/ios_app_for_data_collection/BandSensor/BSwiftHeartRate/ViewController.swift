@@ -150,33 +150,64 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
                 stopGsrUpdates()
                 stopSkinUpdates()
                 
+                var csv: String = "Time"
                 
                 if(hrSwitchT == 1){
-                    LogHR()
+                    //LogHR()
+                    csv += ",HR,RR,Mode"
                     output("LogHR saved")
                 }else {
                     output("LogHR NOT saved")
                 }
                 
                 if(gsrSwitchT == 1){
-                    LogGSR()
+                    //LogGSR()
+                    csv += ",GSR"
                     output("LogGSR saved")
                 }else {
                     output("LogGSR NOT saved")
                 }
                 
                 if(skinSwitchT == 1){
-                    LogSkin()
+                    //LogSkin()
+                    csv += ",SkinT"
                     output("LogSkin saved")
                 } else {
                     output("LogSkin NOT saved")
                 }
                 
                 if(accSwitchT == 1){
-                    LogAcc()
+                    //LogAcc()
+                    csv += ",AccX,AccY,AccZ"
                     output("LogAcc saved")
                 } else {
                     output("LogAcc NOT saved")
+                }
+                
+                
+                let count: Int = timeArrayHR.count
+                output("\(count)")
+                for i in 0..<count {
+                    csv += "\n\(timeArrayHR[i]),\(hrArray[i]),\(rrArray[i]),\(hrQArray[i]),\(gsrArray[i]),\(skinArray[i]),\(accXArray[i]),\(accYArray[i]),\(accZArray[i])"
+                }
+                
+                let dateFormatter = DateFormatter()
+                
+                dateFormatter.dateFormat = "dd.MM.YY"
+                let fileName = "MSBand2_ALL_data_\(dateFormatter.string(from: Date()))"
+                
+                //let fileName = "MSBand2_ALL_data_"
+ 
+                let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                
+                if let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv"){
+                    
+                    // Write to the file
+                    do {
+                        try csv.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+                    } catch let error as NSError {
+                        output("Error \(error.localizedDescription) while writing to file \(csv)")
+                    }
                 }
                 
                 
@@ -279,7 +310,12 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
                     self.rrLabel.text = NSString(format: "RR Interval: %.2f second",
                                                  rrData!.interval) as String;
                     self.tempRR = Double(rrData!.interval)
-                    self.registerDataHR()})
+                    self.registerDataHR()
+                    self.registerDataAcc()
+                    self.registerDataGSR()
+                    self.registerDataSkin()
+                
+                    })
             } catch let error as NSError {
                 output("startRRUpdatesToQueue failed: \(error.description)")
             }
@@ -313,7 +349,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
                     self.tempX = Double(accData!.x)
                     self.tempY = Double(accData!.y)
                     self.tempZ = Double(accData!.z)
-                    self.registerDataAcc()
+                    //self.registerDataAcc()
                 })
             } catch let error as NSError {
                 output("startAccUpdatesToQueue failed: \(error.description)")
@@ -344,7 +380,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
                     
                     self.gsrLabel.text = NSString(format: "Gsr: %8u kOhm", gsrData!.resistance) as String;
                     self.tempGSR = Double(gsrData!.resistance)
-                    self.registerDataGSR()
+                    //self.registerDataGSR()
                 })
             } catch let error as NSError {
                 output("startGsrUpdatesToQueue failed: \(error.description)")
@@ -372,10 +408,10 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
             do{
                 try client.sensorManager.startSkinTempUpdates(to: nil, withHandler: {(skinData:
                     MSBSensorSkinTemperatureData?, error: Error?)in
-                    self.skinLabel.text = NSString(format: "Skin temp: %.3f", skinData!.temperature) as String;
+                    self.skinLabel.text = NSString(format: "Skin temp: %.3f degree C", skinData!.temperature) as String;
                     self.tempSkin = Double(skinData!.temperature)
-                    self.output("one \n")
-                    self.registerDataSkin()
+                    //self.output("one \n")
+                    //self.registerDataSkin()
                 })
             } catch let error as NSError {
                 output("stopSkinUpdatesToQueue failed: \(error.description)")
@@ -440,7 +476,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
     func registerDataHR() {
         // Transform to string to save it to array
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss.SSS"
+        dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
         timeStringHR = dateFormatter.string(from: Date())
         
         hrString = String(format: "%3f", tempHR)
@@ -457,7 +493,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
     
     func registerDataGSR(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss.SSS"
+        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
         timeStringGSR = dateFormatter.string(from: Date())
         
         timeArrayGSR.append(timeStringGSR as AnyObject)
@@ -467,7 +503,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
     
     func registerDataSkin(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss.SSS"
+        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
         timeStringSkin = dateFormatter.string(from: Date())
         
         timeArraySkin.append(timeStringSkin as AnyObject)
@@ -477,7 +513,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
     
     func registerDataAcc(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss.SSS"
+        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
         timeStringAcc = dateFormatter.string(from: Date())
         
         timeArrayAcc.append(timeStringAcc as AnyObject)
@@ -500,7 +536,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
         
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
+        dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
         let fileName = "MSBand2_HR_data_\(dateFormatter.string(from: Date()))"
         
         let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -526,7 +562,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
         
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
+        dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
         let fileName = "MSBand2_GSR_data_\(dateFormatter.string(from: Date()))"
         
         let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -553,7 +589,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
         
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
+        dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
         let fileName = "MSBand2_SkinTemp_data_\(dateFormatter.string(from: Date()))"
         
         let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -579,7 +615,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
         
         let dateFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
+        dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
         let fileName = "MSBand2_Acc_data_\(dateFormatter.string(from: Date()))"
         
         let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
