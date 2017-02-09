@@ -14,27 +14,32 @@
             text-align: center;
             ">
         <div class="container">
-            <h1>Register an account</h1>
+            <h1>Account Management</h1>
         </div>
     </div>
 {% endblock %}
 
 
 {% block content %}
-    <h1><a href="/">Register</a></h1>
+    <h1>Register here</h1>
+
     {% if registered %} <!-- from variable in views.py -->
+        <meta http-equiv="refresh" content="3;url=/" />
         <strong>Thank you for registering!</strong>
-        <a href="/">Return to the homepage.</a>
+        You will be redireced to the homepage in 3 seconds, if not, click <a href="/">here</a>.
         <br />
     {% else %}
-        <strong>Register here!</strong>
+        <strong>Required information</strong>
 
         <form id="user_form" method="post" action="/accounts/register/" enctype="multipart/form-data">
 
             {% csrf_token %}
 
             {{ user_form.as_p }}
-            <br /><br/>
+
+            <br />
+
+            <strong>Optional information</strong>
             {{ profile_form.as_p }}
 
             <input type="submit" name="submit" value="Register" />

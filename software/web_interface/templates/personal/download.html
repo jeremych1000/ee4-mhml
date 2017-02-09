@@ -1,0 +1,49 @@
+{% extends "personal/base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#download").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
+
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+            height: 25em;
+            padding-top: 5em;
+            margin-bottom: 1em;
+            background-image: url('/media/img/jumbotron.jpg');
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            ">
+        <div class="container">
+            <h1>Download</h1>
+            <p>Get and compile our project</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>Download instructions</h1>
+    <ul class="list-group">
+        <li class="list-group-item">Get iOS app</li>
+        <li class="list-group-item">Register an account here</li>
+        <li class="list-group-item">Start using the app</li>
+    </ul>
+
+    <br /><br/>
+
+    <h1>Custom download and compile instructions</h1>
+    <ul class="list-group">
+        <li class="list-group-item">Clone GitHub respository</li>
+        <li class="list-group-item">Setup</li>
+        <li class="list-group-item">lalala</li>
+    </ul>
+{% endblock %}

@@ -13,3 +13,11 @@ def contact(request):
         {'name': 'Nathalie Wong', 'email': 'nw813@ic.ac.uk'},
     ]
     return render(request, "personal/contact.html", {'details': details})
+
+def about(request):
+    return render(request, "personal/about.html")
+
+def download(request):
+    return render(request, "personal/download.html")
+
+

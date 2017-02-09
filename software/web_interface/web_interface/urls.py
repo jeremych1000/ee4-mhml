@@ -27,15 +27,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^', include("personal.urls"), name='home'),
 
-    #login stuff
-    #url(r'^accounts/login/$', views.login),
-    #url(r'^accounts/auth/$', views.auth_view),
-    #url(r'^accounts/logout/$', views.logout),
-    #url(r'^accounts/loggedin/$', views.loggedin),
-    #url(r'^accounts/invalid/$', views.invalid_login),
-
     url(r'^accounts/', include('accounts.urls'), name='accounts'),
-    #url(r'accounts/login/$', views.login, {'template_name': 'accounts/login.html', 'authentication_form': LoginForm}, name='login'),
-    #url(r'accounts/logout/$', views.logout, {'next_page': '/'}, name='logout'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

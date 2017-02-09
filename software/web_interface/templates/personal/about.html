@@ -1,0 +1,35 @@
+{% extends "personal/base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#about").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
+
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+            height: 25em;
+            padding-top: 5em;
+            margin-bottom: 1em;
+            background-image: url('/media/img/jumbotron.jpg');
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            ">
+        <div class="container">
+            <h1>About Sleepify</h1>
+            <p>Who we are, what we do</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <p>test</p>
+{% endblock %}

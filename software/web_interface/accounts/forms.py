@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 from accounts.models import UserProfile
+from passwords.fields import PasswordField
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label="Username",
@@ -19,9 +20,11 @@ class LoginForm(AuthenticationForm):
                                      }))
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(label='Password',
-                               max_length=30,
-                               widget = forms.PasswordInput())
+    #password = forms.CharField(label='Password',
+    #                           max_length=30,
+    #                           widget = forms.PasswordInput())
+
+    password = PasswordField(label='Password')
 
     class Meta:
         model = User

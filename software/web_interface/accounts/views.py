@@ -69,6 +69,9 @@ def user_login(request):
             print("Invalid login details.")
             return HttpResponse("Invalid login details supplied.")
 
+        if not request.POST.get('remember_me', None):
+            request.session.set_expiry(0)
+
     else:
         return HttpResponseRedirect('/')
 
