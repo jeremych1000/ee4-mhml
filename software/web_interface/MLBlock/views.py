@@ -37,12 +37,17 @@ def read_raw_file(classHandle, datestring):
 def upload(request):
     uploaded = False
     if request.method == 'POST':
+        print("request is", request)
         f_form = FileForm(request.POST, request.FILES)
+        print("size of posted file: ", len(request.FILES))
+
         if f_form.is_valid():
             name = request.FILES['file'].name
+            print("name of file is", name)
             regexR=re.search(r'(MSBand2_ALL_data_)(\w+)',name)
             data_date = regexR.group(2)
             if not (check_duplicate(name)):
+                print("begin upload file")
                 raw = RawData.objects.create(file=request.FILES['file'])
                 db_feautre = FeatureEntries.objects.create(date=datetime.strptime(data_date, '%d_%m_%y'))
                 func.InsertFeature2DB(fe.genfeatureFromCSV(raw.file.path, 600), db_feautre)
@@ -55,6 +60,9 @@ def upload(request):
                     obj.save()
                     if obj.accCount == 20:
                         pass
+        else:
+            print(f_form.errors)
+            print(f_form.non_field_errors)
         uploaded = True
     return render(request, "ml/ml_homepage.html", {'uploaded': uploaded,
                                                     'count': RawData.objects.count(),
