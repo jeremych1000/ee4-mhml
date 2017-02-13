@@ -188,7 +188,7 @@
 				TargetAttributes = {
 					1680DC6E1E4C8BDB009DA146 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 632MQG5DMJ;
+						DevelopmentTeam = VPJUWG3WEE;
 						ProvisioningStyle = Automatic;
 					};
 					1680DC821E4C8BDC009DA146 = {
@@ -433,7 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 632MQG5DMJ;
+				DEVELOPMENT_TEAM = VPJUWG3WEE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
@@ -441,7 +441,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhml;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhmlth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -454,7 +454,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 632MQG5DMJ;
+				DEVELOPMENT_TEAM = VPJUWG3WEE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
@@ -462,7 +462,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhml;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhmlth;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
