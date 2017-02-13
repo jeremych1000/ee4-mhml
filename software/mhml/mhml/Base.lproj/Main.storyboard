@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="b8Y-r1-2iZ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--History-->
+        <scene sceneID="o7C-lD-XRu">
+            <objects>
+                <viewController id="Bmo-P7-uzX" customClass="BandData" customModule="mhml" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rcn-qC-a1W"/>
+                        <viewControllerLayoutGuide type="bottom" id="6Sh-NE-wIR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vVT-TM-GRt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLK-S7-peA">
+                                <rect key="frame" x="284" y="359" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="didTapStopHRSensorButton:" destination="Bmo-P7-uzX" eventType="touchUpInside" id="4kZ-bd-DVy"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IzD-mX-ZHa">
+                                <rect key="frame" x="118" y="417" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="HRlogSwitch:" destination="Bmo-P7-uzX" eventType="valueChanged" id="Zk2-p7-BKU"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gft-j6-rzQ">
+                                <rect key="frame" x="284" y="417" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="SkinLogSwitch:" destination="Bmo-P7-uzX" eventType="valueChanged" id="yd6-uh-4hM"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yem-FD-tyx">
+                                <rect key="frame" x="118" y="456" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="AccLogSwitch:" destination="Bmo-P7-uzX" eventType="valueChanged" id="MM8-Un-chX"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2hc-1w-39Z">
+                                <rect key="frame" x="284" y="456" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="GsrLogSwitch:" destination="Bmo-P7-uzX" eventType="valueChanged" id="avL-Yy-NYc"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Heart Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sp8-Yq-O2s">
+                                <rect key="frame" x="16" y="417" width="115" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accelerometer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRT-js-V62">
+                                <rect key="frame" x="16" y="456" width="147" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GSR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QtT-7y-Lp2">
+                                <rect key="frame" x="196" y="457" width="137" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="koE-s8-b00">
+                                <rect key="frame" x="54" y="359" width="34" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <action selector="didTapStartHRSensorButton:" destination="Bmo-P7-uzX" eventType="touchUpInside" id="4dm-dN-xf1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Skin Temp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M14-KZ-abk">
+                                <rect key="frame" x="196" y="417" width="137" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="H0b-1z-RBz">
+                                <rect key="frame" x="67" y="103" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="History" image="Bar Chart-50" id="E2z-Sn-Wy2">
+                        <inset key="imageInsets" minX="6" minY="8" maxX="6" maxY="4"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="accSwitch" destination="yem-FD-tyx" id="Sb2-wi-wM7"/>
+                        <outlet property="gsrSwitch" destination="2hc-1w-39Z" id="bJk-F0-2jN"/>
+                        <outlet property="hrSwitch" destination="IzD-mX-ZHa" id="IeI-Fa-aW3"/>
+                        <outlet property="skinSwitch" destination="Gft-j6-rzQ" id="iJG-21-Fms"/>
+                        <outlet property="startHRSensorButton" destination="koE-s8-b00" id="VqH-mq-A9h"/>
+                        <outlet property="stopHRSensorButton" destination="pLK-S7-peA" id="59k-8g-Hxu"/>
+                        <outlet property="stopHRSensorButtton" destination="pLK-S7-peA" id="GQQ-fA-pMf"/>
+                        <outlet property="txtOutput" destination="H0b-1z-RBz" id="0GV-UA-iRK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NQ2-qB-r20" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="412" y="787.55622188905556"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="4Ay-Je-2ZZ">
+            <objects>
+                <viewController id="m9D-yX-fDd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ghz-oh-KYZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Lb-Tu-Y7T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ICk-3b-fTh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings-50" id="E28-RE-9WL">
+                        <inset key="imageInsets" minX="6" minY="8" maxX="6" maxY="4"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xdB-ga-Kio" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1206" y="1118"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="jBq-JF-cXj">
+            <objects>
+                <viewController id="mTo-Ym-n2u" customClass="FlightReminder" customModule="mhml" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zO1-p2-gNm"/>
+                        <viewControllerLayoutGuide type="bottom" id="Iul-5f-OkK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="d3U-9E-3eK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="aIO-sU-m5D">
+                                <rect key="frame" x="27" y="77" width="321" height="354"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lyu-yS-MiU">
+                                        <rect key="frame" x="148" y="0.0" width="25" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upN-ku-b8l">
+                                        <rect key="frame" x="77" y="69" width="167" height="30"/>
+                                        <state key="normal" title="Set sleep early reminder"/>
+                                        <connections>
+                                            <action selector="setReminder:" destination="mTo-Ym-n2u" eventType="touchUpInside" id="eyp-3t-GhC"/>
+                                        </connections>
+                                    </button>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8kW-si-8La">
+                                        <rect key="frame" x="0.0" y="138" width="321" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="508359523.49613202">
+                                            <!--2017-02-09 18:58:43 +0000-->
+                                        </date>
+                                    </datePicker>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8kW-si-8La" firstAttribute="leading" secondItem="aIO-sU-m5D" secondAttribute="leading" id="k3e-Sl-PGe"/>
+                                    <constraint firstItem="upN-ku-b8l" firstAttribute="leading" secondItem="aIO-sU-m5D" secondAttribute="leading" constant="77" id="xN9-Sk-km1"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aIO-sU-m5D" firstAttribute="top" secondItem="zO1-p2-gNm" secondAttribute="bottom" constant="57" id="Y2y-lh-ciG"/>
+                            <constraint firstItem="aIO-sU-m5D" firstAttribute="centerX" secondItem="d3U-9E-3eK" secondAttribute="centerX" id="jWX-Jq-LBQ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="Calendar-50" id="2U7-y7-YIa">
+                        <inset key="imageInsets" minX="6" minY="8" maxX="6" maxY="4"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="myDatePicker" destination="8kW-si-8La" id="b0C-j2-0sG"/>
+                        <outlet property="reminderText" destination="Lyu-yS-MiU" id="X41-oR-qUd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0VF-f4-yUH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1277.5999999999999" y="428.63568215892059"/>
+        </scene>
+        <!--Alarm-->
+        <scene sceneID="WIn-of-TIe">
+            <objects>
+                <viewController id="wn4-pT-je7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lfY-af-zR3"/>
+                        <viewControllerLayoutGuide type="bottom" id="RSj-Wl-hbC"/>
+                    </layoutGuides>
+                    <view key="view" alpha="0.84999999999999998" contentMode="scaleAspectFit" id="4g7-PY-zaS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Alarm" image="Clock-50" id="h5Z-fG-KkH">
+                        <inset key="imageInsets" minX="6" minY="8" maxX="6" maxY="4"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WE5-ha-pbk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1278" y="-226"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="xYQ-Fb-frV">
+            <objects>
+                <tabBarController id="b8Y-r1-2iZ" customClass="TabBarController" customModule="mhml" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ya0-dh-jd1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="mTo-Ym-n2u" kind="relationship" relationship="viewControllers" id="fc2-CT-Y1B"/>
+                        <segue destination="wn4-pT-je7" kind="relationship" relationship="viewControllers" id="0GO-fd-pj4"/>
+                        <segue destination="Bmo-P7-uzX" kind="relationship" relationship="viewControllers" id="Ixj-pe-qXc"/>
+                        <segue destination="m9D-yX-fDd" kind="relationship" relationship="viewControllers" id="F64-nU-gry"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jr2-ih-iT3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="101"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Bar Chart-50" width="50" height="50"/>
+        <image name="Calendar-50" width="50" height="50"/>
+        <image name="Clock-50" width="50" height="50"/>
+        <image name="Settings-50" width="50" height="50"/>
+    </resources>
+</document>
