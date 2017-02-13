@@ -57,17 +57,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		56EE47541E4D2D97003CFFE0 /* BandAltimeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandAltimeter.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandAltimeter.app"; sourceTree = "<absolute>"; };
-		56EE47551E4D2D97003CFFE0 /* BandAmbientLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandAmbientLight.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandAmbientLight.app"; sourceTree = "<absolute>"; };
-		56EE47561E4D2D97003CFFE0 /* BandBarometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandBarometer.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandBarometer.app"; sourceTree = "<absolute>"; };
-		56EE47571E4D2D97003CFFE0 /* BandGSR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandGSR.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandGSR.app"; sourceTree = "<absolute>"; };
-		56EE47581E4D2D97003CFFE0 /* BandHeartRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandHeartRate.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandHeartRate.app"; sourceTree = "<absolute>"; };
-		56EE47591E4D2D97003CFFE0 /* BandRRInterval.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandRRInterval.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandRRInterval.app"; sourceTree = "<absolute>"; };
-		56EE475A1E4D2D97003CFFE0 /* BSwiftHeartRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BSwiftHeartRate.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BSwiftHeartRate.app"; sourceTree = "<absolute>"; };
-		56EE475B1E4D2D97003CFFE0 /* GetDataMSBand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = GetDataMSBand.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/GetDataMSBand.app"; sourceTree = "<absolute>"; };
-		56EE475C1E4D2D97003CFFE0 /* GetDataMSBandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = GetDataMSBandTests.xctest; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/GetDataMSBandTests.xctest"; sourceTree = "<absolute>"; };
-		56EE475D1E4D2D97003CFFE0 /* GetDataMSBandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = GetDataMSBandUITests.xctest; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/GetDataMSBandUITests.xctest"; sourceTree = "<absolute>"; };
-		56EE475E1E4D2E49003CFFE0 /* BandAccelerometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BandAccelerometer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56C0C6641E51DD7B00ACF69E /* BandAltimeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandAltimeter.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandAltimeter.app"; sourceTree = "<absolute>"; };
+		56C0C6651E51DD7B00ACF69E /* BandAmbientLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandAmbientLight.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandAmbientLight.app"; sourceTree = "<absolute>"; };
+		56C0C6661E51DD7B00ACF69E /* BandBarometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandBarometer.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandBarometer.app"; sourceTree = "<absolute>"; };
+		56C0C6671E51DD7B00ACF69E /* BandGSR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandGSR.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandGSR.app"; sourceTree = "<absolute>"; };
+		56C0C6681E51DD7B00ACF69E /* BandHeartRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandHeartRate.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandHeartRate.app"; sourceTree = "<absolute>"; };
+		56C0C6691E51DD7B00ACF69E /* BandRRInterval.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandRRInterval.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandRRInterval.app"; sourceTree = "<absolute>"; };
+		56C0C66A1E51DD7B00ACF69E /* BSwiftHeartRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSwiftHeartRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56C0C66B1E51DD7B00ACF69E /* GetDataMSBand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = GetDataMSBand.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/GetDataMSBand.app"; sourceTree = "<absolute>"; };
+		56C0C66C1E51DD7B00ACF69E /* GetDataMSBandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = GetDataMSBandTests.xctest; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/GetDataMSBandTests.xctest"; sourceTree = "<absolute>"; };
+		56C0C66D1E51DD7B00ACF69E /* GetDataMSBandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = GetDataMSBandUITests.xctest; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/GetDataMSBandUITests.xctest"; sourceTree = "<absolute>"; };
+		56EE475E1E4D2E49003CFFE0 /* BandAccelerometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BandAccelerometer.app; path = "/Users/tszho/Desktop/ee4-mhml/software/ios_app_for_data_collection/BandSensor/build/Debug-iphoneos/BandAccelerometer.app"; sourceTree = "<absolute>"; };
 		5F598E721AA636600071C70E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		5F598E741AA6366C0071C70E /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MicrosoftBandKit_iOS.framework; path = ../MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
 		9316ABD51C76900900358F6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 			children = (
 				5F598E761AA6368C0071C70E /* Framework */,
 				9316ABD41C76900900358F6C /* BSwiftHeartRate */,
-				56EE475E1E4D2E49003CFFE0 /* BandAccelerometer.app */,
+				56C0C66A1E51DD7B00ACF69E /* BSwiftHeartRate.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,7 +227,7 @@
 			);
 			name = GetDataMSBand;
 			productName = GetDataMSBand;
-			productReference = 56EE475B1E4D2D97003CFFE0 /* GetDataMSBand.app */;
+			productReference = 56C0C66B1E51DD7B00ACF69E /* GetDataMSBand.app */;
 			productType = "com.apple.product-type.application";
 		};
 		56F77BA61E36572F00F2EDBE /* GetDataMSBandTests */ = {
@@ -245,7 +245,7 @@
 			);
 			name = GetDataMSBandTests;
 			productName = GetDataMSBandTests;
-			productReference = 56EE475C1E4D2D97003CFFE0 /* GetDataMSBandTests.xctest */;
+			productReference = 56C0C66C1E51DD7B00ACF69E /* GetDataMSBandTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		56F77BB11E36572F00F2EDBE /* GetDataMSBandUITests */ = {
@@ -264,7 +264,7 @@
 			);
 			name = GetDataMSBandUITests;
 			productName = GetDataMSBandUITests;
-			productReference = 56EE475D1E4D2D97003CFFE0 /* GetDataMSBandUITests.xctest */;
+			productReference = 56C0C66D1E51DD7B00ACF69E /* GetDataMSBandUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		9316ABD21C76900800358F6C /* BSwiftHeartRate */ = {
@@ -281,7 +281,7 @@
 			);
 			name = BSwiftHeartRate;
 			productName = BSwiftHeartRate;
-			productReference = 56EE475A1E4D2D97003CFFE0 /* BSwiftHeartRate.app */;
+			productReference = 56C0C66A1E51DD7B00ACF69E /* BSwiftHeartRate.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E501517B1B98DD0F00B91738 /* BandHeartRate */ = {
@@ -298,7 +298,7 @@
 			);
 			name = BandHeartRate;
 			productName = BandHeartRate;
-			productReference = 56EE47581E4D2D97003CFFE0 /* BandHeartRate.app */;
+			productReference = 56C0C6681E51DD7B00ACF69E /* BandHeartRate.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E50151A71B98E67100B91738 /* BandGSR */ = {
@@ -315,7 +315,7 @@
 			);
 			name = BandGSR;
 			productName = BandGSR;
-			productReference = 56EE47571E4D2D97003CFFE0 /* BandGSR.app */;
+			productReference = 56C0C6671E51DD7B00ACF69E /* BandGSR.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E50151D31B98F6A300B91738 /* BandAccelerometer */ = {
@@ -349,7 +349,7 @@
 			);
 			name = BandBarometer;
 			productName = BandBarometer;
-			productReference = 56EE47561E4D2D97003CFFE0 /* BandBarometer.app */;
+			productReference = 56C0C6661E51DD7B00ACF69E /* BandBarometer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E50152431B9A3D7000B91738 /* BandAmbientLight */ = {
@@ -366,7 +366,7 @@
 			);
 			name = BandAmbientLight;
 			productName = BandAmbientLight;
-			productReference = 56EE47551E4D2D97003CFFE0 /* BandAmbientLight.app */;
+			productReference = 56C0C6651E51DD7B00ACF69E /* BandAmbientLight.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E501526F1B9A413000B91738 /* BandAltimeter */ = {
@@ -383,7 +383,7 @@
 			);
 			name = BandAltimeter;
 			productName = BandAltimeter;
-			productReference = 56EE47541E4D2D97003CFFE0 /* BandAltimeter.app */;
+			productReference = 56C0C6641E51DD7B00ACF69E /* BandAltimeter.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E50152991B9A415000B91738 /* BandRRInterval */ = {
@@ -400,7 +400,7 @@
 			);
 			name = BandRRInterval;
 			productName = BandRRInterval;
-			productReference = 56EE47591E4D2D97003CFFE0 /* BandRRInterval.app */;
+			productReference = 56C0C6691E51DD7B00ACF69E /* BandRRInterval.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
