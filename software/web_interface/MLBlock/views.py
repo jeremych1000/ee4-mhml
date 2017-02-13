@@ -39,6 +39,8 @@ def upload(request):
     if request.method == 'POST':
         print("request is", request)
         f_form = FileForm(request.POST, request.FILES)
+        print("size of posted file: ", len(request.FILES))
+
         if f_form.is_valid():
             name = request.FILES['file'].name
             print("name of file is", name)
