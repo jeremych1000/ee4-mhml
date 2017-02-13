@@ -13,8 +13,8 @@ import re
 
 
 def check_duplicate(name):
-    return os.path.isfile(os.path.join(settings.MEDIA_ROOT, name))
-
+    path = os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), name)
+    return os.path.isfile(path)
 
 def read_raw_file(classHandle, datestring):
     obj = classHandle.objects.get(file__contains=datestring)
