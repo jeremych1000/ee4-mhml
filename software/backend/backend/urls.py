@@ -21,7 +21,6 @@ from MLBlock import views as ml_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', ml_views.home, name='ml_home'),
-    url(r'^ml/$', ml_views.home, name='ml_home'),
     url(r'^lists/$', list_views.home_page, name='list_home'),
     url(r'^lists/new/$', list_views.new_list, name='new_list'),
     url(r'^lists/(?P<list_id>\d+)/items/new/$', list_views.new_item, name='new_item'),
@@ -30,4 +29,5 @@ urlpatterns = [
     url(r'^lists/(?P<listID>\d+)/delete/$', list_views.delete_list, name='delete_list'),
     url(r'^ml/upload/$', ml_views.upload, name='ml_file_upload'),
     url(r'^ml/success/$', ml_views.success, name='ml_success'),
+    url(r'^ml/$', ml_views.home, name='ml_home'),
 ]
