@@ -41,6 +41,7 @@ def upload(request):
         f_form = FileForm(request.POST, request.FILES)
         if f_form.is_valid():
             name = request.FILES['file'].name
+            print("name of file is", name)
             regexR=re.search(r'(MSBand2_ALL_data_)(\w+)',name)
             data_date = regexR.group(2)
             if not (check_duplicate(name)):
@@ -58,8 +59,8 @@ def upload(request):
                     if obj.accCount == 20:
                         pass
         else:
-            print(f_form.errors())
-            print(f_form.non_field_errors())
+            print(f_form.errors)
+            print(f_form.non_field_errors)
         uploaded = True
     return render(request, "ml/ml_homepage.html", {'uploaded': uploaded,
                                                     'count': RawData.objects.count(),

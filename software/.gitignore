@@ -5,6 +5,7 @@ db.sqlite3
 migrations/
 media/uploaded_images/
 media/data
+alpr/
 
 # C extensions
 *.so
