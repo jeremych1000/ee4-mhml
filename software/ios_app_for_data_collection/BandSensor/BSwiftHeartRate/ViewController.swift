@@ -476,7 +476,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
     func registerDataHR() {
         // Transform to string to save it to array
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss"
+        dateFormatter.dateFormat = "dd/MM/YY HH:mm:ss.SSS"
         timeStringHR = dateFormatter.string(from: Date())
         
         hrString = String(format: "%3f", tempHR)
@@ -493,7 +493,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
     
     func registerDataGSR(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
+        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss.SSS"
         timeStringGSR = dateFormatter.string(from: Date())
         
         timeArrayGSR.append(timeStringGSR as AnyObject)
@@ -503,7 +503,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
     
     func registerDataSkin(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
+        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss.SSS"
         timeStringSkin = dateFormatter.string(from: Date())
         
         timeArraySkin.append(timeStringSkin as AnyObject)
@@ -513,7 +513,7 @@ class ViewController: UIViewController, MSBClientManagerDelegate, UITextViewDele
     
     func registerDataAcc(){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss"
+        dateFormatter.dateFormat = "dd.MM.YY HH:mm:ss.SSS"
         timeStringAcc = dateFormatter.string(from: Date())
         
         timeArrayAcc.append(timeStringAcc as AnyObject)
