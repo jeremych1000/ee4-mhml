@@ -52,18 +52,14 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
     
     //MARK: Properties
     
-//mei    @IBOutlet weak var txtOutput: UITextView!
+
 //mei    @IBOutlet weak var hrLabel: UILabel!
 //mei    @IBOutlet weak var rrLabel: UILabel!
 //mei    @IBOutlet weak var accLabel: UILabel!
-  //  @IBOutlet weak var startHRSensorButton: UIButton!
-    //@IBOutlet weak var stopHRSensorButton: UIButton!
  //mei   @IBOutlet weak var gsrLabel: UILabel!
 //mei    @IBOutlet weak var skinLabel: UILabel!
-  //  @IBOutlet weak var hrSwitch: UISwitch!
-   // @IBOutlet weak var skinSwitch: UISwitch!
-  //  @IBOutlet weak var gsrSwitch: UISwitch!
-   // @IBOutlet weak var accSwitch: UISwitch!
+    
+    
     
     
     @IBOutlet weak var txtOutput: UITextView!
