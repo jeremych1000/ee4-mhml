@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 from accounts.models import UserProfile
 from passwords.fields import PasswordField
+from accounts.models import TestPost
 
 class UserForm(forms.ModelForm):
     #password = forms.CharField(label='Password',
@@ -29,5 +30,8 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('picture',)
 
-
+class TestPostForm(forms.ModelForm):
+    class Meta:
+        model = TestPost
+        fields = ('post_data',)
 

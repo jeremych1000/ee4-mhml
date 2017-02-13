@@ -1,15 +1,45 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect
-from accounts.forms import UserForm, UserProfileForm
 
-
-# Create your views here.
-#@login_required(login_url="accounts/login/")
+from accounts.models import User, UserProfile
+from accounts.forms import UserForm, UserProfileForm, TestPostForm
 
 def home(request):
     return render(request, "accounts/home.html")
+
+def profile(request):
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        user = User.objects.get(username=username)
+        #user_profile = UserProfile.objects.get(user=user)
+        return render(request, "accounts/profile.html", {'user': user})
+    else:
+        return render(request, "accounts/profile.html")
+
+@csrf_exempt
+def test_post(request):
+    success = False
+    if request.method == 'POST':
+        post_form = TestPostForm(data = request.POST)
+        if post_form.is_valid():
+            post = post_form.save()
+            post.save()
+            print('adding to database')
+            success = True
+        else:
+            print(post_form.errors)
+    else:
+        post_form = TestPostForm()
+
+    return render(request, 'accounts/testpost.html',
+                  {
+                      'post_form': post_form,
+                      'success': success,
+                  })
 
 def register(request):
     #create boolean to see if successfully registered
@@ -62,15 +92,17 @@ def user_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                if not request.POST.get('remember_me', None):
+                    request.session.set_expiry(0)
                 return HttpResponseRedirect('/')
             else:
                 return HttpResponse('Your account has been disabled.')
+
         else:
             print("Invalid login details.")
             return HttpResponse("Invalid login details supplied.")
 
-        if not request.POST.get('remember_me', None):
-            request.session.set_expiry(0)
+
 
     else:
         return HttpResponseRedirect('/')

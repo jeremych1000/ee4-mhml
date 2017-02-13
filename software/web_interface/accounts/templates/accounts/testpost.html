@@ -1,0 +1,45 @@
+{% extends "personal/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+            height: 25em;
+            padding-top: 5em;
+            margin-bottom: 1em;
+            background-image: url('/media/img/jumbotron.jpg');
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            ">
+        <div class="container">
+            <h1>Test post</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Register here</h1>
+
+    {% if success %} <!-- from variable in views.py -->
+        <meta http-equiv="refresh" content="3;url=/accounts/testpost/" />
+        <strong>Thank you for registering!</strong>
+        You will be redirected to the homepage in 3 seconds, if not, click <a href="/accounts/testpost/">here</a>.
+        <br />
+    {% else %}
+        <strong>Required information</strong>
+
+        <form id="user_form" method="post" action="/accounts/testpost/" enctype="multipart/form-data">
+
+
+            {{ post_form.as_p }}
+
+
+            <input type="submit" name="submit" value="Register" />
+        </form>
+
+
+    {% endif %}
+{% endblock %}

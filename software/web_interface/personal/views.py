@@ -20,4 +20,5 @@ def about(request):
 def download(request):
     return render(request, "personal/download.html")
 
-
+def blank(request):
+    return render(request, "personal/blank.html")

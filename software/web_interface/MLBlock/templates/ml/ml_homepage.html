@@ -1,0 +1,54 @@
+{% extends "personal/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#MLBlock").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
+
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+            height: 25em;
+            padding-top: 5em;
+            margin-bottom: 1em;
+            background-image: url('/media/img/jumbotron.jpg');
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            ">
+        <div class="container">
+            <h1>Upload Raw Data</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Upload raw data here</h1>
+
+    {% if uploaded %}
+        <table>
+            <tbody>
+                <tr>
+                    <td>Data Entries: </td>
+                    <td>{{ count }}</td>
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+          <form enctype="multipart/form-data" method="post" action="/ml/upload/">
+            {{ fileForm.as_p }}
+            <button class="btn-group btn">Upload</button>
+            {% csrf_token %}
+         </form>
+    {% endif %}
+
+
+{% endblock %}

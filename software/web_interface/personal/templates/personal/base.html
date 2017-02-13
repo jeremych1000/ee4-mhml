@@ -52,8 +52,9 @@
                 <li id="home" class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
 
                 {% if user.is_authenticated %}
-                    <li id="profile"><a href="/profile">My Profile</a></li>
-                    <li id="pref"><a href="/preferences">My Preferences</a></li>
+                    <li id="profile"><a href="/accounts/profile">My Profile</a></li>
+                    <li id="pref"><a href="/accounts/preferences">My Preferences</a></li>
+                    <li id="MLBlock"><a href="/ml">Upload Raw Data</a></li>
                     <li id="stats" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">Recent Statistics <span class="caret"></span></a>

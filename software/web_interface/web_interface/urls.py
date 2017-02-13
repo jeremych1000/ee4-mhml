@@ -22,10 +22,18 @@ from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+#self
+from MLBlock import views as ml_views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^', include("personal.urls"), name='home'),
     url(r'^accounts/', include('accounts.urls'), name='accounts'),
-    url(r'^alpr/', include('alpr.urls'), name='alpr'),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 
+    #MLBlock
+    url(r'^ml/', include('MLBlock.urls'), name='ml'),
+
+    #misc
+    url(r'^alpr/', include('alpr.urls'), name='alpr'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
