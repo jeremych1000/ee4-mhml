@@ -8,6 +8,7 @@
 
 import UIKit
 import EventKit
+//import MicrosoftBandKit_iOS;/MicrosoftBandKit_iOS.h
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

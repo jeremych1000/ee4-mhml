@@ -9,7 +9,7 @@
 
 import UIKit
 
-class BandData: UIViewController, MSBClientManagerDelegate, UITextViewDelegate {
+class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
     
     var tempHR: Double = 0.0
     var tempRR: Double = 0.0
@@ -276,11 +276,11 @@ class BandData: UIViewController, MSBClientManagerDelegate, UITextViewDelegate {
             do {
                 try client.sensorManager.startHeartRateUpdates(to: nil, withHandler: {(heartRateData: MSBSensorHeartRateData?, error: Error?) in
                     
-                    self.hrLabel.text = NSString(format: "Heart Rate: %3u %@",
-                                                 heartRateData!.heartRate,
-                                                 heartRateData!.quality == MSBSensorHeartRateQuality.acquiring ? "Acquiring" : "Locked") as String;
+                    //self.hrLabel.text = NSString(format: "Heart Rate: %3u %@",
+                     ///                            heartRateData!.heartRate,
+                     //                            heartRateData!.quality == MSBSensorHeartRateQuality.acquiring ? "Acquiring" : "Locked") as String;
                     
-                    self.tempHR = Double(heartRateData!.heartRate)
+                   // self.tempHR = Double(heartRateData!.heartRate)
                     
                     if (heartRateData!.quality == MSBSensorHeartRateQuality.acquiring){
                         self.tempHRQ = "Acquiring"
@@ -316,9 +316,9 @@ class BandData: UIViewController, MSBClientManagerDelegate, UITextViewDelegate {
             do{
                 try client.sensorManager.startRRIntervalUpdates(to: nil, withHandler: {(rrData: MSBSensorRRIntervalData?, error: Error?) in
                     
-                    self.rrLabel.text = NSString(format: "RR Interval: %.2f second",
-                                                 rrData!.interval) as String;
-                    self.tempRR = Double(rrData!.interval)
+                   // self.rrLabel.text = NSString(format: "RR Interval: %.2f second",
+                   //                              rrData!.interval) as String;
+                   // self.tempRR = Double(rrData!.interval)
                     self.registerDataHR()
                     self.registerDataAcc()
                     self.registerDataGSR()
@@ -351,10 +351,10 @@ class BandData: UIViewController, MSBClientManagerDelegate, UITextViewDelegate {
             do{
                 try client.sensorManager.startAccelerometerUpdates(to: nil, withHandler: {(accData: MSBSensorAccelerometerData?, error : Error?)in
                     
-                    self.accLabel.text = NSString(format: "Acc:  X = %5.2f, Y = %5.2f, Z = %5.2f (g)",
-                                                  accData!.x,
-                                                  accData!.y,
-                                                  accData!.z) as String;
+                    //self.accLabel.text = NSString(format: "Acc:  X = %5.2f, Y = %5.2f, Z = %5.2f (g)",
+                    //                              accData!.x,
+                    //                              accData!.y,
+                    //                              accData!.z) as String;
                     self.tempX = Double(accData!.x)
                     self.tempY = Double(accData!.y)
                     self.tempZ = Double(accData!.z)
@@ -387,8 +387,8 @@ class BandData: UIViewController, MSBClientManagerDelegate, UITextViewDelegate {
                 try client.sensorManager.startGSRUpdates(to: nil, withHandler: {(gsrData:
                     MSBSensorGSRData?, error: Error?)in
                     
-                    self.gsrLabel.text = NSString(format: "Gsr: %8u kOhm", gsrData!.resistance) as String;
-                    self.tempGSR = Double(gsrData!.resistance)
+                    //self.gsrLabel.text = NSString(format: "Gsr: %8u kOhm", gsrData!.resistance) as String;
+                    //self.tempGSR = Double(gsrData!.resistance)
                     //self.registerDataGSR()
                 })
             } catch let error as NSError {
@@ -417,8 +417,8 @@ class BandData: UIViewController, MSBClientManagerDelegate, UITextViewDelegate {
             do{
                 try client.sensorManager.startSkinTempUpdates(to: nil, withHandler: {(skinData:
                     MSBSensorSkinTemperatureData?, error: Error?)in
-                    self.skinLabel.text = NSString(format: "Skin temp: %.3f degree C", skinData!.temperature) as String;
-                    self.tempSkin = Double(skinData!.temperature)
+                    //self.skinLabel.text = NSString(format: "Skin temp: %.3f degree C", skinData!.temperature) as String;
+                    //self.tempSkin = Double(skinData!.temperature)
                     //self.output("one \n")
                     //self.registerDataSkin()
                 })

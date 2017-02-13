@@ -8,12 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1610A39F1E51DEAA00946989 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1610A39E1E51DEAA00946989 /* CoreBluetooth.framework */; };
-		1610A3C31E51FC9E00946989 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1610A3C11E51FB0400946989 /* MicrosoftBandKit_iOS.framework */; };
-		1610A3C51E51FF8600946989 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC721E4C8BDB009DA146 /* AppDelegate.swift */; };
-		1610A3C61E51FF8600946989 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC741E4C8BDB009DA146 /* TabBarController.swift */; };
-		1610A3C71E51FF8600946989 /* BandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1610A38F1E5139EB00946989 /* BandData.swift */; };
-		1610A3C81E51FF8600946989 /* FlightReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF6D821E4D414F00F41198 /* FlightReminder.swift */; };
 		1680DC881E4C8BDC009DA146 /* mhmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC871E4C8BDC009DA146 /* mhmlTests.swift */; };
+		56B146F61E52059900CD3067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC721E4C8BDB009DA146 /* AppDelegate.swift */; };
+		56B146F71E52059900CD3067 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC741E4C8BDB009DA146 /* TabBarController.swift */; };
+		56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF6D821E4D414F00F41198 /* FlightReminder.swift */; };
+		56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,8 +28,7 @@
 /* Begin PBXFileReference section */
 		1610A38F1E5139EB00946989 /* BandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandData.swift; sourceTree = "<group>"; };
 		1610A39E1E51DEAA00946989 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		1610A3B41E51E9E800946989 /* BSwiftHeartRate-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BSwiftHeartRate-Bridging-Header.h"; sourceTree = "<group>"; };
-		1610A3C11E51FB0400946989 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MicrosoftBandKit_iOS.framework; path = mhml/MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
+		1610A3B41E51E9E800946989 /* BSwiftHeartRate-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BSwiftHeartRate-Bridging-Header.h"; path = "mhml/BSwiftHeartRate-Bridging-Header.h"; sourceTree = "<group>"; };
 		1680DC6F1E4C8BDB009DA146 /* mhml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mhml.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1680DC721E4C8BDB009DA146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1680DC741E4C8BDB009DA146 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -42,6 +40,7 @@
 		1680DC871E4C8BDC009DA146 /* mhmlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mhmlTests.swift; sourceTree = "<group>"; };
 		1680DC891E4C8BDC009DA146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16EF6D821E4D414F00F41198 /* FlightReminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightReminder.swift; sourceTree = "<group>"; };
+		56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1610A3C31E51FC9E00946989 /* MicrosoftBandKit_iOS.framework in Frameworks */,
+				56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */,
 				1610A39F1E51DEAA00946989 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,7 +66,7 @@
 		1610A3911E51DCD700946989 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1610A3C11E51FB0400946989 /* MicrosoftBandKit_iOS.framework */,
+				56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */,
 				1610A39E1E51DEAA00946989 /* CoreBluetooth.framework */,
 			);
 			name = Frameworks;
@@ -76,10 +75,11 @@
 		1680DC661E4C8BDB009DA146 = {
 			isa = PBXGroup;
 			children = (
+				1610A3B41E51E9E800946989 /* BSwiftHeartRate-Bridging-Header.h */,
+				1610A3911E51DCD700946989 /* Frameworks */,
 				1680DC711E4C8BDB009DA146 /* mhml */,
 				1680DC861E4C8BDC009DA146 /* mhmlTests */,
 				1680DC701E4C8BDB009DA146 /* Products */,
-				1610A3911E51DCD700946989 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,7 +95,6 @@
 		1680DC711E4C8BDB009DA146 /* mhml */ = {
 			isa = PBXGroup;
 			children = (
-				1610A3B41E51E9E800946989 /* BSwiftHeartRate-Bridging-Header.h */,
 				1680DC721E4C8BDB009DA146 /* AppDelegate.swift */,
 				1680DC741E4C8BDB009DA146 /* TabBarController.swift */,
 				1680DC761E4C8BDB009DA146 /* Main.storyboard */,
@@ -218,10 +217,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1610A3C51E51FF8600946989 /* AppDelegate.swift in Sources */,
-				1610A3C61E51FF8600946989 /* TabBarController.swift in Sources */,
-				1610A3C71E51FF8600946989 /* BandData.swift in Sources */,
-				1610A3C81E51FF8600946989 /* FlightReminder.swift in Sources */,
+				56B146F61E52059900CD3067 /* AppDelegate.swift in Sources */,
+				56B146F71E52059900CD3067 /* TabBarController.swift in Sources */,
+				56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,11 +363,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhml;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -383,11 +383,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhml;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
