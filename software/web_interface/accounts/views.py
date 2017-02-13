@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.cache import cache_page
 from django.http import HttpResponse, HttpResponseRedirect
+from django.middleware.csrf import get_token
 
 from accounts.models import User, UserProfile
 from accounts.forms import UserForm, UserProfileForm, TestPostForm
@@ -20,18 +22,21 @@ def profile(request):
     else:
         return render(request, "accounts/profile.html")
 
-@csrf_exempt
 def test_post(request):
     success = False
-    if request.method == 'POST':
+
+    if request.method == 'GET':
+        return render(request, "personal/blank.html")
+    elif request.method == 'POST':
         post_form = TestPostForm(data = request.POST)
+
         if post_form.is_valid():
             post = post_form.save()
             post.save()
-            print('adding to database')
             success = True
         else:
-            print(post_form.errors)
+            print("errors", post_form.errors)
+            print("non form errors", post_form.non_field_errors())
     else:
         post_form = TestPostForm()
 

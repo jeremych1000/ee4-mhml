@@ -33,7 +33,7 @@
 
         <form id="user_form" method="post" action="/accounts/testpost/" enctype="multipart/form-data">
 
-
+            {% csrf_token %}
             {{ post_form.as_p }}
 
 

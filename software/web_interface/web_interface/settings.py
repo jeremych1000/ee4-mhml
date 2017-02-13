@@ -152,6 +152,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 #others
+CSRF_COOKIE_SECURE = False
+
 LOGIN_URL = '/accounts/login'
 LOGOUT_URL = '/accounts/logout'
 LOGIN_REDIRECT_URL = '/'  # It means home view

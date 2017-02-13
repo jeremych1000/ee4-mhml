@@ -12,4 +12,4 @@ class UserProfile(models.Model):
         return self.user.username
 
 class TestPost(models.Model):
-    post_data = models.CharField(max_length=30)
+    post_data = models.CharField(max_length=30, blank=True)

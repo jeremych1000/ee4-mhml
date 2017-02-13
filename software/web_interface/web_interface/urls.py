@@ -29,7 +29,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^', include("personal.urls"), name='home'),
     url(r'^accounts/', include('accounts.urls'), name='accounts'),
-    url(r'^oauth/', include('social_django.urls', namespace='social')),
 
     #MLBlock
     url(r'^ml/', include('MLBlock.urls'), name='ml'),

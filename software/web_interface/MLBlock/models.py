@@ -2,6 +2,7 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import os
+
 class RawData(models.Model):
     file = models.FileField(null=True, blank=True, storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'data')))
 
