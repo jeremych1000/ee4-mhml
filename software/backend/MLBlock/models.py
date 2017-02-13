@@ -1,29 +1,58 @@
 from django.db import models
 
 
-class RawAccData(models.Model):
-    # time = models.DateTimeField()
-    # X = models.FloatField()
-    # Y = models.FloatField()
-    # Z = models.FloatField()
+class RawData(models.Model):
     file = models.FileField(null=True, blank=True)
 
 
-class RawTempData(models.Model):
-    # time = models.DateTimeField()
-    # temp = models.FloatField()
-    file = models.FileField(null=True, blank=True)
+class FileTracker(models.Model):
+    accCount = models.IntegerField(default=0)
 
 
-class RawGSRData(models.Model):
-    # time = models.DateTimeField(null=True, blank=True)
-    # gsr = models.FloatField()
-    file = models.FileField(null=True, blank=True)
+class FeatureEntries(models.Model):
+    date = models.DateTimeField(auto_now_add=True)
 
 
-class RawHRData(models.Model):
-    # time = models.DateTimeField()
-    # hr = models.FloatField()
-    # rr = models.FloatField()
-    # mode = models.TextField()
-    file = models.FileField(null=True, blank=True)
+class MeanHR(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class StdHR(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class MeanRR(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class StdRR(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class MeanGSR(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class StdGSR(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class MeanTemp(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class StdTemp(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class MeanAcc(models.Model):
+    data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)

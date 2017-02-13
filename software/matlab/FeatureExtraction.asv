@@ -1,4 +1,17 @@
-AccDataPath='../../data/TH_sleep_data/MSBand2_Acc_data_24_01_17.csv'
-GSRDatapath='../../data/TH_sleep_data/MSBand2_Acc_data_24_01_17.csv'
-HRDatapath='../../data/TH_sleep_data/MSBand2_Acc_data_24_01_17.csv'
-GSRDatapath='../../data/TH_sleep_data/MSBand2_Acc_data_24_01_17.csv'
+DataPath='../../data/TH_sleep_data/MSBand2_ALL_data_10.02.17.csv';
+[num,text,raw]=xlsread(DataPath,1);
+[m n] = size(raw)
+win_size = 60
+n_win = round(m/win_size)
+for index = 1: n_win
+    slice= raw((index-1)*win_size+1:index*win_size,:)
+    mean_hr = mean(slice(:,2));
+    std_hr = std(slice(:,2));
+    mean_rr = mean(slice(:,3));
+    std_rr = std(slice(:,3));
+    mean_gsr= mean(slice(:,5));
+    std_gsr =std(slice(:,5));
+    mean_temp= mean(slice(:,6));
+    std_temp= std(slice(:,6));
+    mean_acc= abs(mean(slice(:,7)))^2 +abs(mean(slice(:,8)))^2+abs(mean(slice(:,9)))^2
+end

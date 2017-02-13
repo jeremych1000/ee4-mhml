@@ -117,5 +117,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/asset/'
-ML_MEDIA_DIR = [os.path.join(BASE_DIR, os.path.join('MLBlock',"asset"))]
-MEDIA_ROOT = os.path.join(BASE_DIR, os.path.join('MLBlock',"asset"))
+ML_MEDIA_DIR = [os.path.join(BASE_DIR, os.path.join('MLBlock', "asset"))]
+MEDIA_ROOT = os.path.join(BASE_DIR, os.path.join('MLBlock', "asset"))
+Count2Train = 20
+FeatureWinSize = 600

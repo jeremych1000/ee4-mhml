@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from MLBlock.form import FileForm
 from django.conf import settings
-from MLBlock.models import RawAccData, RawGSRData, RawHRData, RawTempData
+from MLBlock.models import RawData, FileTracker, FeatureEntries
 from datetime import datetime
+import MLBlock.FeatureExtraction as fe
+import MLBlock.ServerFunction as func
 import os
 import csv
+import re
 
 
 def check_duplicate(name):
@@ -13,16 +16,16 @@ def check_duplicate(name):
 
 def read_raw_file(classHandle, datestring):
     obj = classHandle.objects.get(file__contains=datestring)
-    fHandle=open(obj.file.path)
+    fHandle = open(obj.file.path)
     reader = csv.reader(fHandle)
     date_format_string = '%d.%m.%y %H:%M:%S'
     n_param = len(reader.__next__())
-    data=[]
+    data = []
     for i in range(0, n_param):
         data.append([])
     for row in reader:
         data[0].append(datetime.strptime(row[0][0:len(row[0]) - 4], date_format_string))
-        #Data Processing
+        # Data Processing
         for i in range(1, n_param):
             data[i].append(row[i])
     fHandle.close()
@@ -34,23 +37,21 @@ def upload(request):
         f_form = FileForm(request.POST, request.FILES)
         if f_form.is_valid():
             name = request.FILES['file'].name
-            print(os.path.join(settings.MEDIA_ROOT, name))
-            print(os.path.isfile(os.path.join(settings.MEDIA_ROOT, name)))
-            if not (check_duplicate(name) or check_duplicate(name) or check_duplicate(name) or check_duplicate(
-                name)):
-                if name.find('Acc') > -1:
-                    obj = RawAccData(file=request.FILES['file'])
+            regexR=re.search(r'(MSBand2_ALL_data_)(\w+)',name)
+            data_date = regexR.group(2)
+            if not (check_duplicate(name)):
+                raw = RawData.objects.create(file=request.FILES['file'])
+                db_feautre = FeatureEntries.objects.create(date=datetime.strptime(data_date, '%d_%m_%y'))
+                func.InsertFeature2DB(fe.genfeatureFromCSV(raw.file.path, 600), db_feautre)
+                if FileTracker.objects.count() == 0:
+                    FileTracker.objects.create(accCount=1)
+                else:
+                    print(FileTracker.objects.count())
+                    obj = FileTracker.objects.first()
+                    obj.accCount += 1
                     obj.save()
-                if name.find('GSR') > -1:
-                    obj = RawGSRData(file=request.FILES['file'])
-                    obj.save()
-                if name.find('HR') > -1:
-                    obj = RawHRData(file=request.FILES['file'])
-                    obj.save()
-                if name.find('Temp') > -1:
-                    obj = RawTempData(file=request.FILES['file'])
-                    obj.save()
-
+                    if obj.accCount == 20:
+                        pass
         return redirect('/ml/success/')
 
 
@@ -60,5 +61,4 @@ def home(request):
 
 def success(request):
     return render(request, 'success.html',
-                  {'acc_count': RawAccData.objects.count(), 'gsr_count': RawGSRData.objects.count(),
-                   'temp_count': RawTempData.objects.count(), 'hr_count': RawHRData.objects.count()})
+                  {'count': RawData.objects.count()})
