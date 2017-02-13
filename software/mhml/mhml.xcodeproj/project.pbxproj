@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		1610A39F1E51DEAA00946989 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1610A39E1E51DEAA00946989 /* CoreBluetooth.framework */; };
+		1610A3CE1E52156500946989 /* BandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1610A38F1E5139EB00946989 /* BandData.swift */; };
 		1680DC881E4C8BDC009DA146 /* mhmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC871E4C8BDC009DA146 /* mhmlTests.swift */; };
+		16B1F3631E5216BF009E0A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1680DC761E4C8BDB009DA146 /* Main.storyboard */; };
+		16B1F3661E522822009E0A46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1680DC791E4C8BDB009DA146 /* Assets.xcassets */; };
 		56B146F61E52059900CD3067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC721E4C8BDB009DA146 /* AppDelegate.swift */; };
 		56B146F71E52059900CD3067 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC741E4C8BDB009DA146 /* TabBarController.swift */; };
 		56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF6D821E4D414F00F41198 /* FlightReminder.swift */; };
 		56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */; };
-		56F1BC931E52114F00928D09 /* BandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1610A38F1E5139EB00946989 /* BandData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,20 +29,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1610A38F1E5139EB00946989 /* BandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BandData.swift; path = mhml/BandData.swift; sourceTree = "<group>"; };
+		1610A38F1E5139EB00946989 /* BandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandData.swift; sourceTree = "<group>"; };
 		1610A39E1E51DEAA00946989 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		1610A3B41E51E9E800946989 /* BSwiftHeartRate-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BSwiftHeartRate-Bridging-Header.h"; path = "mhml/BSwiftHeartRate-Bridging-Header.h"; sourceTree = "<group>"; };
 		1680DC6F1E4C8BDB009DA146 /* mhml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mhml.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1680DC721E4C8BDB009DA146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = mhml/AppDelegate.swift; sourceTree = "<group>"; };
-		1680DC741E4C8BDB009DA146 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = mhml/TabBarController.swift; sourceTree = "<group>"; };
+		1680DC721E4C8BDB009DA146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1680DC741E4C8BDB009DA146 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1680DC771E4C8BDB009DA146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1680DC791E4C8BDB009DA146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = mhml/Assets.xcassets; sourceTree = "<group>"; };
+		1680DC791E4C8BDB009DA146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1680DC7C1E4C8BDB009DA146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1680DC7E1E4C8BDB009DA146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = mhml/Info.plist; sourceTree = "<group>"; };
+		1680DC7E1E4C8BDB009DA146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1680DC831E4C8BDC009DA146 /* mhmlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mhmlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1680DC871E4C8BDC009DA146 /* mhmlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mhmlTests.swift; sourceTree = "<group>"; };
 		1680DC891E4C8BDC009DA146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16EF6D821E4D414F00F41198 /* FlightReminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FlightReminder.swift; path = mhml/FlightReminder.swift; sourceTree = "<group>"; };
+		16EF6D821E4D414F00F41198 /* FlightReminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightReminder.swift; sourceTree = "<group>"; };
 		56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,14 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				1610A3B41E51E9E800946989 /* BSwiftHeartRate-Bridging-Header.h */,
-				1680DC721E4C8BDB009DA146 /* AppDelegate.swift */,
-				1680DC741E4C8BDB009DA146 /* TabBarController.swift */,
-				1680DC761E4C8BDB009DA146 /* Main.storyboard */,
-				1610A38F1E5139EB00946989 /* BandData.swift */,
-				16EF6D821E4D414F00F41198 /* FlightReminder.swift */,
-				1680DC791E4C8BDB009DA146 /* Assets.xcassets */,
-				1680DC7B1E4C8BDB009DA146 /* LaunchScreen.storyboard */,
-				1680DC7E1E4C8BDB009DA146 /* Info.plist */,
 				1610A3911E51DCD700946989 /* Frameworks */,
 				1680DC711E4C8BDB009DA146 /* mhml */,
 				1680DC861E4C8BDC009DA146 /* mhmlTests */,
@@ -104,6 +98,14 @@
 		1680DC711E4C8BDB009DA146 /* mhml */ = {
 			isa = PBXGroup;
 			children = (
+				1680DC721E4C8BDB009DA146 /* AppDelegate.swift */,
+				1680DC741E4C8BDB009DA146 /* TabBarController.swift */,
+				1680DC761E4C8BDB009DA146 /* Main.storyboard */,
+				1610A38F1E5139EB00946989 /* BandData.swift */,
+				16EF6D821E4D414F00F41198 /* FlightReminder.swift */,
+				1680DC791E4C8BDB009DA146 /* Assets.xcassets */,
+				1680DC7B1E4C8BDB009DA146 /* LaunchScreen.storyboard */,
+				1680DC7E1E4C8BDB009DA146 /* Info.plist */,
 			);
 			path = mhml;
 			sourceTree = "<group>";
@@ -201,6 +203,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B1F3661E522822009E0A46 /* Assets.xcassets in Resources */,
+				16B1F3631E5216BF009E0A46 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56F1BC931E52114F00928D09 /* BandData.swift in Sources */,
+				1610A3CE1E52156500946989 /* BandData.swift in Sources */,
 				56B146F61E52059900CD3067 /* AppDelegate.swift in Sources */,
 				56B146F71E52059900CD3067 /* TabBarController.swift in Sources */,
 				56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */,
@@ -250,7 +254,6 @@
 				1680DC771E4C8BDB009DA146 /* Base */,
 			);
 			name = Main.storyboard;
-			path = mhml;
 			sourceTree = "<group>";
 		};
 		1680DC7B1E4C8BDB009DA146 /* LaunchScreen.storyboard */ = {
@@ -259,7 +262,6 @@
 				1680DC7C1E4C8BDB009DA146 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = mhml;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

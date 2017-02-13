@@ -11,7 +11,7 @@ import EventKit
 //import MicrosoftBandKit_iOS;/MicrosoftBandKit_iOS.h
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate{
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var eventStore: EKEventStore?
