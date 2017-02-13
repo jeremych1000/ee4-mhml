@@ -46,7 +46,6 @@ def upload(request):
                 if FileTracker.objects.count() == 0:
                     FileTracker.objects.create(accCount=1)
                 else:
-                    print(FileTracker.objects.count())
                     obj = FileTracker.objects.first()
                     obj.accCount += 1
                     obj.save()
