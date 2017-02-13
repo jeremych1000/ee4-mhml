@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'personal',
     'accounts',
     'bootstrap3',
+    'alpr',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

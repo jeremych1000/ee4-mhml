@@ -17,7 +17,6 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views
-from accounts.forms import LoginForm
 
 #for static media
 from django.conf import settings
@@ -26,7 +25,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^', include("personal.urls"), name='home'),
-
     url(r'^accounts/', include('accounts.urls'), name='accounts'),
+    url(r'^alpr/', include('alpr.urls'), name='alpr'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
