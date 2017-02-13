@@ -309,7 +309,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                                  self.output("uploaded")
                                  
                                  
-                                 }
+                                 } 
                                  */
                                 Alamofire.upload(
                                     multipartFormData: { multipartFormData in

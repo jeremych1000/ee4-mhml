@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 from MLBlock.models import RawData, FileTracker, FeatureEntries
 from MLBlock.form import FileForm
@@ -33,7 +34,6 @@ def read_raw_file(classHandle, datestring):
     fHandle.close()
     return data
 
-
 def upload(request):
     uploaded = False
     if request.method == 'POST':
@@ -58,6 +58,7 @@ def upload(request):
                     obj = FileTracker.objects.first()
                     obj.accCount += 1
                     obj.save()
+                    print("!!!!!!FILE UPLOADED!!!!!!!")
                     if obj.accCount == 20:
                         pass
         else:
