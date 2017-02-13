@@ -38,8 +38,12 @@ def genfeatureFromCSV(fileURL, winSize):
                     np.mean([float(ele) for ele in winSlice[:,8]]) ** 2))
             rowCount = winSize
             winSlice = []
+
     if len(winSlice) != 0:
         winSlice = np.array(winSlice)
+        print(type(winSlice))
+        print(winSlice.shape)
+        print(winSlice[0,0])
         mean_hr.append(np.mean([float(ele) for ele in winSlice[:, 1]]))
         std_hr.append(np.std([float(ele) for ele in winSlice[:, 1]]))
         mean_rr.append(np.mean([float(ele) for ele in winSlice[:, 2]]))
