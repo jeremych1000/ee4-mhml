@@ -20,7 +20,7 @@ def genfeatureFromCSV(fileURL, winSize):
     outcome = False
     for row in csvReader:
         if len(row) == 10:
-            outcome = bool(row[9])
+            outcome = (row[9] == "true")
         if rowCount != 0:
             winSlice.append(row)
             rowCount -= 1
