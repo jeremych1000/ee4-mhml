@@ -33,6 +33,4 @@ urlpatterns = [
     #MLBlock
     url(r'^ml/', include('MLBlock.urls'), name='ml'),
 
-    #misc
-    url(r'^alpr/', include('alpr.urls'), name='alpr'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

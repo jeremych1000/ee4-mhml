@@ -34,13 +34,13 @@ INSTALLED_APPS = [
     'personal',
     'accounts',
     'MLBlock',
-    'alpr',
+    #'alpr',
     #allauth
-    'allauth',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.instagram',
+    #'#allauth',
+    #'allauth.socialaccount',
+    #'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.twitter',
+    #'allauth.socialaccount.providers.instagram',
     #bootstrap
     'bootstrap3',
     #django defaults

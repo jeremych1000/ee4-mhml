@@ -3,8 +3,10 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import os
 
+
 class RawData(models.Model):
-    file = models.FileField(null=True, blank=True, storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'data')))
+    file = models.FileField(null=True, blank=True,
+                            storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'data')))
 
 
 class FileTracker(models.Model):
@@ -57,4 +59,9 @@ class StdTemp(models.Model):
 
 class MeanAcc(models.Model):
     data = models.FloatField(default=0.0)
+    featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
+
+
+class SleepQuality(models.Model):
+    data = models.BooleanField(default=False)
     featureEntry = models.ForeignKey('FeatureEntries', on_delete=models.CASCADE)
