@@ -57,7 +57,7 @@ Temporary Items
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod] 
-db.sqlite3
+#db.sqlite3
 migrations/
 media/uploaded_images/
 alpr/
