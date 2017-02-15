@@ -37,30 +37,28 @@ def read_raw_file(classHandle, datestring):
 def upload(request):
     uploaded = False
     if request.method == 'POST':
-        print("request is", request)
         f_form = FileForm(request.POST, request.FILES)
-        print("size of posted file: ", len(request.FILES))
 
-        if f_form.is_valid():
+        if f_form.is_valid() and len(request.FILES) != 0:
             name = request.FILES['file'].name
-            print("name of file is", name)
             regexR=re.search(r'(MSBand2_ALL_data_)(\w+)',name)
             data_date = regexR.group(2)
             if not (check_duplicate(name)):
-                print("begin upload file")
                 raw = RawData.objects.create(file=request.FILES['file'])
                 db_feautre = FeatureEntries.objects.create(date=datetime.strptime(data_date, '%d_%m_%y'))
                 func.InsertFeature2DB(fe.genfeatureFromCSV(raw.file.path, 600), db_feautre)
                 if FileTracker.objects.count() == 0:
                     FileTracker.objects.create(accCount=1)
                 else:
-                    print(FileTracker.objects.count())
+                    #print(FileTracker.objects.count())
                     obj = FileTracker.objects.first()
                     obj.accCount += 1
                     obj.save()
-                    print("!!!!!!FILE UPLOADED!!!!!!!")
+                    print("A file has been uploaded to /media/data.")
                     if obj.accCount == 20:
                         pass
+            else:
+                print("A duplicate has been detected, not uploaded.")
         else:
             print(f_form.errors)
             print(f_form.non_field_errors)
