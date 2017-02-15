@@ -27,10 +27,11 @@ from MLBlock import views as ml_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
-    url(r'^', include("personal.urls"), name='home'),
-    url(r'^accounts/', include('accounts.urls'), name='accounts'),
 
-    #MLBlock
+    url(r'^', include("personal.urls"), name='home'),
+
+    url(r'^myaccount/', include('myaccount.urls'), name='myaccount'),
+    url(r'^accounts/', include('allauth.urls'), name='allauth'),
     url(r'^ml/', include('MLBlock.urls'), name='ml'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>Sleepify</title>
+    <title>{% block head_title %}Welcome to Sleepify!{% endblock %}</title>
     <meta charset="utf-8"/>
 
     <link rel="shortcut icon" href="/media/icons/favicon.ico"/>
@@ -21,6 +21,10 @@
             height: 100%
         }
     </style>
+
+    <!-- allauth template stuff -->
+    {% block extra_head %}
+    {% endblock %}
 
     <!-- script to set current navbar id as active -->
     {% block set_navbar_active %}
@@ -52,8 +56,14 @@
                 <li id="home" class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
 
                 {% if user.is_authenticated %}
-                    <li id="profile"><a href="/accounts/profile">My Profile</a></li>
-                    <li id="pref"><a href="/accounts/preferences">My Preferences</a></li>
+                    <li id="profile" class="dropdown">
+                        <a href="/myaccount/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">My Profile <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="pref"><a href="/accounts/preferences">My Preferences</a></li>
+                            <li><a href="/accounts/social/connections">My Social Accounts</a></li>
+                        </ul>
+                    </li>
                     <li id="MLBlock"><a href="/ml">Upload Raw Data</a></li>
                     <li id="stats" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -178,8 +188,18 @@
         <div class="col-sm-10">
             <div class="container-fluid">
                 <br><br>
-                {% block content %}
+                {% block body %}
+
+                    {% bootstrap_messages %}
+
+                    {% block content %}
+                    {% endblock %}
+
                 {% endblock %}
+
+                {% block extra_body %}
+                {% endblock %}
+
             </div>
         </div>
     </div>

@@ -28,21 +28,24 @@ DEBUG = True
 ALLOWED_HOSTS = ['jeremych.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100']
 
 # Application definition
-
 INSTALLED_APPS = [
     #my webapps
     'personal',
-    'accounts',
+    'myaccount',
     'MLBlock',
     #'alpr',
+
     #allauth
-    #'#allauth',
-    #'allauth.socialaccount',
-    #'allauth.socialaccount.providers.facebook',
-    #'allauth.socialaccount.providers.twitter',
-    #'allauth.socialaccount.providers.instagram',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.instagram',
+
     #bootstrap
     'bootstrap3',
+
     #django defaults
     'django.contrib.admin',
     'django.contrib.auth',
@@ -151,14 +154,48 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # URL that your MEDIA files will be accessible through the browser.
 MEDIA_URL = '/media/'
 
+
+###########################################################################
+###########################################################################
+###########################################################################
+###########################################################################
+#all-auth
+#facebook app https://developers.facebook.com/apps/1786476698345753/dashboard/
+#twitter app https://apps.twitter.com/app/13427802/keys
+#instagram app https://www.instagram.com/developer/clients/1c01f7e2089347fb9a7e9739be3babb6/edit/
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'FIELDS': [
+            'id',
+            'email',
+            'first_name',
+            'last_name',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'en_GB',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4',
+    }
+}
+
+#spit email stuff into console for now
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+###########################################################################
+###########################################################################
+###########################################################################
+###########################################################################
 #others
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False #allow transportation of CSRF over HTTP
 
-LOGIN_URL = '/accounts/login'
-LOGOUT_URL = '/accounts/logout'
-LOGIN_REDIRECT_URL = '/'  # It means home view
+#LOGIN_URL = '/accounts/login'
+#LOGOUT_URL = '/accounts/logout'
+LOGIN_REDIRECT_URL = '/myaccount/profile'  # It means home view
 
-SITE_ID = 1 #for allauth
+SITE_ID = 1 #for allauth and django.contrib.sites
 
 BOOTSTRAP3 = {
     'include_jquery': True,
