@@ -54,6 +54,7 @@ def upload(request):
                     obj = FileTracker.objects.first()
                     obj.accCount += 1
                     obj.save()
+                    uploaded = True
                     print("A file has been uploaded to /media/data.")
                     if obj.accCount == 20:
                         pass
@@ -62,7 +63,6 @@ def upload(request):
         else:
             print(f_form.errors)
             print(f_form.non_field_errors)
-        uploaded = True
     return render(request, "ml/ml_homepage.html", {'uploaded': uploaded,
                                                     'count': RawData.objects.count(),
                                                     })
