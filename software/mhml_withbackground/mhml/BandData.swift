@@ -51,6 +51,9 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
     var accSwitchT: Int = 1
     
     
+    //testing
+    var buffer: Int = 0
+    
     //MARK: Properties
     
 
@@ -88,6 +91,43 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         insets.bottom = 60
         txtOutput.textContainerInset = insets
         
+        // Setup background thread for upload data
+        
+        /*
+        beginBackgroundTask(expirationHandler:)
+        let backgroundQueue = DispatchQueue(label: "com.app.queue", attributes: .concurrent)
+        DispatchQueue.global().async {
+            while true {
+                print("dispatched to background queue")
+            }
+        }
+    */
+ 
+//        
+//        //TESTING TESTING TESING 
+//        backgroundTask = application.beginBackgroundTaskWithName("MyBackgroundTask") {
+//            // This expirationHandler is called when your task expired
+//            // Cleanup the task here, remove objects from memory, etc
+//            
+//            application.endBackgroundTask(self.backgroundTask)
+//            self.backgroundTask = UIBackgroundTaskInvalid
+//        }
+//        
+//        // Implement the operation of your task as background task
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+//            // Begin your upload and clean up JSON
+//            // NSURLSession, AlamoFire, etc
+//                print("dispatched to background queue")
+//            // On completion, end your task
+//            application.endBackgroundTask(self.backgroundTask)
+//            self.backgroundTask = UIBackgroundTaskInvalid
+//        }
+        
+        
+        
+        
+        
+        
         // Setup Band
         clientManager?.delegate = self
         if let band = clientManager?.attachedClients().first as! MSBClient! {
@@ -96,14 +136,21 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
             output("Please wait... \nConnecting to Band \(client.name!)")
         } else {
             output("Failed! No Bands attached.")
+      
+            
             return
         }
+ 
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+
+    
     
     
     //MARK: Action
@@ -414,6 +461,18 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                     }else{
                         self.tempHRQ = "Locked"
                     }
+                    
+                    self.buffer = self.buffer + 1
+                    
+                    if self.buffer == 600 {
+                        self.buffer = 0
+                        self.output("buffer full")
+                    }
+                    
+                    
+                    
+                    
+                    
                 })
                 
                 
@@ -423,6 +482,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         } else {
             output("Client not connected, can not start heart rate updates")
         }
+        
     }
     
     func stopHeartRateUpdates() {
