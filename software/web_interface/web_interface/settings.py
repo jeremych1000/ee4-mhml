@@ -160,10 +160,14 @@ MEDIA_URL = '/media/'
 ###########################################################################
 ###########################################################################
 #all-auth
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 30
+
 #facebook app https://developers.facebook.com/apps/1786476698345753/dashboard/
 #twitter app https://apps.twitter.com/app/13427802/keys
 #instagram app https://www.instagram.com/developer/clients/1c01f7e2089347fb9a7e9739be3babb6/edit/
-
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'METHOD': 'oauth2',
@@ -183,7 +187,18 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 #spit email stuff into console for now
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#actual email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp-mail.outlook.com'
+EMAIL_HOST_USER = 'jeremych@outlook.com'
+EMAIL_HOST_PASSWORD = 'lnqmjyqxucopvxkq'
+EMAIL_PORT = 25 #587 gmail
+#This did the trick
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 ###########################################################################
 ###########################################################################
 ###########################################################################

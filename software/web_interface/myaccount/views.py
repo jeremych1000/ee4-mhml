@@ -19,6 +19,21 @@ def profile(request):
     else:
         return render(request, "myaccount/profile.html")
 
+def preferences(request):
+    #!!!!!!!!!!!!!!!!!!!!
+    #!!!!!!!!!!!!!!!!!!!!
+    #should be getting preferences model, not user model
+    #!!!!!!!!!!!!!!!!!!!!
+    #!!!!!!!!!!!!!!!!!!!!
+    username = None
+    if request.user.is_authenticated():
+        username = request.user.username
+        user = User.objects.get(username=username)
+        # user_profile = UserProfile.objects.get(user=user)
+        return render(request, "myaccount/preferences.html", {'user': user})
+    else:
+        return render(request, "myaccount/preferences.html")
+
 def test_post(request):
     success = False
 

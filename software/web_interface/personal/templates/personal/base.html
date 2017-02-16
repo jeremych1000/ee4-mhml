@@ -57,10 +57,11 @@
 
                 {% if user.is_authenticated %}
                     <li id="profile" class="dropdown">
-                        <a href="/myaccount/profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">My Profile <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li id="pref"><a href="/accounts/preferences">My Preferences</a></li>
+                            <li><a href="/myaccount/profile">My Details</a></li>
+                            <li><a href="/myaccount/preferences">My Preferences</a></li>
                             <li><a href="/accounts/social/connections">My Social Accounts</a></li>
                         </ul>
                     </li>
@@ -159,8 +160,8 @@
 			</div> <!-- /.modal-body -->
 
 			<div class="modal-footer">
-				<p><a href="/accounts/register/">I want to register.</a></p>
-                <p><a href="#">I forgot my password. (doesn't work)</a></p>
+				<p><a href="/accounts/signup/">I want to register.</a></p>
+                <p><a href="/accounts/password/reset/">I forgot my password.</a></p>
             </div> <!-- /.modal-footer -->
 
 		</div><!-- /.modal-content -->

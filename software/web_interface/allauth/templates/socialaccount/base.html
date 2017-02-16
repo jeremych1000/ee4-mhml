@@ -1,5 +1,15 @@
 {% extends "personal/base.html" %}
 
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#profile").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
+
 {% block jumbotron %}
     <div class="jumbotron"
          style="
@@ -12,7 +22,7 @@
             text-align: center;
             ">
         <div class="container">
-            <h1>Social Accounts Management</h1>
+            <h1>Profile Management</h1>
         </div>
     </div>
 {% endblock %}
