@@ -3,7 +3,7 @@
 {% load bootstrap3 %}
 
 {% block head_title %}
-My Details - Sleepify
+    My Details - Sleepify
 {% endblock %}
 
 {% block set_navbar_active %}
@@ -38,12 +38,13 @@ My Details - Sleepify
     {% if user.is_authenticated %} <!-- from variable in views.py -->
 
         <h1>Your details</h1>
-        <p><strong>Username: </strong> {{ user.username }} <br /> </p>
-        <p><strong>Email: </strong> <a href="mailto:{{ user.email }}">{{ user.email }}</a> (<a href="{% url 'account_email' %}">Change email</a>) <br /> </p>
-        <p><strong>First name: </strong> {{ user.first_name }} <br /> </p>
-        <p><strong>Last name: </strong> {{ user.last_name }} <br /> </p>
+        <p><strong>Username: </strong> {{ user.username }} <br/></p>
+        <p><strong>Email: </strong> <a href="mailto:{{ user.email }}">{{ user.email }}</a> (<a
+                href="{% url 'account_email' %}">Change email</a>) <br/></p>
+        <p><strong>First name: </strong> {{ user.first_name }} <br/></p>
+        <p><strong>Last name: </strong> {{ user.last_name }} <br/></p>
 
-        <br />
+        <br/>
 
         <p>Click <a href="/accounts/social/connections">here</a> to connect a social network</p>
 

@@ -69,4 +69,4 @@ def genfeatureFromCSV(fileURL, winSize):
             abs(np.mean(acc_x_slice)) ** 2 + abs(
                 np.mean(acc_y_slice)) ** 2 + abs(
                 np.mean(acc_z_slice) ** 2))
-    return [mean_hr, std_hr, mean_rr, std_rr, mean_gsr, std_gsr, mean_temp, std_temp, mean_acc,outcome]
+    return [mean_hr, std_hr, mean_rr, std_rr, mean_gsr, std_gsr, mean_temp, std_temp, mean_acc, outcome]

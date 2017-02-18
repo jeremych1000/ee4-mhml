@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -29,16 +28,16 @@ ALLOWED_HOSTS = ['jeremych.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100'
 
 # Application definition
 INSTALLED_APPS = [
-    #my webapps
+    # my webapps
     'personal',
     'myaccount',
     'MLBlock',
-    #'alpr',
+    # 'alpr',
 
-    #REST API
+    # REST API
     'rest_framework',
 
-    #allauth
+    # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -46,10 +45,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',
     'allauth.socialaccount.providers.instagram',
 
-    #bootstrap
+    # bootstrap
     'bootstrap3',
 
-    #django defaults
+    # django defaults
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,7 +59,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    #django defaults
+    # django defaults
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,7 +78,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                #django defaults
+                # django defaults
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -92,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'web_interface.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -102,7 +100,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -143,13 +140,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_URL = '/static/'
 # List of directories where "./manage.py collectstatic" will look for files, which it puts all together into STATIC_ROOT. Each app that you have can have it's own "static" files directory.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'), # This is the "static" files directory where say most of the CSS/JS/IMG files are stored for the project.
+    os.path.join(BASE_DIR, 'static'),
+# This is the "static" files directory where say most of the CSS/JS/IMG files are stored for the project.
 )
 
 # Physical system path where the static files are stored. Files that are being uploaded by the user.
@@ -157,20 +154,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # URL that your MEDIA files will be accessible through the browser.
 MEDIA_URL = '/media/'
 
-
 ###########################################################################
 ###########################################################################
 ###########################################################################
 ###########################################################################
-#all-auth
+# all-auth
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 30
 
-#facebook app https://developers.facebook.com/apps/1786476698345753/dashboard/
-#twitter app https://apps.twitter.com/app/13427802/keys
-#instagram app https://www.instagram.com/developer/clients/1c01f7e2089347fb9a7e9739be3babb6/edit/
+# facebook app https://developers.facebook.com/apps/1786476698345753/dashboard/
+# twitter app https://apps.twitter.com/app/13427802/keys
+# instagram app https://www.instagram.com/developer/clients/1c01f7e2089347fb9a7e9739be3babb6/edit/
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'METHOD': 'oauth2',
@@ -189,24 +185,24 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-#spit email stuff into console for now
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# spit email stuff into console for now
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-#actual email
+# actual email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_HOST_USER = 'jeremych@outlook.com'
-EMAIL_HOST_PASSWORD = 'lnqmjyqxucopvxkq' #get app password, not actual email password
-EMAIL_PORT = 587 #587 gmail
-#This did the trick
+EMAIL_HOST_PASSWORD = 'lnqmjyqxucopvxkq'  # get app password, not actual email password
+EMAIL_PORT = 587  # 587 gmail
+# This did the trick
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 ###########################################################################
 ###########################################################################
 ###########################################################################
 ###########################################################################
-#rest framework
+# rest framework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
@@ -220,14 +216,14 @@ REST_FRAMEWORK = {
 ###########################################################################
 ###########################################################################
 ###########################################################################
-#others
-CSRF_COOKIE_SECURE = False #allow transportation of CSRF over HTTP
+# others
+CSRF_COOKIE_SECURE = False  # allow transportation of CSRF over HTTP
 
-#LOGIN_URL = '/accounts/login'
-#LOGOUT_URL = '/accounts/logout'
+# LOGIN_URL = '/accounts/login'
+# LOGOUT_URL = '/accounts/logout'
 LOGIN_REDIRECT_URL = '/myaccount/profile'  # It means home view
 
-SITE_ID = 1 #for allauth and django.contrib.sites
+SITE_ID = 1  # for allauth and django.contrib.sites
 
 BOOTSTRAP3 = {
     'include_jquery': True,

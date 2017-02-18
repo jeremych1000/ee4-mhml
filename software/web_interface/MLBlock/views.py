@@ -14,6 +14,7 @@ import os, csv, re, json
 
 file_prefix = "MSBand2_ALL_data_"
 
+
 def check_duplicate(name, username=None):
     if username is None:
         path = os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), name)
@@ -21,6 +22,7 @@ def check_duplicate(name, username=None):
         path = os.path.join(os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), username), name)
     print("Path is ", path)
     return os.path.isfile(path)
+
 
 def read_raw_file(classHandle, datestring):
     obj = classHandle.objects.get(file__contains=datestring)
@@ -39,6 +41,7 @@ def read_raw_file(classHandle, datestring):
     fHandle.close()
     return data
 
+
 def upload(request):
     uploaded = False
     if request.method == 'POST':
@@ -46,7 +49,7 @@ def upload(request):
 
         if f_form.is_valid() and len(request.FILES) != 0:
             name = request.FILES['file'].name
-            regexR=re.search(r'(file_prefix)(\w+)',name)
+            regexR = re.search(r'(file_prefix)(\w+)', name)
             data_date = regexR.group(2)
             if not (check_duplicate(name)):
                 raw = RawData.objects.create(file=request.FILES['file'])
@@ -55,14 +58,14 @@ def upload(request):
                 if FileTracker.objects.count() == 0:
                     FileTracker.objects.create(accCount=1)
                 else:
-                    #print(FileTracker.objects.count())
+                    # print(FileTracker.objects.count())
                     obj = FileTracker.objects.first()
                     obj.accCount += 1
                     obj.save()
                     uploaded = True
                     print("A file has been uploaded to /media/data.")
                     if obj.accCount == 20:
-                        #TODO: add machine learning stuff here
+                        # TODO: add machine learning stuff here
                         pass
             else:
                 print("A duplicate has been detected, not uploaded.")
@@ -70,16 +73,12 @@ def upload(request):
             print(f_form.errors)
             print(f_form.non_field_errors)
     return render(request, "ml/ml_homepage.html", {'uploaded': uploaded,
-                                                    'count': RawData.objects.count(),
-                                                    })
+                                                   'count': RawData.objects.count(),
+                                                   })
 
-#remember to set X-CSRFTOKEN in headers, then JSON in body under application/json
+
+# remember to set X-CSRFTOKEN in headers, then JSON in body under application/json
 def add_raw_data(request):
-    '''
-    need to check username, then see if username.date file exists
-    if not, create, with headers
-    if so, append (check latest datetime maybe?)
-    '''
     if request.method == "POST":
         json_data = json.loads(request.body.decode("utf-8"))
 
@@ -90,7 +89,7 @@ def add_raw_data(request):
         path = os.path.join(settings.MEDIA_ROOT, 'data')
         path = os.path.join(path, username)
         path = os.path.join(path, file_prefix + date + ".csv")
-        exist = check_duplicate(file_prefix+date+".csv", username)
+        exist = check_duplicate(file_prefix + date + ".csv", username)
 
         if not exist:
             try:
@@ -104,15 +103,15 @@ def add_raw_data(request):
             last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
 
         for data in json_data['data']:
-            try:
-                timestamp = datetime.strptime(data["timestamp"], "%d/%m/%y %H:%M:%S").strftime("%d/%m/%y %H:%M:%S")
+            timestamp = datetime.strptime(data["timestamp"], "%d/%m/%y %H:%M:%S").strftime("%d/%m/%y %H:%M:%S")
 
-                #only append if timestamp of data is newer than last line
-                #last_time only refreshes once, so this won't deal with new, but out of order data
-                #lasttime is 21:00:00, then new data is 21:53:53, then 21:53:54 OK
-                #lasttime is 22:00:00, then new data is 21:53:53, then 21:53:54 SKIPPED
-                #lasttime is 21:00:00, then new data is 21:53:53, then 21:53:00 OK (as last time checks once)
-                if last_time < timestamp:
+            # only append if timestamp of data is newer than last line
+            # last_time only refreshes once, so this won't deal with new, but out of order data
+            # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:54 OK
+            # lasttime is 22:00:00, then new data is 21:53:53, then 21:53:54 SKIPPED
+            # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:00 OK (as last time checks once)
+            if last_time < timestamp:
+                try:
                     csv_append(path, [
                         timestamp,
                         data["HR"],
@@ -125,11 +124,11 @@ def add_raw_data(request):
                         data["AccZ"],
                         data["outcome"],
                     ])
-                else:
-                    print("skipping due to previous entry")
+                except IOError:
+                    messages.error(request, 'error while appending csv')
+            else:
+                print("skipping due to previous entry")
 
-            except IOError:
-                messages.error(request, 'error while appending csv')
         messages.success(request, 'success')
     else:
         messages.warning(request, 'not a post request')
@@ -143,6 +142,7 @@ def csv_append(filename, data):
         return True
     return IOError
 
+
 def csv_insert_header(filename, header):
     open(filename, 'a', newline='').close()
     with open(filename, 'w', newline='') as outcsv:
@@ -150,6 +150,7 @@ def csv_insert_header(filename, header):
         writer.writerow(header)
         return True
     return IOError
+
 
 def get_last_row(filename):
     with open(filename, 'r', newline='') as f:
@@ -159,6 +160,7 @@ def get_last_row(filename):
             lastrow = None
         return lastrow
 
+
 def home(request):
     return render(request, "ml/ml_homepage.html", {'uploaded': False,
-                                                'fileForm': FileForm()})
+                                                   'fileForm': FileForm()})

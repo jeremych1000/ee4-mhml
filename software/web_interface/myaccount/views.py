@@ -10,22 +10,24 @@ from myaccount.models import User, UserProfile
 from myaccount.forms import UserForm, UserProfileForm, TestPostForm
 from sendfile import sendfile
 
+
 def profile(request):
     username = None
     if request.user.is_authenticated():
         username = request.user.username
         user = User.objects.get(username=username)
-        #user_profile = UserProfile.objects.get(user=user)
+        # user_profile = UserProfile.objects.get(user=user)
         return render(request, "myaccount/profile.html", {'user': user})
     else:
         return render(request, "myaccount/profile.html")
 
+
 def preferences(request):
-    #!!!!!!!!!!!!!!!!!!!!
-    #!!!!!!!!!!!!!!!!!!!!
-    #should be getting preferences model, not user model
-    #!!!!!!!!!!!!!!!!!!!!
-    #!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!
+    # should be getting preferences model, not user model
+    # !!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!
     username = None
     if request.user.is_authenticated():
         username = request.user.username
@@ -35,13 +37,14 @@ def preferences(request):
     else:
         return render(request, "myaccount/preferences.html")
 
+
 def test_post(request):
     success = False
 
     if request.method == 'GET':
         return render(request, "personal/blank.html")
     elif request.method == 'POST':
-        post_form = TestPostForm(data = request.POST)
+        post_form = TestPostForm(data=request.POST)
 
         if post_form.is_valid():
             post = post_form.save()
@@ -59,26 +62,27 @@ def test_post(request):
                       'success': success,
                   })
 
+
 def register(request):
-    #create boolean to see if successfully registered
+    # create boolean to see if successfully registered
     registered = False
 
     if request.method == 'POST':
-        #get information from post request
-        user_form = UserForm(data = request.POST)
-        profile_form = UserProfileForm(data = request.POST)
+        # get information from post request
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
 
         if user_form.is_valid() and profile_form.is_valid():
-            #save form to database
+            # save form to database
             user = user_form.save()
             user.set_password(user.password)
 
             user.save()
 
-            profile = profile_form.save(commit=False) #delay saving to database until verified
-            profile.user = user #populate the user model instance for the one to one mapping
+            profile = profile_form.save(commit=False)  # delay saving to database until verified
+            profile.user = user  # populate the user model instance for the one to one mapping
 
-            #see if provided profile pictures etc
+            # see if provided profile pictures etc
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
 
@@ -89,16 +93,17 @@ def register(request):
         else:
             print(user_form.errors, profile_form.errors)
 
-    else: # not a POST request
+    else:  # not a POST request
         user_form = UserForm()
         profile_form = UserProfileForm()
 
     return render(request, 'myaccount/register.html',
                   {
-                    'user_form': user_form,
-                    'profile_form': profile_form,
-                    'registered': registered,
+                      'user_form': user_form,
+                      'profile_form': profile_form,
+                      'registered': registered,
                   })
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -125,11 +130,15 @@ def user_login(request):
     else:
         return HttpResponseRedirect('/')
 
+
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+
 @login_required
 def dl(request):
-    return sendfile(request, 'C:/Users/Jeremy/Documents/GitHub/ee4-mhml/software/web_interface/media/data/MSBand2_ALL_data_15_02_17.csv', attachment=True, attachment_filename='test.csv')
+    return sendfile(request,
+                    'C:/Users/Jeremy/Documents/GitHub/ee4-mhml/software/web_interface/media/data/MSBand2_ALL_data_15_02_17.csv',
+                    attachment=True, attachment_filename='test.csv')

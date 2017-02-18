@@ -36,18 +36,18 @@
     {% if uploaded %}
         <table>
             <tbody>
-                <tr>
-                    <td>Data Entries: </td>
-                    <td>{{ count }}</td>
-                </tr>
+            <tr>
+                <td>Data Entries:</td>
+                <td>{{ count }}</td>
+            </tr>
             </tbody>
         </table>
     {% else %}
-          <form enctype="multipart/form-data" method="post" action="/ml/upload/">
+        <form enctype="multipart/form-data" method="post" action="/ml/upload/">
             {{ fileForm.as_p }}
             <button class="btn-group btn">Upload</button>
             {% csrf_token %}
-         </form>
+        </form>
     {% endif %}
 
 
