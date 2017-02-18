@@ -97,43 +97,39 @@ def add_raw_data(request):
                 csv_insert_header(path, ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ", "outcome"])
             except IOError:
                 messages.error(request, 'error while inserting header')
+
+            last_time = datetime.utcfromtimestamp(0).strftime("%d/%m/%y %H:%M:%S")
         else:
             last_row = get_last_row(path)[0]
+            last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
 
-            #get timestamp of last row, then format it into datetime
-            #if no data, so only header, then create a datetime of epoch
-            if last_row != "Time":
-                last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
-            else:
-                last_time = datetime.utcfromtimestamp(0).strftime("%d/%m/%y %H:%M:%S")
+        for data in json_data['data']:
+            try:
+                timestamp = datetime.strptime(data["timestamp"], "%d/%m/%y %H:%M:%S").strftime("%d/%m/%y %H:%M:%S")
 
-            for data in json_data['data']:
-                try:
-                    timestamp = datetime.strptime(data["timestamp"], "%d/%m/%y %H:%M:%S").strftime("%d/%m/%y %H:%M:%S")
+                #only append if timestamp of data is newer than last line
+                #last_time only refreshes once, so this won't deal with new, but out of order data
+                #lasttime is 21:00:00, then new data is 21:53:53, then 21:53:54 OK
+                #lasttime is 22:00:00, then new data is 21:53:53, then 21:53:54 SKIPPED
+                #lasttime is 21:00:00, then new data is 21:53:53, then 21:53:00 OK (as last time checks once)
+                if last_time < timestamp:
+                    csv_append(path, [
+                        timestamp,
+                        data["HR"],
+                        data["RR"],
+                        data["mode"],
+                        data["GSR"],
+                        data["SkinT"],
+                        data["AccX"],
+                        data["AccY"],
+                        data["AccZ"],
+                        data["outcome"],
+                    ])
+                else:
+                    print("skipping due to previous entry")
 
-                    #only append if timestamp of data is newer than last line
-                    #last_time only refreshes once, so this won't deal with new, but out of order data
-                    #lasttime is 21:00:00, then new data is 21:53:53, then 21:53:54 OK
-                    #lasttime is 22:00:00, then new data is 21:53:53, then 21:53:54 SKIPPED
-                    #lasttime is 21:00:00, then new data is 21:53:53, then 21:53:00 OK (as last time checks once)
-                    if last_time < timestamp:
-                        csv_append(path, [
-                            timestamp,
-                            data["HR"],
-                            data["RR"],
-                            data["mode"],
-                            data["GSR"],
-                            data["SkinT"],
-                            data["AccX"],
-                            data["AccY"],
-                            data["AccZ"],
-                            data["outcome"],
-                        ])
-                    else:
-                        print("skipping due to previous entry")
-
-                except IOError:
-                    messages.error(request, 'error while appending csv')
+            except IOError:
+                messages.error(request, 'error while appending csv')
         messages.success(request, 'success')
     else:
         messages.warning(request, 'not a post request')
