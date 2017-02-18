@@ -22,3 +22,4 @@ def download(request):
 
 def blank(request):
     return render(request, "personal/blank.html")
+

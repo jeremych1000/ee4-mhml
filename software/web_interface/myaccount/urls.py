@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^preferences/$', views.preferences, name='preferences'),
 
     url(r'^testpost/$', views.test_post),
+    url(r'dl/$', views.dl),
 ]

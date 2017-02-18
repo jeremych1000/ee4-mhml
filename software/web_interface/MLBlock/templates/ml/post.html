@@ -1,0 +1,22 @@
+<html>
+<head>
+{% load bootstrap3 %}
+    {% load staticfiles %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+</head>
+
+<body>
+{% bootstrap_messages %}
+
+{% for key, value in json_data.items %}
+    {% if key == "other" %}
+        {% for key, value in value.items %}
+            <p>!!!!!!!! {{ key }} is {{ value }}</p>
+        {% endfor %}
+    {% else %}
+        <p>{{ key }} is {{ value }}</p>
+    {% endif %}
+{% endfor %}
+</body>
+</html>

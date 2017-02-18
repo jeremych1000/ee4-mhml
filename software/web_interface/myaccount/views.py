@@ -8,6 +8,7 @@ from django.middleware.csrf import get_token
 
 from myaccount.models import User, UserProfile
 from myaccount.forms import UserForm, UserProfileForm, TestPostForm
+from sendfile import sendfile
 
 def profile(request):
     username = None
@@ -128,3 +129,7 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+@login_required
+def dl(request):
+    return sendfile(request, 'C:/Users/Jeremy/Documents/GitHub/ee4-mhml/software/web_interface/media/data/MSBand2_ALL_data_15_02_17.csv', attachment=True, attachment_filename='test.csv')

@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'MLBlock',
     #'alpr',
 
+    #REST API
+    'rest_framework',
+
     #allauth
     'allauth',
     'allauth.account',
@@ -194,10 +197,24 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_HOST_USER = 'jeremych@outlook.com'
-EMAIL_HOST_PASSWORD = 'lnqmjyqxucopvxkq'
-EMAIL_PORT = 25 #587 gmail
+EMAIL_HOST_PASSWORD = 'lnqmjyqxucopvxkq' #get app password, not actual email password
+EMAIL_PORT = 587 #587 gmail
 #This did the trick
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+###########################################################################
+###########################################################################
+###########################################################################
+###########################################################################
+#rest framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'FORM_METHOD_OVERRIDE': None,
+    'FORM_CONTENT_OVERRIDE': None,
+    'FORM_CONTENTTYPE_OVERRIDE': None
+}
 
 ###########################################################################
 ###########################################################################
@@ -215,3 +232,5 @@ SITE_ID = 1 #for allauth and django.contrib.sites
 BOOTSTRAP3 = {
     'include_jquery': True,
 }
+
+SENDFILE_BACKEND = 'sendfile.backends.development'

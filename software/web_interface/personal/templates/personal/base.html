@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>{% block head_title %}Welcome to Sleepify!{% endblock %}</title>
+    <title>{% block head_title %}Welcome - Sleepify{% endblock %}</title>
     <meta charset="utf-8"/>
 
     <link rel="shortcut icon" href="/media/icons/favicon.ico"/>
@@ -22,6 +22,15 @@
         }
     </style>
 
+    <!-- http://stackoverflow.com/questions/8878033/how-to-make-twitter-bootstrap-menu-dropdown-on-hover-rather-than-click -->
+    <style>
+        @media (min-width: 979px) {
+            ul.nav li.dropdown:hover > ul.dropdown-menu {
+                display: block;
+            }
+        }
+    </style>
+
     <!-- allauth template stuff -->
     {% block extra_head %}
     {% endblock %}
@@ -29,6 +38,16 @@
     <!-- script to set current navbar id as active -->
     {% block set_navbar_active %}
     {% endblock %}
+
+    <!-- javascript for making login modal pop up -->
+    <script type="text/javascript">
+        function show_login_modal(){
+           $('#myLoginModal').modal('show')
+        }
+        function hide_login_modal(){
+           $('#myLoginModal').modal('hide')
+        }
+    </script>
 
 </head>
 
@@ -46,7 +65,8 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">
-                <img src="/media/img/logo_inverted.png" alt="Brand" style="max-width: 100px; margin-top: -10px; height: 200%; width: auto;"></img>
+                <img src="/media/img/logo_inverted.png" alt="Brand"
+                     style="max-width: 100px; margin-top: -10px; height: 200%; width: auto;">
             </a>
         </div>
 
@@ -65,10 +85,9 @@
                             <li><a href="/accounts/social/connections">My Social Accounts</a></li>
                         </ul>
                     </li>
-                    <li id="MLBlock"><a href="/ml">Upload Raw Data</a></li>
                     <li id="stats" class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Recent Statistics <span class="caret"></span></a>
+                        <a href="/myaccount/stats" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">My Statistics <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Body Temperature</a></li>
                             <li><a href="#">Heartrate</a></li>
@@ -79,6 +98,7 @@
                             <li><a href="#">Sleep Duration</a></li>
                         </ul>
                     </li>
+                    <li id="MLBlock"><a href="/ml">Upload Raw Data</a></li>
                     <li id="alpr"><a href="/alpr/add_plate">SECRET: ALPR</a></li>
                 {% endif %}
 
@@ -109,10 +129,14 @@
                 </li>
                 {% if user.is_authenticated %}
                     <a href={% url 'logout' %}>
-                        <button type="button" class="btn btn-danger navbar-btn" data-toggle="modal" data-target=".modal">Logout</button>
+                        <button type="button" class="btn btn-danger navbar-btn" data-toggle="modal"
+                                data-target=".modal">Logout
+                        </button>
                     </a>
                 {% else %}
-                    <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".modal">Login / Register</button>
+                    <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target=".modal">
+                        Login / Register
+                    </button>
                 {% endif %}
 
             </ul>
@@ -120,52 +144,54 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
+<div class="modal fade bs-example-modal-sm" id="myLoginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
 
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title" id="myModalLabel">Log in</h4>
-			</div> <!-- /.modal-header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Log in</h4>
+            </div> <!-- /.modal-header -->
 
-			<div class="modal-body">
+            <div class="modal-body">
 
-				<form id="login_form" method="post" action="{% url 'login' %}">
-					{% csrf_token %}
+                <form id="login_form" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
 
                     <div class="form-group">
-						<div class="input-group">
-							<input type="text" class="form-control" name="username" value="" placeholder="Login">
-							<label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
-						</div>
-					</div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="username" value="" placeholder="Login">
+                            <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
+                        </div>
+                    </div>
 
-					<div class="form-group">
-						<div class="input-group">
-							<input type="password" class="form-control" name="password" value="" placeholder="Password">
-							<label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
-						</div>
-					</div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="password" class="form-control" name="password" value="" placeholder="Password">
+                            <label for="uPassword" class="input-group-addon glyphicon glyphicon-lock"></label>
+                        </div>
+                    </div>
 
 
-					<div class="checkbox">
-						<label><input name="remember_me" type="checkbox">Remember me</label>
-					</div>
+                    <div class="checkbox">
+                        <label><input name="remember_me" type="checkbox">Remember me</label>
+                    </div>
 
-                    <button class="form-control btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Login</button>
+                    <button class="form-control btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Login
+                    </button>
 
                 </form>
 
-			</div> <!-- /.modal-body -->
+            </div> <!-- /.modal-body -->
 
-			<div class="modal-footer">
-				<p><a href="/accounts/signup/">I want to register.</a></p>
+            <div class="modal-footer">
+                <p><a href="/accounts/signup/">I want to register.</a></p>
                 <p><a href="/accounts/password/reset/">I forgot my password.</a></p>
             </div> <!-- /.modal-footer -->
 
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 {% block jumbotron %}
@@ -179,10 +205,10 @@
             <br>
             <div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/download">Download</a></li>
-                    <li><a href="/contact/">Contact</a></li>
+                    <li><a href="/">TODO</a></li>
+                    <li><a href="/about/">MODIFY THIS INTO RECENT SUMMARY</a></li>
+                    <li><a href="/download">OF PAST 3 DAYS ETC</a></li>
+                    <li><a href="/contact/">...</a></li>
                 </ul>
             </div> <!--well bs-sidebar affix-->
         </div> <!--col-sm-2-->
