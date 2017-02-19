@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^myaccount/', include('myaccount.urls'), name='myaccount'),
     url(r'^accounts/', include('allauth.urls'), name='allauth'),
     url(r'^ml/', include('MLBlock.urls'), name='ml'),
+    url(r'api/', include('api.urls', namespace='api'), name='api'),
     url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

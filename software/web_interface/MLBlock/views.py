@@ -20,7 +20,7 @@ def check_duplicate(name, username=None):
         path = os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), name)
     else:
         path = os.path.join(os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), username), name)
-    print("Path is ", path)
+    #print("check duplidate Path is ", path)
     return os.path.isfile(path)
 
 
@@ -88,18 +88,23 @@ def add_raw_data(request):
 
         path = os.path.join(settings.MEDIA_ROOT, 'data')
         path = os.path.join(path, username)
-        path = os.path.join(path, file_prefix + date + ".csv")
+
+        filename = file_prefix + date + ".csv"
+        final_path = os.path.join(path, filename)
+
         exist = check_duplicate(file_prefix + date + ".csv", username)
+        #print ("exist ", exist)
 
         if not exist:
             try:
-                csv_insert_header(path, ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ", "outcome"])
+                #print (path, "---", final_path)
+                csv_insert_header(path, final_path, ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ", "outcome"])
             except IOError:
                 messages.error(request, 'error while inserting header')
 
             last_time = datetime.utcfromtimestamp(0).strftime("%d/%m/%y %H:%M:%S")
         else:
-            last_row = get_last_row(path)[0]
+            last_row = get_last_row(final_path)[0]
             last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
 
         for data in json_data['data']:
@@ -112,7 +117,7 @@ def add_raw_data(request):
             # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:00 OK (as last time checks once)
             if last_time < timestamp:
                 try:
-                    csv_append(path, [
+                    csv_append(final_path, [
                         timestamp,
                         data["HR"],
                         data["RR"],
@@ -143,7 +148,8 @@ def csv_append(filename, data):
     return IOError
 
 
-def csv_insert_header(filename, header):
+def csv_insert_header(path, filename, header):
+    os.makedirs(path, exist_ok=True)
     open(filename, 'a', newline='').close()
     with open(filename, 'w', newline='') as outcsv:
         writer = csv.writer(outcsv)

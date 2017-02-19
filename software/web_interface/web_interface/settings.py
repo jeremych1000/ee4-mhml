@@ -24,7 +24,7 @@ SECRET_KEY = '7dn+jianr!9+v(e-zs3*-wybiz#h)4r^+9=_(=*uq0!)fq#t22'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jeremych.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100']
+ALLOWED_HOSTS = ['jeremych.zapto.org', 'sleepify.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100']
 
 # Application definition
 INSTALLED_APPS = [
@@ -204,9 +204,9 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ###########################################################################
 # rest framework
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ],
+    #'DEFAULT_PERMISSION_CLASSES': [
+    #    'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    #],
     'FORM_METHOD_OVERRIDE': None,
     'FORM_CONTENT_OVERRIDE': None,
     'FORM_CONTENTTYPE_OVERRIDE': None
