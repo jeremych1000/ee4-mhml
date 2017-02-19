@@ -1,26 +1,115 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib import messages
+from django.conf import settings
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-import random
+from datetime import datetime
+from collections import deque
+import os, csv, re, json, random
 
-def random_number(bits):
-    return random.getrandbits(bits)
-
-def random_outcome(request):
-    a = random.getrandbits(1)
-    return HttpResponse(a)
-
-class random_api(APIView):
+class random_number(APIView):
     def get(self, request):
-        result = random_number(1)
-        response = Response(result, status=status.HTTP_200_OK)
-        return response
+        result = random.getrandbits(1)
+        return Response(result, status=status.HTTP_200_OK)
+
+class raw_data(APIView):
+    file_prefix = "MSBand2_ALL_data_"
 
     def post(self, request):
-        
+        json_data = json.loads(request.body.decode("utf-8"))
+
+        username = json_data['username']
+
+        date = datetime.now().strftime("%d_%m_%y")
+
+        path = os.path.join(settings.MEDIA_ROOT, 'data')
+        path = os.path.join(path, username)
+
+        filename = raw_data.file_prefix + date + ".csv"
+        final_path = os.path.join(path, filename)
+
+        exist = raw_data.check_duplicate(raw_data.file_prefix + date + ".csv", username)
+        # print ("exist ", exist)
+
+        if not exist:
+            try:
+                # print (path, "---", final_path)
+                raw_data.csv_insert_header(path, final_path, ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ", "outcome"])
+            except IOError:
+                messages.error(request, 'error while inserting header')
+
+            last_time = datetime.utcfromtimestamp(0).strftime("%d/%m/%y %H:%M:%S")
+        else:
+            last_row = raw_data.get_last_row(final_path)[0]
+            last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
+
+        for data in json_data['data']:
+            timestamp = datetime.strptime(data["timestamp"], "%d/%m/%y %H:%M:%S").strftime("%d/%m/%y %H:%M:%S")
+
+            # only append if timestamp of data is newer than last line
+            # last_time only refreshes once, so this won't deal with new, but out of order data
+            # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:54 OK
+            # lasttime is 22:00:00, then new data is 21:53:53, then 21:53:54 SKIPPED
+            # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:00 OK (as last time checks once)
+            success = False
+            if last_time < timestamp:
+                try:
+                    success = raw_data.csv_append(final_path, [
+                        timestamp,
+                        data["HR"],
+                        data["RR"],
+                        data["mode"],
+                        data["GSR"],
+                        data["SkinT"],
+                        data["AccX"],
+                        data["AccY"],
+                        data["AccZ"],
+                        data["outcome"],
+                    ])
+                    return Response(success, status=status.HTTP_200_OK)
+                except IOError:
+                    messages.error(request, 'error while appending csv')
+            else:
+                print("skipping due to previous entry")
+                return Response(success, status=status.HTTP_200_OK)
+
+    def csv_append(filename, data):
+        with open(filename, 'a', newline='') as outcsv:
+            writer = csv.writer(outcsv)
+            writer.writerow(data)
+            return True
+        return IOError
+
+    def csv_insert_header(path, filename, header):
+        os.makedirs(path, exist_ok=True)
+        open(filename, 'a', newline='').close()
+        with open(filename, 'w', newline='') as outcsv:
+            writer = csv.writer(outcsv)
+            writer.writerow(header)
+            return True
+        return IOError
+
+    def get_last_row(filename):
+        with open(filename, 'r', newline='') as f:
+            try:
+                lastrow = deque(csv.reader(f), 1)[0]
+            except IndexError:  # empty file
+                lastrow = None
+            return lastrow
+
+    def check_duplicate(name, username=None):
+        if username is None:
+            path = os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), name)
+        else:
+            path = os.path.join(os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), username), name)
+        # print("check duplidate Path is ", path)
+        return os.path.isfile(path)
+
+
+
 
 

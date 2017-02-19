@@ -2,6 +2,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^random/$', views.random_outcome, name='random'),
-    url(r'^getrandom/$', views.random_api.as_view(), name='random_api'),
+    url(r'^getrandom/$', views.random_number.as_view(), name='random_api'),
+    url(r'raw_data/$', views.raw_data.as_view(), name='raw_data'),
 ]
