@@ -10,8 +10,11 @@
 import UIKit
 import Alamofire
 
+
 class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
     
+    
+    var globalCounter = 0
     var tempHR: Double = 0.0
     var tempRR: Double = 0.0
     var tempGSR: Double = 0.0
@@ -50,13 +53,13 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
     var gsrSwitchT: Int = 1
     var accSwitchT: Int = 1
     
-    
+    var jsonString = ""
     //testing
     var buffer: Int = 0
     
     //MARK: Properties
     
-
+    
     
     @IBOutlet weak var gsrLabel: UILabel!
     @IBOutlet weak var accLabel: UILabel!
@@ -94,34 +97,34 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         // Setup background thread for upload data
         
         /*
-        beginBackgroundTask(expirationHandler:)
-        let backgroundQueue = DispatchQueue(label: "com.app.queue", attributes: .concurrent)
-        DispatchQueue.global().async {
-            while true {
-                print("dispatched to background queue")
-            }
-        }
-    */
- 
-//        
-//        //TESTING TESTING TESING 
-//        backgroundTask = application.beginBackgroundTaskWithName("MyBackgroundTask") {
-//            // This expirationHandler is called when your task expired
-//            // Cleanup the task here, remove objects from memory, etc
-//            
-//            application.endBackgroundTask(self.backgroundTask)
-//            self.backgroundTask = UIBackgroundTaskInvalid
-//        }
-//        
-//        // Implement the operation of your task as background task
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-//            // Begin your upload and clean up JSON
-//            // NSURLSession, AlamoFire, etc
-//                print("dispatched to background queue")
-//            // On completion, end your task
-//            application.endBackgroundTask(self.backgroundTask)
-//            self.backgroundTask = UIBackgroundTaskInvalid
-//        }
+         beginBackgroundTask(expirationHandler:)
+         let backgroundQueue = DispatchQueue(label: "com.app.queue", attributes: .concurrent)
+         DispatchQueue.global().async {
+         while true {
+         print("dispatched to background queue")
+         }
+         }
+         */
+        
+        //
+        //        //TESTING TESTING TESING
+        //        backgroundTask = application.beginBackgroundTaskWithName("MyBackgroundTask") {
+        //            // This expirationHandler is called when your task expired
+        //            // Cleanup the task here, remove objects from memory, etc
+        //
+        //            application.endBackgroundTask(self.backgroundTask)
+        //            self.backgroundTask = UIBackgroundTaskInvalid
+        //        }
+        //
+        //        // Implement the operation of your task as background task
+        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        //            // Begin your upload and clean up JSON
+        //            // NSURLSession, AlamoFire, etc
+        //                print("dispatched to background queue")
+        //            // On completion, end your task
+        //            application.endBackgroundTask(self.backgroundTask)
+        //            self.backgroundTask = UIBackgroundTaskInvalid
+        //        }
         
         
         
@@ -136,11 +139,11 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
             output("Please wait... \nConnecting to Band \(client.name!)")
         } else {
             output("Failed! No Bands attached.")
-      
+            
             
             return
         }
- 
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -149,7 +152,6 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
     }
     
     
-
     
     
     
@@ -242,9 +244,12 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                 output("\(count)")
                 for i in 0..<count {
                     csv += "\n\(timeArrayHR[i]),\(hrArray[i]),\(rrArray[i]),\(hrQArray[i]),\(gsrArray[i]),\(skinArray[i]),\(accXArray[i]),\(accYArray[i]),\(accZArray[i])"
-                    if(i==0){
-                        csv+=",\(goodbadSwitch.isOn)"
+                    if(goodbadSwitch.isOn){
+                        csv+=",1"
+                    } else {
+                        csv+=",0"
                     }
+                    
                 }
                 
                 let dateFormatter = DateFormatter()
@@ -267,10 +272,10 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                     
                     
                     /* Upload Data */
-                    /* http://jeremych.zapto.org:34567/accounts/testpost/ */
+                    /* http://sleepify.zapto,org/ml/upload */
                     
                     let sessionManager = Alamofire.SessionManager.default
-                    sessionManager.request("http://jeremych.zapto.org:34567/personal/blank/",method:.get)
+                    sessionManager.request("http://sleepify.zapto.org/personal/blank/",method:.get)
                         .responseString { response in
                             if let headerFields = response.response?.allHeaderFields as? [String: String],
                                 let URL = response.response?.url {
@@ -287,82 +292,11 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                                 ]
                                 Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
                                 
-                                /*
-                                 sessionManager.request("http://jeremych.zapto.org:34567/accounts/testpost/",
-                                 method: .post,
-                                 parameters: ["post_data":"testing",
-                                 "csrfmiddlewaretoken":v],
-                                 headers: headers)
-                                 .responseJSON { response in
-                                 print(response)
-                                 }
-                                */
-                                
-                                
-                                // File Upload
-                                //let dateFormatter = DateFormatter()
-                                
-                                //dateFormatter.dateFormat = "dd.MM.YY"
-                                
-                                // let fileName = "MSBand2_ALL_data_\(dateFormatter.string(from: Date()))"
-                                
-                                // let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                                
-                                //  let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv")
-                                
-                                //let fileUR = Bundle.main.url(forResource: "MSBand2_ALL_data_\(dateFormatter.string(from: Date()))", withExtension: "csv")
-                                
-                                //print(fileUR)
-                                
-                                
-                                /* COPIED CODE */
-                                
-                                // let path:String = fileURL.path
-                                
-                                //let filePath: String! = "/Users/admin.../Documents/myZipFile.zip"
-                                /*
-                                 var zipData: NSData! = NSData()
-                                 do {
-                                 zipData = try NSData(contentsOfFile: path, options: NSData.ReadingOptions.mappedIfSafe)
-                                 } catch {
-                                 print("- error during get nsdata from zip file\(error)")
-                                 }
-                                 let url :String! = String(format:"http://jeremych.zapto.org:34567/ml/upload/")
-                                 Alamofire.upload(.POST, url, headers: headers, data: zipData)
-                                 .responseString { response in
-                                 if response.result.isSuccess {
-                                 let responseValue = response.result.value
-                                 print("Response value is: \(responseValue)")
-                                 } else {
-                                 var statusCode = 0
-                                 if (response.response != nil) {
-                                 statusCode = (response.response?.statusCode)!
-                                 }
-                                 print("Error: \(response.result.error!) with statusCode: \(statusCode)")
-                                 }
-                                 */
-                                
-                                
-                                /* COPIED CODE ENDED */
-                                /*
-                                 let path:String = fileURL.path
-                                 sessionManager.upload("https://www.google.co.uk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjUuruRnY7SAhWGVhQKHWqAA78QjRwIBw&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FIce_cream&psig=AFQjCNGU33559qifCydDTipSHO3g04lB2g&ust=1487114976653341", to: "http://jeremych.zapto.org:34567/ml/upload/", headers: headers)
-                                 .uploadProgress{progress in
-                                 print("Upload Progress: \(progress.fractionCompleted)")
-                                 }
-                                 .responseJSON{ resonpse in
-                                 print(response)
-                                 
-                                 self.output("uploaded")
-                                 
-                                 
-                                 } 
-                                 */
                                 Alamofire.upload(
                                     multipartFormData: { multipartFormData in
                                         multipartFormData.append(fileURL, withName: "file")
                                 },
-                                    to: "http://jeremych.zapto.org:34567/ml/upload/", headers: headers,
+                                    to: "http://sleepify.zapto.org/ml/upload/", headers: headers,
                                     encodingCompletion: { encodingResult in
                                         switch encodingResult {
                                         case .success(let upload, _, _):
@@ -373,28 +307,14 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                                         case .failure(let encodingError):
                                             print(encodingError)
                                         }
-                                }
-                                )
-                                
-                                
+                                })
                             }
                     }
-                    
-                    
-                    
+                    //Session Manager
                     
                 }
-                
-                
-                
-                
             }
         }
-        
-        
-        
-        
-        
     }
     
     
@@ -429,7 +349,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         }
     }
     
-   
+    
     @IBAction func AccLogSwitch(_ sender: UISwitch) {
         if accSwitch.isOn{
             accSwitchT = 1
@@ -462,17 +382,52 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                         self.tempHRQ = "Locked"
                     }
                     
+                    
+                    
                     self.buffer = self.buffer + 1
                     
                     if self.buffer == 600 {
                         self.buffer = 0
+                        self.globalCounter += 1
                         self.output("buffer full")
+                        self.output("\(self.globalCounter)")
+                        
+                        
+                        var parameters : Parameters = [
+                            "username" : "tszho",
+                            "data" : [Parameters]()
+                        ]
+                        
+                        var data = [Parameters]()
+                        var datat: Parameters = [:]
+                        let count: Int = self.timeArrayHR.count
+                        print(count)
+                        for i  in 0..<count{
+                            
+                            datat.updateValue("\(self.timeArrayHR[i])", forKey: "timestamp")
+                            datat.updateValue("\(self.hrArray[i])", forKey:  "HR")
+                            datat.updateValue("\(self.rrArray[i])", forKey: "RR")
+                            datat.updateValue("\(self.hrQArray[i])", forKey: "mode")
+                            datat.updateValue("\(self.gsrArray[i])", forKey: "GSR")
+                            datat.updateValue("\(self.skinArray[i])", forKey: "SkinT")
+                            datat.updateValue("\(self.accXArray[i])", forKey: "AccX")
+                            datat.updateValue("\(self.accYArray[i])", forKey: "AccY")
+                            datat.updateValue("\(self.accZArray[i])", forKey: "AccZ")
+                            datat.updateValue("1", forKey: "outcome")
+                            
+                            
+                            data.append(datat)
+                        }
+                        
+                        parameters["data"] = data
+                        
+                        print(data)
+                        
+                        Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                        
+                        self.resetArray()
+                        
                     }
-                    
-                    
-                    
-                    
-                    
                 })
                 
                 
@@ -668,6 +623,21 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         //frequencyGSR = 0
     }
     
+    func resetArray(){
+        hrQArray.removeAll()
+        timeArrayHR.removeAll()
+        timeArrayGSR.removeAll()
+        timeArraySkin.removeAll()
+        timeArrayAcc.removeAll()
+        hrArray.removeAll()
+        rrArray.removeAll()
+        gsrArray.removeAll()
+        skinArray.removeAll()
+        accXArray.removeAll()
+        accYArray.removeAll()
+        accZArray.removeAll()
+    }
+    
     
     func registerDataHR() {
         // Transform to string to save it to array
@@ -828,7 +798,6 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
     }
     
     
-    
     // MARK: Helper methods
     func sampleDidCompleteWithOutput(_ output: String) {
         self.output(output)
@@ -849,6 +818,16 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
             self.txtOutput.scrollRangeToVisible(NSRange.init(location: self.txtOutput.text.lengthOfBytes(using: String.Encoding.utf8) - 1, length: 1))
         }
     }
+    
+    
+    /*func appendIfDictionary(key:String, value: String){
+     if var dict = self.dictionary{
+     dict[key] = value;
+     self = String(dict);
+     }
+     }*/
+    
+    
     
     // MARK: UITextViewDelegate
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
