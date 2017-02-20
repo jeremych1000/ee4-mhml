@@ -80,6 +80,22 @@ def upload(request):
                                                    'count': RawData.objects.count(),
                                                    })
 
+def insert_from_api(username, date, data):
+    db_feature = FeatureEntries.objects.create(date=datetime.strptime(date, '%d_%m_%y'))
+    func.InsertFeature2DB(data, db_feature, username)
+    if FileTracker.objects.count() == 0:
+        FileTracker.objects.create(accCount=1, username=username)
+    else:
+        # print(FileTracker.objects.count())
+        obj = FileTracker.objects.first()
+        obj.accCount += 1
+        obj.save()
+        uploaded = True
+        print("A file has been uploaded to /media/data.")
+        if obj.accCount == 20:
+            # TODO: add machine learning stuff here
+            pass
+
 
 #def raw_data(request) moved to /api/raw_data
 

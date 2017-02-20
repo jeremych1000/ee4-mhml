@@ -9,8 +9,10 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework import status
 
 from datetime import datetime
-from collections import deque
-import os, csv, re, json, random
+import os, re, json, random
+
+from . import csv_functions
+from MLBlock.views import insert_from_api
 
 
 class random_number(APIView):
@@ -36,13 +38,13 @@ class raw_data(APIView):
         filename = raw_data.file_prefix + date + ".csv"
         final_path = os.path.join(path, filename)
 
-        exist = raw_data.check_duplicate(raw_data.file_prefix + date + ".csv", username)
+        exist = csv_functions.check_duplicate(raw_data.file_prefix + date + ".csv", username)
         print ("exist ", exist)
 
         if not exist:
             try:
                 # print (path, "---", final_path)
-                raw_data.csv_insert_header(path, final_path,
+                csv_functions.csv_insert_header(path, final_path,
                                            ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ",
                                             "outcome"])
             except IOError:
@@ -50,7 +52,7 @@ class raw_data(APIView):
 
             last_time = datetime.utcfromtimestamp(0).strftime("%d/%m/%y %H:%M:%S")
         else:
-            last_row = raw_data.get_last_row(final_path)[0]
+            last_row = csv_functions.get_last_row(final_path)[0]
             last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
 
         for data in json_data['data']:
@@ -64,7 +66,7 @@ class raw_data(APIView):
             success = False
             if last_time < timestamp:
                 try:
-                    success = raw_data.csv_append(final_path, [
+                    success = csv_functions.csv_append(final_path, [
                         timestamp,
                         data["HR"],
                         data["RR"],
@@ -76,7 +78,8 @@ class raw_data(APIView):
                         data["AccZ"],
                         data["outcome"],
                     ])
-    
+
+
                     json_result = {"success": success, "reason": "Raw data successfully appended to data file."}
                 except IOError:
                     messages.error(request, 'error while appending csv')
@@ -84,47 +87,17 @@ class raw_data(APIView):
             else:
                 json_result = {"success": success, "reason": "Skipping due to old entry."}
 
+        # call ML insert_from_api
+        # from MLBlock.views
+        # concac_data = [mean_hr, std_hr, mean_rr, std_rr, mean_gsr, std_gsr, mean_temp, std_temp, mean_acc, outcome]
+        # insert_from_api(username, date, concac_data)
         return Response(json_result, status=status.HTTP_200_OK)
 
-    def csv_append(filename, data):
-        with open(filename, 'a', newline='') as outcsv:
-            writer = csv.writer(outcsv)
-            writer.writerow(data)
-            return True
-        return IOError
-
-    def csv_insert_header(path, filename, header):
-        os.makedirs(path, exist_ok=True)
-        open(filename, 'a', newline='').close()
-        with open(filename, 'w', newline='') as outcsv:
-            writer = csv.writer(outcsv)
-            writer.writerow(header)
-            return True
-        return IOError
-
-    def get_last_row(filename):
-        with open(filename, 'r', newline='') as f:
-            try:
-                lastrow = deque(csv.reader(f), 1)[0]
-            except IndexError:  # empty file
-                lastrow = None
-            return lastrow
-
-    def check_duplicate(name, username=None):
-        if username is None:
-            path = os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), name)
-        else:
-            path = os.path.join(os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), username), name)
-        # print("check duplidate Path is ", path)
-        return os.path.isfile(path)
 
 
 class on_off(APIView):
     def get(self, request):
-        if random.getrandbits(1):
-            json = "ON"
-        else:
-            json = "OFF"
+        json = random.getrandbits(1)
         return Response(json, status=status.HTTP_200_OK)
 
 
