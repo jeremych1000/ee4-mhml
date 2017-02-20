@@ -238,79 +238,9 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                                 let headers: HTTPHeaders = [
                                     "X-CSRFToken": v
                                 ]
+                                
                                 Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
                                 
-                                /*
-                                 sessionManager.request("http://jeremych.zapto.org:34567/accounts/testpost/",
-                                 method: .post,
-                                 parameters: ["post_data":"testing",
-                                 "csrfmiddlewaretoken":v],
-                                 headers: headers)
-                                 .responseJSON { response in
-                                 print(response)
-                                 }
-                                */
-                                
-                                
-                                // File Upload
-                                //let dateFormatter = DateFormatter()
-                                
-                                //dateFormatter.dateFormat = "dd.MM.YY"
-                                
-                                // let fileName = "MSBand2_ALL_data_\(dateFormatter.string(from: Date()))"
-                                
-                                // let docDirectory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                                
-                                //  let fileURL = docDirectory?.appendingPathComponent(fileName).appendingPathExtension("csv")
-                                
-                                //let fileUR = Bundle.main.url(forResource: "MSBand2_ALL_data_\(dateFormatter.string(from: Date()))", withExtension: "csv")
-                                
-                                //print(fileUR)
-                                
-                                
-                                /* COPIED CODE */
-                                
-                                // let path:String = fileURL.path
-                                
-                                //let filePath: String! = "/Users/admin.../Documents/myZipFile.zip"
-                                /*
-                                 var zipData: NSData! = NSData()
-                                 do {
-                                 zipData = try NSData(contentsOfFile: path, options: NSData.ReadingOptions.mappedIfSafe)
-                                 } catch {
-                                 print("- error during get nsdata from zip file\(error)")
-                                 }
-                                 let url :String! = String(format:"http://jeremych.zapto.org:34567/ml/upload/")
-                                 Alamofire.upload(.POST, url, headers: headers, data: zipData)
-                                 .responseString { response in
-                                 if response.result.isSuccess {
-                                 let responseValue = response.result.value
-                                 print("Response value is: \(responseValue)")
-                                 } else {
-                                 var statusCode = 0
-                                 if (response.response != nil) {
-                                 statusCode = (response.response?.statusCode)!
-                                 }
-                                 print("Error: \(response.result.error!) with statusCode: \(statusCode)")
-                                 }
-                                 */
-                                
-                                
-                                /* COPIED CODE ENDED */
-                                /*
-                                 let path:String = fileURL.path
-                                 sessionManager.upload("https://www.google.co.uk/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjUuruRnY7SAhWGVhQKHWqAA78QjRwIBw&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FIce_cream&psig=AFQjCNGU33559qifCydDTipSHO3g04lB2g&ust=1487114976653341", to: "http://jeremych.zapto.org:34567/ml/upload/", headers: headers)
-                                 .uploadProgress{progress in
-                                 print("Upload Progress: \(progress.fractionCompleted)")
-                                 }
-                                 .responseJSON{ resonpse in
-                                 print(response)
-                                 
-                                 self.output("uploaded")
-                                 
-                                 
-                                 } 
-                                 */
                                 Alamofire.upload(
                                     multipartFormData: { multipartFormData in
                                         multipartFormData.append(fileURL, withName: "file")
@@ -326,21 +256,10 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                                         case .failure(let encodingError):
                                             print(encodingError)
                                         }
-                                }
-                                )
-                                
-                                
+                                })
                             }
                     }
-                    
-                    
-                    
-                    
                 }
-                
-                
-                
-                
             }
         }
         
