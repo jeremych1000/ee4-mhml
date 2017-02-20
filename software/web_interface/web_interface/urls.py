@@ -32,13 +32,13 @@ urlpatterns = [
 
     url(r'^myaccount/', include('myaccount.urls'), name='myaccount'),
     url(r'^ml/', include('MLBlock.urls'), name='ml'),
-    url(r'api/', include('api.urls', namespace='api'), name='api'),
+    url(r'^api/', include('api.urls', namespace='api'), name='api'),
 
     #django allauth
     url(r'^accounts/', include('allauth.urls'), name='allauth'),
 
     #django rest framework
-    url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #sphinx docs
     url(r'^docs/', include('docs.urls'), name='docs'),
