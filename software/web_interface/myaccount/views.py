@@ -1,16 +1,13 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.views.decorators.cache import cache_page
 from django.http import HttpResponse, HttpResponseRedirect
-from django.middleware.csrf import get_token
-
-from myaccount.models import User, UserProfile
-from myaccount.forms import UserForm, UserProfileForm, TestPostForm
+from django.shortcuts import render
 from sendfile import sendfile
 
+from myaccount.forms import UserForm, UserProfileForm, TestPostForm
+from myaccount.models import User
+from web_interface.decorators import login_required, login_required_message_and_redirect
 
+@login_required_message_and_redirect(message="You need to be signed in to view this page.")
 def profile(request):
     username = None
     if request.user.is_authenticated():
@@ -21,7 +18,7 @@ def profile(request):
     else:
         return render(request, "myaccount/profile.html")
 
-
+@login_required_message_and_redirect(message="You need to be signed in to view this page.")
 def preferences(request):
     # !!!!!!!!!!!!!!!!!!!!
     # !!!!!!!!!!!!!!!!!!!!

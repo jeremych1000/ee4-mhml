@@ -41,6 +41,6 @@ urlpatterns = [
     url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #sphinx docs
-    url(r'^docs/', include('docs.urls'))
+    url(r'^docs/', include('docs.urls'), name='docs'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

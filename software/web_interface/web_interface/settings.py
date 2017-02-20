@@ -222,9 +222,8 @@ REST_FRAMEWORK = {
 # others
 CSRF_COOKIE_SECURE = False  # allow transportation of CSRF over HTTP
 
-# LOGIN_URL = '/accounts/login'
-# LOGOUT_URL = '/accounts/logout'
-LOGIN_REDIRECT_URL = '/myaccount/profile'  # It means home view
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/myaccount/profile/'  # It means home view
 
 SITE_ID = 1  # for allauth and django.contrib.sites
 
