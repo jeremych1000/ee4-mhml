@@ -11,16 +11,19 @@ from datetime import datetime
 from collections import deque
 import os, csv, re, json, random
 
+
 class random_number(APIView):
     def get(self, request):
         result = random.getrandbits(1)
         return Response(result, status=status.HTTP_200_OK)
+
 
 class raw_data(APIView):
     file_prefix = "MSBand2_ALL_data_"
 
     def post(self, request):
         json_data = json.loads(request.body.decode("utf-8"))
+        print("DEBUG: ", json_data)
 
         username = json_data['username']
 
@@ -38,7 +41,9 @@ class raw_data(APIView):
         if not exist:
             try:
                 # print (path, "---", final_path)
-                raw_data.csv_insert_header(path, final_path, ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ", "outcome"])
+                raw_data.csv_insert_header(path, final_path,
+                                           ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ",
+                                            "outcome"])
             except IOError:
                 messages.error(request, 'error while inserting header')
 
@@ -53,8 +58,8 @@ class raw_data(APIView):
             # only append if timestamp of data is newer than last line
             # last_time only refreshes once, so this won't deal with new, but out of order data
             # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:54 OK
-            # lasttime is 22:00:00, then new data is 21:53:53, then 21:53:54 SKIPPED
-            # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:00 OK (as last time checks once)
+            # lasttime is 21:00:00, then new data is 20:53:53, then 20:53:54 SKIPPED
+            # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:50 OK (as last time checks once)
             success = False
             if last_time < timestamp:
                 try:
@@ -70,9 +75,11 @@ class raw_data(APIView):
                         data["AccZ"],
                         data["outcome"],
                     ])
+                    print("shoudl've worked")
                     return Response(success, status=status.HTTP_200_OK)
                 except IOError:
                     messages.error(request, 'error while appending csv')
+                    return Response(success, status=status.HTTP_200_OK)
             else:
                 print("skipping due to previous entry")
                 return Response(success, status=status.HTTP_200_OK)
@@ -108,8 +115,3 @@ class raw_data(APIView):
             path = os.path.join(os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), username), name)
         # print("check duplidate Path is ", path)
         return os.path.isfile(path)
-
-
-
-
-

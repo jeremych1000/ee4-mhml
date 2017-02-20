@@ -12,7 +12,7 @@ from datetime import datetime
 from collections import deque
 import os, csv, re, json
 
-file_prefix = "MSBand2_ALL_data_"
+#file_prefix = "MSBand2_ALL_data_"
 
 
 def check_duplicate(name, username=None):
@@ -49,7 +49,8 @@ def upload(request):
 
         if f_form.is_valid() and len(request.FILES) != 0:
             name = request.FILES['file'].name
-            regexR = re.search(r'(file_prefix)(\w+)', name)
+            regexR = re.search(r'(MSBand2_ALL_data_)(\w+)', name)
+            print(name, regexR)
             data_date = regexR.group(2)
             if not (check_duplicate(name)):
                 raw = RawData.objects.create(file=request.FILES['file'])
