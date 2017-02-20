@@ -5,6 +5,7 @@ from django.conf import settings
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
 from rest_framework import status
 
 from datetime import datetime
@@ -36,7 +37,7 @@ class raw_data(APIView):
         final_path = os.path.join(path, filename)
 
         exist = raw_data.check_duplicate(raw_data.file_prefix + date + ".csv", username)
-        # print ("exist ", exist)
+        print ("exist ", exist)
 
         if not exist:
             try:
@@ -75,14 +76,15 @@ class raw_data(APIView):
                         data["AccZ"],
                         data["outcome"],
                     ])
-                    print("shoudl've worked")
-                    return Response(success, status=status.HTTP_200_OK)
+
+                    json_result = {"success": success, "reason": "Raw data successfully appended to data file."}
                 except IOError:
                     messages.error(request, 'error while appending csv')
-                    return Response(success, status=status.HTTP_200_OK)
+                    json_result = {"success": success, "reason": "Error while appending to data file."}
             else:
-                print("skipping due to previous entry")
-                return Response(success, status=status.HTTP_200_OK)
+                json_result = {"success": success, "reason": "Skipping due to old entry."}
+
+        return Response(json_result, status=status.HTTP_200_OK)
 
     def csv_append(filename, data):
         with open(filename, 'a', newline='') as outcsv:
@@ -115,3 +117,20 @@ class raw_data(APIView):
             path = os.path.join(os.path.join(os.path.join(settings.MEDIA_ROOT, 'data'), username), name)
         # print("check duplidate Path is ", path)
         return os.path.isfile(path)
+
+
+class on_off(APIView):
+    def get(self, request):
+        if random.getrandbits(1):
+            json = "ON"
+        else:
+            json = "OFF"
+        return Response(json, status=status.HTTP_200_OK)
+
+
+#http://www.ietf.org/rfc/rfc2324.txt
+class teapot(APIView):
+    def get(self, request):
+        json_result = "I'm a teapot."
+        return Response(json_result, status=418)
+        #return HttpResponse("I'm a teapot.", content_type="application/json", status=418)

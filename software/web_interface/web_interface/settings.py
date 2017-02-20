@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     # bootstrap
     'bootstrap3',
 
+    #sphinx docs
+    'docs',
+
     # django defaults
     'django.contrib.admin',
     'django.contrib.auth',
@@ -230,3 +233,6 @@ BOOTSTRAP3 = {
 }
 
 SENDFILE_BACKEND = 'sendfile.backends.development'
+
+DOCS_ROOT = os.path.join(BASE_DIR, "docs/_build/html/")
+DOCS_ACCESS = 'public'

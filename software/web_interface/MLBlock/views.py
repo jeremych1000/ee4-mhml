@@ -44,6 +44,9 @@ def read_raw_file(classHandle, datestring):
 
 def upload(request):
     uploaded = False
+
+    username = "test"
+
     if request.method == 'POST':
         f_form = FileForm(request.POST, request.FILES)
 
@@ -55,9 +58,9 @@ def upload(request):
             if not (check_duplicate(name)):
                 raw = RawData.objects.create(file=request.FILES['file'])
                 db_feature = FeatureEntries.objects.create(date=datetime.strptime(data_date, '%d_%m_%y'))
-                func.InsertFeature2DB(fe.genfeatureFromCSV(raw.file.path, 600), db_feature)
+                func.InsertFeature2DB(fe.genfeatureFromCSV(raw.file.path, 600), db_feature, username)
                 if FileTracker.objects.count() == 0:
-                    FileTracker.objects.create(accCount=1)
+                    FileTracker.objects.create(accCount=1, username=username)
                 else:
                     # print(FileTracker.objects.count())
                     obj = FileTracker.objects.first()
@@ -78,95 +81,7 @@ def upload(request):
                                                    })
 
 
-# remember to set X-CSRFTOKEN in headers, then JSON in body under application/json
-def add_raw_data(request):
-    if request.method == "POST":
-        json_data = json.loads(request.body.decode("utf-8"))
-
-        username = json_data['username']
-
-        date = datetime.now().strftime("%d_%m_%y")
-
-        path = os.path.join(settings.MEDIA_ROOT, 'data')
-        path = os.path.join(path, username)
-
-        filename = file_prefix + date + ".csv"
-        final_path = os.path.join(path, filename)
-
-        exist = check_duplicate(file_prefix + date + ".csv", username)
-        #print ("exist ", exist)
-
-        if not exist:
-            try:
-                #print (path, "---", final_path)
-                csv_insert_header(path, final_path, ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ", "outcome"])
-            except IOError:
-                messages.error(request, 'error while inserting header')
-
-            last_time = datetime.utcfromtimestamp(0).strftime("%d/%m/%y %H:%M:%S")
-        else:
-            last_row = get_last_row(final_path)[0]
-            last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
-
-        for data in json_data['data']:
-            timestamp = datetime.strptime(data["timestamp"], "%d/%m/%y %H:%M:%S").strftime("%d/%m/%y %H:%M:%S")
-
-            # only append if timestamp of data is newer than last line
-            # last_time only refreshes once, so this won't deal with new, but out of order data
-            # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:54 OK
-            # lasttime is 22:00:00, then new data is 21:53:53, then 21:53:54 SKIPPED
-            # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:00 OK (as last time checks once)
-            if last_time < timestamp:
-                try:
-                    csv_append(final_path, [
-                        timestamp,
-                        data["HR"],
-                        data["RR"],
-                        data["mode"],
-                        data["GSR"],
-                        data["SkinT"],
-                        data["AccX"],
-                        data["AccY"],
-                        data["AccZ"],
-                        data["outcome"],
-                    ])
-                except IOError:
-                    messages.error(request, 'error while appending csv')
-            else:
-                print("skipping due to previous entry")
-
-        messages.success(request, 'success')
-    else:
-        messages.warning(request, 'not a post request')
-    return render(request, "ml/post.html", {'json_data': json_data})
-
-
-def csv_append(filename, data):
-    with open(filename, 'a', newline='') as outcsv:
-        writer = csv.writer(outcsv)
-        writer.writerow(data)
-        return True
-    return IOError
-
-
-def csv_insert_header(path, filename, header):
-    os.makedirs(path, exist_ok=True)
-    open(filename, 'a', newline='').close()
-    with open(filename, 'w', newline='') as outcsv:
-        writer = csv.writer(outcsv)
-        writer.writerow(header)
-        return True
-    return IOError
-
-
-def get_last_row(filename):
-    with open(filename, 'r', newline='') as f:
-        try:
-            lastrow = deque(csv.reader(f), 1)[0]
-        except IndexError:  # empty file
-            lastrow = None
-        return lastrow
-
+#def raw_data(request) moved to /api/raw_data
 
 def home(request):
     return render(request, "ml/ml_homepage.html", {'uploaded': False,

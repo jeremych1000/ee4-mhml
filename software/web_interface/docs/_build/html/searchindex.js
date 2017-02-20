@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["index","modules/views"],envversion:51,filenames:["index.rst","modules\\views.rst"],objects:{},objnames:{},objtypes:{},terms:{content:0,index:0,model:[],modul:0,page:0,search:0,view:0},titles:["Welcome to Sleepify&#8217;s documentation!","Views"],titleterms:{document:0,indic:0,model:[],sleepifi:0,tabl:0,view:1,welcom:0}})

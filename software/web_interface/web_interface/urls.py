@@ -31,9 +31,16 @@ urlpatterns = [
     url(r'^', include("personal.urls"), name='home'),
 
     url(r'^myaccount/', include('myaccount.urls'), name='myaccount'),
-    url(r'^accounts/', include('allauth.urls'), name='allauth'),
     url(r'^ml/', include('MLBlock.urls'), name='ml'),
     url(r'api/', include('api.urls', namespace='api'), name='api'),
+
+    #django allauth
+    url(r'^accounts/', include('allauth.urls'), name='allauth'),
+
+    #django rest framework
     url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    #sphinx docs
+    url(r'^docs/', include('docs.urls'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
