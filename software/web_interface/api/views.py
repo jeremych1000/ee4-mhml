@@ -76,7 +76,7 @@ class raw_data(APIView):
                         data["AccZ"],
                         data["outcome"],
                     ])
-
+    
                     json_result = {"success": success, "reason": "Raw data successfully appended to data file."}
                 except IOError:
                     messages.error(request, 'error while appending csv')

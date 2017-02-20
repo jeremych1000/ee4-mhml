@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c4a37a3-03a9-4731-9e85-5b2b1496594b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/data/MSBand2_ALL_data_20_02_17.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../matlab/FeatureExtraction.m" afterPath="$PROJECT_DIR$/../matlab/FeatureExtraction.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MLBlock/ServerFunction.py" afterPath="$PROJECT_DIR$/MLBlock/ServerFunction.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MLBlock/models.py" afterPath="$PROJECT_DIR$/MLBlock/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MLBlock/urls.py" afterPath="$PROJECT_DIR$/MLBlock/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MLBlock/views.py" afterPath="$PROJECT_DIR$/MLBlock/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/get_pip_stuff.cmd" afterPath="$PROJECT_DIR$/get_pip_stuff.cmd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_interface/settings.py" afterPath="$PROJECT_DIR$/web_interface/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_interface/urls.py" afterPath="$PROJECT_DIR$/web_interface/urls.py" />
-    </list>
+    <list default="true" id="2c4a37a3-03a9-4731-9e85-5b2b1496594b" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +57,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FeatureExtraction.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FeatureExtraction.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MLBlock/FeatureExtraction.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-236">
@@ -105,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="59" column="61" lean-forward="true" selection-start-line="59" selection-start-column="61" selection-end-line="59" selection-end-column="61" />
+            <state relative-caret-position="699">
+              <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -217,9 +203,9 @@
         <option value="$PROJECT_DIR$/MLBlock/views.py" />
         <option value="$PROJECT_DIR$/MLBlock/urls.py" />
         <option value="$PROJECT_DIR$/MLBlock/models.py" />
-        <option value="$PROJECT_DIR$/api/views.py" />
         <option value="$PROJECT_DIR$/web_interface/urls.py" />
         <option value="$PROJECT_DIR$/web_interface/settings.py" />
+        <option value="$PROJECT_DIR$/api/views.py" />
       </list>
     </option>
   </component>
@@ -742,7 +728,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="7" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.099609375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1094,22 +1080,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="59" column="61" lean-forward="true" selection-start-line="59" selection-start-column="61" selection-end-line="59" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MLBlock/FeatureExtraction.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-236">
           <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
