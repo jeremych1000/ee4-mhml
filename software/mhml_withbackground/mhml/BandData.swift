@@ -386,7 +386,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                     
                     self.buffer = self.buffer + 1
                     
-                    if self.buffer == 600 {
+                    if self.buffer == 10 {
                         self.buffer = 0
                         self.globalCounter += 1
                         self.output("buffer full")
@@ -426,6 +426,24 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                         Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                         
                         self.resetArray()
+                     
+                        // Obtain sleep quality state every 10mins
+                        Alamofire.request("http://sleepify.zapto.org/api/on_off/").responseData { response in
+                            debugPrint("All Response info: \(response)")
+                            
+                            if let data = response.result.value, let sleep_quality = String(data: data, encoding: .utf8){
+                                print("Data: \(sleep_quality)")
+                                if sleep_quality == "1" {
+                                    self.output("Sleep Quality: Good")
+                                }
+                                else if sleep_quality == "0" {
+                                    self.output("Sleep Quality: Bad")
+                                }
+                                else {
+                                    self.output("Sleep Quality: Undefined")
+                                }
+                            }
+                        }
                         
                     }
                 })

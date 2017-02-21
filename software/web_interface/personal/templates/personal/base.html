@@ -5,6 +5,7 @@
 <html lang="en">
 
 <head>
+
     <title>{% block head_title %}Welcome - Sleepify{% endblock %}</title>
     <meta charset="utf-8"/>
 
@@ -48,6 +49,14 @@
             $('#myLoginModal').modal('hide')
         }
     </script>
+
+    {% if login %}
+        <script type="text/javascript">
+            $(window).load(function () {
+                $('#myLoginModal').modal('show');
+            });
+        </script>
+    {% endif %}
 
 </head>
 
