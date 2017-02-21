@@ -23,7 +23,7 @@ class FeatureEntry(models.Model):
     mean_temp = models.FloatField(default=0.0)
     std_temp = models.FloatField(default=0.0)
     mean_acc = models.FloatField(default=0.0)
-    label = models.ForeignKey('SleepQuality', on_delete=models.CASCADE)
+    label = models.ForeignKey('SleepQuality', on_delete=models.CASCADE, default="", blank=True, null=False)
 
 
 class SleepQuality(models.Model):

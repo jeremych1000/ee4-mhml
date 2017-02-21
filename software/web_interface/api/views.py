@@ -67,6 +67,7 @@ class raw_data(APIView):
             # lasttime is 21:00:00, then new data is 20:53:53, then 20:53:54 SKIPPED
             # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:50 OK (as last time checks once)
             success = False
+
             if last_time < timestamp:
                 try:
                     success = csv_functions.csv_append(final_path, [
@@ -96,20 +97,18 @@ class raw_data(APIView):
 
         # Get Feature from json
         feature = newML.functions.json2Feature(json_data)
-        # store feature into database , need to add user account !!
-        ml_model.FeatureEntry.objects.create(date=timestamp,
-                                             username='test',
-                                             mean_hr=feature['mean_hr'],
-                                             std_hr=feature['std_hr'],
-                                             mean_rr=feature['mean_rr'],
-                                             std_rr=feature['std_rr'],
-                                             mean_gsr=feature['mean_gsr'],
-                                             std_gsr=feature['std_gsr'],
-                                             mean_temp=feature['mean_temp'],
-                                             std_temp=feature['std_temp'],
-                                             mean_acc=feature['mean_acc'],
-                                             label= 
-                                             )
+
+        # Get model binary file path from username
+        mlfile = ml_model.ModelFile.objects.all().filter(username=username);
+        if not mlfile:
+            # Create new model and train with avaliable feature
+            classifier = newML.functions.createNewModel(username)
+
+        else:
+            classifier = newML.functions.getMLObj(mlfile.file.path)
+
+        outcome = classifier.predict(feature)
+        json_result["quality"]=outcome
 
         return Response(json_result, status=status.HTTP_200_OK)
 
