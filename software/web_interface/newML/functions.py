@@ -61,7 +61,7 @@ def getMLObj(path):
 def createNewModel(username):
     feature_vec = models.FeatureEntry.objects.all().filter(username=username, label__isnull=False)
     if len(feature_vec) != 0:
-        model_path = os.path.join(settings.MEDIA_ROOT, 'model' + username+'.p')
+        model_path = os.path.join(settings.MEDIA_ROOT, 'model/' + username+'.p')
         filehandle = open(model_path, 'rb')
         clf = RandomForestClassifier.fit(feature_vec)
         models.ModelFile.objects.create(file=filehandle, username=username)
@@ -76,4 +76,6 @@ def createNewModel(username):
 
 
 def storeModel(path, clf):
-    binary_dump = pickle.dumps(clf, open(path, 'wb'))
+    pickle.dumps(clf, open(path, 'wb'))
+    
+
