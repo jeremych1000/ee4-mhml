@@ -2,17 +2,13 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
-
 from MLBlock.models import RawData, FileTracker, FeatureEntries
 from MLBlock.form import FileForm
 import MLBlock.FeatureExtraction as fe
 import MLBlock.ServerFunction as func
-
 from datetime import datetime
 from collections import deque
 import os, csv, re, json
-
-#file_prefix = "MSBand2_ALL_data_"
 
 
 def check_duplicate(name, username=None):

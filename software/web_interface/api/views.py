@@ -2,15 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.conf import settings
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status
-
+import newML.functions
+from newML import models as ml_model
 from datetime import datetime
 import os, re, json, random
-
 from . import csv_functions
 from MLBlock.views import insert_from_api
 
@@ -39,14 +38,14 @@ class raw_data(APIView):
         final_path = os.path.join(path, filename)
 
         exist = csv_functions.check_duplicate(raw_data.file_prefix + date + ".csv", username)
-        print ("exist ", exist)
+        print("exist ", exist)
 
         if not exist:
             try:
                 # print (path, "---", final_path)
                 csv_functions.csv_insert_header(path, final_path,
-                                           ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ",
-                                            "outcome"])
+                                                ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ",
+                                                 "outcome"])
             except IOError:
                 messages.error(request, 'error while inserting header')
 
@@ -55,7 +54,7 @@ class raw_data(APIView):
             last_row = csv_functions.get_last_row(final_path)[0]
             last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
 
-        #begin data extraction from JSOn
+        # begin data extraction from JSOn
 
         HR = []
 
@@ -68,6 +67,7 @@ class raw_data(APIView):
             # lasttime is 21:00:00, then new data is 20:53:53, then 20:53:54 SKIPPED
             # lasttime is 21:00:00, then new data is 21:53:53, then 21:53:50 OK (as last time checks once)
             success = False
+
             if last_time < timestamp:
                 try:
                     success = csv_functions.csv_append(final_path, [
@@ -83,7 +83,6 @@ class raw_data(APIView):
                         data["outcome"],
                     ])
 
-
                     json_result = {"success": success, "reason": "Raw data successfully appended to data file."}
                 except IOError:
                     messages.error(request, 'error while appending csv')
@@ -95,8 +94,23 @@ class raw_data(APIView):
         # from MLBlock.views
         # concac_data = [mean_hr, std_hr, mean_rr, std_rr, mean_gsr, std_gsr, mean_temp, std_temp, mean_acc, outcome]
         # insert_from_api(username, date, concac_data)
-        return Response(json_result, status=status.HTTP_200_OK)
 
+        # Get Feature from json
+        feature = newML.functions.json2Feature(json_data,username,timestamp)
+
+        # Get model binary file path from username
+        mlfile = ml_model.ModelFile.objects.all().filter(username=username);
+        if not mlfile:
+            # Create new model and train with avaliable feature
+            classifier = newML.functions.createNewModel(username)
+
+        else:
+            classifier = newML.functions.getMLObj(mlfile.file.path)
+
+        outcome = classifier.predict(feature)
+        json_result["quality"]=outcome
+
+        return Response(json_result, status=status.HTTP_200_OK)
 
 
 class on_off(APIView):
@@ -105,9 +119,11 @@ class on_off(APIView):
         return Response(json, status=status.HTTP_200_OK)
 
 
-#http://www.ietf.org/rfc/rfc2324.txt
+# http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
     def get(self, request):
         json_result = "I'm a teapot."
         return Response(json_result, status=418)
-        #return HttpResponse("I'm a teapot.", content_type="application/json", status=418)
+        # return HttpResponse("I'm a teapot.", content_type="application/json", status=418)
+
+        # Todo: Need  a class to handle user quality feedback, add entrey to sleep quality and reinsert label back to each feature entry
