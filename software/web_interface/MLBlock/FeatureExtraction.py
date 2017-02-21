@@ -2,6 +2,7 @@ import csv
 import numpy as np
 
 
+
 def genfeatureFromCSV(fileURL, winSize):
     fHandle = open(fileURL)
     csvReader = csv.reader(fHandle)
