@@ -2,15 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.conf import settings
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status
-
+import newML.functions
+from newML import models as ml_model
 from datetime import datetime
 import os, re, json, random
-
 from . import csv_functions
 from MLBlock.views import insert_from_api
 
@@ -39,14 +38,14 @@ class raw_data(APIView):
         final_path = os.path.join(path, filename)
 
         exist = csv_functions.check_duplicate(raw_data.file_prefix + date + ".csv", username)
-        print ("exist ", exist)
+        print("exist ", exist)
 
         if not exist:
             try:
                 # print (path, "---", final_path)
                 csv_functions.csv_insert_header(path, final_path,
-                                           ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ",
-                                            "outcome"])
+                                                ["Time", "HR", "RR", "Mode", "GSR", "SkinT", "AccX", "AccY", "AccZ",
+                                                 "outcome"])
             except IOError:
                 messages.error(request, 'error while inserting header')
 
@@ -55,7 +54,7 @@ class raw_data(APIView):
             last_row = csv_functions.get_last_row(final_path)[0]
             last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
 
-        #begin data extraction from JSOn
+        # begin data extraction from JSOn
 
         HR = []
 
@@ -83,7 +82,6 @@ class raw_data(APIView):
                         data["outcome"],
                     ])
 
-
                     json_result = {"success": success, "reason": "Raw data successfully appended to data file."}
                 except IOError:
                     messages.error(request, 'error while appending csv')
@@ -95,8 +93,25 @@ class raw_data(APIView):
         # from MLBlock.views
         # concac_data = [mean_hr, std_hr, mean_rr, std_rr, mean_gsr, std_gsr, mean_temp, std_temp, mean_acc, outcome]
         # insert_from_api(username, date, concac_data)
-        return Response(json_result, status=status.HTTP_200_OK)
 
+        # Get Feature from json
+        feature = newML.functions.json2Feature(json_data)
+        # store feature into database , need to add user account !!
+        ml_model.FeatureEntry.objects.create(date=timestamp,
+                                             username='test',
+                                             mean_hr=feature['mean_hr'],
+                                             std_hr=feature['std_hr'],
+                                             mean_rr=feature['mean_rr'],
+                                             std_rr=feature['std_rr'],
+                                             mean_gsr=feature['mean_gsr'],
+                                             std_gsr=feature['std_gsr'],
+                                             mean_temp=feature['mean_temp'],
+                                             std_temp=feature['std_temp'],
+                                             mean_acc=feature['mean_acc'],
+                                             label= 
+                                             )
+
+        return Response(json_result, status=status.HTTP_200_OK)
 
 
 class on_off(APIView):
@@ -105,9 +120,11 @@ class on_off(APIView):
         return Response(json, status=status.HTTP_200_OK)
 
 
-#http://www.ietf.org/rfc/rfc2324.txt
+# http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
     def get(self, request):
         json_result = "I'm a teapot."
         return Response(json_result, status=418)
-        #return HttpResponse("I'm a teapot.", content_type="application/json", status=418)
+        # return HttpResponse("I'm a teapot.", content_type="application/json", status=418)
+
+        # Todo: Need  a class to handle user quality feedback, add entrey to sleep quality and reinsert label back to each feature entry
