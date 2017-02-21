@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'raw_data/$', views.raw_data.as_view(), name='raw_data'),
     url(r'make_coffee/$', views.teapot.as_view()),
     url(r'make_default/$', SetupTesting.settingDefault),
+    url(r'migrate_feature/$', SetupTesting.migrateFeature),
 ]

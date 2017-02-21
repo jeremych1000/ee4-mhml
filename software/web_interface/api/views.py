@@ -17,6 +17,7 @@ import os, re, json, random
 from . import csv_functions
 
 import numpy as np
+import pickle
 from MLBlock.views import insert_from_api
 
 
@@ -107,16 +108,14 @@ class raw_data(APIView):
         user_object = User.objects.all().filter(username=username).first()
 
         # Get model binary file path from username
-        mlfile = ml_model.ModelFile.objects.all().filter(user=user_object)
+        mlfile = ml_model.ModelFile.objects.all().filter(user=user_object).first()
 
         if not mlfile:
             # Create new model and train with avaliable feature
             classifier = newML.functions.createNewModel(username)
 
         else:
-            print("not done yet")
-            # TODO
-            # classifier = newML.functions.getMLObj(mlfile.file.path)
+            classifier = pickle.load(open(mlfile.file.path,'rb'))
 
         feature=np.array([feature])
         outcome = classifier.predict(feature)

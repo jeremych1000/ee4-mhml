@@ -59,20 +59,29 @@ def json2Feature(json, username, timestamp):
         return [feature["mean_hr"], feature["std_hr"], feature["mean_rr"], feature["std_rr"], feature["mean_gsr"],
                 feature["std_gsr"], feature["mean_temp"], feature["std_temp"], feature["mean_acc"]]
 
-
-def getMLObj(path):
-    pass
-
+def FeatureEntry2FeatureOutcome(entryVec):
+    features=[];
+    outcomes=[];
+    for f in entryVec:
+        features.append([f.mean_hr,f.std_hr,f.mean_rr,f.std_rr,f.mean_gsr,f.std_gsr,f.mean_temp,f.std_temp,f.mean_acc])
+        outcomes.append(f.label.value)
+    return features,outcomes
 
 def createNewModel(username):
-    # get username from user database
     user_object = User.objects.all().filter(username=username).first()
     feature_vec = models.FeatureEntry.objects.all().filter(user=user_object, label__isnull=False)
     if len(feature_vec) != 0:
-        model_path = os.path.join(settings.MEDIA_ROOT, 'model/' + username + '.p')
-        filehandle = open(model_path, 'rb')
-        clf = RandomForestClassifier.fit(feature_vec)
-        models.ModelFile.objects.create(file=filehandle, username=username)
+        model_path = os.path.join(settings.MEDIA_ROOT, os.path.join('model', username + '.p'))
+        p_list = os.listdir(os.path.join(settings.MEDIA_ROOT, 'model'))
+        file_mode = 'wb'
+        # for x in p_list:
+        #     if username + '.p' == x:
+        #         file_mode = 'rb'
+        filehandle = open(model_path, file_mode)
+        features,outcomes=FeatureEntry2FeatureOutcome(feature_vec)
+        clf = RandomForestClassifier()
+        clf.fit(features,outcomes)
+        models.ModelFile.objects.create(file=model_path, user=user_object)
         pickle._dump(clf, filehandle)
         return clf
     else:

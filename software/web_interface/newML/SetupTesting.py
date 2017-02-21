@@ -5,8 +5,8 @@ import newML.functions as func
 from sklearn.ensemble import RandomForestClassifier
 import pickle
 from newML import models
-from django.core.files import File
-
+from django.contrib.auth.models import User
+from datetime import datetime
 
 def settingDefault(request):
     model_path = os.path.join(settings.MEDIA_ROOT, os.path.join('model', 'default.p'))
@@ -24,22 +24,27 @@ def settingDefault(request):
     clf = RandomForestClassifier()
     clf.fit(features, outcomes)
     pickle.dump(clf, f_handle)
-    models.ModelFile.objects.create(file=model_path, username='Default')
     return HttpResponseRedirect('/')
 
+
 def migrateFeature(request):
+    username = "jeremych"
+    userObj = User.objects.all().filter(username=username).first()
     data_path = os.path.join(settings.MEDIA_ROOT, 'data')
     features = []
     outcomes = []
-    dates=[]
+    dates = []
     for file in os.listdir(data_path):
         if file.endswith(".csv"):
             filepath = os.path.join(data_path, file)
             new_d, new_f, new_out = func.CSV2Feature(filepath, 600)
             features += (new_f)
             outcomes += new_out
-            dates
-    for f,o in zip(features,outcomes):
-        models.FeatureEntry.objects.create()
-
+            dates += new_d
+    for d, f, o in zip(dates, features, outcomes):
+        d_obj= datetime.strptime(d,'%d/%m/%y %H:%M:%S')
+        qualityObj=models.SleepQuality.objects.create(user=userObj,start_date=d_obj,stop_date=d_obj,value=o)
+        models.FeatureEntry.objects.create(user=userObj, date=d, mean_hr=f[0], std_hr=f[1], mean_rr=f[2], std_rr=f[3],
+                                           mean_gsr=f[4], std_gsr=f[5], mean_temp=f[6], std_temp=f[7], mean_acc=f[8],
+                                           label=qualityObj)
     return HttpResponseRedirect('/')
