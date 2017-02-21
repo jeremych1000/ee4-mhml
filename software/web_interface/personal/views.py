@@ -2,7 +2,11 @@ from django.shortcuts import render
 from django.contrib import messages
 
 def index(request):
-    return render(request, "personal/home.html")
+    if request.method == 'GET' and 'action' in request.GET:
+        if request.GET['action'] == "login":
+            return render(request, "personal/home.html", {'login': True})
+    else:
+        return render(request, "personal/home.html")
 
 def contact(request):
     details = [
