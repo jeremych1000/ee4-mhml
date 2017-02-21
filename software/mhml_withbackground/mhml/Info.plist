@@ -29,6 +29,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSHomeKitUsageDescription</key>
+	<string>$(PRODUCT_NAME) home kit use</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>This access is required to set up reminders.</string>
 	<key>UIBackgroundModes</key>
