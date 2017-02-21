@@ -2,15 +2,20 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.auth.models import User
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status
+
 import newML.functions
 from newML import models as ml_model
 from datetime import datetime
+
 import os, re, json, random
 from . import csv_functions
+
 import numpy as np
 from MLBlock.views import insert_from_api
 
@@ -97,14 +102,22 @@ class raw_data(APIView):
 
         # Get Feature from json
         feature = newML.functions.json2Feature(json_data, username, timestamp)
+
+        # get username from user database
+        user_object = User.objects.all().filter(username=username).first()
+
         # Get model binary file path from username
-        mlfile = ml_model.ModelFile.objects.all().filter(username=username);
+        mlfile = ml_model.ModelFile.objects.all().filter(user=user_object)
+
         if not mlfile:
             # Create new model and train with avaliable feature
             classifier = newML.functions.createNewModel(username)
 
         else:
-            classifier = newML.functions.getMLObj(mlfile.file.path)
+            print("not done yet")
+            # TODO
+            # classifier = newML.functions.getMLObj(mlfile.file.path)
+
         feature=np.array([feature])
         outcome = classifier.predict(feature)
         json_result["quality"] = outcome[0]

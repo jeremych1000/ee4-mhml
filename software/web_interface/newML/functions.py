@@ -6,6 +6,7 @@ import pickle
 import os
 import csv
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 def json2Feature(json, username, timestamp):
@@ -37,8 +38,12 @@ def json2Feature(json, username, timestamp):
         feature["mean_temp"] = np.mean(temp)
         feature["std_temp"] = np.std(temp)
         feature["mean_acc"] = np.mean([math.sqrt(x ** 2 + y ** 2 + z ** 2) for x, y, z in zip(accX, accY, accZ)])
+
+        # get username from user database
+        user_object = User.objects.all().filter(username=username).first()
+
         models.FeatureEntry.objects.create(date=timestamp,
-                                           username=username,
+                                           user=user_object,
                                            mean_hr=feature['mean_hr'],
                                            std_hr=feature['std_hr'],
                                            mean_rr=feature['mean_rr'],
@@ -60,7 +65,9 @@ def getMLObj(path):
 
 
 def createNewModel(username):
-    feature_vec = models.FeatureEntry.objects.all().filter(username=username, label__isnull=False)
+    # get username from user database
+    user_object = User.objects.all().filter(username=username).first()
+    feature_vec = models.FeatureEntry.objects.all().filter(user=user_object, label__isnull=False)
     if len(feature_vec) != 0:
         model_path = os.path.join(settings.MEDIA_ROOT, 'model/' + username + '.p')
         filehandle = open(model_path, 'rb')
@@ -70,13 +77,18 @@ def createNewModel(username):
         return clf
     else:
         # load default model
-        default_obj = models.ModelFile.objects.all().filter(username="Default").first()
-        def_clf = pickle._load(default_obj.file);
+
+        # get username from user database
+        user_object_default = User.objects.all().filter(username="Default").first()
+
+        default_obj = models.ModelFile.objects.all().filter(user=user_object_default).first()
+        def_clf = pickle._load(default_obj.file)
         return def_clf
 
 
 def storeModel(path, clf):
     pickle.dumps(clf, open(path, 'wb'))
+
 
 def CSV2Feature(fileURL, winSize):
     fHandle = open(fileURL)
@@ -84,10 +96,10 @@ def CSV2Feature(fileURL, winSize):
     csvReader.__next__()
     rowCount = winSize
     winSlice = []
-    features=[]
-    outcomes =[]
+    features = []
+    outcomes = []
     outcome = False
-    dateVecs=[]
+    dateVecs = []
     for row in csvReader:
         if len(row) == 10:
             outcome = (row[9] == "true" or row[9] == "True" or row[9] == "TRUE")
@@ -100,8 +112,10 @@ def CSV2Feature(fileURL, winSize):
             rr_slice = [float(ele[2]) for ele in winSlice]
             gsr_slice = [float(ele[4]) for ele in winSlice]
             temp_slice = [float(ele[5]) for ele in winSlice]
-            acc_slice = [ math.sqrt(float(ele[6])**2 +float(ele[7])**2 +float(ele[8])**2 )for ele in winSlice]
-            features.append([np.mean(hr_slice),np.std(hr_slice),np.mean(rr_slice),np.std(rr_slice),np.mean(gsr_slice),np.std(gsr_slice),np.mean(temp_slice),np.std(temp_slice),np.mean(acc_slice)])
+            acc_slice = [math.sqrt(float(ele[6]) ** 2 + float(ele[7]) ** 2 + float(ele[8]) ** 2) for ele in winSlice]
+            features.append(
+                [np.mean(hr_slice), np.std(hr_slice), np.mean(rr_slice), np.std(rr_slice), np.mean(gsr_slice),
+                 np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice)])
             outcomes.append(outcome)
             dateVecs.append(winSlice[0][0])
             rowCount = winSize
@@ -119,8 +133,4 @@ def CSV2Feature(fileURL, winSize):
                          np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice)])
         outcomes.append(outcome)
 
-    return dateVecs,features,outcomes
-
-
-
-
+    return dateVecs, features, outcomes
