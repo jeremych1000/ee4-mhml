@@ -55,6 +55,10 @@ class raw_data(APIView):
             last_row = csv_functions.get_last_row(final_path)[0]
             last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
 
+        #begin data extraction from JSOn
+
+        HR = []
+
         for data in json_data['data']:
             timestamp = datetime.strptime(data["timestamp"], "%d/%m/%y %H:%M:%S").strftime("%d/%m/%y %H:%M:%S")
 

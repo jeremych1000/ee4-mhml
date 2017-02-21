@@ -2,7 +2,12 @@ from django.db import models
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import os
-
+# TODO: combine all feature models into one large database with username timestamp data
+# create sleepquality model with start time, stop time, username, sleep quality (good/bad)
+# so use sleepquality models start/stop to filter large database entries
+# https://docs.djangoproject.com/en/1.10/topics/db/models/#automatic-primary-key-fields
+# after training, update model with largest trained ID
+# hook on upon new entry to model
 
 class RawData(models.Model):
     file = models.FileField(null=True, blank=True,
