@@ -3,6 +3,8 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 import os
 
+
+# https://docs.djangoproject.com/en/1.10/topics/auth/customizing/#referencing-the-user-model
 # Need to link username to actual user account model !!
 
 class RawData(models.Model):
@@ -12,8 +14,10 @@ class RawData(models.Model):
 
 
 class FeatureEntry(models.Model):
+    AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+
     date = models.DateTimeField(auto_now_add=True)
-    username = models.CharField(max_length=50)
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     mean_hr = models.FloatField(default=0.0)
     std_hr = models.FloatField(default=0.0)
     mean_rr = models.FloatField(default=0.0)
@@ -37,6 +41,8 @@ class LastTrainedID(models.Model):
 
 
 class ModelFile(models.Model):
+    AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+
     file = models.FileField(null=True, blank=True,
                             storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'model')))
-    username = models.CharField(max_length=50)
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
