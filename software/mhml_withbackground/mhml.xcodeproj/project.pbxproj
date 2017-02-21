@@ -11,11 +11,81 @@
 		1610A3CE1E52156500946989 /* BandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1610A38F1E5139EB00946989 /* BandData.swift */; };
 		1680DC881E4C8BDC009DA146 /* mhmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC871E4C8BDC009DA146 /* mhmlTests.swift */; };
 		16B1F3631E5216BF009E0A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1680DC761E4C8BDB009DA146 /* Main.storyboard */; };
-		16B1F3661E522822009E0A46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1680DC791E4C8BDB009DA146 /* Assets.xcassets */; };
 		56B146F61E52059900CD3067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC721E4C8BDB009DA146 /* AppDelegate.swift */; };
 		56B146F71E52059900CD3067 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC741E4C8BDB009DA146 /* TabBarController.swift */; };
 		56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF6D821E4D414F00F41198 /* FlightReminder.swift */; };
 		56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */; };
+		56C13AE41E5CAB5D00D755CB /* HMCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */; };
+		56C13B181E5CB1F900D755CB /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C13B171E5CB1F900D755CB /* HomeKit.framework */; };
+		56C13B721E5CB4AB00D755CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B191E5CB4AB00D755CB /* Assets.xcassets */; };
+		56C13B731E5CB4AB00D755CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B1B1E5CB4AB00D755CB /* LaunchScreen.storyboard */; };
+		56C13B741E5CB4AB00D755CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B1D1E5CB4AB00D755CB /* Main.storyboard */; };
+		56C13B751E5CB4AB00D755CB /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B201E5CB4AB00D755CB /* FavoritesManager.swift */; };
+		56C13B761E5CB4AB00D755CB /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B211E5CB4AB00D755CB /* FavoritesViewController.swift */; };
+		56C13B771E5CB4AB00D755CB /* AccessoryBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B241E5CB4AB00D755CB /* AccessoryBrowserViewController.swift */; };
+		56C13B781E5CB4AB00D755CB /* AccessoryUpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B251E5CB4AB00D755CB /* AccessoryUpdateController.swift */; };
+		56C13B791E5CB4AB00D755CB /* ControlsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B261E5CB4AB00D755CB /* ControlsTableViewDataSource.swift */; };
+		56C13B7A1E5CB4AB00D755CB /* ControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B271E5CB4AB00D755CB /* ControlsViewController.swift */; };
+		56C13B7B1E5CB4AB00D755CB /* ModifyAccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B281E5CB4AB00D755CB /* ModifyAccessoryViewController.swift */; };
+		56C13B7C1E5CB4AB00D755CB /* CharacteristicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B2B1E5CB4AB00D755CB /* CharacteristicCell.swift */; };
+		56C13B7D1E5CB4AB00D755CB /* CharacteristicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B2C1E5CB4AB00D755CB /* CharacteristicCell.xib */; };
+		56C13B7E1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B2D1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.swift */; };
+		56C13B7F1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B2E1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.xib */; };
+		56C13B801E5CB4AB00D755CB /* SliderCharacteristicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B2F1E5CB4AB00D755CB /* SliderCharacteristicCell.swift */; };
+		56C13B811E5CB4AB00D755CB /* SliderCharacteristicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B301E5CB4AB00D755CB /* SliderCharacteristicCell.xib */; };
+		56C13B821E5CB4AB00D755CB /* SwitchCharacteristicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B311E5CB4AB00D755CB /* SwitchCharacteristicCell.swift */; };
+		56C13B831E5CB4AB00D755CB /* SwitchCharacteristicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B321E5CB4AB00D755CB /* SwitchCharacteristicCell.xib */; };
+		56C13B841E5CB4AB00D755CB /* TextCharacteristicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B331E5CB4AB00D755CB /* TextCharacteristicCell.swift */; };
+		56C13B851E5CB4AB00D755CB /* TextCharacteristicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B341E5CB4AB00D755CB /* TextCharacteristicCell.xib */; };
+		56C13B861E5CB4AB00D755CB /* CharacteristicsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B351E5CB4AB00D755CB /* CharacteristicsTableViewDataSource.swift */; };
+		56C13B871E5CB4AB00D755CB /* CharacteristicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B361E5CB4AB00D755CB /* CharacteristicsViewController.swift */; };
+		56C13B881E5CB4AB00D755CB /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B371E5CB4AB00D755CB /* ServiceCell.swift */; };
+		56C13B891E5CB4AB00D755CB /* ServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B381E5CB4AB00D755CB /* ServicesViewController.swift */; };
+		56C13B8A1E5CB4AB00D755CB /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B3A1E5CB4AB00D755CB /* ActionCell.swift */; };
+		56C13B8B1E5CB4AB00D755CB /* ActionSetCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B3B1E5CB4AB00D755CB /* ActionSetCreator.swift */; };
+		56C13B8C1E5CB4AB00D755CB /* ActionSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B3C1E5CB4AB00D755CB /* ActionSetViewController.swift */; };
+		56C13B8D1E5CB4AB00D755CB /* HomeKitObjectCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B3D1E5CB4AB00D755CB /* HomeKitObjectCollection.swift */; };
+		56C13B8E1E5CB4AB00D755CB /* HomeListConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B3E1E5CB4AB00D755CB /* HomeListConfigurationViewController.swift */; };
+		56C13B8F1E5CB4AB00D755CB /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B3F1E5CB4AB00D755CB /* HomeListViewController.swift */; };
+		56C13B901E5CB4AB00D755CB /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B401E5CB4AB00D755CB /* HomeStore.swift */; };
+		56C13B911E5CB4AB00D755CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B411E5CB4AB00D755CB /* HomeViewController.swift */; };
+		56C13B921E5CB4AB00D755CB /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B431E5CB4AB00D755CB /* RoomViewController.swift */; };
+		56C13B931E5CB4AB00D755CB /* AddServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B451E5CB4AB00D755CB /* AddServicesViewController.swift */; };
+		56C13B941E5CB4AB00D755CB /* ServiceGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B461E5CB4AB00D755CB /* ServiceGroupViewController.swift */; };
+		56C13B951E5CB4AB00D755CB /* CharacteristicSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B4A1E5CB4AB00D755CB /* CharacteristicSelectionViewController.swift */; };
+		56C13B961E5CB4AB00D755CB /* CharacteristicTriggerCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B4B1E5CB4AB00D755CB /* CharacteristicTriggerCreator.swift */; };
+		56C13B971E5CB4AB00D755CB /* CharacteristicTriggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B4C1E5CB4AB00D755CB /* CharacteristicTriggerViewController.swift */; };
+		56C13B981E5CB4AB00D755CB /* ConditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B4E1E5CB4AB00D755CB /* ConditionCell.swift */; };
+		56C13B991E5CB4AB00D755CB /* SegmentedTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B4F1E5CB4AB00D755CB /* SegmentedTimeCell.swift */; };
+		56C13B9A1E5CB4AB00D755CB /* TimeConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B501E5CB4AB00D755CB /* TimeConditionViewController.swift */; };
+		56C13B9B1E5CB4AB00D755CB /* TimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B511E5CB4AB00D755CB /* TimePickerCell.swift */; };
+		56C13B9C1E5CB4AB00D755CB /* EventTriggerCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B521E5CB4AB00D755CB /* EventTriggerCreator.swift */; };
+		56C13B9D1E5CB4AB00D755CB /* EventTriggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B531E5CB4AB00D755CB /* EventTriggerViewController.swift */; };
+		56C13B9E1E5CB4AB00D755CB /* LocationTriggerCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B551E5CB4AB00D755CB /* LocationTriggerCreator.swift */; };
+		56C13B9F1E5CB4AB00D755CB /* LocationTriggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B561E5CB4AB00D755CB /* LocationTriggerViewController.swift */; };
+		56C13BA01E5CB4AB00D755CB /* MapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B581E5CB4AB00D755CB /* MapOverlayView.swift */; };
+		56C13BA11E5CB4AB00D755CB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B591E5CB4AB00D755CB /* MapViewController.swift */; };
+		56C13BA21E5CB4AB00D755CB /* TimerTriggerCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B5B1E5CB4AB00D755CB /* TimerTriggerCreator.swift */; };
+		56C13BA31E5CB4AB00D755CB /* TimerTriggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B5C1E5CB4AB00D755CB /* TimerTriggerViewController.swift */; };
+		56C13BA41E5CB4AB00D755CB /* TriggerCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B5D1E5CB4AB00D755CB /* TriggerCreator.swift */; };
+		56C13BA51E5CB4AB00D755CB /* TriggerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B5E1E5CB4AB00D755CB /* TriggerViewController.swift */; };
+		56C13BA61E5CB4AB00D755CB /* AddRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B601E5CB4AB00D755CB /* AddRoomViewController.swift */; };
+		56C13BA71E5CB4AB00D755CB /* ZoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B611E5CB4AB00D755CB /* ZoneViewController.swift */; };
+		56C13BA81E5CB4AB00D755CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B621E5CB4AB00D755CB /* Images.xcassets */; };
+		56C13BA91E5CB4AB00D755CB /* Array+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B641E5CB4AB00D755CB /* Array+Sorting.swift */; };
+		56C13BAA1E5CB4AB00D755CB /* CNMutablePostalAddress+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B651E5CB4AB00D755CB /* CNMutablePostalAddress+Convenience.swift */; };
+		56C13BAB1E5CB4AB00D755CB /* HMActionSet+BuiltIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B661E5CB4AB00D755CB /* HMActionSet+BuiltIn.swift */; };
+		56C13BAC1E5CB4AB00D755CB /* HMCharacteristic+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B671E5CB4AB00D755CB /* HMCharacteristic+Properties.swift */; };
+		56C13BAD1E5CB4AB00D755CB /* HMEventTrigger+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B681E5CB4AB00D755CB /* HMEventTrigger+Convenience.swift */; };
+		56C13BAE1E5CB4AB00D755CB /* HMHome+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B691E5CB4AB00D755CB /* HMHome+Properties.swift */; };
+		56C13BAF1E5CB4AB00D755CB /* HMService+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B6A1E5CB4AB00D755CB /* HMService+Properties.swift */; };
+		56C13BB01E5CB4AB00D755CB /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B6B1E5CB4AB00D755CB /* Info.plist */; };
+		56C13BB11E5CB4AB00D755CB /* NSPredicate+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B6C1E5CB4AB00D755CB /* NSPredicate+Condition.swift */; };
+		56C13BB21E5CB4AB00D755CB /* UIAlertController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B6D1E5CB4AB00D755CB /* UIAlertController+Convenience.swift */; };
+		56C13BB31E5CB4AB00D755CB /* UIColor+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B6E1E5CB4AB00D755CB /* UIColor+Custom.swift */; };
+		56C13BB41E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B6F1E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift */; };
+		56C13BB51E5CB4AB00D755CB /* UITableViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B701E5CB4AB00D755CB /* UITableViewController+Convenience.swift */; };
+		56C13BB61E5CB4AB00D755CB /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B711E5CB4AB00D755CB /* UIViewController+Convenience.swift */; };
 		685983AD5E417A8C163C8344 /* Pods_mhml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E238BCE810A1E642DDA631 /* Pods_mhml.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +107,6 @@
 		1680DC721E4C8BDB009DA146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1680DC741E4C8BDB009DA146 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1680DC771E4C8BDB009DA146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1680DC791E4C8BDB009DA146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1680DC7C1E4C8BDB009DA146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1680DC7E1E4C8BDB009DA146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1680DC831E4C8BDC009DA146 /* mhmlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mhmlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +115,78 @@
 		16EF6D821E4D414F00F41198 /* FlightReminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightReminder.swift; sourceTree = "<group>"; };
 		30E238BCE810A1E642DDA631 /* Pods_mhml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mhml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
+		56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMCatalogViewController.swift; sourceTree = "<group>"; };
+		56C13B161E5CB1F900D755CB /* mhml.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mhml.entitlements; sourceTree = "<group>"; };
+		56C13B171E5CB1F900D755CB /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		56C13B191E5CB4AB00D755CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		56C13B1C1E5CB4AB00D755CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		56C13B1E1E5CB4AB00D755CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		56C13B201E5CB4AB00D755CB /* FavoritesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
+		56C13B211E5CB4AB00D755CB /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		56C13B241E5CB4AB00D755CB /* AccessoryBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessoryBrowserViewController.swift; sourceTree = "<group>"; };
+		56C13B251E5CB4AB00D755CB /* AccessoryUpdateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessoryUpdateController.swift; sourceTree = "<group>"; };
+		56C13B261E5CB4AB00D755CB /* ControlsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsTableViewDataSource.swift; sourceTree = "<group>"; };
+		56C13B271E5CB4AB00D755CB /* ControlsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsViewController.swift; sourceTree = "<group>"; };
+		56C13B281E5CB4AB00D755CB /* ModifyAccessoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyAccessoryViewController.swift; sourceTree = "<group>"; };
+		56C13B2B1E5CB4AB00D755CB /* CharacteristicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicCell.swift; sourceTree = "<group>"; };
+		56C13B2C1E5CB4AB00D755CB /* CharacteristicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CharacteristicCell.xib; sourceTree = "<group>"; };
+		56C13B2D1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlCharacteristicCell.swift; sourceTree = "<group>"; };
+		56C13B2E1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentedControlCharacteristicCell.xib; sourceTree = "<group>"; };
+		56C13B2F1E5CB4AB00D755CB /* SliderCharacteristicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderCharacteristicCell.swift; sourceTree = "<group>"; };
+		56C13B301E5CB4AB00D755CB /* SliderCharacteristicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderCharacteristicCell.xib; sourceTree = "<group>"; };
+		56C13B311E5CB4AB00D755CB /* SwitchCharacteristicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCharacteristicCell.swift; sourceTree = "<group>"; };
+		56C13B321E5CB4AB00D755CB /* SwitchCharacteristicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCharacteristicCell.xib; sourceTree = "<group>"; };
+		56C13B331E5CB4AB00D755CB /* TextCharacteristicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCharacteristicCell.swift; sourceTree = "<group>"; };
+		56C13B341E5CB4AB00D755CB /* TextCharacteristicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCharacteristicCell.xib; sourceTree = "<group>"; };
+		56C13B351E5CB4AB00D755CB /* CharacteristicsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicsTableViewDataSource.swift; sourceTree = "<group>"; };
+		56C13B361E5CB4AB00D755CB /* CharacteristicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicsViewController.swift; sourceTree = "<group>"; };
+		56C13B371E5CB4AB00D755CB /* ServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
+		56C13B381E5CB4AB00D755CB /* ServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewController.swift; sourceTree = "<group>"; };
+		56C13B3A1E5CB4AB00D755CB /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		56C13B3B1E5CB4AB00D755CB /* ActionSetCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSetCreator.swift; sourceTree = "<group>"; };
+		56C13B3C1E5CB4AB00D755CB /* ActionSetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSetViewController.swift; sourceTree = "<group>"; };
+		56C13B3D1E5CB4AB00D755CB /* HomeKitObjectCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeKitObjectCollection.swift; sourceTree = "<group>"; };
+		56C13B3E1E5CB4AB00D755CB /* HomeListConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListConfigurationViewController.swift; sourceTree = "<group>"; };
+		56C13B3F1E5CB4AB00D755CB /* HomeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
+		56C13B401E5CB4AB00D755CB /* HomeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
+		56C13B411E5CB4AB00D755CB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		56C13B431E5CB4AB00D755CB /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		56C13B451E5CB4AB00D755CB /* AddServicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddServicesViewController.swift; sourceTree = "<group>"; };
+		56C13B461E5CB4AB00D755CB /* ServiceGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceGroupViewController.swift; sourceTree = "<group>"; };
+		56C13B4A1E5CB4AB00D755CB /* CharacteristicSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicSelectionViewController.swift; sourceTree = "<group>"; };
+		56C13B4B1E5CB4AB00D755CB /* CharacteristicTriggerCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicTriggerCreator.swift; sourceTree = "<group>"; };
+		56C13B4C1E5CB4AB00D755CB /* CharacteristicTriggerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicTriggerViewController.swift; sourceTree = "<group>"; };
+		56C13B4E1E5CB4AB00D755CB /* ConditionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionCell.swift; sourceTree = "<group>"; };
+		56C13B4F1E5CB4AB00D755CB /* SegmentedTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedTimeCell.swift; sourceTree = "<group>"; };
+		56C13B501E5CB4AB00D755CB /* TimeConditionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConditionViewController.swift; sourceTree = "<group>"; };
+		56C13B511E5CB4AB00D755CB /* TimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerCell.swift; sourceTree = "<group>"; };
+		56C13B521E5CB4AB00D755CB /* EventTriggerCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTriggerCreator.swift; sourceTree = "<group>"; };
+		56C13B531E5CB4AB00D755CB /* EventTriggerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTriggerViewController.swift; sourceTree = "<group>"; };
+		56C13B551E5CB4AB00D755CB /* LocationTriggerCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTriggerCreator.swift; sourceTree = "<group>"; };
+		56C13B561E5CB4AB00D755CB /* LocationTriggerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTriggerViewController.swift; sourceTree = "<group>"; };
+		56C13B581E5CB4AB00D755CB /* MapOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapOverlayView.swift; sourceTree = "<group>"; };
+		56C13B591E5CB4AB00D755CB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		56C13B5B1E5CB4AB00D755CB /* TimerTriggerCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerTriggerCreator.swift; sourceTree = "<group>"; };
+		56C13B5C1E5CB4AB00D755CB /* TimerTriggerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerTriggerViewController.swift; sourceTree = "<group>"; };
+		56C13B5D1E5CB4AB00D755CB /* TriggerCreator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerCreator.swift; sourceTree = "<group>"; };
+		56C13B5E1E5CB4AB00D755CB /* TriggerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerViewController.swift; sourceTree = "<group>"; };
+		56C13B601E5CB4AB00D755CB /* AddRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRoomViewController.swift; sourceTree = "<group>"; };
+		56C13B611E5CB4AB00D755CB /* ZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneViewController.swift; sourceTree = "<group>"; };
+		56C13B621E5CB4AB00D755CB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		56C13B641E5CB4AB00D755CB /* Array+Sorting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Sorting.swift"; sourceTree = "<group>"; };
+		56C13B651E5CB4AB00D755CB /* CNMutablePostalAddress+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CNMutablePostalAddress+Convenience.swift"; sourceTree = "<group>"; };
+		56C13B661E5CB4AB00D755CB /* HMActionSet+BuiltIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HMActionSet+BuiltIn.swift"; sourceTree = "<group>"; };
+		56C13B671E5CB4AB00D755CB /* HMCharacteristic+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HMCharacteristic+Properties.swift"; sourceTree = "<group>"; };
+		56C13B681E5CB4AB00D755CB /* HMEventTrigger+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HMEventTrigger+Convenience.swift"; sourceTree = "<group>"; };
+		56C13B691E5CB4AB00D755CB /* HMHome+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HMHome+Properties.swift"; sourceTree = "<group>"; };
+		56C13B6A1E5CB4AB00D755CB /* HMService+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HMService+Properties.swift"; sourceTree = "<group>"; };
+		56C13B6B1E5CB4AB00D755CB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56C13B6C1E5CB4AB00D755CB /* NSPredicate+Condition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPredicate+Condition.swift"; sourceTree = "<group>"; };
+		56C13B6D1E5CB4AB00D755CB /* UIAlertController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Convenience.swift"; sourceTree = "<group>"; };
+		56C13B6E1E5CB4AB00D755CB /* UIColor+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Custom.swift"; sourceTree = "<group>"; };
+		56C13B6F1E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboardSegue+IntendedDestination.swift"; sourceTree = "<group>"; };
+		56C13B701E5CB4AB00D755CB /* UITableViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Convenience.swift"; sourceTree = "<group>"; };
+		56C13B711E5CB4AB00D755CB /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		9ABD215F84BDEBC255FB294D /* Pods-mhml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mhml.release.xcconfig"; path = "Pods/Target Support Files/Pods-mhml/Pods-mhml.release.xcconfig"; sourceTree = "<group>"; };
 		E68512D9BEE36A4F718179EC /* Pods-mhml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mhml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mhml/Pods-mhml.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +198,7 @@
 			files = (
 				56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */,
 				1610A39F1E51DEAA00946989 /* CoreBluetooth.framework in Frameworks */,
+				56C13B181E5CB1F900D755CB /* HomeKit.framework in Frameworks */,
 				685983AD5E417A8C163C8344 /* Pods_mhml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +216,7 @@
 		1610A3911E51DCD700946989 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56C13B171E5CB1F900D755CB /* HomeKit.framework */,
 				56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */,
 				1610A39E1E51DEAA00946989 /* CoreBluetooth.framework */,
 				30E238BCE810A1E642DDA631 /* Pods_mhml.framework */,
@@ -105,12 +248,19 @@
 		1680DC711E4C8BDB009DA146 /* mhml */ = {
 			isa = PBXGroup;
 			children = (
+				56C13B161E5CB1F900D755CB /* mhml.entitlements */,
+				56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */,
 				1680DC721E4C8BDB009DA146 /* AppDelegate.swift */,
 				1680DC741E4C8BDB009DA146 /* TabBarController.swift */,
 				1680DC761E4C8BDB009DA146 /* Main.storyboard */,
 				1610A38F1E5139EB00946989 /* BandData.swift */,
 				16EF6D821E4D414F00F41198 /* FlightReminder.swift */,
-				1680DC791E4C8BDB009DA146 /* Assets.xcassets */,
+				56C13B1A1E5CB4AB00D755CB /* Base.lproj */,
+				56C13B1F1E5CB4AB00D755CB /* Favorites */,
+				56C13B221E5CB4AB00D755CB /* Homes */,
+				56C13B621E5CB4AB00D755CB /* Images.xcassets */,
+				56C13B191E5CB4AB00D755CB /* Assets.xcassets */,
+				56C13B631E5CB4AB00D755CB /* Supporting Files */,
 				1680DC7B1E4C8BDB009DA146 /* LaunchScreen.storyboard */,
 				1680DC7E1E4C8BDB009DA146 /* Info.plist */,
 			);
@@ -124,6 +274,213 @@
 				1680DC891E4C8BDC009DA146 /* Info.plist */,
 			);
 			path = mhmlTests;
+			sourceTree = "<group>";
+		};
+		56C13B1A1E5CB4AB00D755CB /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B1B1E5CB4AB00D755CB /* LaunchScreen.storyboard */,
+				56C13B1D1E5CB4AB00D755CB /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		56C13B1F1E5CB4AB00D755CB /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B201E5CB4AB00D755CB /* FavoritesManager.swift */,
+				56C13B211E5CB4AB00D755CB /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		56C13B221E5CB4AB00D755CB /* Homes */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B231E5CB4AB00D755CB /* Accessories */,
+				56C13B391E5CB4AB00D755CB /* Action Sets */,
+				56C13B3D1E5CB4AB00D755CB /* HomeKitObjectCollection.swift */,
+				56C13B3E1E5CB4AB00D755CB /* HomeListConfigurationViewController.swift */,
+				56C13B3F1E5CB4AB00D755CB /* HomeListViewController.swift */,
+				56C13B401E5CB4AB00D755CB /* HomeStore.swift */,
+				56C13B411E5CB4AB00D755CB /* HomeViewController.swift */,
+				56C13B421E5CB4AB00D755CB /* Rooms */,
+				56C13B441E5CB4AB00D755CB /* Service Groups */,
+				56C13B471E5CB4AB00D755CB /* Triggers */,
+				56C13B5F1E5CB4AB00D755CB /* Zones */,
+			);
+			path = Homes;
+			sourceTree = "<group>";
+		};
+		56C13B231E5CB4AB00D755CB /* Accessories */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B241E5CB4AB00D755CB /* AccessoryBrowserViewController.swift */,
+				56C13B251E5CB4AB00D755CB /* AccessoryUpdateController.swift */,
+				56C13B261E5CB4AB00D755CB /* ControlsTableViewDataSource.swift */,
+				56C13B271E5CB4AB00D755CB /* ControlsViewController.swift */,
+				56C13B281E5CB4AB00D755CB /* ModifyAccessoryViewController.swift */,
+				56C13B291E5CB4AB00D755CB /* Services */,
+			);
+			path = Accessories;
+			sourceTree = "<group>";
+		};
+		56C13B291E5CB4AB00D755CB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B2A1E5CB4AB00D755CB /* Characteristic Cells */,
+				56C13B351E5CB4AB00D755CB /* CharacteristicsTableViewDataSource.swift */,
+				56C13B361E5CB4AB00D755CB /* CharacteristicsViewController.swift */,
+				56C13B371E5CB4AB00D755CB /* ServiceCell.swift */,
+				56C13B381E5CB4AB00D755CB /* ServicesViewController.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		56C13B2A1E5CB4AB00D755CB /* Characteristic Cells */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B2B1E5CB4AB00D755CB /* CharacteristicCell.swift */,
+				56C13B2C1E5CB4AB00D755CB /* CharacteristicCell.xib */,
+				56C13B2D1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.swift */,
+				56C13B2E1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.xib */,
+				56C13B2F1E5CB4AB00D755CB /* SliderCharacteristicCell.swift */,
+				56C13B301E5CB4AB00D755CB /* SliderCharacteristicCell.xib */,
+				56C13B311E5CB4AB00D755CB /* SwitchCharacteristicCell.swift */,
+				56C13B321E5CB4AB00D755CB /* SwitchCharacteristicCell.xib */,
+				56C13B331E5CB4AB00D755CB /* TextCharacteristicCell.swift */,
+				56C13B341E5CB4AB00D755CB /* TextCharacteristicCell.xib */,
+			);
+			path = "Characteristic Cells";
+			sourceTree = "<group>";
+		};
+		56C13B391E5CB4AB00D755CB /* Action Sets */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B3A1E5CB4AB00D755CB /* ActionCell.swift */,
+				56C13B3B1E5CB4AB00D755CB /* ActionSetCreator.swift */,
+				56C13B3C1E5CB4AB00D755CB /* ActionSetViewController.swift */,
+			);
+			path = "Action Sets";
+			sourceTree = "<group>";
+		};
+		56C13B421E5CB4AB00D755CB /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B431E5CB4AB00D755CB /* RoomViewController.swift */,
+			);
+			path = Rooms;
+			sourceTree = "<group>";
+		};
+		56C13B441E5CB4AB00D755CB /* Service Groups */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B451E5CB4AB00D755CB /* AddServicesViewController.swift */,
+				56C13B461E5CB4AB00D755CB /* ServiceGroupViewController.swift */,
+			);
+			path = "Service Groups";
+			sourceTree = "<group>";
+		};
+		56C13B471E5CB4AB00D755CB /* Triggers */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B481E5CB4AB00D755CB /* Event */,
+				56C13B5A1E5CB4AB00D755CB /* Timer */,
+				56C13B5D1E5CB4AB00D755CB /* TriggerCreator.swift */,
+				56C13B5E1E5CB4AB00D755CB /* TriggerViewController.swift */,
+			);
+			path = Triggers;
+			sourceTree = "<group>";
+		};
+		56C13B481E5CB4AB00D755CB /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B491E5CB4AB00D755CB /* Characteristic */,
+				56C13B4D1E5CB4AB00D755CB /* Conditions */,
+				56C13B521E5CB4AB00D755CB /* EventTriggerCreator.swift */,
+				56C13B531E5CB4AB00D755CB /* EventTriggerViewController.swift */,
+				56C13B541E5CB4AB00D755CB /* Location */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		56C13B491E5CB4AB00D755CB /* Characteristic */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B4A1E5CB4AB00D755CB /* CharacteristicSelectionViewController.swift */,
+				56C13B4B1E5CB4AB00D755CB /* CharacteristicTriggerCreator.swift */,
+				56C13B4C1E5CB4AB00D755CB /* CharacteristicTriggerViewController.swift */,
+			);
+			path = Characteristic;
+			sourceTree = "<group>";
+		};
+		56C13B4D1E5CB4AB00D755CB /* Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B4E1E5CB4AB00D755CB /* ConditionCell.swift */,
+				56C13B4F1E5CB4AB00D755CB /* SegmentedTimeCell.swift */,
+				56C13B501E5CB4AB00D755CB /* TimeConditionViewController.swift */,
+				56C13B511E5CB4AB00D755CB /* TimePickerCell.swift */,
+			);
+			path = Conditions;
+			sourceTree = "<group>";
+		};
+		56C13B541E5CB4AB00D755CB /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B551E5CB4AB00D755CB /* LocationTriggerCreator.swift */,
+				56C13B561E5CB4AB00D755CB /* LocationTriggerViewController.swift */,
+				56C13B571E5CB4AB00D755CB /* Mapping */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		56C13B571E5CB4AB00D755CB /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B581E5CB4AB00D755CB /* MapOverlayView.swift */,
+				56C13B591E5CB4AB00D755CB /* MapViewController.swift */,
+			);
+			path = Mapping;
+			sourceTree = "<group>";
+		};
+		56C13B5A1E5CB4AB00D755CB /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B5B1E5CB4AB00D755CB /* TimerTriggerCreator.swift */,
+				56C13B5C1E5CB4AB00D755CB /* TimerTriggerViewController.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		56C13B5F1E5CB4AB00D755CB /* Zones */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B601E5CB4AB00D755CB /* AddRoomViewController.swift */,
+				56C13B611E5CB4AB00D755CB /* ZoneViewController.swift */,
+			);
+			path = Zones;
+			sourceTree = "<group>";
+		};
+		56C13B631E5CB4AB00D755CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				56C13B641E5CB4AB00D755CB /* Array+Sorting.swift */,
+				56C13B651E5CB4AB00D755CB /* CNMutablePostalAddress+Convenience.swift */,
+				56C13B661E5CB4AB00D755CB /* HMActionSet+BuiltIn.swift */,
+				56C13B671E5CB4AB00D755CB /* HMCharacteristic+Properties.swift */,
+				56C13B681E5CB4AB00D755CB /* HMEventTrigger+Convenience.swift */,
+				56C13B691E5CB4AB00D755CB /* HMHome+Properties.swift */,
+				56C13B6A1E5CB4AB00D755CB /* HMService+Properties.swift */,
+				56C13B6B1E5CB4AB00D755CB /* Info.plist */,
+				56C13B6C1E5CB4AB00D755CB /* NSPredicate+Condition.swift */,
+				56C13B6D1E5CB4AB00D755CB /* UIAlertController+Convenience.swift */,
+				56C13B6E1E5CB4AB00D755CB /* UIColor+Custom.swift */,
+				56C13B6F1E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift */,
+				56C13B701E5CB4AB00D755CB /* UITableViewController+Convenience.swift */,
+				56C13B711E5CB4AB00D755CB /* UIViewController+Convenience.swift */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		A84A8A3A90B2212B45901E12 /* Pods */ = {
@@ -194,6 +551,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.HomeKit = {
+								enabled = 1;
+							};
 						};
 					};
 					1680DC821E4C8BDC009DA146 = {
@@ -227,7 +587,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16B1F3661E522822009E0A46 /* Assets.xcassets in Resources */,
+				56C13B851E5CB4AB00D755CB /* TextCharacteristicCell.xib in Resources */,
+				56C13B811E5CB4AB00D755CB /* SliderCharacteristicCell.xib in Resources */,
+				56C13B741E5CB4AB00D755CB /* Main.storyboard in Resources */,
+				56C13BA81E5CB4AB00D755CB /* Images.xcassets in Resources */,
+				56C13B831E5CB4AB00D755CB /* SwitchCharacteristicCell.xib in Resources */,
+				56C13B7D1E5CB4AB00D755CB /* CharacteristicCell.xib in Resources */,
+				56C13B731E5CB4AB00D755CB /* LaunchScreen.storyboard in Resources */,
+				56C13BB01E5CB4AB00D755CB /* Info.plist in Resources */,
+				56C13B7F1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.xib in Resources */,
+				56C13B721E5CB4AB00D755CB /* Assets.xcassets in Resources */,
 				16B1F3631E5216BF009E0A46 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,9 +663,69 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56C13BB21E5CB4AB00D755CB /* UIAlertController+Convenience.swift in Sources */,
+				56C13B791E5CB4AB00D755CB /* ControlsTableViewDataSource.swift in Sources */,
+				56C13B8C1E5CB4AB00D755CB /* ActionSetViewController.swift in Sources */,
+				56C13AE41E5CAB5D00D755CB /* HMCatalogViewController.swift in Sources */,
+				56C13BB51E5CB4AB00D755CB /* UITableViewController+Convenience.swift in Sources */,
+				56C13B921E5CB4AB00D755CB /* RoomViewController.swift in Sources */,
+				56C13B841E5CB4AB00D755CB /* TextCharacteristicCell.swift in Sources */,
+				56C13B781E5CB4AB00D755CB /* AccessoryUpdateController.swift in Sources */,
+				56C13B751E5CB4AB00D755CB /* FavoritesManager.swift in Sources */,
+				56C13B8A1E5CB4AB00D755CB /* ActionCell.swift in Sources */,
+				56C13B8D1E5CB4AB00D755CB /* HomeKitObjectCollection.swift in Sources */,
+				56C13B821E5CB4AB00D755CB /* SwitchCharacteristicCell.swift in Sources */,
+				56C13BA71E5CB4AB00D755CB /* ZoneViewController.swift in Sources */,
+				56C13BAF1E5CB4AB00D755CB /* HMService+Properties.swift in Sources */,
+				56C13B9E1E5CB4AB00D755CB /* LocationTriggerCreator.swift in Sources */,
+				56C13BAD1E5CB4AB00D755CB /* HMEventTrigger+Convenience.swift in Sources */,
+				56C13B761E5CB4AB00D755CB /* FavoritesViewController.swift in Sources */,
+				56C13B7C1E5CB4AB00D755CB /* CharacteristicCell.swift in Sources */,
+				56C13BA11E5CB4AB00D755CB /* MapViewController.swift in Sources */,
+				56C13B871E5CB4AB00D755CB /* CharacteristicsViewController.swift in Sources */,
+				56C13B7B1E5CB4AB00D755CB /* ModifyAccessoryViewController.swift in Sources */,
+				56C13BB41E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift in Sources */,
+				56C13B7E1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.swift in Sources */,
+				56C13BA91E5CB4AB00D755CB /* Array+Sorting.swift in Sources */,
+				56C13BA31E5CB4AB00D755CB /* TimerTriggerViewController.swift in Sources */,
+				56C13B951E5CB4AB00D755CB /* CharacteristicSelectionViewController.swift in Sources */,
+				56C13B931E5CB4AB00D755CB /* AddServicesViewController.swift in Sources */,
+				56C13BA51E5CB4AB00D755CB /* TriggerViewController.swift in Sources */,
+				56C13B941E5CB4AB00D755CB /* ServiceGroupViewController.swift in Sources */,
+				56C13B9B1E5CB4AB00D755CB /* TimePickerCell.swift in Sources */,
+				56C13B7A1E5CB4AB00D755CB /* ControlsViewController.swift in Sources */,
+				56C13B861E5CB4AB00D755CB /* CharacteristicsTableViewDataSource.swift in Sources */,
+				56C13B971E5CB4AB00D755CB /* CharacteristicTriggerViewController.swift in Sources */,
+				56C13BB31E5CB4AB00D755CB /* UIColor+Custom.swift in Sources */,
+				56C13B8B1E5CB4AB00D755CB /* ActionSetCreator.swift in Sources */,
+				56C13BA21E5CB4AB00D755CB /* TimerTriggerCreator.swift in Sources */,
 				1610A3CE1E52156500946989 /* BandData.swift in Sources */,
 				56B146F61E52059900CD3067 /* AppDelegate.swift in Sources */,
+				56C13B911E5CB4AB00D755CB /* HomeViewController.swift in Sources */,
+				56C13B9C1E5CB4AB00D755CB /* EventTriggerCreator.swift in Sources */,
+				56C13BAE1E5CB4AB00D755CB /* HMHome+Properties.swift in Sources */,
+				56C13B981E5CB4AB00D755CB /* ConditionCell.swift in Sources */,
+				56C13B891E5CB4AB00D755CB /* ServicesViewController.swift in Sources */,
+				56C13B801E5CB4AB00D755CB /* SliderCharacteristicCell.swift in Sources */,
+				56C13BAB1E5CB4AB00D755CB /* HMActionSet+BuiltIn.swift in Sources */,
+				56C13BAC1E5CB4AB00D755CB /* HMCharacteristic+Properties.swift in Sources */,
 				56B146F71E52059900CD3067 /* TabBarController.swift in Sources */,
+				56C13BA41E5CB4AB00D755CB /* TriggerCreator.swift in Sources */,
+				56C13B8F1E5CB4AB00D755CB /* HomeListViewController.swift in Sources */,
+				56C13B881E5CB4AB00D755CB /* ServiceCell.swift in Sources */,
+				56C13B901E5CB4AB00D755CB /* HomeStore.swift in Sources */,
+				56C13B771E5CB4AB00D755CB /* AccessoryBrowserViewController.swift in Sources */,
+				56C13B9A1E5CB4AB00D755CB /* TimeConditionViewController.swift in Sources */,
+				56C13B991E5CB4AB00D755CB /* SegmentedTimeCell.swift in Sources */,
+				56C13BAA1E5CB4AB00D755CB /* CNMutablePostalAddress+Convenience.swift in Sources */,
+				56C13BA61E5CB4AB00D755CB /* AddRoomViewController.swift in Sources */,
+				56C13BA01E5CB4AB00D755CB /* MapOverlayView.swift in Sources */,
+				56C13B9D1E5CB4AB00D755CB /* EventTriggerViewController.swift in Sources */,
+				56C13BB61E5CB4AB00D755CB /* UIViewController+Convenience.swift in Sources */,
+				56C13BB11E5CB4AB00D755CB /* NSPredicate+Condition.swift in Sources */,
+				56C13B9F1E5CB4AB00D755CB /* LocationTriggerViewController.swift in Sources */,
+				56C13B8E1E5CB4AB00D755CB /* HomeListConfigurationViewController.swift in Sources */,
+				56C13B961E5CB4AB00D755CB /* CharacteristicTriggerCreator.swift in Sources */,
 				56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +763,22 @@
 				1680DC7C1E4C8BDB009DA146 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		56C13B1B1E5CB4AB00D755CB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56C13B1C1E5CB4AB00D755CB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		56C13B1D1E5CB4AB00D755CB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				56C13B1E1E5CB4AB00D755CB /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -437,6 +882,7 @@
 			baseConfigurationReference = E68512D9BEE36A4F718179EC /* Pods-mhml.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = mhml/mhml.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VPJUWG3WEE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -458,6 +904,7 @@
 			baseConfigurationReference = 9ABD215F84BDEBC255FB294D /* Pods-mhml.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = mhml/mhml.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VPJUWG3WEE;
 				FRAMEWORK_SEARCH_PATHS = (
