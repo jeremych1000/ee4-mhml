@@ -23,7 +23,7 @@ class FeatureEntry(models.Model):
     mean_temp = models.FloatField(default=0.0)
     std_temp = models.FloatField(default=0.0)
     mean_acc = models.FloatField(default=0.0)
-    label = models.ForeignKey('SleepQuality', on_delete=models.CASCADE, default="", blank=True, null=False)
+    label = models.ForeignKey('SleepQuality', on_delete=models.CASCADE, default="", blank=False, null=True)
 
 
 class SleepQuality(models.Model):
@@ -38,5 +38,5 @@ class LastTrainedID(models.Model):
 
 class ModelFile(models.Model):
     file = models.FileField(null=True, blank=True,
-                            storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'data')))
+                            storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'model')))
     username = models.CharField(max_length=50)

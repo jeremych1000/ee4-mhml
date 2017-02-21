@@ -11,6 +11,7 @@ from newML import models as ml_model
 from datetime import datetime
 import os, re, json, random
 from . import csv_functions
+import numpy as np
 from MLBlock.views import insert_from_api
 
 
@@ -38,7 +39,6 @@ class raw_data(APIView):
         final_path = os.path.join(path, filename)
 
         exist = csv_functions.check_duplicate(raw_data.file_prefix + date + ".csv", username)
-        print("exist ", exist)
 
         if not exist:
             try:
@@ -96,8 +96,7 @@ class raw_data(APIView):
         # insert_from_api(username, date, concac_data)
 
         # Get Feature from json
-        feature = newML.functions.json2Feature(json_data,username,timestamp)
-
+        feature = newML.functions.json2Feature(json_data, username, timestamp)
         # Get model binary file path from username
         mlfile = ml_model.ModelFile.objects.all().filter(username=username);
         if not mlfile:
@@ -106,9 +105,9 @@ class raw_data(APIView):
 
         else:
             classifier = newML.functions.getMLObj(mlfile.file.path)
-
+        feature=np.array([feature])
         outcome = classifier.predict(feature)
-        json_result["quality"]=outcome
+        json_result["quality"] = outcome[0]
 
         return Response(json_result, status=status.HTTP_200_OK)
 
