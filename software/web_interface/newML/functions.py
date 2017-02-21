@@ -21,13 +21,13 @@ def json2Feature(json, username, timestamp):
         accZ = [];
         feature = {};
         for data in json.get('data'):
-            hr.append(data["HR"])
-            rr.append(data["RR"])
-            gsr.append(data["GSR"])
-            temp.append(data["SkinT"])
-            accX.append(data["AccX"])
-            accY.append(data["AccY"])
-            accZ.append(data["AccZ"])
+            hr.append(float(data["HR"]))
+            rr.append(float(data["RR"]))
+            gsr.append(float(data["GSR"]))
+            temp.append(float(data["SkinT"]))
+            accX.append(float(data["AccX"]))
+            accY.append(float(data["AccY"]))
+            accZ.append(float(data["AccZ"]))
         feature["mean_hr"] = np.mean(hr)
         feature["std_hr"] = np.std(hr)
         feature["mean_rr"] = np.mean(rr)
@@ -78,24 +78,16 @@ def createNewModel(username):
 def storeModel(path, clf):
     pickle.dumps(clf, open(path, 'wb'))
 
-
-def genfeatureFromCSV(fileURL, winSize):
+def CSV2Feature(fileURL, winSize):
     fHandle = open(fileURL)
     csvReader = csv.reader(fHandle)
     csvReader.__next__()
     rowCount = winSize
     winSlice = []
-    mean_hr = []
-    std_hr = []
-    mean_rr = []
-    std_rr = []
-    mean_gsr = []
-    std_gsr = []
-    mean_temp = []
-    std_temp = []
-    mean_acc = []
+    features=[]
+    outcomes =[]
     outcome = False
-    features = []
+    dateVecs=[]
     for row in csvReader:
         if len(row) == 10:
             outcome = (row[9] == "true" or row[9] == "True" or row[9] == "TRUE")
@@ -108,21 +100,10 @@ def genfeatureFromCSV(fileURL, winSize):
             rr_slice = [float(ele[2]) for ele in winSlice]
             gsr_slice = [float(ele[4]) for ele in winSlice]
             temp_slice = [float(ele[5]) for ele in winSlice]
-            acc_x_slice = [float(ele[6]) for ele in winSlice]
-            acc_y_slice = [float(ele[7]) for ele in winSlice]
-            acc_z_slice = [float(ele[8]) for ele in winSlice]
-            mean_hr.append(np.mean(hr_slice))
-            std_hr.append(np.std(hr_slice))
-            mean_rr.append(np.mean(rr_slice))
-            std_rr.append(np.std(rr_slice))
-            mean_gsr.append(np.mean(gsr_slice))
-            std_gsr.append(np.std(gsr_slice))
-            mean_temp.append(np.mean(temp_slice))
-            std_temp.append(np.std(temp_slice))
-            mean_acc.append(
-                abs(np.mean(acc_x_slice)) ** 2 + abs(
-                    np.mean(acc_y_slice)) ** 2 + abs(
-                    np.mean(acc_z_slice) ** 2))
+            acc_slice = [ math.sqrt(float(ele[6])**2 +float(ele[7])**2 +float(ele[8])**2 )for ele in winSlice]
+            features.append([np.mean(hr_slice),np.std(hr_slice),np.mean(rr_slice),np.std(rr_slice),np.mean(gsr_slice),np.std(gsr_slice),np.mean(temp_slice),np.std(temp_slice),np.mean(acc_slice)])
+            outcomes.append(outcome)
+            dateVecs.append(winSlice[0][0])
             rowCount = winSize
             winSlice = []
 
@@ -132,23 +113,14 @@ def genfeatureFromCSV(fileURL, winSize):
         rr_slice = [float(ele[2]) for ele in winSlice]
         gsr_slice = [float(ele[4]) for ele in winSlice]
         temp_slice = [float(ele[5]) for ele in winSlice]
-        acc_x_slice = [float(ele[6]) for ele in winSlice]
-        acc_y_slice = [float(ele[7]) for ele in winSlice]
-        acc_z_slice = [float(ele[8]) for ele in winSlice]
-        mean_hr.append(np.mean(hr_slice))
-        std_hr.append(np.std(hr_slice))
-        mean_rr.append(np.mean(rr_slice))
-        std_rr.append(np.std(rr_slice))
-        mean_gsr.append(np.mean(gsr_slice))
-        std_gsr.append(np.std(gsr_slice))
-        mean_temp.append(np.mean(temp_slice))
-        std_temp.append(np.std(temp_slice))
-        mean_acc.append(
-            abs(np.mean(acc_x_slice)) ** 2 + abs(
-                np.mean(acc_y_slice)) ** 2 + abs(
-                np.mean(acc_z_slice) ** 2))
+        acc_slice = [math.sqrt(float(ele[6]) ** 2 + float(ele[7]) ** 2 + float(ele[8]) ** 2) for ele in winSlice]
+        dateVecs.append(winSlice[0][0])
+        features.append([np.mean(hr_slice), np.std(hr_slice), np.mean(rr_slice), np.std(rr_slice), np.mean(gsr_slice),
+                         np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice)])
+        outcomes.append(outcome)
 
-    [features.append([a, b, c, d, e, f, g, h, i]) for a, b, c, d, e, f, g, h, i in
-     zip(mean_hr, std_hr, mean_rr, std_rr, mean_gsr, std_gsr, mean_temp, std_temp, mean_acc)]
-    outcomes = [outcome]*len(mean_hr)
-    return features,outcomes
+    return dateVecs,features,outcomes
+
+
+
+

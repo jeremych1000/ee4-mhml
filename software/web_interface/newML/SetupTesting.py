@@ -18,7 +18,7 @@ def settingDefault(request):
     for file in os.listdir(data_path):
         if file.endswith(".csv"):
             filepath = os.path.join(data_path, file)
-            new_f, new_out = func.genfeatureFromCSV(filepath, 600)
+            new_d, new_f, new_out = func.CSV2Feature(filepath, 600)
             features += (new_f)
             outcomes += new_out
     clf = RandomForestClassifier()
@@ -31,12 +31,14 @@ def migrateFeature(request):
     data_path = os.path.join(settings.MEDIA_ROOT, 'data')
     features = []
     outcomes = []
+    dates=[]
     for file in os.listdir(data_path):
         if file.endswith(".csv"):
             filepath = os.path.join(data_path, file)
-            new_f, new_out = func.genfeatureFromCSV(filepath, 600)
+            new_d, new_f, new_out = func.CSV2Feature(filepath, 600)
             features += (new_f)
             outcomes += new_out
+            dates
     for f,o in zip(features,outcomes):
         models.FeatureEntry.objects.create()
 
