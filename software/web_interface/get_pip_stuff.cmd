@@ -5,4 +5,5 @@ pip install djangorestframework
 pip install django-sendfile
 pip install Sphinx
 pip install django-docs
+pip install scikit-learn
 pause
