@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'personal',
     'myaccount',
     'MLBlock',
+    'newML',
     # 'alpr',
 
     # REST API

@@ -96,7 +96,7 @@ class raw_data(APIView):
         # insert_from_api(username, date, concac_data)
 
         # Get Feature from json
-        feature = newML.functions.json2Feature(json_data)
+        feature = newML.functions.json2Feature(json_data,username,timestamp)
 
         # Get model binary file path from username
         mlfile = ml_model.ModelFile.objects.all().filter(username=username);
