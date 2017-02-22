@@ -7,7 +7,9 @@ import os
 import csv
 from django.conf import settings
 from django.contrib.auth.models import User
-
+from datetime import datetime
+from datetime import timedelta
+from daterange_filter.filter import DateRangeFilter
 
 def json2Feature(json, username, timestamp):
     if 'data' not in json.keys():
@@ -59,18 +61,21 @@ def json2Feature(json, username, timestamp):
         return [feature["mean_hr"], feature["std_hr"], feature["mean_rr"], feature["std_rr"], feature["mean_gsr"],
                 feature["std_gsr"], feature["mean_temp"], feature["std_temp"], feature["mean_acc"]]
 
+
 def FeatureEntry2FeatureOutcome(entryVec):
-    features=[];
-    outcomes=[];
+    features = [];
+    outcomes = [];
     for f in entryVec:
-        features.append([f.mean_hr,f.std_hr,f.mean_rr,f.std_rr,f.mean_gsr,f.std_gsr,f.mean_temp,f.std_temp,f.mean_acc])
+        features.append(
+            [f.mean_hr, f.std_hr, f.mean_rr, f.std_rr, f.mean_gsr, f.std_gsr, f.mean_temp, f.std_temp, f.mean_acc])
         outcomes.append(f.label.value)
-    return features,outcomes
+    return features, outcomes
+
 
 def createNewModel(username):
     # get username from user database
     user_object = User.objects.get(username=username)
-    feature_vec = models.FeatureEntry.objects.get(user=user_object, label__isnull=False)
+    feature_vec = models.FeatureEntry.objects.all().filter(user=user_object, label__isnull=False)
     if len(feature_vec) != 0:
         model_path = os.path.join(settings.MEDIA_ROOT, os.path.join('model', username + '.p'))
         p_list = os.listdir(os.path.join(settings.MEDIA_ROOT, 'model'))
@@ -79,9 +84,9 @@ def createNewModel(username):
         #     if username + '.p' == x:
         #         file_mode = 'rb'
         filehandle = open(model_path, file_mode)
-        features,outcomes=FeatureEntry2FeatureOutcome(feature_vec)
+        features, outcomes = FeatureEntry2FeatureOutcome(feature_vec)
         clf = RandomForestClassifier()
-        clf.fit(features,outcomes)
+        clf.fit(features, outcomes)
         models.ModelFile.objects.create(file=model_path, user=user_object)
         pickle._dump(clf, filehandle)
         return clf
@@ -89,9 +94,9 @@ def createNewModel(username):
         # load default model
 
         # get username from user database
-        user_object = User.objects.get(username=username)
+        user_object = User.objects.get(username="Default")
 
-        default_obj = models.ModelFile.objects.all().filter(user=user_object_default).first()
+        default_obj = models.ModelFile.objects.all().filter(user=user_object).first()
         def_clf = pickle._load(default_obj.file)
         return def_clf
 
@@ -144,3 +149,21 @@ def CSV2Feature(fileURL, winSize):
         outcomes.append(outcome)
 
     return dateVecs, features, outcomes
+
+
+def labelInsertion(json):
+    start_date = datetime.strptime(json["start"], '%d/%m/%y %H:%M:%S').date()
+    end_date = datetime.strptime(json["stop"], '%d/%m/%y %H:%M:%S').date()
+    end_date+=timedelta(days=1)
+    print(start_date)
+    print(end_date)
+    outcome = True if json["quality"] == 1 else False
+    username = json["username"]
+    user = models.User.objects.get(username=username)
+    print(user)
+    unlabelFeature = models.FeatureEntry.objects.all().filter(user=user, date__range=(start_date, end_date),
+                                                              label__isnull=True)
+    print(unlabelFeature)
+    for fObj in unlabelFeature:
+        fObj.label = outcome
+        fObj.save()

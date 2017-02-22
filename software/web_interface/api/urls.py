@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'make_coffee/$', views.teapot.as_view()),
     url(r'make_default/$', SetupTesting.settingDefault),
     url(r'migrate_feature/$', SetupTesting.migrateFeature),
+    url(r'rt/$', views.realTimeResponse.as_view(),name='rt'),
+    url(r'uf/$', views.userFeedback.as_view(),name='uf'),
 ]

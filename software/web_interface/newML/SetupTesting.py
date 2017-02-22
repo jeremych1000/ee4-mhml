@@ -43,8 +43,7 @@ def migrateFeature(request):
             dates += new_d
     for d, f, o in zip(dates, features, outcomes):
         d_obj= datetime.strptime(d,'%d/%m/%y %H:%M:%S')
-        qualityObj=models.SleepQuality.objects.create(user=userObj,start_date=d_obj,stop_date=d_obj,value=o)
-        models.FeatureEntry.objects.create(user=userObj, date=d, mean_hr=f[0], std_hr=f[1], mean_rr=f[2], std_rr=f[3],
+        models.FeatureEntry.objects.create(user=userObj, date=d_obj, mean_hr=f[0], std_hr=f[1], mean_rr=f[2], std_rr=f[3],
                                            mean_gsr=f[4], std_gsr=f[5], mean_temp=f[6], std_temp=f[7], mean_acc=f[8],
-                                           label=qualityObj)
+                                           label=o)
     return HttpResponseRedirect('/')

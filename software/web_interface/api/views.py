@@ -96,31 +96,6 @@ class raw_data(APIView):
             else:
                 json_result = {"success": success, "reason": "Skipping due to old entry."}
 
-        # call ML insert_from_api
-        # from MLBlock.views
-        # concac_data = [mean_hr, std_hr, mean_rr, std_rr, mean_gsr, std_gsr, mean_temp, std_temp, mean_acc, outcome]
-        # insert_from_api(username, date, concac_data)
-
-        # Get Feature from json
-        feature = newML.functions.json2Feature(json_data, username, timestamp)
-
-        # get username from user database
-        user_object = User.objects.get(username=username)
-
-        # Get model binary file path from username
-        mlfile = ml_model.ModelFile.objects.all().filter(user=user_object).first()
-
-        if not mlfile:
-            # Create new model and train with avaliable feature
-            classifier = newML.functions.createNewModel(username)
-
-        else:
-            classifier = pickle.load(open(mlfile.file.path,'rb'))
-
-        feature=np.array([feature])
-        outcome = classifier.predict(feature)
-        json_result["quality"] = outcome[0]
-
         return Response(json_result, status=status.HTTP_200_OK)
 
 
@@ -128,6 +103,34 @@ class on_off(APIView):
     def get(self, request):
         json = random.getrandbits(1)
         return Response(json, status=status.HTTP_200_OK)
+
+
+class realTimeResponse(APIView):
+    def post(self, request):
+        json_result = {}
+        json_data = json.loads(request.body.decode("utf-8"))
+        print("DEBUG: ", json_data)
+        username = json_data['username']
+        data = json_data["data"]
+        timestamp = datetime.strptime(data[-1]["timestamp"], "%d/%m/%y %H:%M:%S")
+        feature = newML.functions.json2Feature(json_data, username, timestamp)
+        user_object = User.objects.get(username=username)
+        mlfile = ml_model.ModelFile.objects.all().filter(user=user_object).first()
+        if not mlfile:
+            classifier = newML.functions.createNewModel(username)
+        else:
+            classifier = pickle.load(open(mlfile.file.path, 'rb'))
+        feature = np.array([feature])
+        outcome = classifier.predict(feature)
+        json_result["quality"] = outcome[0]
+        return Response(json_result, status=status.HTTP_200_OK)
+
+class userFeedback(APIView):
+    def post(self,request):
+        json_data = json.loads(request.body.decode("utf-8"))
+        newML.functions.labelInsertion(json_data)
+        return Response( status=status.HTTP_200_OK)
+
 
 
 # http://www.ietf.org/rfc/rfc2324.txt

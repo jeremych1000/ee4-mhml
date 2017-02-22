@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'MLBlock',
     'newML',
     # 'alpr',
-
+    'daterange_filter',
     # REST API
     'rest_framework',
 

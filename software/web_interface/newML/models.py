@@ -10,7 +10,6 @@ import os
 
 class FeatureEntry(models.Model):
     AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
-    #default_user = User.objects.all().filter(username="Default").first()
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     mean_hr = models.FloatField(default=0.0)
@@ -22,21 +21,10 @@ class FeatureEntry(models.Model):
     mean_temp = models.FloatField(default=0.0)
     std_temp = models.FloatField(default=0.0)
     mean_acc = models.FloatField(default=0.0)
-    label = models.ForeignKey('SleepQuality', on_delete=models.CASCADE, default="", blank=False, null=True)
-
-
-class SleepQuality(models.Model):
-    AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
-    #default_user = User.objects.all().filter(username="Default").first()
-    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
-    start_date = models.DateTimeField(auto_now_add=True)
-    stop_date = models.DateTimeField(auto_now_add=True)
-    value = models.BooleanField(default=False)
-
+    label = models.NullBooleanField(default="", blank=False, null=True)
 
 
 class ModelFile(models.Model):
-    #default_user = User.objects.all().filter(username="Default").first()
     AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
     file = models.FileField(null=True, blank=True,
                             storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'model')))
