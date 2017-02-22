@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.views.generic.base import RedirectView
-from . import views
+from . import views, graphs
 from newML import SetupTesting
 
 urlpatterns = [
@@ -14,8 +14,10 @@ urlpatterns = [
     url(r'^make_coffee/$', views.teapot.as_view()),
 
     # data visualisations
-    url(r'^stats/temperature/last/(?P<days>\d+)$', views.stats.temperature.last.as_view()),
+    url(r'^stats/temperature/last/(?P<days>\d+)/graph/$', graphs.temperature),
+    url(r'^stats/temperature/last/(?P<days>\d+)/$', views.stats.temperature.last.as_view()),
     #url(r'^stats/temperature/from//to/$'),
+    url(r'^stats/random/$', graphs.initial_test),
 
     # non REST functions
     url(r'make_default/$', SetupTesting.settingDefault),

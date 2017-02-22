@@ -7,17 +7,16 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
-from rest_framework import status
+from rest_framework import status, serializers, viewsets
 
 import newML.functions
 from newML import models as ml_model
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
-import os, re, json, random
-from . import csv_functions
+import os, re, json, random, pickle, numpy as np
 
-import numpy as np
-import pickle
+from . import csv_functions, serializers, queries
+
 from MLBlock.views import insert_from_api
 
 
@@ -104,6 +103,7 @@ class on_off(APIView):
         json = random.getrandbits(1)
         return Response(json, status=status.HTTP_200_OK)
 
+
 class realTimeResponse(APIView):
     def post(self, request):
         json_result = {}
@@ -124,17 +124,26 @@ class realTimeResponse(APIView):
         json_result["quality"] = outcome[0]
         return Response(json_result, status=status.HTTP_200_OK)
 
+
 class userFeedback(APIView):
-    def post(self,request):
+    def post(self, request):
         json_data = json.loads(request.body.decode("utf-8"))
         newML.functions.labelInsertion(json_data)
-        return Response( status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_200_OK)
+
 
 class stats():
     class temperature():
         class last(APIView):
-            def get(self, request, days):
-                print(days)
+            def get(self, request, days, from_internal=False):
+                if request.user.is_authenticated():
+                    serializer = queries.get_last_temperature(request, days)
+
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+
+                else:
+                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+
 
 # http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
