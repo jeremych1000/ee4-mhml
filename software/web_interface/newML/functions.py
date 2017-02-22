@@ -40,7 +40,7 @@ def json2Feature(json, username, timestamp):
         feature["mean_acc"] = np.mean([math.sqrt(x ** 2 + y ** 2 + z ** 2) for x, y, z in zip(accX, accY, accZ)])
 
         # get username from user database
-        user_object = User.objects.all().filter(username=username).first()
+        user_object = User.objects.get(username=username)
 
         models.FeatureEntry.objects.create(date=timestamp,
                                            user=user_object,
@@ -68,8 +68,9 @@ def FeatureEntry2FeatureOutcome(entryVec):
     return features,outcomes
 
 def createNewModel(username):
-    user_object = User.objects.all().filter(username=username).first()
-    feature_vec = models.FeatureEntry.objects.all().filter(user=user_object, label__isnull=False)
+    # get username from user database
+    user_object = User.objects.get(username=username)
+    feature_vec = models.FeatureEntry.objects.get(user=user_object, label__isnull=False)
     if len(feature_vec) != 0:
         model_path = os.path.join(settings.MEDIA_ROOT, os.path.join('model', username + '.p'))
         p_list = os.listdir(os.path.join(settings.MEDIA_ROOT, 'model'))
@@ -88,7 +89,7 @@ def createNewModel(username):
         # load default model
 
         # get username from user database
-        user_object_default = User.objects.all().filter(username="Default").first()
+        user_object = User.objects.get(username=username)
 
         default_obj = models.ModelFile.objects.all().filter(user=user_object_default).first()
         def_clf = pickle._load(default_obj.file)

@@ -105,7 +105,7 @@ class raw_data(APIView):
         feature = newML.functions.json2Feature(json_data, username, timestamp)
 
         # get username from user database
-        user_object = User.objects.all().filter(username=username).first()
+        user_object = User.objects.get(username=username)
 
         # Get model binary file path from username
         mlfile = ml_model.ModelFile.objects.all().filter(user=user_object).first()

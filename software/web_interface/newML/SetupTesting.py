@@ -29,7 +29,7 @@ def settingDefault(request):
 
 def migrateFeature(request):
     username = "jeremych"
-    userObj = User.objects.all().filter(username=username).first()
+    userObj = User.objects.get(username=username)
     data_path = os.path.join(settings.MEDIA_ROOT, 'data')
     features = []
     outcomes = []
