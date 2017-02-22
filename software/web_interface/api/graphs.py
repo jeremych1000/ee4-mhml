@@ -55,14 +55,18 @@ def temperature(request, days):
         temp=[]
 
         for i in data:
-            timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%S.%fZ'))
+            timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
             temp.append(i['mean_temp'])
-        ax.plot(timestamp, temp, '-')
-        ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
-        fig.autofmt_xdate()
 
-        canvas=FigureCanvas(fig)
-        response=HttpResponse(status=200, content_type='image/png')
-        canvas.print_png(response)
-        return response
+        if len(timestamp) != 0 and len(temp) != 0:
+            ax.plot(timestamp, temp, '-')
+            ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
+            fig.autofmt_xdate()
+
+            canvas=FigureCanvas(fig)
+            response=HttpResponse(status=200, content_type='image/png')
+            canvas.print_png(response)
+            return response
+        else:
+            return Response(status=status.HTTP_204_NO_CONTENT)
     return Response(status=status.HTTP_401_UNAUTHORIZED)
