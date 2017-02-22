@@ -135,10 +135,9 @@ class userFeedback(APIView):
 class stats():
     class temperature():
         class last(APIView):
-            def get(self, request, days, from_internal=False):
+            def get(self, request, days):
                 if request.user.is_authenticated():
                     serializer = queries.get_last_temperature(request, days)
-
                     return Response(serializer.data, status=status.HTTP_200_OK)
 
                 else:
