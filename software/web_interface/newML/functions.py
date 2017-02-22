@@ -9,7 +9,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from datetime import datetime
 from datetime import timedelta
-from daterange_filter.filter import DateRangeFilter
 
 def json2Feature(json, username, timestamp):
     if 'data' not in json.keys():
@@ -68,7 +67,7 @@ def FeatureEntry2FeatureOutcome(entryVec):
     for f in entryVec:
         features.append(
             [f.mean_hr, f.std_hr, f.mean_rr, f.std_rr, f.mean_gsr, f.std_gsr, f.mean_temp, f.std_temp, f.mean_acc])
-        outcomes.append(f.label.value)
+        outcomes.append(f.label)
     return features, outcomes
 
 
@@ -155,6 +154,8 @@ def labelInsertion(json):
     start_date = datetime.strptime(json["start"], '%d/%m/%y %H:%M:%S').date()
     end_date = datetime.strptime(json["stop"], '%d/%m/%y %H:%M:%S').date()
     end_date+=timedelta(days=1)
+    print('starting date: ',end_date)
+    print('stoping date: ',end_date)
     outcome = True if json["quality"] == 1 else False
     username = json["username"]
     user = models.User.objects.get(username=username)
@@ -163,12 +164,24 @@ def labelInsertion(json):
     for fObj in unlabelFeature:
         fObj.label = outcome
         fObj.save()
+    print('Inserted ',len(unlabelFeature),' label')
     modelObj=models.ModelFile.objects.get(user=user)
+    print('Untrained Feature for  ', username,': ' ,modelObj.untrained)
     if modelObj:
         modelObj.untrained+=len(unlabelFeature)
-        if modelObj.untrained>20:
-            modelFile = open(modelObj.file.path,'wb')
-            clf = pickle.load(modelFile)
-            featureEntryVec = models.FeatureEntry.objects
-            FeatureEntry2FeatureOutcome(un)
-            clf.fit()
+        modelObj.save()
+        if modelObj.untrained>5:
+            print('Retraining model...')
+            print('Loading from ',modelObj.file.path)
+            modelfile=open(modelObj.file.path,'rb')
+            clf = pickle.load(modelfile)
+            modelfile.close()
+            featureEntryVec = models.FeatureEntry.objects.all().filter(user=user,label__isnull=False)
+            feature,outcome=FeatureEntry2FeatureOutcome(featureEntryVec)
+            clf.fit(feature,outcome)
+            modelfile = open(modelObj.file.path, 'wb')
+            pickle._dump(clf,modelfile)
+            modelfile.close()
+            modelObj.untrained=0
+            modelObj.save()
+            print('Retraining model...Done!')

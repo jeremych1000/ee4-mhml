@@ -111,6 +111,7 @@ class realTimeResponse(APIView):
         print("DEBUG: ", json_data)
         username = json_data['username']
         data = json_data["data"]
+        print('Last timestamp data in json ',data[-1]["timestamp"])
         timestamp = datetime.strptime(data[-1]["timestamp"], "%d/%m/%y %H:%M:%S")
         feature = newML.functions.json2Feature(json_data, username, timestamp)
         user_object = User.objects.get(username=username)
