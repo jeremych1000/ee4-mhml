@@ -121,6 +121,7 @@ class realTimeResponse(APIView):
         else:
             classifier = pickle.load(open(mlfile.file.path, 'rb'))
         feature = np.array([feature])
+        print(feature)
         outcome = classifier.predict(feature)
         json_result["quality"] = outcome[0]
         return Response(json_result, status=status.HTTP_200_OK)
