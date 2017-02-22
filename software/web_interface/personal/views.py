@@ -1,13 +1,20 @@
 from django.shortcuts import render
 from django.contrib import messages
 
+import requests
 
 def index(request):
     if request.method == 'GET' and 'action' in request.GET:
         if request.GET['action'] == "login":
             return render(request, "personal/home.html", {'login': True})
     else:
-        return render(request, "personal/home.html")
+        if request.user.is_authenticated():
+            a = requests.get('http://sleepify.zapto.org/api/stats/temperature/last/3/graph/')
+            print(a, type(a))
+            pass
+            return render(request, "personal/home.html")
+        else:
+            return render(request, "personal/home.html")
 
 
 def contact(request):
