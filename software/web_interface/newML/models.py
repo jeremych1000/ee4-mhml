@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 import os
 
-
 # https://docs.djangoproject.com/en/1.10/topics/auth/customizing/#referencing-the-user-model
 # Need to link username to actual user account model !!
 
