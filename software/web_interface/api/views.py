@@ -108,7 +108,7 @@ class raw_data(APIView):
         user_object = User.objects.get(username=username)
 
         # Get model binary file path from username
-        mlfile = ml_model.ModelFile.objects.all().filter(user=user_object).first()
+        mlfile = ml_model.ModelFile.objects.get(user=user_object)
 
         if not mlfile:
             # Create new model and train with avaliable feature
