@@ -155,15 +155,20 @@ def labelInsertion(json):
     start_date = datetime.strptime(json["start"], '%d/%m/%y %H:%M:%S').date()
     end_date = datetime.strptime(json["stop"], '%d/%m/%y %H:%M:%S').date()
     end_date+=timedelta(days=1)
-    print(start_date)
-    print(end_date)
     outcome = True if json["quality"] == 1 else False
     username = json["username"]
     user = models.User.objects.get(username=username)
-    print(user)
     unlabelFeature = models.FeatureEntry.objects.all().filter(user=user, date__range=(start_date, end_date),
                                                               label__isnull=True)
-    print(unlabelFeature)
     for fObj in unlabelFeature:
         fObj.label = outcome
         fObj.save()
+    modelObj=models.ModelFile.objects.get(user=user)
+    if modelObj:
+        modelObj.untrained+=len(unlabelFeature)
+        if modelObj.untrained>20:
+            modelFile = open(modelObj.file.path,'wb')
+            clf = pickle.load(modelFile)
+            featureEntryVec = models.FeatureEntry.objects
+            FeatureEntry2FeatureOutcome(un)
+            clf.fit()

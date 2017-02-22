@@ -28,3 +28,4 @@ class ModelFile(models.Model):
     file = models.FileField(null=True, blank=True,
                             storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'model')))
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+    untrained = models.IntegerField(default=0)
