@@ -104,12 +104,6 @@ class on_off(APIView):
         json = random.getrandbits(1)
         return Response(json, status=status.HTTP_200_OK)
 
-<<<<<<< HEAD
-=======
-        # Get model binary file path from username
-        mlfile = ml_model.ModelFile.objects.get(user=user_object)
->>>>>>> 2d6bc7cae4792d2ae2b355611aae259db33e5f5f
-
 class realTimeResponse(APIView):
     def post(self, request):
         json_result = {}
@@ -136,7 +130,11 @@ class userFeedback(APIView):
         newML.functions.labelInsertion(json_data)
         return Response( status=status.HTTP_200_OK)
 
-
+class stats():
+    class temperature():
+        class last(APIView):
+            def get(self, request, days):
+                print(days)
 
 # http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
