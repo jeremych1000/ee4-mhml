@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c4a37a3-03a9-4731-9e85-5b2b1496594b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/data/MSBand2_ALL_data_23_02_17.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/data/jeremych/MSBand2_ALL_data_15_02_17.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/data/tszho/MSBand2_ALL_data_23_02_17.csv" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-50.png" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-50.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-50.png" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-50.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Contents.json" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Contents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Contents.json" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Contents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/BandData.swift" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/BandData.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Base.lproj/Main.storyboard" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/graphs.py" afterPath="$PROJECT_DIR$/api/graphs.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,25 +84,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="graphs.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="16" column="76" lean-forward="false" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graphs.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/graphs.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="816">
               <caret line="62" column="70" lean-forward="false" selection-start-line="62" selection-start-column="70" selection-end-line="62" selection-end-column="70" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetupTesting.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newML/SetupTesting.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -935,16 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="76" lean-forward="false" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="76" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newML/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1007,16 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="140" column="44" lean-forward="false" selection-start-line="140" selection-start-column="44" selection-end-line="140" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/queries.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1076,6 +1064,24 @@
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="140" column="44" lean-forward="false" selection-start-line="140" selection-start-column="44" selection-end-line="140" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="76" lean-forward="false" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="76" />
+          <folding />
         </state>
       </provider>
     </entry>
