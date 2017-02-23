@@ -60,7 +60,7 @@ def temperature(request, days):
 
         if len(timestamp) != 0 and len(temp) != 0:
             ax.plot(timestamp, temp, '-')
-            ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
+            ax.xaxis.set_major_formatter(DateFormatter('%d/%m %H:%M:%S'))
             fig.autofmt_xdate()
 
             canvas=FigureCanvas(fig)
