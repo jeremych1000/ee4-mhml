@@ -1,8 +1,6 @@
 from django.http import HttpResponse
 from django.utils.six import BytesIO
 
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-import matplotlib.pyplot
 from pylab import *
 from datetime import datetime
 import random, json
@@ -16,7 +14,7 @@ from rest_framework.decorators import api_view
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.dates import DateFormatter
-
+from matplotlib import pyplot as plt
 
 from . import views, queries
 
@@ -48,8 +46,14 @@ def temperature(request, days):
         stream = BytesIO(json)
         data = JSONParser().parse(stream)
 
-        fig=Figure()
+        fig=plt.figure()
         ax=fig.add_subplot(111)
+
+        ax.set_xlabel('Time')
+        ax.set_ylabel('Heartrate')
+
+        #fig.xlabel('Time')
+        #fig.ylabel('Heartrate')
 
         timestamp=[]
         temp=[]
@@ -60,7 +64,7 @@ def temperature(request, days):
 
         if len(timestamp) != 0 and len(temp) != 0:
             ax.plot(timestamp, temp, '-')
-            ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
+            ax.xaxis.set_major_formatter(DateFormatter('%d/%m %H:%M:%S'))
             fig.autofmt_xdate()
 
             canvas=FigureCanvas(fig)

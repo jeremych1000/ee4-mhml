@@ -215,44 +215,58 @@
 
 <div class="container-fluid" style="min-height:95%; ">
     <div class="row">
-        <div class="col-sm-2">
-            <br>
 
-            <br>
-            <div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
-                <ul class="nav nav-pills nav-stacked">
-                    {% if user.is_authenticated %}
-                        <li>Last 3 Days</li>
-                        <img src="http://sleepify.zapto.org/api/stats/temperature/last/3/graph/">
+        {% block quick_stats %}
+            {% if user.is_authenticated %}
+                <div class="col-sm-2">
+                    <br>
 
-                        <li>Last 7 Days</li>
-                        <img src="http://sleepify.zapto.org/api/stats/temperature/last/7/graph/">
+                    <br>
+                    <div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
+                        <ul class="nav nav-pills nav-stacked">
+                            <h3>Quick Stats</h3>
+                            <li>Yesterday</li>
+                            <a href="#" class="thumbnail">
+                                <img src="http://sleepify.zapto.org/api/stats/temperature/last/1/graph/">
+                            </a>
 
-                        <li>Alltime</li>
-                        <img src="http://sleepify.zapto.org/api/stats/temperature/last/99999/graph/">
-                    {% endif %}
-                </ul>
-            </div> <!--well bs-sidebar affix-->
-        </div> <!--col-sm-2-->
-        <div class="col-sm-10">
-            <div class="container-fluid">
-                <br><br>
-                {% block body %}
+                            <li>Last 3 Days</li>
+                            <a href="#" class="thumbnail">
+                                <img src="http://sleepify.zapto.org/api/stats/temperature/last/3/graph/">
+                            </a>
 
-                    {% bootstrap_messages %}
+                            <li>Last Month</li>
+                            <a href="#" class="thumbnail">
+                                <img src="http://sleepify.zapto.org/api/stats/temperature/last/30/graph/">
+                            </a>
+                        </ul>
+                    </div> <!--well bs-sidebar affix-->
 
-                    {% block content %}
-                    {% endblock %}
+                </div> <!--col-sm-2-->
+                <div class="col-sm-10">
+            {% else %}
+                <div class="col-sm-12">
+            {% endif %}
 
+        {% endblock %}
+        <div class="container-fluid">
+            <br><br>
+            {% block body %}
+
+                {% bootstrap_messages %}
+
+                {% block content %}
                 {% endblock %}
 
-                {% block extra_body %}
-                {% endblock %}
+            {% endblock %}
 
-            </div>
+            {% block extra_body %}
+            {% endblock %}
+
+        </div>
+        </div>
         </div>
     </div>
-</div>
 
 </body>
 
