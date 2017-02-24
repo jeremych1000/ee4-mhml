@@ -134,16 +134,55 @@ class userFeedback(APIView):
 
 
 class stats():
-    class temperature():
+    class heartrate():
         class last(APIView):
             def get(self, request, days):
                 if request.user.is_authenticated():
-                    serializer = queries.get_last_temperature(request, days)
+                    serializer = queries.heartrate(request, days)
                     return Response(serializer.data, status=status.HTTP_200_OK)
 
                 else:
                     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
+    class rr():
+        class last(APIView):
+            def get(self, request, days):
+                if request.user.is_authenticated():
+                    serializer = queries.rr(request, days)
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+
+                else:
+                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    class gsr():
+        class last(APIView):
+            def get(self, request, days):
+                if request.user.is_authenticated():
+                    serializer = queries.gsr(request, days)
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+
+                else:
+                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    class temperature():
+        class last(APIView):
+            def get(self, request, days):
+                if request.user.is_authenticated():
+                    serializer = queries.temperature(request, days)
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+
+                else:
+                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    class acceleration():
+        class last(APIView):
+            def get(self, request, days):
+                if request.user.is_authenticated():
+                    serializer = queries.acceleration(request, days)
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+
+                else:
+                    return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 # http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
