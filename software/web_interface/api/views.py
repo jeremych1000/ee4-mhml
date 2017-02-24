@@ -123,7 +123,7 @@ class realTimeResponse(APIView):
         feature = np.array([feature])
         print(feature)
         outcome = classifier.predict(feature)
-        json_result["quality"] = outcome[0]
+        json_result = outcome[0]
         return Response(json_result, status=status.HTTP_200_OK)
 
 
