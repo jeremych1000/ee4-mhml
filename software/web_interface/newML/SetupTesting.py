@@ -47,3 +47,4 @@ def migrateFeature(request):
                                            mean_gsr=f[4], std_gsr=f[5], mean_temp=f[6], std_temp=f[7], mean_acc=f[8],
                                            label=o)
     return HttpResponseRedirect('/')
+
