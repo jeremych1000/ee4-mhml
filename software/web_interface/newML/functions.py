@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from datetime import timedelta
 
+
 def json2Feature(json, username, timestamp):
     if 'data' not in json.keys():
         assert 'JSON is missing the data array'
@@ -153,35 +154,102 @@ def CSV2Feature(fileURL, winSize):
 def labelInsertion(json):
     start_date = datetime.strptime(json["start"], '%d/%m/%y %H:%M:%S').date()
     end_date = datetime.strptime(json["stop"], '%d/%m/%y %H:%M:%S').date()
-    end_date+=timedelta(days=1)
-    print('starting date: ',end_date)
-    print('stoping date: ',end_date)
+    end_date += timedelta(days=1)
+
+    print('starting date: ', start_date)
+    print('stoping date: ', end_date)
     outcome = True if json["quality"] == 1 else False
     username = json["username"]
     user = models.User.objects.get(username=username)
+    models.NightRecord.objects.create(user=user, start_date=start_date, end_date=end_date)
     unlabelFeature = models.FeatureEntry.objects.all().filter(user=user, date__range=(start_date, end_date),
                                                               label__isnull=True)
     for fObj in unlabelFeature:
         fObj.label = outcome
         fObj.save()
-    print('Inserted ',len(unlabelFeature),' label')
-    modelObj=models.ModelFile.objects.get(user=user)
-    print('Untrained Feature for  ', username,': ' ,modelObj.untrained)
+
+    print("Update Heat Profile....")
+    print(UpdateTempProfile(username))
+    print('Inserted ', len(unlabelFeature), ' label')
+    modelObj = models.ModelFile.objects.get(user=user)
+    print('Untrained Feature for  ', username, ': ', modelObj.untrained)
     if modelObj:
-        modelObj.untrained+=len(unlabelFeature)
+        modelObj.untrained += len(unlabelFeature)
         modelObj.save()
-        if modelObj.untrained>5:
+        if modelObj.untrained > 5:
             print('Retraining model...')
-            print('Loading from ',modelObj.file.path)
-            modelfile=open(modelObj.file.path,'rb')
+            print('Loading from ', modelObj.file.path)
+            modelfile = open(modelObj.file.path, 'rb')
             clf = pickle.load(modelfile)
             modelfile.close()
-            featureEntryVec = models.FeatureEntry.objects.all().filter(user=user,label__isnull=False)
-            feature,outcome=FeatureEntry2FeatureOutcome(featureEntryVec)
-            clf.fit(feature,outcome)
+            featureEntryVec = models.FeatureEntry.objects.all().filter(user=user, label__isnull=False)
+            feature, outcome = FeatureEntry2FeatureOutcome(featureEntryVec)
+            clf.fit(feature, outcome)
             modelfile = open(modelObj.file.path, 'wb')
-            pickle._dump(clf,modelfile)
+            pickle._dump(clf, modelfile)
             modelfile.close()
-            modelObj.untrained=0
+            modelObj.untrained = 0
             modelObj.save()
             print('Retraining model...Done!')
+
+
+def UpdateTempProfile(username):
+    userObj = User.objects.get(username=username)
+    if userObj == None:
+        return 'User not Found'
+    records = models.NightRecord.objects.all().filter(user=userObj)
+    if len(records) == 0:
+        return 'User record not Found'
+    # get all features
+    allFeatures = models.FeatureEntry.objects.all().filter(user=userObj).extra(order_by=['id'])
+    if len(allFeatures) == 0:
+        return 'User Features not Found'
+    # Filter each night and build matrix of each night temp with good sleep quality
+    goodNightTemps = []
+    for record in records:
+        featureInEachNight = list(filter(lambda x: (x.date <= record.end_date) and (x.date >= record.start_date),
+                                    allFeatures))
+        if featureInEachNight[0].label == True:
+            goodNightTemps .append([x.mean_temp for x in featureInEachNight])
+    # segmentized into 4 equal region for each night
+    if len(goodNightTemps) == 0:
+        return 'Good night data not Found'
+    meanInEachNight = []
+    for tempVec in goodNightTemps:
+
+        mod4 = divmod(len(tempVec), 4)
+        segmentSize = math.ceil(len(tempVec) / 4)
+        segmentMean = [0,0,0,0]
+        if mod4 == 0:
+            for i in range(0, 4):
+                segmentMean[i] = np.mean(tempVec[i * segmentSize:(i + 1) * segmentSize - 1])
+        else:
+            for i in range(0, 3):
+                segmentMean[i] = np.mean(tempVec[i * segmentSize:(i + 1) * segmentSize - 1])
+            print(len(tempVec))
+            print(3 * segmentSize - 1)
+            segmentMean[3] = np.mean(tempVec[3 * segmentSize - 1:])
+        meanInEachNight .append( segmentMean)
+    # cross nights mean aggreate
+    optimalMean = np.mean(meanInEachNight, axis=0)
+    # update heat profile
+    profileObj = models.TempProfile.objects.all().filter(user=userObj)
+    if len(profileObj) == 0:
+        for j in range(0, 4):
+            models.TempProfile.objects.create(user=userObj, period=j, value=optimalMean[j])
+    else:
+        for j in range(0, 4):
+            profileObj = profileObj.filter(period=j)
+            profileObj.value = profileObj.value + optimalMean[j] / 2  # Average with new mean temp
+            profileObj.save()
+    return "Update profile Success"
+
+
+def getTempProfile(username):
+    userObj = User.objects.get(username=username)
+    allTemp = models.TempProfile.objects.all().filter(user=userObj)
+    result = [34,34,34,34]
+    for i in range(0, 3):
+        ob = allTemp.filter(period=i).first()
+        result[i] = ob.value
+    return result

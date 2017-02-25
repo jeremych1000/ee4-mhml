@@ -34,14 +34,6 @@ def preferences(request):
     else:
         return render(request, "myaccount/preferences.html")
 
-@login_required_message_and_redirect(message="You need to be signed in to view this page.")
-def stats(request):
-    username = None
-    if request.user.is_authenticated():
-        username = request.user.username
-        return render(request, "myaccount/statistics.html")
-    else:
-        return render(request, "myaccount/statistics.html")
 
 def test_post(request):
     success = False
