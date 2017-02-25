@@ -35,8 +35,13 @@ INSTALLED_APPS = [
     'newML',
     # 'alpr',
     'daterange_filter',
+
     # REST API
     'rest_framework',
+    'rest_framework.authtoken',
+
+    # rest-auth
+    'rest_auth',
 
     # allauth
     'allauth',

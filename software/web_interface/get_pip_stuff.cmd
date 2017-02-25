@@ -6,4 +6,7 @@ pip install django-sendfile
 pip install Sphinx
 pip install django-docs
 pip install scikit-learn
+pip install django-rest-auth
+pip install djangorestframework-jwt
+pip install django-push-notifications
 pause

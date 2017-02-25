@@ -40,7 +40,7 @@ urlpatterns = [
 
     url(r'^stats/random/$', graphs.initial_test),
 
-    # non REST functions
+    # non REST functions`
     url(r'make_default/$', SetupTesting.settingDefault),
     url(r'migrate_feature/$', SetupTesting.migrateFeature),
 ]
