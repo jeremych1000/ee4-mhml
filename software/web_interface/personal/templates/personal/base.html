@@ -40,6 +40,10 @@
     {% block set_navbar_active %}
     {% endblock %}
 
+
+    {% block extra_javascript %}
+    {% endblock %}
+
     <!-- javascript for making login modal pop up -->
     <script type="text/javascript">
         function show_login_modal() {
@@ -94,20 +98,7 @@
                             <li><a href="/accounts/social/connections">My Social Accounts</a></li>
                         </ul>
                     </li>
-                    <li id="stats" class="dropdown">
-                        <a href="/myaccount/stats" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                           aria-haspopup="true"
-                           aria-expanded="false">My Statistics <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Body Temperature</a></li>
-                            <li><a href="#">Heartrate</a></li>
-                            <li><a href="#">Accelerometer</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Room Temperature</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Sleep Duration</a></li>
-                        </ul>
-                    </li>
+                    <li id="stats"><a href="/myaccount/statistics/">My Statistics</a></li>
                     <li id="MLBlock"><a href="/ml">Upload Raw Data</a></li>
                     <li id="alpr"><a href="/alpr/add_plate">SECRET: ALPR</a></li>
                 {% endif %}

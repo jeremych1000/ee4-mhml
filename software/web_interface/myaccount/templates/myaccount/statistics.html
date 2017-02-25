@@ -1,0 +1,97 @@
+{% extends "personal/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+
+{% block head_title %}
+    My Details - Sleepify
+{% endblock %}
+
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#stats").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
+
+{% block extra_javascript %}
+    <script>
+        $(document).ready(function () {
+            $("#nav_tab_hr").addClass("active");
+        });
+    </script>
+{% endblock %}s
+
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+            height: 25em;
+            padding-top: 5em;
+            margin-bottom: 1em;
+            background-image: url('/media/img/jumbotron.jpg');
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            ">
+        <div class="container">
+            <h1>My Statistics</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Your statistics</h1>
+
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav active" id="nav_tab_hr"><a href="#hr" data-toggle="tab">Heartrate</a></li>
+            <li class="nav" id="nav_tab_rr"><a href="#rr" data-toggle="tab">RR</a></li>
+            <li class="nav" id="nav_tab_gsr"><a href="#gsr" data-toggle="tab">GSR</a></li>
+            <li class="nav" id="nav_tab_temp"><a href="#temp" data-toggle="tab">Temperature</a></li>
+            <li class="nav" id="nav_tab_acc"><a href="#acc" data-toggle="tab">Acceleration</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <br/>
+            <div class="tab-pane fade in active" id="hr">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://sleepify.zapto.org/api/stats/rr/last/1/graph/" alt="...">
+                            <div class="caption">
+                                <h3>Thumbnail label</h3>
+                                <p>...</p>
+                                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#"
+                                                                                                   class="btn btn-default"
+                                                                                                   role="button">Button</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="rr">
+                Content inside tab B
+            </div>
+            <div class="tab-pane fade" id="gsr">
+                Content inside tab C
+            </div>
+            <div class="tab-pane fade" id="temp">
+                Content inside tab D
+            </div>
+            <div class="tab-pane fade" id="acc">
+                Content inside tab E
+            </div>
+        </div>
+
+    {% else %}
+
+        <p>You must be logged in to view this page.</p>
+
+    {% endif %}
+
+{% endblock %}
