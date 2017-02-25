@@ -155,12 +155,13 @@ def labelInsertion(json):
     start_date = datetime.strptime(json["start"], '%d/%m/%y %H:%M:%S').date()
     end_date = datetime.strptime(json["stop"], '%d/%m/%y %H:%M:%S').date()
     end_date += timedelta(days=1)
-    models.NightRecord.create(start_date=start_date, end_date=end_date)
+
     print('starting date: ', start_date)
     print('stoping date: ', end_date)
     outcome = True if json["quality"] == 1 else False
     username = json["username"]
     user = models.User.objects.get(username=username)
+    models.NightRecord.objects.create(user=user, start_date=start_date, end_date=end_date)
     unlabelFeature = models.FeatureEntry.objects.all().filter(user=user, date__range=(start_date, end_date),
                                                               label__isnull=True)
     for fObj in unlabelFeature:
@@ -206,26 +207,29 @@ def UpdateTempProfile(username):
     # Filter each night and build matrix of each night temp with good sleep quality
     goodNightTemps = []
     for record in records:
-        featureInEachNight = filter(lambda x: (x.date <= record.end_date) and (x.date >= record.start_date),
-                                    allFeatures)
+        featureInEachNight = list(filter(lambda x: (x.date <= record.end_date) and (x.date >= record.start_date),
+                                    allFeatures))
         if featureInEachNight[0].label == True:
-            goodNightTemps += [x.mean_temp for x in featureInEachNight]
+            goodNightTemps .append([x.mean_temp for x in featureInEachNight])
     # segmentized into 4 equal region for each night
     if len(goodNightTemps) == 0:
         return 'Good night data not Found'
     meanInEachNight = []
     for tempVec in goodNightTemps:
+
         mod4 = divmod(len(tempVec), 4)
         segmentSize = math.ceil(len(tempVec) / 4)
-        segmentMean = [0] * 4
+        segmentMean = [0,0,0,0]
         if mod4 == 0:
             for i in range(0, 4):
                 segmentMean[i] = np.mean(tempVec[i * segmentSize:(i + 1) * segmentSize - 1])
         else:
             for i in range(0, 3):
                 segmentMean[i] = np.mean(tempVec[i * segmentSize:(i + 1) * segmentSize - 1])
-            segmentMean[4] = np.mean(tempVec[3 * segmentSize - 1:])
-        meanInEachNight += segmentMean
+            print(len(tempVec))
+            print(3 * segmentSize - 1)
+            segmentMean[3] = np.mean(tempVec[3 * segmentSize - 1:])
+        meanInEachNight .append( segmentMean)
     # cross nights mean aggreate
     optimalMean = np.mean(meanInEachNight, axis=0)
     # update heat profile
@@ -236,7 +240,7 @@ def UpdateTempProfile(username):
     else:
         for j in range(0, 4):
             profileObj = profileObj.filter(period=j)
-            profileObj.value = optimalMean[j]
+            profileObj.value = profileObj.value + optimalMean[j] / 2  # Average with new mean temp
             profileObj.save()
     return "Update profile Success"
 
@@ -244,7 +248,7 @@ def UpdateTempProfile(username):
 def getTempProfile(username):
     userObj = User.objects.get(username=username)
     allTemp = models.TempProfile.objects.all().filter(user=userObj)
-    result = [34] * 4
+    result = [34,34,34,34]
     for i in range(0, 3):
         ob = allTemp.filter(period=i).first()
         result[i] = ob.value

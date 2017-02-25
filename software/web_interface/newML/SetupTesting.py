@@ -41,8 +41,10 @@ def migrateFeature(request):
             features += (new_f)
             outcomes += new_out
             dates += new_d
+            models.NightRecord.objects.create(user=userObj,start_date=datetime.strptime(new_d[0],'%d/%m/%y %H:%M:%S'),end_date=datetime.strptime(new_d[-1],'%d/%m/%y %H:%M:%S'))
+
     for d, f, o in zip(dates, features, outcomes):
-        d_obj= datetime.strptime(d,'%d/%m/%y %H:%M:%S')
+        d_obj = datetime.strptime(d,'%d/%m/%y %H:%M:%S')
         models.FeatureEntry.objects.create(user=userObj, date=d_obj, mean_hr=f[0], std_hr=f[1], mean_rr=f[2], std_rr=f[3],
                                            mean_gsr=f[4], std_gsr=f[5], mean_temp=f[6], std_temp=f[7], mean_acc=f[8],
                                            label=o)
