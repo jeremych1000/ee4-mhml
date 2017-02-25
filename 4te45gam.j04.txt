@@ -1,0 +1,41 @@
+﻿Merge branch 'master' of https://github.com/jeremych1000/ee4-mhml
+
+# Conflicts:
+#	software/web_interface/db.sqlite3
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 6 and 5 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   ../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-50.png
+#	new file:   ../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-51.png
+#	new file:   ../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-52.png
+#	modified:   ../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Contents.json
+#	modified:   ../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-50.png
+#	new file:   ../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-51.png
+#	new file:   ../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-52.png
+#	modified:   ../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Contents.json
+#	modified:   ../mhml_withbackground/mhml/BandData.swift
+#	modified:   ../mhml_withbackground/mhml/Base.lproj/Main.storyboard
+#	modified:   .idea/workspace.xml
+#	modified:   api/graphs.py
+#	new file:   db.sqlite3
+#	modified:   media/data/MSBand2_ALL_data_15_02_17.csv
+#	new file:   media/data/MSBand2_ALL_data_23_02_17.csv
+#	new file:   media/data/tszho/MSBand2_ALL_data_23_02_17.csv
+#	modified:   personal/templates/personal/base.html
+#	modified:   personal/templates/personal/home.html
+#
+

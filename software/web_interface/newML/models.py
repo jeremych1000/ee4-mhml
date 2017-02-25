@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 import os
 
+
 # https://docs.djangoproject.com/en/1.10/topics/auth/customizing/#referencing-the-user-model
 # Need to link username to actual user account model !!
 
@@ -29,3 +30,17 @@ class ModelFile(models.Model):
                             storage=FileSystemStorage(location=os.path.join(settings.MEDIA_ROOT, 'model')))
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     untrained = models.IntegerField(default=0)
+
+
+class NightRecord(models.Model):
+    AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+    start_date = models.DateTimeField(auto_now_add=False)
+    end_date = models.DateTimeField(auto_now_add=False)
+
+
+class TempProfile(models.Model):
+    AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
+    period = models.IntegerField(default=0)
+    value = models.FloatField(default=0.0)
