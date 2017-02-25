@@ -9,9 +9,6 @@ def index(request):
             return render(request, "personal/home.html", {'login': True})
     else:
         if request.user.is_authenticated():
-            a = requests.get('http://sleepify.zapto.org/api/stats/temperature/last/3/graph/')
-            print(a, type(a))
-            pass
             return render(request, "personal/home.html")
         else:
             return render(request, "personal/home.html")

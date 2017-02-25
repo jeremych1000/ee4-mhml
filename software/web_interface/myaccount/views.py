@@ -39,7 +39,15 @@ def stats(request):
     username = None
     if request.user.is_authenticated():
         username = request.user.username
-        return render(request, "myaccount/statistics.html")
+        data=[
+            {'title': 'Heartrate', 'url': 'heartrate'},
+            {'title': 'RR', 'url': 'rr'},
+            {'title': 'GSR', 'url': 'gsr'},
+            {'title': 'Temperature', 'url': 'temperature'},
+            {'title': 'Acceleration', 'url': 'acceleration'},
+            #{'title': 'Sleep Duration', 'url': 'sleep_duration'},
+        ]
+        return render(request, "myaccount/statistics.html", {'data': data})
     else:
         return render(request, "myaccount/statistics.html")
 

@@ -18,22 +18,23 @@ from matplotlib import pyplot as plt
 
 from . import views, queries
 
+
 def initial_test(request):
-    fig=Figure()
-    ax=fig.add_subplot(111)
-    x=[]
-    y=[]
-    now=datetime.datetime.now()
-    delta=datetime.timedelta(days=1)
+    fig = Figure()
+    ax = fig.add_subplot(111)
+    x = []
+    y = []
+    now = datetime.datetime.now()
+    delta = datetime.timedelta(days=1)
     for i in range(10):
         x.append(now)
-        now+=delta
+        now += delta
         y.append(random.randint(0, 1000))
     ax.plot_date(x, y, '-')
     ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
     fig.autofmt_xdate()
-    canvas=FigureCanvas(fig)
-    response=HttpResponse(content_type='image/png')
+    canvas = FigureCanvas(fig)
+    response = HttpResponse(content_type='image/png')
     canvas.print_png(response)
     return response
 
@@ -42,22 +43,22 @@ def initial_test(request):
 def heartrate(request, days):
     if request.user.is_authenticated():
         r = queries.heartrate(request, days)
-        #print("type", type(r.data))
+        # print("type", type(r.data))
         json = JSONRenderer().render(r.data)
         stream = BytesIO(json)
         data = JSONParser().parse(stream)
 
-        fig=plt.figure()
-        ax=fig.add_subplot(111)
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
 
         ax.set_xlabel('Time')
         ax.set_ylabel('Heartrate')
 
-        #fig.xlabel('Time')
-        #fig.ylabel('Heartrate')
+        # fig.xlabel('Time')
+        # fig.ylabel('Heartrate')
 
-        timestamp=[]
-        temp=[]
+        timestamp = []
+        temp = []
 
         for i in data:
             timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
@@ -68,37 +69,41 @@ def heartrate(request, days):
             ax.xaxis.set_major_formatter(DateFormatter('%d/%m %H:%M:%S'))
             fig.autofmt_xdate()
 
-            canvas=FigureCanvas(fig)
-            response=HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
-        else:
-            canvas = FigureCanvas(fig)
-            response = HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
+        canvas = FigureCanvas(fig)
+        response = HttpResponse(status=200, content_type='image/png')
+        if request.method == 'GET' and 'dl' in request.GET:
+            response['Content-Disposition'] = 'attachment; filename="%s.png"' % (
+                'heartrate_last_' + days + '_days_from_' + str(
+                    datetime.strptime(data[0]["date"], '%Y-%m-%dT%H:%M:%SZ')))
+        canvas.print_png(response)
+        # clear and close plots to prevent memory problems
+        fig.clf()
+        plt.close(fig)
+        return response
+
     return Response(status=status.HTTP_401_UNAUTHORIZED)
+
 
 @api_view(['GET'])
 def rr(request, days):
     if request.user.is_authenticated():
         r = queries.rr(request, days)
-        #print("type", type(r.data))
+        # print("type", type(r.data))
         json = JSONRenderer().render(r.data)
         stream = BytesIO(json)
         data = JSONParser().parse(stream)
 
-        fig=plt.figure()
-        ax=fig.add_subplot(111)
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
 
         ax.set_xlabel('Time')
         ax.set_ylabel('RR')
 
-        #fig.xlabel('Time')
-        #fig.ylabel('Heartrate')
+        # fig.xlabel('Time')
+        # fig.ylabel('Heartrate')
 
-        timestamp=[]
-        temp=[]
+        timestamp = []
+        temp = []
 
         for i in data:
             timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
@@ -109,37 +114,39 @@ def rr(request, days):
             ax.xaxis.set_major_formatter(DateFormatter('%d/%m %H:%M:%S'))
             fig.autofmt_xdate()
 
-            canvas=FigureCanvas(fig)
-            response=HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
-        else:
-            canvas = FigureCanvas(fig)
-            response = HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
+        canvas = FigureCanvas(fig)
+        response = HttpResponse(status=200, content_type='image/png')
+        if request.method == 'GET' and 'dl' in request.GET:
+            response['Content-Disposition'] = 'attachment; filename="%s.png"' % (
+                'rr_last_' + days + '_days_from_' + str(datetime.strptime(data[0]["date"], '%Y-%m-%dT%H:%M:%SZ')))
+        canvas.print_png(response)
+        # clear and close plots to prevent memory problems
+        fig.clf()
+        plt.close(fig)
+        return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
+
 
 @api_view(['GET'])
 def gsr(request, days):
     if request.user.is_authenticated():
         r = queries.gsr(request, days)
-        #print("type", type(r.data))
+        # print("type", type(r.data))
         json = JSONRenderer().render(r.data)
         stream = BytesIO(json)
         data = JSONParser().parse(stream)
 
-        fig=plt.figure()
-        ax=fig.add_subplot(111)
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
 
         ax.set_xlabel('Time')
         ax.set_ylabel('GSR')
 
-        #fig.xlabel('Time')
-        #fig.ylabel('Heartrate')
+        # fig.xlabel('Time')
+        # fig.ylabel('Heartrate')
 
-        timestamp=[]
-        temp=[]
+        timestamp = []
+        temp = []
 
         for i in data:
             timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
@@ -150,15 +157,16 @@ def gsr(request, days):
             ax.xaxis.set_major_formatter(DateFormatter('%d/%m %H:%M:%S'))
             fig.autofmt_xdate()
 
-            canvas=FigureCanvas(fig)
-            response=HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
-        else:
-            canvas = FigureCanvas(fig)
-            response = HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
+        canvas = FigureCanvas(fig)
+        response = HttpResponse(status=200, content_type='image/png')
+        if request.method == 'GET' and 'dl' in request.GET:
+            response['Content-Disposition'] = 'attachment; filename="%s.png"' % (
+                'gsr_last_' + days + '_days_from_' + str(datetime.strptime(data[0]["date"], '%Y-%m-%dT%H:%M:%SZ')))
+        canvas.print_png(response)
+        # clear and close plots to prevent memory problems
+        fig.clf()
+        plt.close(fig)
+        return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
@@ -166,22 +174,22 @@ def gsr(request, days):
 def temperature(request, days):
     if request.user.is_authenticated():
         r = queries.temperature(request, days)
-        #print("type", type(r.data))
+        # print("type", type(r.data))
         json = JSONRenderer().render(r.data)
         stream = BytesIO(json)
         data = JSONParser().parse(stream)
 
-        fig=plt.figure()
-        ax=fig.add_subplot(111)
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
 
         ax.set_xlabel('Time')
         ax.set_ylabel('Temperature')
 
-        #fig.xlabel('Time')
-        #fig.ylabel('Heartrate')
+        # fig.xlabel('Time')
+        # fig.ylabel('Heartrate')
 
-        timestamp=[]
-        temp=[]
+        timestamp = []
+        temp = []
 
         for i in data:
             timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
@@ -192,15 +200,17 @@ def temperature(request, days):
             ax.xaxis.set_major_formatter(DateFormatter('%d/%m %H:%M:%S'))
             fig.autofmt_xdate()
 
-            canvas=FigureCanvas(fig)
-            response=HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
-        else:
-            canvas = FigureCanvas(fig)
-            response = HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
+        canvas = FigureCanvas(fig)
+        response = HttpResponse(status=200, content_type='image/png')
+        if request.method == 'GET' and 'dl' in request.GET:
+            response['Content-Disposition'] = 'attachment; filename="%s.png"' % (
+                'temperature_last_' + days + '_days_from_' + str(
+                    datetime.strptime(data[0]["date"], '%Y-%m-%dT%H:%M:%SZ')))
+        canvas.print_png(response)
+        # clear and close plots to prevent memory problems
+        fig.clf()
+        plt.close(fig)
+        return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
@@ -208,22 +218,22 @@ def temperature(request, days):
 def acceleration(request, days):
     if request.user.is_authenticated():
         r = queries.acceleration(request, days)
-        #print("type", type(r.data))
+        # print("type", type(r.data))
         json = JSONRenderer().render(r.data)
         stream = BytesIO(json)
         data = JSONParser().parse(stream)
 
-        fig=plt.figure()
-        ax=fig.add_subplot(111)
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
 
         ax.set_xlabel('Time')
         ax.set_ylabel('Acceleration')
 
-        #fig.xlabel('Time')
-        #fig.ylabel('Heartrate')
+        # fig.xlabel('Time')
+        # fig.ylabel('Heartrate')
 
-        timestamp=[]
-        temp=[]
+        timestamp = []
+        temp = []
 
         for i in data:
             timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
@@ -234,13 +244,15 @@ def acceleration(request, days):
             ax.xaxis.set_major_formatter(DateFormatter('%d/%m %H:%M:%S'))
             fig.autofmt_xdate()
 
-            canvas=FigureCanvas(fig)
-            response=HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
-        else:
-            canvas = FigureCanvas(fig)
-            response = HttpResponse(status=200, content_type='image/png')
-            canvas.print_png(response)
-            return response
+        canvas = FigureCanvas(fig)
+        response = HttpResponse(status=200, content_type='image/png')
+        if request.method == 'GET' and 'dl' in request.GET:
+            response['Content-Disposition'] = 'attachment; filename="%s.png"' % (
+                'acceleration_last_' + days + '_days_from_' + str(
+                    datetime.strptime(data[0]["date"], '%Y-%m-%dT%H:%M:%SZ')))
+        canvas.print_png(response)
+        # clear and close plots to prevent memory problems
+        fig.clf()
+        plt.close(fig)
+        return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
