@@ -73,7 +73,10 @@ def heartrate(request, days):
             canvas.print_png(response)
             return response
         else:
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            canvas = FigureCanvas(fig)
+            response = HttpResponse(status=200, content_type='image/png')
+            canvas.print_png(response)
+            return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 @api_view(['GET'])
@@ -111,7 +114,10 @@ def rr(request, days):
             canvas.print_png(response)
             return response
         else:
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            canvas = FigureCanvas(fig)
+            response = HttpResponse(status=200, content_type='image/png')
+            canvas.print_png(response)
+            return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 @api_view(['GET'])
@@ -149,7 +155,10 @@ def gsr(request, days):
             canvas.print_png(response)
             return response
         else:
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            canvas = FigureCanvas(fig)
+            response = HttpResponse(status=200, content_type='image/png')
+            canvas.print_png(response)
+            return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
@@ -188,7 +197,10 @@ def temperature(request, days):
             canvas.print_png(response)
             return response
         else:
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            canvas = FigureCanvas(fig)
+            response = HttpResponse(status=200, content_type='image/png')
+            canvas.print_png(response)
+            return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
@@ -227,6 +239,9 @@ def acceleration(request, days):
             canvas.print_png(response)
             return response
         else:
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            canvas = FigureCanvas(fig)
+            response = HttpResponse(status=200, content_type='image/png')
+            canvas.print_png(response)
+            return response
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 

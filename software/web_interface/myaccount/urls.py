@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^$', views.profile, name='index'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^preferences/$', views.preferences, name='preferences'),
+    url(r'^statistics/$', views.stats, name='stats'),
 
     url(r'^testpost/$', views.test_post),
     url(r'dl/$', views.dl),
