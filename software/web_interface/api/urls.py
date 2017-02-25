@@ -35,14 +35,12 @@ urlpatterns = [
     #url(r'^stats/acceleration/from//to/$'),
 
 
-
-
+    url(r'rt/$', views.realTimeResponse.as_view(), name='rt'),
+    url(r'uf/$', views.userFeedback.as_view(), name='uf'),
 
     url(r'^stats/random/$', graphs.initial_test),
 
     # non REST functions
     url(r'make_default/$', SetupTesting.settingDefault),
     url(r'migrate_feature/$', SetupTesting.migrateFeature),
-    url(r'rt/$', views.realTimeResponse.as_view(),name='rt'),
-    url(r'uf/$', views.userFeedback.as_view(),name='uf'),
 ]
