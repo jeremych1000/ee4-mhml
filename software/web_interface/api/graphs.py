@@ -42,21 +42,16 @@ def initial_test(request):
 @api_view(['GET'])
 def simple_graph(request, feature, days=None, start=None, end=None):
     if request.user.is_authenticated():
-        if feature == 'heartrate':
+        if feature == 'mean_hr':
             r = queries.heartrate(request, days)
-            json_key = 'mean_hr'
-        elif feature == 'rr':
+        elif feature == 'mean_rr':
             r = queries.rr(request, days)
-            json_key = 'mean_rr'
-        elif feature == 'gsr':
+        elif feature == 'mean_gsr':
             r = queries.gsr(request, days)
-            json_key = 'mean_gsr'
-        elif feature == 'temperature':
+        elif feature == 'mean_temp':
             r = queries.temperature(request, days)
-            json_key = 'mean_temp'
-        elif feature == 'acceleration':
+        elif feature == 'mean_acc':
             r = queries.acceleration(request, days)
-            json_key = 'mean_acc'
         # elif feature == 'sleep_duration':
         #    serializer = queries.sleep_duration(request, days)
         else:
@@ -78,7 +73,7 @@ def simple_graph(request, feature, days=None, start=None, end=None):
 
         for i in data:
             timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
-            temp.append(i[json_key])
+            temp.append(i[feature])
 
         if len(timestamp) != 0 and len(temp) != 0:
             ax.plot(timestamp, temp, '-')

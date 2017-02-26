@@ -1,34 +1,64 @@
 from rest_framework import serializers
 from newML.models import FeatureEntry
 
+
 class FeatureEntrySerializer():
-    class heartrate(serializers.ModelSerializer):
+    class mean_hr(serializers.ModelSerializer):
         class Meta:
             # query returns FeatureEntry objects
             model = FeatureEntry
-            fields = ('date', 'mean_hr')
+            fields = ('date', 'mean_hr',)
 
-    class rr(serializers.ModelSerializer):
+    class std_hr(serializers.ModelSerializer):
+        class Meta:
+            # query returns FeatureEntry objects
+            model = FeatureEntry
+            fields = ('date', 'std_hr',)
+
+    class mean_rr(serializers.ModelSerializer):
         class Meta:
             # query returns FeatureEntry objects
             model = FeatureEntry
             fields = ('date', 'mean_rr')
 
-    class gsr(serializers.ModelSerializer):
+    class std_rr(serializers.ModelSerializer):
+        class Meta:
+            # query returns FeatureEntry objects
+            model = FeatureEntry
+            fields = ('date', 'std_rr')
+
+    class mean_gsr(serializers.ModelSerializer):
         class Meta:
             # query returns FeatureEntry objects
             model = FeatureEntry
             fields = ('date', 'mean_gsr')
 
+    class std_gsr(serializers.ModelSerializer):
+        class Meta:
+            # query returns FeatureEntry objects
+            model = FeatureEntry
+            fields = ('date', 'std_gsr')
 
-    class temperature(serializers.ModelSerializer):
+    class mean_temp(serializers.ModelSerializer):
         class Meta:
             # query returns FeatureEntry objects
             model = FeatureEntry
             fields = ('date', 'mean_temp')
 
-    class acceleration(serializers.ModelSerializer):
+    class std_temp(serializers.ModelSerializer):
+        class Meta:
+            # query returns FeatureEntry objects
+            model = FeatureEntry
+            fields = ('date', 'std_temp')
+
+    class mean_acc(serializers.ModelSerializer):
         class Meta:
             # query returns FeatureEntry objects
             model = FeatureEntry
             fields = ('date', 'mean_acc')
+
+    class std_acc(serializers.ModelSerializer):
+        class Meta:
+            # query returns FeatureEntry objects
+            model = FeatureEntry
+            fields = ('date', 'std_acc')

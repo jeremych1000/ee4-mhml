@@ -14,9 +14,9 @@ urlpatterns = [
     url(r'^make_coffee/$', views.teapot.as_view()),
 
     # data visualisations
-    url(r'^stats/last/(?P<days>\d+)/(?P<feature>[a-z]+)/$', views.stats.last.as_view()),
-    url(r'^stats/last/(?P<days>\d+)/(?P<feature>[a-z]+)/graph/$', graphs.simple_graph),
-    url(r'^stats/from/(?P<start>[0-9:\-T]+)/to/(?P<end>[0-9:\-T]+)/(?P<feature>[a-z]+)/$', views.stats.date_range.as_view()),
+    url(r'^stats/last/(?P<days>\d+)/(?P<feature>[a-z_]+)/$', views.stats.last.as_view()),
+    url(r'^stats/last/(?P<days>\d+)/(?P<feature>[a-z_]+)/graph/$', graphs.simple_graph),
+    url(r'^stats/from/(?P<start>[0-9:\-T]+)/to/(?P<end>[0-9:\-T]+)/(?P<feature>[a-z_]+)/$', views.stats.date_range.as_view()),
 
     url(r'rt/$', views.realTimeResponse.as_view(), name='rt'),
     url(r'uf/$', views.userFeedback.as_view(), name='uf'),

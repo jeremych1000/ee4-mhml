@@ -139,15 +139,15 @@ class stats():
         def get(self, request, feature, days):
             #print("regex ", feature, " ----days", days)
             if request.user.is_authenticated():
-                if feature == 'heartrate':
+                if feature == 'mean_hr':
                     serializer = queries.heartrate(request, days)
-                elif feature == 'rr':
+                elif feature == 'mean_rr':
                     serializer = queries.rr(request, days)
-                elif feature == 'gsr':
+                elif feature == 'mean_gsr':
                     serializer = queries.gsr(request, days)
-                elif feature == 'temperature':
+                elif feature == 'mean_temp':
                     serializer = queries.temperature(request, days)
-                elif feature == 'acceleration':
+                elif feature == 'mean_acc':
                     serializer = queries.acceleration(request, days)
                 #elif feature == 'sleep_duration':
                 #    serializer = queries.sleep_duration(request, days)
@@ -164,16 +164,16 @@ class stats():
             end = datetime.strptime(end, '%Y-%m-%d')
             ret = newML.functions.getFeatureInRange(request.user, start, end)
 
-            if feature == 'heartrate':
-                serializer = serializers.FeatureEntrySerializer.heartrate(ret, many=True)
-            elif feature == 'rr':
-                serializer = serializers.FeatureEntrySerializer.rr(ret, many=True)
-            elif feature == 'gsr':
-                serializer = serializers.FeatureEntrySerializer.gsr(ret, many=True)
-            elif feature == 'temperature':
-                serializer = serializers.FeatureEntrySerializer.temperature(ret, many=True)
-            elif feature == 'acceleration':
-                serializer = serializers.FeatureEntrySerializer.acceleration(ret, many=True)
+            if feature == 'mean_hr':
+                serializer = serializers.FeatureEntrySerializer.mean_hr(ret, many=True)
+            elif feature == 'mean_rr':
+                serializer = serializers.FeatureEntrySerializer.mean_rr(ret, many=True)
+            elif feature == 'mean_gsr':
+                serializer = serializers.FeatureEntrySerializer.mean_gsr(ret, many=True)
+            elif feature == 'mean_temp':
+                serializer = serializers.FeatureEntrySerializer.mean_temp(ret, many=True)
+            elif feature == 'mean_acc':
+                serializer = serializers.FeatureEntrySerializer.mean_acc(ret, many=True)
             # elif feature == 'sleep_duration':
             #    serializer = serializers.FeatureEntrySerializer.sleep_duration(ret, many=True)
             else:
