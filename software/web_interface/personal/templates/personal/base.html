@@ -10,60 +10,35 @@
 
     <link rel="shortcut icon" href="/media/icons/favicon.ico"/>
 
-    {% bootstrap_css %}
+    <!-- custom google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="{% static "bootstrap-3.3.7-custom/css/bootstrap.min.css" %}" rel="stylesheet">
+    {#    <link href="{% static "bootstrap-themes/bootstrap-darkly.min.css" %}" rel="stylesheet">#}
     {% bootstrap_javascript %}
-    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
-    <script type="text/javascript" src="{% static "js/d3_graph.js" %}"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- custom overriding bootstrap parameters -->
     <style type="text/css">
         html,
         body {
-            height: 100%
+            height: 100%;
         }
-    </style>
 
-    <!-- http://stackoverflow.com/questions/8878033/how-to-make-twitter-bootstrap-menu-dropdown-on-hover-rather-than-click -->
-    <style>
         @media (min-width: 979px) {
             ul.nav li.dropdown:hover > ul.dropdown-menu {
                 display: block;
             }
+
+            .container-fluid {
+                padding-left: 60px;
+                padding-right: 60px;
+            }
         }
     </style>
 
-    <style> /* set the CSS */
+    <!-- http://stackoverflow.com/questions/8878033/how-to-make-twitter-bootstrap-menu-dropdown-on-hover-rather-than-click -->
 
-    body { font: 12px Arial;}
-
-    path {
-        stroke: steelblue;
-        stroke-width: 2;
-        fill: none;
-    }
-
-    .axis path,
-    .axis line {
-        fill: none;
-        stroke: grey;
-        stroke-width: 1;
-        shape-rendering: crispEdges;
-    }
-
-    div.tooltip {
-        position: absolute;
-        text-align: center;
-        width: 60px;
-        height: 56px;
-        padding: 2px;
-        font: 12px sans-serif;
-        background: lightsteelblue;
-        border: 0px;
-        border-radius: 8px;
-        pointer-events: none;
-    }
-
-    </style>
     <!-- allauth template stuff -->
     {% block extra_head %}
     {% endblock %}
@@ -132,7 +107,6 @@
                     </li>
                     <li id="stats"><a href="/myaccount/statistics/">My Statistics</a></li>
                     <li id="MLBlock"><a href="/ml">Upload Raw Data</a></li>
-                    <li id="alpr"><a href="/alpr/add_plate">SECRET: ALPR</a></li>
                 {% endif %}
 
             </ul>
@@ -145,21 +119,11 @@
             </form>
             -->
             <ul class="nav navbar-nav navbar-right">
-                <li id="about"><a href="/about">About</a></li>
-                <li id="download"><a href="/download">Download</a></li>
-                <li id="contact"><a href="/contact">Contact</a></li>
-                <li id="help" class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Help <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">FAQ</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
+                <li id="about"><a href="/about/">About</a></li>
+                <li id="download"><a href="/download/">Download</a></li>
+                <li id="contact"><a href="/contact/">Contact</a></li>
+                <li id="help"><a href="/docs/">Documentation</a></li>
+                <li id="privacy"><a href="/privacy/">Privacy Policy</a></li>
 
                 <div class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
@@ -288,8 +252,8 @@
                                     15
                                 </div>
                             </div>
-                    </ul>
-                </div> <!--well bs-sidebar affix-->
+                        </ul>
+                    </div> <!--well bs-sidebar affix-->
 
                 </div> <!--col-sm-2-->
                 <div class="col-sm-10">
@@ -299,7 +263,7 @@
 
         {% endblock %}
         <div class="container-fluid">
-            <br><br>
+            <br />
             {% block body %}
 
                 {% bootstrap_messages %}
@@ -315,7 +279,7 @@
         </div>
         </div>
         </div>
-</div>
+    </div>
 
 </body>
 
