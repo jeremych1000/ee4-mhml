@@ -11,6 +11,7 @@ def last_days(request, days):
     features = FeatureEntry.objects.all().filter(user=user_object, date__gte=start_date)
     return features
 
+
 def heartrate(request, days):
     features = last_days(request=request, days=days)
     serializer = serializers.FeatureEntrySerializer.heartrate(features, many=True)

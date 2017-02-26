@@ -246,3 +246,5 @@ SENDFILE_BACKEND = 'sendfile.backends.development'
 
 DOCS_ROOT = os.path.join(BASE_DIR, "docs/_build/html/")
 DOCS_ACCESS = 'public'
+
+USE_TZ=True

@@ -14,26 +14,29 @@ urlpatterns = [
     url(r'^make_coffee/$', views.teapot.as_view()),
 
     # data visualisations
-    url(r'^stats/heartrate/last/(?P<days>\d+)/graph/$', graphs.heartrate),
-    url(r'^stats/heartrate/last/(?P<days>\d+)/$', views.stats.heartrate.last.as_view()),
+    url(r'^stats/last/(?P<feature>[a-z]+)/(?P<days>\d+)/$', views.stats.last.as_view()),
+    #url(r'^stats/last/(?P<feature>[a-z]+)/(?P<days>\d+)/graph/$', graphs.as_view()),
+    url(r'^stats/from/(?P<start>[0-9:\-T]+)/to/(?P<end>[0-9:\-T]+)/(?P<feature>[a-z]+)/$', views.stats.date_range.as_view()),
+    #url(r'^stats/heartrate/last/(?P<days>\d+)/$', views.stats.heartrate.last.as_view()),
     #url(r'^stats/heartrate/from//to/$'),
 
-    url(r'^stats/rr/last/(?P<days>\d+)/graph/$', graphs.rr),
-    url(r'^stats/rr/last/(?P<days>\d+)/$', views.stats.rr.last.as_view()),
-    #url(r'^stats/rr/from//to/$'),
-
-    url(r'^stats/gsr/last/(?P<days>\d+)/graph/$', graphs.gsr),
-    url(r'^stats/gsr/last/(?P<days>\d+)/$', views.stats.gsr.last.as_view()),
-    #url(r'^stats/gsr/from//to/$'),
-
-    url(r'^stats/temperature/last/(?P<days>\d+)/graph/$', graphs.temperature),
-    url(r'^stats/temperature/last/(?P<days>\d+)/$', views.stats.temperature.last.as_view()),
-    #url(r'^stats/temperature/from//to/$'),
-
-    url(r'^stats/acceleration/last/(?P<days>\d+)/graph/$', graphs.acceleration),
-    url(r'^stats/acceleration/last/(?P<days>\d+)/$', views.stats.acceleration.last.as_view()),
-    #url(r'^stats/acceleration/from//to/$'),
-
+    #url(r'^stats/rr/last/(?P<days>\d+)/graph/$', graphs.rr),
+    #url(r#'^stats/rr/last/(?P<days>\d+)/$', views.stats.rr.last.as_view()),
+    ##url(r'^stats/rr/from//to/$'),
+#
+    #url(r'^stats/gsr/last/(?P<days>\d+)/graph/$', graphs.gsr),
+    #url(r'^stats/gsr/last/(?P<days>\d+)/$', views.stats.gsr.last.as_view()),
+    ##url(r'^stats/gsr/from//to/$'),
+#
+    #url(r'^stats/temperature/last/(?P<days>\d+)/graph/$', graphs.temperature),
+    #url(r'^stats/temperature/last/(?P<days>\d+)/$', views.stats.temperature.last.as_view()),
+    ##url(r'^stats/temperature/from//to/$'),
+#
+    #url(r'^stats/acceleration/last/(?P<days>\d+)/graph/$', graphs.acceleration),
+    #url(r'^stats/acceleration/last/(?P<days>\d+)/$', views.stats.acceleration.last.as_view()),
+    ##url(r'^stats/acceleration/from//to/$'),
+#
+    #url(r'stats/heartrate/from/(?P<start>[0-9:\-T]+)/to/(?P<end>[0-9:\-T]+)/$', views.stats.heartrate.date_range.as_view()),
 
     url(r'rt/$', views.realTimeResponse.as_view(), name='rt'),
     url(r'uf/$', views.userFeedback.as_view(), name='uf'),

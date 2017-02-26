@@ -19,7 +19,7 @@
 {% block extra_javascript %}
     <script>
         $(document).ready(function () {
-            $("#nav_tab_hr").addClass("active");
+            $("#nav_tab_1d").addClass("active");
         });
     </script>
 {% endblock %}s
@@ -47,11 +47,11 @@
         <h1>Your statistics</h1>
 
         <ul class="nav nav-tabs nav-justified">
-            <li class="nav active" id="nav_tab_hr"><a href="#1d" data-toggle="tab">Last 1 Day</a></li>
-            <li class="nav" id="nav_tab_rr"><a href="#3d" data-toggle="tab">Last 3 Days</a></li>
-            <li class="nav" id="nav_tab_gsr"><a href="#1w" data-toggle="tab">Last Week</a></li>
-            <li class="nav" id="nav_tab_temp"><a href="#1m" data-toggle="tab">Last Month</a></li>
-            <li class="nav" id="nav_tab_acc"><a href="#1y" data-toggle="tab">Last Year</a></li>
+            <li class="nav active" id="nav_tab_1d"><a href="#1d" data-toggle="tab">Last 1 Day</a></li>
+            <li class="nav" id="nav_tab_3d"><a href="#3d" data-toggle="tab">Last 3 Days</a></li>
+            <li class="nav" id="nav_tab_1w"><a href="#1w" data-toggle="tab">Last Week</a></li>
+            <li class="nav" id="nav_tab_1m"><a href="#1m" data-toggle="tab">Last Month</a></li>
+            <li class="nav" id="nav_tab_1y"><a href="#1y" data-toggle="tab">Last Year</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -62,13 +62,13 @@
                     {% for i in data %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/1/graph/" alt="...">
+                                <img src="http://sleepify.zapto.org/api/stats/last/{{ i.url }}//1/graph/" alt="...">
                                 <div class="caption">
                                     <h3>{{ i.title }}</h3>
                                     <p>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/1/graph/?dl"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/{{ i.url }}/1/graph/?dl"
                                            class="btn btn-primary" role="button" target="_blank">Download</a>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/1/?format=json"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/{{ i.url }}/1/?format=json"
                                            class="btn btn-default" role="button" target="_blank">Get raw data</a>
                                     </p>
                                 </div>

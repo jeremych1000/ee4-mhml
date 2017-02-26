@@ -40,9 +40,26 @@ def initial_test(request):
 
 
 @api_view(['GET'])
-def heartrate(request, days):
+def simple_graph(request, feature, days=None, start=None, end=None):
     if request.user.is_authenticated():
-        r = queries.heartrate(request, days)
+        if feature == 'heartrate':
+            serializer = queries.heartrate(request, days)
+        elif feature == 'rr':
+            serializer = queries.rr(request, days)
+        elif feature == 'gsr':
+            serializer = queries.gsr(request, days)
+        elif feature == 'temperature':
+            serializer = queries.temperature(request, days)
+        elif feature == 'acceleration':
+            serializer = queries.acceleration(request, days)
+        # elif feature == 'sleep_duration':
+        #    serializer = queries.sleep_duration(request, days)
+        else:
+            pass
+
+
+        if feature == "heartrate":
+            r = queries.heartrate(request, days)
         # print("type", type(r.data))
         json = JSONRenderer().render(r.data)
         stream = BytesIO(json)

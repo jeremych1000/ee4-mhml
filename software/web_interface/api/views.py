@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status, serializers, viewsets
+from rest_framework.decorators import api_view
 
 import newML.functions
 from newML import models as ml_model
@@ -111,7 +112,7 @@ class realTimeResponse(APIView):
         print("DEBUG: ", json_data)
         username = json_data['username']
         data = json_data["data"]
-        print('Last timestamp data in json ',data[-1]["timestamp"])
+        print('Last timestamp data in json ', data[-1]["timestamp"])
         timestamp = datetime.strptime(data[-1]["timestamp"], "%d/%m/%y %H:%M:%S")
         feature = newML.functions.json2Feature(json_data, username, timestamp)
         user_object = User.objects.get(username=username)
@@ -134,55 +135,51 @@ class userFeedback(APIView):
 
 
 class stats():
-    class heartrate():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+    class last(APIView):
+        def get(self, request, feature, days):
+            #print("regex ", feature, " ----days", days)
+            if request.user.is_authenticated():
+                if feature == 'heartrate':
                     serializer = queries.heartrate(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    class rr():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+                elif feature == 'rr':
                     serializer = queries.rr(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    class gsr():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+                elif feature == 'gsr':
                     serializer = queries.gsr(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    class temperature():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+                elif feature == 'temperature':
                     serializer = queries.temperature(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    class acceleration():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+                elif feature == 'acceleration':
                     serializer = queries.acceleration(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
+                #elif feature == 'sleep_duration':
+                #    serializer = queries.sleep_duration(request, days)
                 else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+                    return Response(status=status.HTTP_204_NO_CONTENT)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    class date_range(APIView):
+        def get(self, request, feature, start, end):
+            #print(start, end)
+            start = datetime.strptime(start, '%Y-%m-%d')
+            end = datetime.strptime(end, '%Y-%m-%d')
+            ret = newML.functions.getFeatureInRange(request.user, start, end)
+
+            if feature == 'heartrate':
+                serializer = serializers.FeatureEntrySerializer.heartrate(ret, many=True)
+            elif feature == 'rr':
+                serializer = serializers.FeatureEntrySerializer.rr(ret, many=True)
+            elif feature == 'gsr':
+                serializer = serializers.FeatureEntrySerializer.gsr(ret, many=True)
+            elif feature == 'temperature':
+                serializer = serializers.FeatureEntrySerializer.temperature(ret, many=True)
+            elif feature == 'acceleration':
+                serializer = serializers.FeatureEntrySerializer.acceleration(ret, many=True)
+            # elif feature == 'sleep_duration':
+            #    serializer = serializers.FeatureEntrySerializer.sleep_duration(ret, many=True)
+            else:
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 # http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
