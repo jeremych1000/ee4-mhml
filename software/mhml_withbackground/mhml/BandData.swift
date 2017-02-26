@@ -271,6 +271,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                     }
                     
                     
+                    // api/uf/   //TO DO: upload JSON  stop button. 
+                    
                     /* Upload Data */
                     /* http://sleepify.zapto,org/ml/upload */
                     
@@ -423,12 +425,12 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                         
                         print(data)
                         
-                        Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                        //Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                         
                         self.resetArray()
                      
                         // Obtain sleep quality state every 10mins
-                        Alamofire.request("http://sleepify.zapto.org/api/on_off/").responseData { response in
+                        Alamofire.request("http://sleepify.zapto.org/api/rt/",method: .post, parameters: parameters, encoding:JSONEncoding.default).responseData { response in
                             debugPrint("All Response info: \(response)")
                             
                             if let data = response.result.value, let sleep_quality = String(data: data, encoding: .utf8){
