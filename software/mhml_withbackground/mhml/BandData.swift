@@ -271,8 +271,6 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                     }
                     
                     
-                    // api/uf/   //TO DO: upload JSON  stop button. 
-                    
                     /* Upload Data */
                     /* http://sleepify.zapto,org/ml/upload */
                     
@@ -425,12 +423,12 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
                         
                         print(data)
                         
-                        //Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                        Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                         
                         self.resetArray()
                      
                         // Obtain sleep quality state every 10mins
-                        Alamofire.request("http://sleepify.zapto.org/api/rt/",method: .post, parameters: parameters, encoding:JSONEncoding.default).responseData { response in
+                        Alamofire.request("http://sleepify.zapto.org/api/on_off/").responseData { response in
                             debugPrint("All Response info: \(response)")
                             
                             if let data = response.result.value, let sleep_quality = String(data: data, encoding: .utf8){
@@ -672,8 +670,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         // Add to array
         timeArrayHR.append(timeStringHR as AnyObject)
         
-        rrArray.append(tempRR as AnyObject)
-        hrArray.append(tempHR as AnyObject)
+        rrArray.append(rrString as AnyObject)
+        hrArray.append(hrString as AnyObject)
         hrQArray.append(hrQString as AnyObject)
     }
     
@@ -684,7 +682,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         
         timeArrayGSR.append(timeStringGSR as AnyObject)
         gsrString = String(format: "%.3f", tempGSR)
-        gsrArray.append(tempGSR as  AnyObject)
+        gsrArray.append(gsrString as  AnyObject)
     }
     
     func registerDataSkin(){
@@ -694,7 +692,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         
         timeArraySkin.append(timeStringSkin as AnyObject)
         skinString = String(format: "%.3f", tempSkin)
-        skinArray.append(tempSkin as AnyObject)
+        skinArray.append(skinString as AnyObject)
     }
     
     func registerDataAcc(){
@@ -707,9 +705,9 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
         accYString = String(format: "%.3f", tempY)
         accZString = String(format: "%.3f", tempZ)
         
-        accXArray.append(tempX as AnyObject)
-        accYArray.append(tempY as AnyObject)
-        accZArray.append(tempZ as AnyObject)
+        accXArray.append(accXString as AnyObject)
+        accYArray.append(accYString as AnyObject)
+        accZArray.append(accZString as AnyObject)
     }
     
     func LogHR(){
@@ -838,6 +836,14 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate {
             self.txtOutput.scrollRangeToVisible(NSRange.init(location: self.txtOutput.text.lengthOfBytes(using: String.Encoding.utf8) - 1, length: 1))
         }
     }
+    
+    
+    /*func appendIfDictionary(key:String, value: String){
+     if var dict = self.dictionary{
+     dict[key] = value;
+     self = String(dict);
+     }
+     }*/
     
     
     
