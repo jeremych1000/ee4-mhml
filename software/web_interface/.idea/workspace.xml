@@ -2,7 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c4a37a3-03a9-4731-9e85-5b2b1496594b" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-51.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-52.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-51.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-52.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Outlet/Outlet.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Outlet/OutletViewController.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Utilities/HMCharacteristicName.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Utilities/HMErrorCodeMessage.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Utilities/HMServiceName.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Utilities/Utility.swift" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-50.png" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Bar Chart-50.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-50.png" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Calendar-50.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Contents.json" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Bar Chart-50.imageset/Contents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Contents.json" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Assets.xcassets/Calendar-50.imageset/Contents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/BandData.swift" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/BandData.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Base.lproj/Main.storyboard" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/ControlsViewController.swift" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/ControlsViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/Services/Characteristic Cells/CharacteristicCell.xib" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/Services/Characteristic Cells/CharacteristicCell.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/Services/Characteristic Cells/SliderCharacteristicCell.xib" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/Services/Characteristic Cells/SliderCharacteristicCell.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/Services/Characteristic Cells/SwitchCharacteristicCell.swift" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/Services/Characteristic Cells/SwitchCharacteristicCell.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/Services/Characteristic Cells/SwitchCharacteristicCell.xib" afterPath="$PROJECT_DIR$/../mhml_withbackground/mhml/Homes/Accessories/Services/Characteristic Cells/SwitchCharacteristicCell.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_interface/settings.py" afterPath="$PROJECT_DIR$/web_interface/settings.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,6 +75,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="67" lean-forward="true" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="download.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/personal/templates/personal/download.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -92,11 +127,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web_interface/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="216" column="36" lean-forward="true" selection-start-line="216" selection-start-column="10" selection-end-line="216" selection-end-column="36" />
+              <caret line="216" column="36" lean-forward="false" selection-start-line="216" selection-start-column="10" selection-end-line="216" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -107,16 +142,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
               <caret line="26" column="28" lean-forward="true" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/personal/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -562,7 +587,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.099609375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -835,16 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="90" lean-forward="false" selection-start-line="25" selection-start-column="90" selection-end-line="25" selection-end-column="90" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1020,8 +1035,18 @@
     <entry file="file://$PROJECT_DIR$/web_interface/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="216" column="36" lean-forward="true" selection-start-line="216" selection-start-column="10" selection-end-line="216" selection-end-column="36" />
+          <caret line="216" column="36" lean-forward="false" selection-start-line="216" selection-start-column="10" selection-end-line="216" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="67" lean-forward="true" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
