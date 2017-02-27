@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status, serializers, viewsets
 from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 import newML.functions
 from newML import models as ml_model
@@ -182,9 +184,9 @@ class stats():
 
 # http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     def get(self, request):
         json_result = "I'm a teapot."
         return Response(json_result, status=418)
-        # return HttpResponse("I'm a teapot.", content_type="application/json", status=418)
 
-        # Todo: Need  a class to handle user quality feedback, add entrey to sleep quality and reinsert label back to each feature entry

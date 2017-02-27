@@ -37,3 +37,6 @@ def privacy(request):
 
 def blank(request):
     return render(request, "personal/blank.html")
+
+def test(request):
+    return render(request, "personal/index.html")

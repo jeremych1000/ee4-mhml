@@ -8,4 +8,6 @@ urlpatterns = [
     url(r'^download/$', views.download, name='download'),
     url(r'^privacy/$', views.privacy, name='privacy'),
     url(r'^blank/$', views.blank),
+
+    url(r'^test/$', views.test),
 ]
