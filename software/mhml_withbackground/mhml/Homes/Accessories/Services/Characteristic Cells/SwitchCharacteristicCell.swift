@@ -46,4 +46,7 @@ class SwitchCharacteristicCell: CharacteristicCell {
         setValue(valueSwitch.isOn as NSNumber?, notify: true)
     }
     
+    //////////////////try to change value
+    
 }
+

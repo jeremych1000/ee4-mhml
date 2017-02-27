@@ -11,8 +11,6 @@
 		1610A3CE1E52156500946989 /* BandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1610A38F1E5139EB00946989 /* BandData.swift */; };
 		1680DC881E4C8BDC009DA146 /* mhmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC871E4C8BDC009DA146 /* mhmlTests.swift */; };
 		16B1F3631E5216BF009E0A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1680DC761E4C8BDB009DA146 /* Main.storyboard */; };
-		561F067C1E632C750088FA2B /* Outlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F067A1E632C750088FA2B /* Outlet.swift */; };
-		561F067D1E632C750088FA2B /* OutletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F067B1E632C750088FA2B /* OutletViewController.swift */; };
 		56B146F61E52059900CD3067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC721E4C8BDB009DA146 /* AppDelegate.swift */; };
 		56B146F71E52059900CD3067 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC741E4C8BDB009DA146 /* TabBarController.swift */; };
 		56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF6D821E4D414F00F41198 /* FlightReminder.swift */; };
@@ -88,10 +86,6 @@
 		56C13BB41E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B6F1E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift */; };
 		56C13BB51E5CB4AB00D755CB /* UITableViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B701E5CB4AB00D755CB /* UITableViewController+Convenience.swift */; };
 		56C13BB61E5CB4AB00D755CB /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13B711E5CB4AB00D755CB /* UIViewController+Convenience.swift */; };
-		56E6141F1E6329D2002BF657 /* HMCharacteristicName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141B1E6329D2002BF657 /* HMCharacteristicName.swift */; };
-		56E614201E6329D2002BF657 /* HMErrorCodeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141C1E6329D2002BF657 /* HMErrorCodeMessage.swift */; };
-		56E614211E6329D2002BF657 /* HMServiceName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141D1E6329D2002BF657 /* HMServiceName.swift */; };
-		56E614221E6329D2002BF657 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141E1E6329D2002BF657 /* Utility.swift */; };
 		685983AD5E417A8C163C8344 /* Pods_mhml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E238BCE810A1E642DDA631 /* Pods_mhml.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,8 +114,6 @@
 		1680DC891E4C8BDC009DA146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16EF6D821E4D414F00F41198 /* FlightReminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightReminder.swift; sourceTree = "<group>"; };
 		30E238BCE810A1E642DDA631 /* Pods_mhml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mhml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		561F067A1E632C750088FA2B /* Outlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outlet.swift; sourceTree = "<group>"; };
-		561F067B1E632C750088FA2B /* OutletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutletViewController.swift; sourceTree = "<group>"; };
 		56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
 		56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMCatalogViewController.swift; sourceTree = "<group>"; };
 		56C13B161E5CB1F900D755CB /* mhml.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mhml.entitlements; sourceTree = "<group>"; };
@@ -195,10 +187,6 @@
 		56C13B6F1E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboardSegue+IntendedDestination.swift"; sourceTree = "<group>"; };
 		56C13B701E5CB4AB00D755CB /* UITableViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewController+Convenience.swift"; sourceTree = "<group>"; };
 		56C13B711E5CB4AB00D755CB /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
-		56E6141B1E6329D2002BF657 /* HMCharacteristicName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMCharacteristicName.swift; sourceTree = "<group>"; };
-		56E6141C1E6329D2002BF657 /* HMErrorCodeMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMErrorCodeMessage.swift; sourceTree = "<group>"; };
-		56E6141D1E6329D2002BF657 /* HMServiceName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMServiceName.swift; sourceTree = "<group>"; };
-		56E6141E1E6329D2002BF657 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		9ABD215F84BDEBC255FB294D /* Pods-mhml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mhml.release.xcconfig"; path = "Pods/Target Support Files/Pods-mhml/Pods-mhml.release.xcconfig"; sourceTree = "<group>"; };
 		E68512D9BEE36A4F718179EC /* Pods-mhml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mhml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mhml/Pods-mhml.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,7 +248,6 @@
 		1680DC711E4C8BDB009DA146 /* mhml */ = {
 			isa = PBXGroup;
 			children = (
-				561F06791E632C750088FA2B /* Outlet */,
 				56C13B161E5CB1F900D755CB /* mhml.entitlements */,
 				56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */,
 				1680DC721E4C8BDB009DA146 /* AppDelegate.swift */,
@@ -276,7 +263,6 @@
 				56C13B631E5CB4AB00D755CB /* Supporting Files */,
 				1680DC7B1E4C8BDB009DA146 /* LaunchScreen.storyboard */,
 				1680DC7E1E4C8BDB009DA146 /* Info.plist */,
-				56E6141A1E6329D2002BF657 /* Utilities */,
 			);
 			path = mhml;
 			sourceTree = "<group>";
@@ -288,15 +274,6 @@
 				1680DC891E4C8BDC009DA146 /* Info.plist */,
 			);
 			path = mhmlTests;
-			sourceTree = "<group>";
-		};
-		561F06791E632C750088FA2B /* Outlet */ = {
-			isa = PBXGroup;
-			children = (
-				561F067A1E632C750088FA2B /* Outlet.swift */,
-				561F067B1E632C750088FA2B /* OutletViewController.swift */,
-			);
-			path = Outlet;
 			sourceTree = "<group>";
 		};
 		56C13B1A1E5CB4AB00D755CB /* Base.lproj */ = {
@@ -506,17 +483,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		56E6141A1E6329D2002BF657 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				56E6141B1E6329D2002BF657 /* HMCharacteristicName.swift */,
-				56E6141C1E6329D2002BF657 /* HMErrorCodeMessage.swift */,
-				56E6141D1E6329D2002BF657 /* HMServiceName.swift */,
-				56E6141E1E6329D2002BF657 /* Utility.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
 		A84A8A3A90B2212B45901E12 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,7 +545,7 @@
 				TargetAttributes = {
 					1680DC6E1E4C8BDB009DA146 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = VPJUWG3WEE;
+						DevelopmentTeam = 632MQG5DMJ;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -697,7 +663,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56E614221E6329D2002BF657 /* Utility.swift in Sources */,
 				56C13BB21E5CB4AB00D755CB /* UIAlertController+Convenience.swift in Sources */,
 				56C13B791E5CB4AB00D755CB /* ControlsTableViewDataSource.swift in Sources */,
 				56C13B8C1E5CB4AB00D755CB /* ActionSetViewController.swift in Sources */,
@@ -709,7 +674,6 @@
 				56C13B751E5CB4AB00D755CB /* FavoritesManager.swift in Sources */,
 				56C13B8A1E5CB4AB00D755CB /* ActionCell.swift in Sources */,
 				56C13B8D1E5CB4AB00D755CB /* HomeKitObjectCollection.swift in Sources */,
-				561F067C1E632C750088FA2B /* Outlet.swift in Sources */,
 				56C13B821E5CB4AB00D755CB /* SwitchCharacteristicCell.swift in Sources */,
 				56C13BA71E5CB4AB00D755CB /* ZoneViewController.swift in Sources */,
 				56C13BAF1E5CB4AB00D755CB /* HMService+Properties.swift in Sources */,
@@ -733,7 +697,6 @@
 				56C13B861E5CB4AB00D755CB /* CharacteristicsTableViewDataSource.swift in Sources */,
 				56C13B971E5CB4AB00D755CB /* CharacteristicTriggerViewController.swift in Sources */,
 				56C13BB31E5CB4AB00D755CB /* UIColor+Custom.swift in Sources */,
-				56E614211E6329D2002BF657 /* HMServiceName.swift in Sources */,
 				56C13B8B1E5CB4AB00D755CB /* ActionSetCreator.swift in Sources */,
 				56C13BA21E5CB4AB00D755CB /* TimerTriggerCreator.swift in Sources */,
 				1610A3CE1E52156500946989 /* BandData.swift in Sources */,
@@ -741,7 +704,6 @@
 				56C13B911E5CB4AB00D755CB /* HomeViewController.swift in Sources */,
 				56C13B9C1E5CB4AB00D755CB /* EventTriggerCreator.swift in Sources */,
 				56C13BAE1E5CB4AB00D755CB /* HMHome+Properties.swift in Sources */,
-				56E614201E6329D2002BF657 /* HMErrorCodeMessage.swift in Sources */,
 				56C13B981E5CB4AB00D755CB /* ConditionCell.swift in Sources */,
 				56C13B891E5CB4AB00D755CB /* ServicesViewController.swift in Sources */,
 				56C13B801E5CB4AB00D755CB /* SliderCharacteristicCell.swift in Sources */,
@@ -752,9 +714,7 @@
 				56C13B8F1E5CB4AB00D755CB /* HomeListViewController.swift in Sources */,
 				56C13B881E5CB4AB00D755CB /* ServiceCell.swift in Sources */,
 				56C13B901E5CB4AB00D755CB /* HomeStore.swift in Sources */,
-				561F067D1E632C750088FA2B /* OutletViewController.swift in Sources */,
 				56C13B771E5CB4AB00D755CB /* AccessoryBrowserViewController.swift in Sources */,
-				56E6141F1E6329D2002BF657 /* HMCharacteristicName.swift in Sources */,
 				56C13B9A1E5CB4AB00D755CB /* TimeConditionViewController.swift in Sources */,
 				56C13B991E5CB4AB00D755CB /* SegmentedTimeCell.swift in Sources */,
 				56C13BAA1E5CB4AB00D755CB /* CNMutablePostalAddress+Convenience.swift in Sources */,
@@ -924,7 +884,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = mhml/mhml.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VPJUWG3WEE;
+				DEVELOPMENT_TEAM = 632MQG5DMJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
@@ -932,7 +892,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhmlth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhmlth1234;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -946,7 +906,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = mhml/mhml.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VPJUWG3WEE;
+				DEVELOPMENT_TEAM = 632MQG5DMJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
@@ -954,7 +914,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhmlth;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhmlth1234;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
