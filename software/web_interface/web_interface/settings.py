@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'myaccount',
     'MLBlock',
     'newML',
-    # 'alpr',
     'daterange_filter',
 
     # REST API

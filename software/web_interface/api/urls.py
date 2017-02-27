@@ -8,8 +8,6 @@ urlpatterns = [
     # index
     url(r'^$', RedirectView.as_view(url='/docs/api', permanent=False), name='index'),
 
-    # rest token JWT auth
-    url(r'^auth/token/$', obtain_jwt_token),
     # rest auth
     url(r'^auth/registration/', include('rest_auth.registration.urls')),
     url(r'^auth/', include('rest_auth.urls')),
