@@ -44,6 +44,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
 
         
     }
+    
+    var valuet = ""
 
     var globalCounter = 0
     var tempHR: Double = 0.0
@@ -552,14 +554,25 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     
     //MARK: Function
     
-    func writeplugvalue(value: Bool) {
-        switchaccessory!.services[1].characteristics[1].writeValue(value, completionHandler: {(error: Error?) -> Void in
+    func writeplugvalue(value: String) {
+        if value == "1"{
+            activeRoom!.accessories[1].services[1].characteristics[1].writeValue(true, completionHandler: {(error: Error?) -> Void in
             if error == nil {
                 self.output("plug switch written")
             } else {
                 self.output("error")
             }
         })
+        } else {
+            activeRoom!.accessories[1].services[1].characteristics[1].writeValue(false, completionHandler: {(error: Error?) -> Void in
+                if error == nil {
+                    self.output("plug switch written")
+                } else {
+                    self.output("error")
+                }
+            })
+            
+        }
     }
 
 
@@ -657,36 +670,39 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                                         encoding: JSONEncoding.default,
                                         headers: headers)
                                     
+                                    // Obtain sleep quality state every 10mins
+                                    Alamofire.request("http://sleepify.zapto.org/api/rt/",method: .post, parameters: parameters, encoding:JSONEncoding.default, headers: headers).responseJSON { response in
+                                        debugPrint("All Response info: \(response)")
+                                        
+                                        if let data = response.result.value{
+                                            
+                                            let value = data as! NSDictionary
+                                            
+                                            self.valuet = value.object(forKey: "quality") as! String
+                                            
+                                            
+                                            if self.valuet == "0" {
+                                                self.output("Sleep Quality: Good")
+                                                self.writeplugvalue(value: "1")
+                                            }
+                                            else {
+                                                self.output("Sleep Quality: Bad")
+                                                self.writeplugvalue(value: "0")
+                                            }
+                                        }
+                                    }
+                                    
                                 }
                         }
                         
-                      //  Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
-                            
-                      //      debugPrint("All Response info: \(response)")
-                       // }
+            
                         
                         
                         self.resetArray()
                         
                            // api/uf/   //TO DO: upload JSON  stop button.
                      
-                        // Obtain sleep quality state every 10mins
-                       /* Alamofire.request("http://sleepify.zapto.org/api/rt/",method: .post, parameters: parameters, encoding:JSONEncoding.default).responseData { response in
-                            debugPrint("All Response info: \(response)")
-                            
-                            if let data = response.result.value, let sleep_quality = String(data: data, encoding: .utf8){
-                                print("Data: \(sleep_quality)")
-                                if sleep_quality == "1" {
-                                    self.output("Sleep Quality: Good")
-                                }
-                                else if sleep_quality == "0" {
-                                    self.output("Sleep Quality: Bad")
-                                }
-                                else {
-                                    self.output("Sleep Quality: Undefined")
-                                }
-                            }
-                        }*/
+
                         
                     }
                 })
