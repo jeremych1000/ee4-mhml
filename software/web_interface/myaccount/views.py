@@ -3,9 +3,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from sendfile import sendfile
 
+from datetime import datetime, date, timedelta
+from django.utils import timezone
+
 from myaccount.forms import UserForm, UserProfileForm, TestPostForm
 from myaccount.models import User
 from web_interface.decorators import login_required, login_required_message_and_redirect
+from newML.models import FeatureEntry
+
 
 @login_required_message_and_redirect(message="You need to be signed in to view this page.")
 def profile(request):
@@ -17,6 +22,7 @@ def profile(request):
         return render(request, "myaccount/profile.html", {'user': user})
     else:
         return render(request, "myaccount/profile.html")
+
 
 @login_required_message_and_redirect(message="You need to be signed in to view this page.")
 def preferences(request):
@@ -34,22 +40,38 @@ def preferences(request):
     else:
         return render(request, "myaccount/preferences.html")
 
+
 @login_required_message_and_redirect(message="You need to be signed in to view this page.")
 def stats(request):
     username = None
     if request.user.is_authenticated():
         username = request.user.username
-        data=[
+
+        user_object = User.objects.get(username=request.user)
+
+        today = timezone.now()
+        start_date = today - timedelta(1)
+        user_feature_entries = FeatureEntry.objects.all().filter(user=user_object)
+        user_feature_entries_yesterday = user_feature_entries.filter(date__gte=start_date)
+
+        data = [
             {'title': 'Heartrate', 'url': 'mean_hr'},
             {'title': 'RR', 'url': 'mean_rr'},
             {'title': 'GSR', 'url': 'mean_gsr'},
             {'title': 'Temperature', 'url': 'mean_temp'},
             {'title': 'Acceleration', 'url': 'mean_acc'},
-            #{'title': 'Sleep Duration', 'url': 'sleep_duration'},
+            # {'title': 'Sleep Duration', 'url': 'sleep_duration'},
         ]
-        return render(request, "myaccount/statistics.html", {'data': data})
+
+        no_entries = {
+            "total": len(user_feature_entries),
+            "yesterday": len(user_feature_entries_yesterday),
+        }
+
+        return render(request, "myaccount/statistics.html", {'data': data, 'no_entries': no_entries})
     else:
         return render(request, "myaccount/statistics.html")
+
 
 def test_post(request):
     success = False

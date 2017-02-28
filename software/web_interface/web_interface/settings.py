@@ -87,7 +87,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 # custom api template processor
-                'api.context_processors.quick_stats',
+                'api.context_processors.live_data',
                 # django defaults
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

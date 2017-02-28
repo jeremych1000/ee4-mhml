@@ -190,6 +190,9 @@ class teapot(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
     def get(self, request):
+        print(request.META)
+        print("adsfasfdadfa", request.META['HTTP_AUTHORIZATION'])
+
         json_result = "I'm a teapot."
         return Response(json_result, status=418)
 

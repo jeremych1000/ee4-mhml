@@ -227,49 +227,65 @@
                     <br>
                     <div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
                         <ul class="nav nav-pills nav-stacked">
-                            <h3>Quick Stats</h3>
+                            <h3>Live Data</h3>
 
-                            {{ api_user.username }}
-                            <li>Yesterday</li>
+                            You are logged in as: {{ current_user }} <br/>
+                            Refresh Interval: 10 seconds
+
+                            <h5>Heartrate</h5>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                     style="width: 80%; min-width: 2em;">
-                                    80
+                                     aria-valuenow="{{ mean_hr.current }}" aria-valuemin="{{ mean_hr.min }}"
+                                     aria-valuemax="{{ mean_hr.max }}"
+                                     style="width: {{ mean_hr.width }}%; min-width: 2em;">
+                                    {{ mean_hr.current }}
                                 </div>
                             </div>
+
+                            <h5>RR</h5>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-success active"
                                      role="progressbar"
-                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
-                                     style="width: 60%; min-width: 2em;">
-                                    60
+                                     aria-valuenow="{{ mean_rr.current }}" aria-valuemin="{{ mean_rr.min }}"
+                                     aria-valuemax="{{ mean_rr.max }}"
+                                     style="width: {{ mean_rr.width }}%; min-width: 2em;">
+                                    {{ mean_rr.current }}
                                 </div>
                             </div>
+
+                            <h5>GSR</h5>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-info active"
                                      role="progressbar"
-                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-                                     style="width: 50%; min-width: 2em;">
-                                    50
+                                     aria-valuenow="{{ mean_gsr.current }}" aria-valuemin="{{ mean_gsr.min }}"
+                                     aria-valuemax="{{ mean_gsr.max }}"
+                                     style="width: {{ mean_gsr.width }}%; min-width: 2em;">
+                                    {{ mean_gsr.current }}
                                 </div>
                             </div>
+
+                            <h5>Temperature</h5>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-warning active"
                                      role="progressbar"
-                                     aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"
-                                     style="width: 30%; min-width: 2em;">
-                                    30
+                                     aria-valuenow="{{ mean_temp.current }}" aria-valuemin="{{ mean_temp.min }}"
+                                     aria-valuemax="{{ mean_temp.max }}"
+                                     style="width: {{ mean_temp.width }}%; min-width: 2em;">
+                                    {{ mean_temp.current }}
                                 </div>
                             </div>
+
+                            <h5>Acceleration</h5>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped progress-bar-danger active"
                                      role="progressbar"
-                                     aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"
-                                     style="width: 15%; min-width: 2em;">
-                                    15
+                                     aria-valuenow="{{ mean_acc.current }}" aria-valuemin="{{ mean_acc.min }}"
+                                     aria-valuemax="{{ mean_acc.max }}"
+                                     style="width: {{ mean_acc.width }}%; min-width: 2em;">
+                                    {{ mean_acc.current }}
                                 </div>
                             </div>
+
                         </ul>
                     </div> <!--well bs-sidebar affix-->
 

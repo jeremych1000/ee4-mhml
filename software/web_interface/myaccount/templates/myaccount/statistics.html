@@ -83,6 +83,14 @@
     {% if user.is_authenticated %}
         <h1>Your statistics</h1>
 
+        <p>
+            Total Sleep Data Entries: {{ no_entries.total }}
+            <br />
+            Total Sleep Data Entries Yesterday: {{ no_entries.yesterday }}
+        </p>
+
+        <br />
+
         <ul class="nav nav-tabs nav-justified">
             <li class="nav active" id="nav_tab_1d"><a href="#1d" data-toggle="tab">Last 1 Day</a></li>
             <li class="nav" id="nav_tab_3d"><a href="#3d" data-toggle="tab">Last 3 Days</a></li>
