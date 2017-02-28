@@ -612,9 +612,9 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                             datat.updateValue("\(self.accXArray[i])", forKey: "AccX")
                             datat.updateValue("\(self.accYArray[i])", forKey: "AccY")
                             datat.updateValue("\(self.accZArray[i])", forKey: "AccZ")
-                          //  datat.updateValue(self.dataservice[1].characteristics[1].value!, forKey: "RoomTemp")
-                          //  datat.updateValue(self.dataservice[2].characteristics[1].value!, forKey: "Humidity")
-                          //  datat.updateValue(self.readppm.value!, forKey: "PPM")
+                            datat.updateValue(self.dataservice[1].characteristics[1].value!, forKey: "RoomTemp")
+                            datat.updateValue(self.dataservice[2].characteristics[1].value!, forKey: "Humidity")
+                            datat.updateValue(self.readppm.value!, forKey: "PPM")
                             datat.updateValue("1", forKey: "outcome")
                             
                             data.append(datat)
@@ -626,27 +626,36 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                         
                         
                         let sessionManager = Alamofire.SessionManager.default
-                        sessionManager.request("http://sleepify.zapto.org/blank/", method: .get)
+                        sessionManager.request("http://sleepify.zapto.org/api/csrf/", method: .get)
                             .responseString { response in
                                 if let headerFields = response.response?.allHeaderFields as? [String: String],
                                     let URL = response.response?.url {
-                                    let csrf_token = headerFields["Set-Cookie"]!
+                                    let csrf_token = headerFields["Set-Cookie"]
                                     let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
                                     
-                                    let startIndex = csrf_token.index(csrf_token.startIndex, offsetBy:10)
-                                    let endIndex = csrf_token.index(csrf_token.startIndex, offsetBy: 73)
+                                    let startIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy:10)
+                                    let endIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy: 73)
                                     
-                                    let v = csrf_token[startIndex...endIndex]
+                                    let v = csrf_token?[startIndex!...endIndex!]
+                                    print("crsf \(v)")
+                                    print("url \(response.result.value)")
                                     
                                     let headers: HTTPHeaders = [
-                                        //"X-CSRFToken": v,
+                                        "X-CSRFToken": v!,
                                         "Cookie" : ""
                                     ]
+                                    
+                                    Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders = headers
                                     
                                     Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
                                     
                         
-                                    sessionManager.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                                    sessionManager.request(
+                                        "http://sleepify.zapto.org/api/raw_data/",
+                                        method: .post,
+                                        parameters: parameters,
+                                        encoding: JSONEncoding.default,
+                                        headers: headers)
                                     
                                 }
                         }

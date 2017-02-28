@@ -75,37 +75,61 @@ class LoginViewController: UIViewController {
         ]
         var statusCode: Int = 0
         
-        Alamofire.request("http://sleepify.zapto.org/api/auth/login/",method: .post, parameters: parameters, encoding: JSONEncoding.default)
-            .responseJSON { response in
-                
-                statusCode = (response.response?.statusCode)! //Gets HTTP status code, useful for debugging
-                if let value = response.result.value {
-                    //Handle the results as JSON
-                    //let post = JSON(value)
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.request("http://sleepify.zapto.org/api/csrf/", method: .get)
+            .responseString { response in
+                if let headerFields = response.response?.allHeaderFields as? [String: String],
+                    let URL = response.response?.url {
+                    let csrf_token = headerFields["Set-Cookie"]
+                    let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
                     
-                    //if let key = post["session_id"].string {
-                    //At this point the user should have authenticated, store the session id and use it as you wish
-                   // self.token = value as! String
-                    print("TOKEN:  \(value)")
-                } else {
-                    print("error detected")
+                    let startIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy:10)
+                    let endIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy: 73)
+                    
+                    let v = csrf_token?[startIndex!...endIndex!]
+                    
+                    let headers: HTTPHeaders = [
+                        "X-CSRFToken": v!,
+                        "Cookie" : ""
+                    ]
+                 
+                    Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders = headers
+                    
+                    Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
+                    sessionManager.request(
+                        "http://sleepify.zapto.org/api/auth/login/",
+                        method: .post,
+                        parameters: parameters,
+                        encoding: JSONEncoding.default,
+                        headers:headers
+                        ).responseJSON { response in
+                            
+                            statusCode = (response.response?.statusCode)! //Gets HTTP status code, useful for debugging
+                            if let value = response.result.value {
+                                print("TOKEN:  \(value)")
+                            } else {
+                                print("error detected")
+                            }
+                        }
                 }
-            }
-        //}
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
-    
-    
-    
 
-
-
-    
-    
-    
-    
-    
-    
     /*
     // MARK: - Navigation
 
