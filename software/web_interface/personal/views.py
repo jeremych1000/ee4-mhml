@@ -32,6 +32,11 @@ def about(request):
 def download(request):
     return render(request, "personal/download.html")
 
+def privacy(request):
+    return render(request, "personal/privacy.html")
 
 def blank(request):
     return render(request, "personal/blank.html")
+
+def test(request):
+    return render(request, "personal/index.html")

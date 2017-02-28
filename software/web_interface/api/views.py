@@ -3,11 +3,15 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status, serializers, viewsets
+from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 import newML.functions
 from newML import models as ml_model
@@ -25,11 +29,13 @@ class random_number(APIView):
         result = random.getrandbits(1)
         return Response(result, status=status.HTTP_200_OK)
 
-
 class raw_data(APIView):
     file_prefix = "MSBand2_ALL_data_"
 
+    permission_classes = (AllowAny,)
+
     def post(self, request):
+        print("raw_data_post", request)
         json_data = json.loads(request.body.decode("utf-8"))
         print("DEBUG: ", json_data)
 
@@ -57,11 +63,10 @@ class raw_data(APIView):
             last_time = datetime.utcfromtimestamp(0).strftime("%d/%m/%y %H:%M:%S")
         else:
             last_row = csv_functions.get_last_row(final_path)[0]
-            last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
-
-        # begin data extraction from JSOn
-
-        HR = []
+            if last_row == "Time":
+                last_time = datetime.utcfromtimestamp(0).strftime("%d/%m/%y %H:%M:%S")
+            else:
+                last_time = datetime.strptime(last_row, '%d/%m/%y %H:%M:%S').strftime("%d/%m/%y %H:%M:%S")
 
         for data in json_data['data']:
             timestamp = datetime.strptime(data["timestamp"], "%d/%m/%y %H:%M:%S").strftime("%d/%m/%y %H:%M:%S")
@@ -111,7 +116,7 @@ class realTimeResponse(APIView):
         print("DEBUG: ", json_data)
         username = json_data['username']
         data = json_data["data"]
-        print('Last timestamp data in json ',data[-1]["timestamp"])
+        print('Last timestamp data in json ', data[-1]["timestamp"])
         timestamp = datetime.strptime(data[-1]["timestamp"], "%d/%m/%y %H:%M:%S")
         feature = newML.functions.json2Feature(json_data, username, timestamp)
         user_object = User.objects.get(username=username)
@@ -134,61 +139,57 @@ class userFeedback(APIView):
 
 
 class stats():
-    class heartrate():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+    class last(APIView):
+        def get(self, request, feature, days):
+            #print("regex ", feature, " ----days", days)
+            if request.user.is_authenticated():
+                if feature == 'mean_hr':
                     serializer = queries.heartrate(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    class rr():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+                elif feature == 'mean_rr':
                     serializer = queries.rr(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    class gsr():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+                elif feature == 'mean_gsr':
                     serializer = queries.gsr(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    class temperature():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+                elif feature == 'mean_temp':
                     serializer = queries.temperature(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
-                else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-    class acceleration():
-        class last(APIView):
-            def get(self, request, days):
-                if request.user.is_authenticated():
+                elif feature == 'mean_acc':
                     serializer = queries.acceleration(request, days)
-                    return Response(serializer.data, status=status.HTTP_200_OK)
-
+                #elif feature == 'sleep_duration':
+                #    serializer = queries.sleep_duration(request, days)
                 else:
-                    return Response(status=status.HTTP_401_UNAUTHORIZED)
+                    return Response(status=status.HTTP_204_NO_CONTENT)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    class date_range(APIView):
+        def get(self, request, feature, start, end):
+            #print(start, end)
+            start = datetime.strptime(start, '%Y-%m-%d')
+            end = datetime.strptime(end, '%Y-%m-%d')
+            ret = newML.functions.getFeatureInRange(request.user, start, end)
+
+            if feature == 'mean_hr':
+                serializer = serializers.FeatureEntrySerializer.mean_hr(ret, many=True)
+            elif feature == 'mean_rr':
+                serializer = serializers.FeatureEntrySerializer.mean_rr(ret, many=True)
+            elif feature == 'mean_gsr':
+                serializer = serializers.FeatureEntrySerializer.mean_gsr(ret, many=True)
+            elif feature == 'mean_temp':
+                serializer = serializers.FeatureEntrySerializer.mean_temp(ret, many=True)
+            elif feature == 'mean_acc':
+                serializer = serializers.FeatureEntrySerializer.mean_acc(ret, many=True)
+            # elif feature == 'sleep_duration':
+            #    serializer = serializers.FeatureEntrySerializer.sleep_duration(ret, many=True)
+            else:
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 # http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
     def get(self, request):
         json_result = "I'm a teapot."
         return Response(json_result, status=418)
-        # return HttpResponse("I'm a teapot.", content_type="application/json", status=418)
 
-        # Todo: Need  a class to handle user quality feedback, add entrey to sleep quality and reinsert label back to each feature entry

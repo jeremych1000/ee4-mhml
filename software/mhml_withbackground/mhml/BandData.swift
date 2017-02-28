@@ -40,11 +40,11 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        homeManager.delegate = self
-        
+       homeManager.delegate = self
+
         
     }
-    
+
     var globalCounter = 0
     var tempHR: Double = 0.0
     var tempRR: Double = 0.0
@@ -113,7 +113,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     @IBOutlet weak var plugswitch: UISwitch!
     @IBOutlet weak var gsrSwitch: UISwitch!
     
-    
+   
     @IBOutlet weak var goodBadSwitch: UISwitch!
     
     var client: MSBClient!
@@ -179,8 +179,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         
         for service in accessory.services {
             //if service.serviceType == HMServiceTypeThermostat{
-            dataservice.append(service as HMService)
-            print("\(service.name) : \(service.characteristics) : \(service.serviceType)")
+                dataservice.append(service as HMService)
+                print("\(service.name) : \(service.characteristics) : \(service.serviceType)")
             //}
         }
         
@@ -195,7 +195,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                 print("Something1 went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
             }
         })
-        
+
         print("Hum: \(dataservice[2].characteristics[1].value!) %")
         
         dataservice[2].characteristics[1].enableNotification(true, completionHandler: { (error) -> Void in
@@ -207,98 +207,98 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         print("PPM: \(dataservice[3].characteristics[2].value!) ppm")
         
         readppm = dataservice[3].characteristics[2]
-        
+            
         //dataservice[3].characteristics[2].enableNotification(true, completionHandler: { (error) -> Void in
         //    if error != nil {
         //        print("Something3 went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
         //    }
         //})
-        
+
         
         /*let readtemp = dataservice[3].characteristics[2] as HMCharacteristic
-         readtemp.readValue(completionHandler: {(error: Error?) -> Void in
-         if error == nil {
-         self.output("New PPM: \(readtemp.value)")
-         } else {
-         print("Error")
-         }
-         } )*/
-        
-        
+        readtemp.readValue(completionHandler: {(error: Error?) -> Void in
+            if error == nil {
+                self.output("New PPM: \(readtemp.value)")
+            } else {
+                print("Error")
+            }
+        } )*/
+    
+    
         
         
         /*let service = dataservice[1] as HMService
-         for characteristic in service.characteristics {
-         print("Service: \(service.name) has characteristicType: \(characteristic.characteristicType) and ReadableCharType: \(characteristicName.getCharacteristicType(characteristic.characteristicType))")
-         
-         if characteristic.characteristicType == HMCharacteristicTypeCurrentTemperature {
-         print("Temperature: \(characteristic.value)")
-         
-         //dataCharacteristic.append(characteristic as HMCharacteristic)
-         
-         characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-         if error != nil {
-         print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-         }
-         })
-         }
-         
-         if characteristic.characteristicType == "E863F10B-079E-48FF-8F27-9C2605A29F52" {
-         print("PPM: \(characteristic.value)")
-         }
-         
-         } */
+        for characteristic in service.characteristics {
+            print("Service: \(service.name) has characteristicType: \(characteristic.characteristicType) and ReadableCharType: \(characteristicName.getCharacteristicType(characteristic.characteristicType))")
+            
+            if characteristic.characteristicType == HMCharacteristicTypeCurrentTemperature {
+                print("Temperature: \(characteristic.value)")
+                
+                //dataCharacteristic.append(characteristic as HMCharacteristic)
+                
+                characteristic.enableNotification(true, completionHandler: { (error) -> Void in
+                    if error != nil {
+                        print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
+                    }
+                })
+            }
+            
+            if characteristic.characteristicType == "E863F10B-079E-48FF-8F27-9C2605A29F52" {
+                print("PPM: \(characteristic.value)")
+            }
+            
+        } */
+
         
         
         
-        
-        /* for service in accessory.services {
-         if service.serviceType == HMServiceTypeThermostat {
-         dataservice.append(service as HMService)
-         }
-         //print("data: \(service)")
-         print("one")
-         for item in service.characteristics {
-         let characteristic = item as HMCharacteristic
-         if characteristic.characteristicType == HMCharacteristicTypeCurrentTemperature {
-         print("Temperature: \(characteristic.value) : \(characteristic.metadata)")
-         dataCharacteristic.append(characteristic as HMCharacteristic)
-         
-         characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-         if error != nil {
-         print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-         }
-         })
-         
-         } else if characteristic.characteristicType == HMCharacteristicTypeCurrentRelativeHumidity {
-         print("Humidity: \(characteristic.value)")
-         dataCharacteristic.append(characteristic as HMCharacteristic)
-         
-         characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-         if error != nil {
-         print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-         }
-         })
-         }
-         }
-         } */
-        
+      /* for service in accessory.services {
+            if service.serviceType == HMServiceTypeThermostat {
+                dataservice.append(service as HMService)
+            }
+            //print("data: \(service)")
+            print("one")
+            for item in service.characteristics {
+                let characteristic = item as HMCharacteristic
+                if characteristic.characteristicType == HMCharacteristicTypeCurrentTemperature {
+                    print("Temperature: \(characteristic.value) : \(characteristic.metadata)")
+                    dataCharacteristic.append(characteristic as HMCharacteristic)
+                    
+                    characteristic.enableNotification(true, completionHandler: { (error) -> Void in
+                        if error != nil {
+                            print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
+                        }
+                    })
+                    
+                } else if characteristic.characteristicType == HMCharacteristicTypeCurrentRelativeHumidity {
+                    print("Humidity: \(characteristic.value)")
+                    dataCharacteristic.append(characteristic as HMCharacteristic)
+                    
+                    characteristic.enableNotification(true, completionHandler: { (error) -> Void in
+                        if error != nil {
+                            print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
+                        }
+                    })
+                }
+            }
+        } */
         
         
+
         
-        /*     let readtemp = dataCharacteristic[0] as HMCharacteristic
-         readtemp.readValue(completionHandler: { (error: NSError?) -> Void in
-         if error == nil {
-         print("Got OutletInUse value from Outlet \(readtemp.value)")
-         } else {
-         print("Error")
-         }
-         } as! (Error?) -> Void)
-         */
-        
+   /*     let readtemp = dataCharacteristic[0] as HMCharacteristic
+        readtemp.readValue(completionHandler: { (error: NSError?) -> Void in
+            if error == nil {
+                print("Got OutletInUse value from Outlet \(readtemp.value)")
+            } else {
+                print("Error")
+            }
+        } as! (Error?) -> Void)
+ */
         
         
         
+
         // Setup Band
         clientManager?.delegate = self
         if let band = clientManager?.attachedClients().first as! MSBClient! {
@@ -309,7 +309,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             output("Failed! No Bands attached.")
             return
         }
-        
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -362,7 +362,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     }
     
     @IBAction func didTapStopHRSensorButton(_ sender: Any) {
-        
+    
         if let client = self.client{
             if client.sensorManager.heartRateUserConsent() == MSBUserConsent.granted{
                 stopHeartRateUpdates()
@@ -437,8 +437,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                         output("Error \(error.localizedDescription) while writing to file \(csv)")
                     }
                     
-                    
-                    
+            
+                 
                     
                     /* Upload Data */
                     /* http://sleepify.zapto,org/ml/upload */
@@ -480,7 +480,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                             }
                     }
                     //Session Manager
-                    
+ 
                 }
             }
         }
@@ -533,7 +533,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         if plugswitch.isOn{
             activeRoom!.accessories[1].services[1].characteristics[1].writeValue(true, completionHandler: {(error: Error?) -> Void in
                 if error == nil {
-                    self.output("plug switch on")
+                     self.output("plug switch on")
                 } else {
                     self.output("error")
                 }
@@ -561,8 +561,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             }
         })
     }
-    
-    
+
+
     func startHeartRateUpdates() {
         output("[START] Starting Heart Rate updates")
         if let client = self.client {
@@ -612,9 +612,9 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                             datat.updateValue("\(self.accXArray[i])", forKey: "AccX")
                             datat.updateValue("\(self.accYArray[i])", forKey: "AccY")
                             datat.updateValue("\(self.accZArray[i])", forKey: "AccZ")
-                            //  datat.updateValue(self.dataservice[1].characteristics[1].value!, forKey: "RoomTemp")
-                            //  datat.updateValue(self.dataservice[2].characteristics[1].value!, forKey: "Humidity")
-                            //  datat.updateValue(self.readppm.value!, forKey: "PPM")
+                          //  datat.updateValue(self.dataservice[1].characteristics[1].value!, forKey: "RoomTemp")
+                          //  datat.updateValue(self.dataservice[2].characteristics[1].value!, forKey: "Humidity")
+                          //  datat.updateValue(self.readppm.value!, forKey: "PPM")
                             datat.updateValue("1", forKey: "outcome")
                             
                             data.append(datat)
@@ -645,39 +645,39 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                                     
                                     Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
                                     
-                                    
+                        
                                     sessionManager.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                                     
                                 }
                         }
                         
-                        //  Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
-                        
-                        //      debugPrint("All Response info: \(response)")
-                        // }
+                      //  Alamofire.request("http://sleepify.zapto.org/api/raw_data/", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
+                            
+                      //      debugPrint("All Response info: \(response)")
+                       // }
                         
                         
                         self.resetArray()
                         
-                        // api/uf/   //TO DO: upload JSON  stop button.
-                        
+                           // api/uf/   //TO DO: upload JSON  stop button.
+                     
                         // Obtain sleep quality state every 10mins
-                        /* Alamofire.request("http://sleepify.zapto.org/api/rt/",method: .post, parameters: parameters, encoding:JSONEncoding.default).responseData { response in
-                         debugPrint("All Response info: \(response)")
-                         
-                         if let data = response.result.value, let sleep_quality = String(data: data, encoding: .utf8){
-                         print("Data: \(sleep_quality)")
-                         if sleep_quality == "1" {
-                         self.output("Sleep Quality: Good")
-                         }
-                         else if sleep_quality == "0" {
-                         self.output("Sleep Quality: Bad")
-                         }
-                         else {
-                         self.output("Sleep Quality: Undefined")
-                         }
-                         }
-                         }*/
+                       /* Alamofire.request("http://sleepify.zapto.org/api/rt/",method: .post, parameters: parameters, encoding:JSONEncoding.default).responseData { response in
+                            debugPrint("All Response info: \(response)")
+                            
+                            if let data = response.result.value, let sleep_quality = String(data: data, encoding: .utf8){
+                                print("Data: \(sleep_quality)")
+                                if sleep_quality == "1" {
+                                    self.output("Sleep Quality: Good")
+                                }
+                                else if sleep_quality == "0" {
+                                    self.output("Sleep Quality: Bad")
+                                }
+                                else {
+                                    self.output("Sleep Quality: Undefined")
+                                }
+                            }
+                        }*/
                         
                     }
                 })
@@ -1097,8 +1097,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             }
         } )
     }
-    
-    
+ 
+ 
     // MARK: UITextViewDelegate
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         return false

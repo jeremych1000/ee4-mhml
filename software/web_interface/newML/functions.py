@@ -253,3 +253,17 @@ def getTempProfile(username):
         ob = allTemp.filter(period=i).first()
         result[i] = ob.value
     return result
+
+def getFeatureInRange(username,start_date,end_date):
+    userObj = User.objects.get(username=username)
+    if userObj == None:
+        return 'User not Found'
+    # get all features
+    allFeatures = models.FeatureEntry.objects.all().filter(user=userObj).extra(order_by=['id'])
+    if len(allFeatures) == 0:
+        return 'User Features not Found'
+    # Filter each night and build matrix of each night temp with good sleep quality
+    featureInEachNight = list(filter(lambda x: (x.date.date() <= end_date.date()) and (x.date.date() >= start_date.date()),
+                                allFeatures))
+    #print(featureInEachNight, type(featureInEachNight))
+    return featureInEachNight

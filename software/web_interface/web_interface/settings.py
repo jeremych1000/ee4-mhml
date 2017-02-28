@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'myaccount',
     'MLBlock',
     'newML',
-    # 'alpr',
     'daterange_filter',
 
     # REST API
@@ -54,7 +53,7 @@ INSTALLED_APPS = [
     # bootstrap
     'bootstrap3',
 
-    #sphinx docs
+    # sphinx docs
     'docs',
 
     # django defaults
@@ -155,7 +154,7 @@ STATIC_URL = '/static/'
 # List of directories where "./manage.py collectstatic" will look for files, which it puts all together into STATIC_ROOT. Each app that you have can have it's own "static" files directory.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-# This is the "static" files directory where say most of the CSS/JS/IMG files are stored for the project.
+    # This is the "static" files directory where say most of the CSS/JS/IMG files are stored for the project.
 )
 
 # Physical system path where the static files are stored. Files that are being uploaded by the user.
@@ -217,14 +216,17 @@ REST_FRAMEWORK = {
     #    'rest_framework.permissions.IsAuthenticated',
     #),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'FORM_METHOD_OVERRIDE': None,
     'FORM_CONTENT_OVERRIDE': None,
     'FORM_CONTENTTYPE_OVERRIDE': None
 }
+
+OLD_PASSWORD_FIELD_ENABLED = True
 
 ###########################################################################
 ###########################################################################
@@ -246,3 +248,5 @@ SENDFILE_BACKEND = 'sendfile.backends.development'
 
 DOCS_ROOT = os.path.join(BASE_DIR, "docs/_build/html/")
 DOCS_ACCESS = 'public'
+
+USE_TZ = True

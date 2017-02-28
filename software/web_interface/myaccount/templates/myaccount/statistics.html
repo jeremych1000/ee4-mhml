@@ -19,10 +19,45 @@
 {% block extra_javascript %}
     <script>
         $(document).ready(function () {
-            $("#nav_tab_hr").addClass("active");
+            $("#nav_tab_1d").addClass("active");
         });
     </script>
-{% endblock %}s
+
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="{% static "js/d3_graph.js" %}"></script>
+
+    <style> /* set the CSS */
+
+    path {
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
+
+    div.tooltip {
+        position: absolute;
+        text-align: center;
+        width: 60px;
+        height: 56px;
+        padding: 2px;
+        font: 12px sans-serif;
+        background: lightsteelblue;
+        border: 0px;
+        border-radius: 8px;
+        pointer-events: none;
+    }
+
+    </style>
+
+{% endblock %}
 
 {% block jumbotron %}
     <div class="jumbotron"
@@ -37,22 +72,25 @@
             ">
         <div class="container">
             <h1>My Statistics</h1>
+            <p>Track your sleep. Pretend you're the NSA.</p>
         </div>
     </div>
 {% endblock %}
 
 
 {% block content %}
+
     {% if user.is_authenticated %}
         <h1>Your statistics</h1>
 
         <ul class="nav nav-tabs nav-justified">
-            <li class="nav active" id="nav_tab_hr"><a href="#1d" data-toggle="tab">Last 1 Day</a></li>
-            <li class="nav" id="nav_tab_rr"><a href="#3d" data-toggle="tab">Last 3 Days</a></li>
-            <li class="nav" id="nav_tab_gsr"><a href="#1w" data-toggle="tab">Last Week</a></li>
-            <li class="nav" id="nav_tab_temp"><a href="#1m" data-toggle="tab">Last Month</a></li>
-            <li class="nav" id="nav_tab_acc"><a href="#1y" data-toggle="tab">Last Year</a></li>
+            <li class="nav active" id="nav_tab_1d"><a href="#1d" data-toggle="tab">Last 1 Day</a></li>
+            <li class="nav" id="nav_tab_3d"><a href="#3d" data-toggle="tab">Last 3 Days</a></li>
+            <li class="nav" id="nav_tab_1w"><a href="#1w" data-toggle="tab">Last Week</a></li>
+            <li class="nav" id="nav_tab_1m"><a href="#1m" data-toggle="tab">Last Month</a></li>
+            <li class="nav" id="nav_tab_1y"><a href="#1y" data-toggle="tab">Last Year</a></li>
         </ul>
+
 
         <!-- Tab panes -->
         <div class="tab-content">
@@ -62,13 +100,13 @@
                     {% for i in data %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/1/graph/" alt="...">
-                                <div class="caption">
+                                <div id="{{ i.url }}_graph_1d" class="caption">
                                     <h3>{{ i.title }}</h3>
+                                    <script>plotLineChart(1, "{{ i.url}}", "{{i.url}}_graph_1d")</script>
                                     <p>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/1/graph/?dl"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/1/{{ i.url }}/graph/?dl"
                                            class="btn btn-primary" role="button" target="_blank">Download</a>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/1/?format=json"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/1/{{ i.url }}/?format=json"
                                            class="btn btn-default" role="button" target="_blank">Get raw data</a>
                                     </p>
                                 </div>
@@ -82,13 +120,13 @@
                     {% for i in data %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/3/graph/" alt="...">
-                                <div class="caption">
+                                <div id="{{ i.url }}_graph_3d" class="caption">
                                     <h3>{{ i.title }}</h3>
+                                    <script>plotLineChart(3, "{{ i.url}}", "{{i.url}}_graph_3d")</script>
                                     <p>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/3/graph/?dl"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/3/{{ i.url }}/graph/?dl"
                                            class="btn btn-primary" role="button" target="_blank">Download</a>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/3/?format=json"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/3/{{ i.url }}/?format=json"
                                            class="btn btn-default" role="button" target="_blank">Get raw data</a>
                                     </p>
                                 </div>
@@ -102,13 +140,13 @@
                     {% for i in data %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/7/graph/" alt="...">
-                                <div class="caption">
+                                <div id="{{ i.url }}_graph_1w" class="caption">
                                     <h3>{{ i.title }}</h3>
+                                    <script>plotLineChart(7, "{{ i.url}}", "{{i.url}}_graph_1w")</script>
                                     <p>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/7/graph/?dl"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/7/{{ i.url }}/graph/?dl"
                                            class="btn btn-primary" role="button" target="_blank">Download</a>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/7/?format=json"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/7/{{ i.url }}/?format=json"
                                            class="btn btn-default" role="button" target="_blank">Get raw data</a>
                                     </p>
                                 </div>
@@ -118,17 +156,17 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="1m">
-               <div class="row">
+                <div class="row">
                     {% for i in data %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/30/graph/" alt="...">
-                                <div class="caption">
+                                <div id="{{ i.url }}_graph_1m" class="caption">
                                     <h3>{{ i.title }}</h3>
+                                    <script>plotLineChart(30, "{{ i.url}}", "{{i.url}}_graph_1m")</script>
                                     <p>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/30/graph/?dl"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/30/{{ i.url }}/graph/?dl"
                                            class="btn btn-primary" role="button" target="_blank">Download</a>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/30/?format=json"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/30/{{ i.url }}/?format=json"
                                            class="btn btn-default" role="button" target="_blank">Get raw data</a>
                                     </p>
                                 </div>
@@ -142,13 +180,13 @@
                     {% for i in data %}
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/365/graph/" alt="...">
-                                <div class="caption">
+                                <div id="{{ i.url }}_graph_1y" class="caption">
                                     <h3>{{ i.title }}</h3>
+                                    <script>plotLineChart(365, "{{ i.url}}", "{{i.url}}_graph_1y")</script>
                                     <p>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/365/graph/?dl"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/365/{{ i.url }}/graph/?dl"
                                            class="btn btn-primary" role="button" target="_blank">Download</a>
-                                        <a href="http://sleepify.zapto.org/api/stats/{{ i.url }}/last/365/?format=json"
+                                        <a href="http://sleepify.zapto.org/api/stats/last/365/{{ i.url }}/?format=json"
                                            class="btn btn-default" role="button" target="_blank">Get raw data</a>
                                     </p>
                                 </div>
@@ -164,5 +202,6 @@
         <p>You must be logged in to view this page.</p>
 
     {% endif %}
+
 
 {% endblock %}

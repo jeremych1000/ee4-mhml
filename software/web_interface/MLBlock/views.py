@@ -51,24 +51,24 @@ def upload(request):
             regexR = re.search(r'(MSBand2_ALL_data_)(\w+)', name)
             print(name, regexR)
             data_date = regexR.group(2)
-            if not (check_duplicate(name)):
-                raw = RawData.objects.create(file=request.FILES['file'])
-                db_feature = FeatureEntries.objects.create(date=datetime.strptime(data_date, '%d_%m_%y'))
-                func.InsertFeature2DB(fe.genfeatureFromCSV(raw.file.path, 600), db_feature, username)
-                if FileTracker.objects.count() == 0:
-                    FileTracker.objects.create(accCount=1, username=username)
-                else:
-                    # print(FileTracker.objects.count())
-                    obj = FileTracker.objects.first()
-                    obj.accCount += 1
-                    obj.save()
-                    uploaded = True
-                    print("A file has been uploaded to /media/data.")
-                    if obj.accCount == 20:
-                        # TODO: add machine learning stuff here
-                        pass
-            else:
-                print("A duplicate has been detected, not uploaded.")
+            #if not (check_duplicate(name)):
+            raw = RawData.objects.create(file=request.FILES['file'])
+                #db_feature = FeatureEntries.objects.create(date=datetime.strptime(data_date, '%d_%m_%y'))
+                #func.InsertFeature2DB(fe.genfeatureFromCSV(raw.file.path, 600), db_feature, username)
+                #if FileTracker.objects.count() == 0:
+                #    FileTracker.objects.create(accCount=1, username=username)
+                #else:
+                #    # print(FileTracker.objects.count())
+                #    obj = FileTracker.objects.first()
+                #    obj.accCount += 1
+                #    obj.save()
+                #    uploaded = True
+                #    print("A file has been uploaded to /media/data.")
+                #    if obj.accCount == 20:
+                #        # TODO: add machine learning stuff here
+                #        pass
+            #else:
+            #    print("A duplicate has been detected, not uploaded.")
         else:
             print(f_form.errors)
             print(f_form.non_field_errors)
