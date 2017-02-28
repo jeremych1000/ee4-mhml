@@ -201,7 +201,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp-mail.outlook.com'
 EMAIL_HOST_USER = 'jeremych@outlook.com'
-EMAIL_HOST_PASSWORD = 'lnqmjyqxucopvxkq'  # get app passwor, not actual email password
+EMAIL_HOST_PASSWORD = 'lnqmjyqxucopvxkq'  # get app password, not actual email password
 EMAIL_PORT = 587  # 587 gmail
 # This did the trick
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
