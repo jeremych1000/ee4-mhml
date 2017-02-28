@@ -23,6 +23,8 @@ from . import csv_functions, serializers, queries
 
 from MLBlock.views import insert_from_api
 
+def csrf(request):
+    return render(request, "personal/blank.html")
 
 class random_number(APIView):
     def get(self, request):
@@ -31,8 +33,6 @@ class random_number(APIView):
 
 class raw_data(APIView):
     file_prefix = "MSBand2_ALL_data_"
-
-    permission_classes = (AllowAny,)
 
     def post(self, request):
         print("raw_data_post", request)

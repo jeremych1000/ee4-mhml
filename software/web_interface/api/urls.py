@@ -8,6 +8,7 @@ urlpatterns = [
     # index
     url(r'^$', RedirectView.as_view(url='/docs/api', permanent=False), name='index'),
 
+    url(r'^csrf/$', views.csrf, name='csrf'),
     # rest auth
     url(r'^auth/registration/', include('rest_auth.registration.urls')),
     url(r'^auth/', include('rest_auth.urls')),
