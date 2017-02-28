@@ -6,6 +6,7 @@ from datetime import datetime, date, timedelta
 from newML.models import FeatureEntry
 from newML import functions
 
+
 def live_data(request):
     user_object = User.objects.get(username="jeremych")
 
@@ -21,7 +22,7 @@ def live_data(request):
         mean_temp = int(last_data.mean_temp)
         mean_acc = round(last_data.mean_acc, 2)
 
-        print(mean_hr, mean_rr, mean_gsr, mean_temp, mean_acc)
+        # print(mean_hr, mean_rr, mean_gsr, mean_temp, mean_acc)
 
     return {
         "current_user": user_object.username,
@@ -29,30 +30,30 @@ def live_data(request):
             "current": mean_hr,
             "min": 0,
             "max": 200,
-            "width": int(100*mean_hr/200),
+            "width": int(100 * mean_hr / 200),
         },
         "mean_rr": {
-            "current": int(100*mean_rr),
+            "current": int(100 * mean_rr),
             "min": 0,
-            "max": 100*1,
-            "width": int(100*mean_hr/100*1),
+            "max": 100 * 1,
+            "width": int(100 * mean_rr),
         },
         "mean_gsr": {
             "current": int(mean_gsr),
             "min": 1000,
             "max": 20000,
-            "width": int(100*mean_hr/20000),
+            "width": int(100 * mean_gsr / 20000),
         },
         "mean_temp": {
             "current": mean_temp,
             "min": 0,
             "max": 100,
-            "width": int(100*mean_hr/100),
+            "width": int(100 * mean_temp / 100),
         },
         "mean_acc": {
-            "current": int(100*mean_acc),
+            "current": int(100 * mean_acc),
             "min": 0,
-            "max": 100*1,
-            "width": int(100*mean_hr/100*1),
+            "max": 100 * 1,
+            "width": int(100 * mean_acc),
         },
     }
