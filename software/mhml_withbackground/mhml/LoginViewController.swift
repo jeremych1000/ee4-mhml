@@ -13,6 +13,9 @@ import Alamofire
 class LoginViewController: UIViewController {
     
     var token = ""
+    var v = ""
+    var valuet = ""
+    var donedone = 0
 
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userPasswordTextField: UITextField!
@@ -81,15 +84,17 @@ class LoginViewController: UIViewController {
                 if let headerFields = response.response?.allHeaderFields as? [String: String],
                     let URL = response.response?.url {
                     let csrf_token = headerFields["Set-Cookie"]
-                    let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
+                    var cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
                     
                     let startIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy:10)
                     let endIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy: 73)
                     
-                    let v = csrf_token?[startIndex!...endIndex!]
+                    self.v = (csrf_token?[startIndex!...endIndex!])!
+                    
+                    print("v: \(self.v)")
                     
                     let headers: HTTPHeaders = [
-                        "X-CSRFToken": v!,
+                        "X-CSRFToken": self.v,
                         "Cookie" : ""
                     ]
                  
@@ -105,19 +110,85 @@ class LoginViewController: UIViewController {
                         ).responseJSON { response in
                             
                             statusCode = (response.response?.statusCode)! //Gets HTTP status code, useful for debugging
-                            if let value = response.result.value {
+                            
+                            
+                            if let result = (response.result.value){
+                                
+                                let value = result as! NSDictionary
+                                
                                 print("TOKEN:  \(value)")
+                                self.valuet = value.object(forKey: "key") as! String
+                                
+                                print("TOKEEEN:  \(self.valuet)")
+                                
+                                
+                                let authManager = Alamofire.SessionManager.default
+                                
+                                authManager.session.configuration.httpAdditionalHeaders = [
+                                    "X-CSRFToken" : self.v,
+                                    "Authorization": "Token \(self.valuet)",
+                                    "HTTP_AUTHORIZATION": "Token \(self.valuet)",
+                                    "Token": (self.valuet),
+                                    "Content-Type": "text/json"
+                                ]
+                                
+                                let sessionManagernew = Alamofire.SessionManager.default
+                                
+                                /*
+                                let headersnew:  HTTPHeaders = [
+                                    "X-CSRFToken" : self.v,
+                                    "Authorization": "Token \(self.valuet)",
+                                    "HTTP_AUTHORIZATION": "Token \(self.valuet)",
+                                    "Token": (self.valuet),
+                                ]
+                                */
+ 
+ 
+                                print("CSRFT1 \(self.v)")
+                                //print("header1 \(headersnew) ")
+                                
+                                 //Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders = headersnew
+                                Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
+                                
+                                sessionManagernew.request(
+                                    "http://sleepify.zapto.org/api/make_coffee/",
+                                    method: .get)
+                                    //headers: headersnew)
+                                    .responseData { response in
+                                        debugPrint("All Response info: \(response)")
+                                        
+                                        if let datanew = response.result.value, let return_string = String(data: datanew, encoding: .utf8){
+                                            
+                                            print("return \(return_string)")
+                                        } else {
+                                            print("no tea pot")
+                                        }
+                                        
+                                        
+                                }
+
+                                
                             } else {
                                 print("error detected")
                             }
                         }
                 }
+                
+
         }
+
+
+        if donedone == 1 {
+        
+        
+
         
         
         
         
         
+        
+        }
         
         
         
