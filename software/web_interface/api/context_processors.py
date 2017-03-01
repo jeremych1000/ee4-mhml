@@ -12,7 +12,7 @@ def live_data(request):
         user_object = User.objects.get(username=request.user)
 
         today = timezone.now()
-        start_date = today - timedelta(0.1)
+        start_date = today - timedelta(0.007)
 
         last_data = FeatureEntry.objects.all().filter(user=user_object, date__gte=start_date)
         if len(last_data) != 0:
@@ -35,26 +35,26 @@ def live_data(request):
                 "mean_rr": {
                     "current": int(100 * mean_rr),
                     "min": 0,
-                    "max": 100 * 1,
+                    "max": 100,
                     "width": int(100 * mean_rr),
                 },
                 "mean_gsr": {
                     "current": int(mean_gsr),
                     "min": 1000,
-                    "max": 20000,
-                    "width": int(100 * mean_gsr / 20000),
+                    "max": 30000,
+                    "width": int(100 * mean_gsr / 30000),
                 },
                 "mean_temp": {
                     "current": mean_temp,
                     "min": 0,
-                    "max": 100,
-                    "width": int(100 * mean_temp / 100),
+                    "max": 50,
+                    "width": int(100 * mean_temp / 50),
                 },
                 "mean_acc": {
                     "current": int(100 * mean_acc),
                     "min": 0,
-                    "max": 100 * 1,
-                    "width": int(100 * mean_acc),
+                    "max": 400,
+                    "width": int(100 * 100 * mean_acc / 400),
                 },
             }
         else:

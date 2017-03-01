@@ -4,22 +4,12 @@
 
 function plotLineChart(days, feature, tagname) {
     // Set the dimensions of the canvas / graph
-
-
-    var w = window,
-    d = document,
-    e = d.documentElement,
-    g = d.getElementsByTagName('body')[0],
-    win_x = w.innerWidth || e.clientWidth || g.clientWidth,
-    win_y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-
-
     var margin = {top: 30, right: 20, bottom: 30, left: 50},
         width = 600 - margin.left - margin.right,
         height = 270 - margin.top - margin.bottom;
 
     // Parse the date / time
-    var parseDate = d3.timeParse("%Y-%m-%dT%H:%M:%SZ");
+    var parseDate = d3.timeParse("%Y-%m-%dT%H:%M:%S");
     var formatTime = d3.timeFormat("%H:%M:%S");
 
     // Set the ranges
@@ -58,9 +48,12 @@ function plotLineChart(days, feature, tagname) {
     var url = "http://sleepify.zapto.org/api/stats/last/" + days + "/" + feature + "/?format=json"
 // Get the data
     d3.json(url, function (data) {
+         console.log(data)
+
         data.forEach(function (d) {
             d.date = parseDate(d["date"]);
         });
+
 
         // Scale the range of the data
         x.domain(d3.extent(data, function (d) {

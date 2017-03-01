@@ -249,4 +249,4 @@ SENDFILE_BACKEND = 'sendfile.backends.development'
 DOCS_ROOT = os.path.join(BASE_DIR, "docs/_build/html/")
 DOCS_ACCESS = 'public'
 
-USE_TZ = True
+USE_TZ = False # bypass RuntimeWarning: DateTimeField FeatureEntry.date received a naive datetime (2017-02-21 02:00:44) while time zone support is active. RuntimeWarning)

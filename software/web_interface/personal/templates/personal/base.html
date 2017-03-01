@@ -229,7 +229,7 @@
                         <ul class="nav nav-pills nav-stacked">
                             <h3>Live Data</h3>
 
-                            You are logged in as: {{ current_user }} <br/>
+                            You are logged in as: <a href="/myaccount/profile/">{{ current_user }}</a> <br/>
                             Refresh Interval: 10 seconds
 
                             <h5>Heartrate</h5>
@@ -237,7 +237,7 @@
                                 <div class="progress-bar progress-bar-striped active" role="progressbar"
                                      aria-valuenow="{{ mean_hr.current }}" aria-valuemin="{{ mean_hr.min }}"
                                      aria-valuemax="{{ mean_hr.max }}"
-                                     style="width: {{ mean_hr.width }}%; min-width: 2em;">
+                                     style="width: {{ mean_hr.width }}%; min-width: 2em; max-width: 100%">
                                     {{ mean_hr.current }}
                                 </div>
                             </div>
@@ -248,7 +248,7 @@
                                      role="progressbar"
                                      aria-valuenow="{{ mean_rr.current }}" aria-valuemin="{{ mean_rr.min }}"
                                      aria-valuemax="{{ mean_rr.max }}"
-                                     style="width: {{ mean_rr.width }}%; min-width: 2em;">
+                                     style="width: {{ mean_rr.width }}%; min-width: 2em; max-width: 100%">
                                     {{ mean_rr.current }}
                                 </div>
                             </div>
@@ -259,7 +259,7 @@
                                      role="progressbar"
                                      aria-valuenow="{{ mean_gsr.current }}" aria-valuemin="{{ mean_gsr.min }}"
                                      aria-valuemax="{{ mean_gsr.max }}"
-                                     style="width: {{ mean_gsr.width }}%; min-width: 2em;">
+                                     style="width: {{ mean_gsr.width }}%; min-width: 2em; max-width: 100%">
                                     {{ mean_gsr.current }}
                                 </div>
                             </div>
@@ -270,7 +270,7 @@
                                      role="progressbar"
                                      aria-valuenow="{{ mean_temp.current }}" aria-valuemin="{{ mean_temp.min }}"
                                      aria-valuemax="{{ mean_temp.max }}"
-                                     style="width: {{ mean_temp.width }}%; min-width: 2em;">
+                                     style="width: {{ mean_temp.width }}%; min-width: 2em; max-width: 100%">
                                     {{ mean_temp.current }}
                                 </div>
                             </div>
@@ -281,7 +281,7 @@
                                      role="progressbar"
                                      aria-valuenow="{{ mean_acc.current }}" aria-valuemin="{{ mean_acc.min }}"
                                      aria-valuemax="{{ mean_acc.max }}"
-                                     style="width: {{ mean_acc.width }}%; min-width: 2em;">
+                                     style="width: {{ mean_acc.width }}%; min-width: 2em; max-width: 100%">
                                     {{ mean_acc.current }}
                                 </div>
                             </div>
@@ -318,7 +318,7 @@
 
     <footer class="footer">
         <p align="right">
-            ©2017 Sleepify. All rights reserved. | http://sleepify.zapto.org | Powered by Django and Bootstrap | Created
+            ©{% now "Y" %} Sleepify. All rights reserved. | <a href="http://sleepify.zapto.org/">http://sleepify.zapto.org</a> | Powered by Django and Bootstrap | Created
             with love from the United Kingdom | Images from DeathToTheStockPhoto &nbsp;&nbsp;
         </p>
     </footer>
