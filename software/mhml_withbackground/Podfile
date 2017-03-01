@@ -4,4 +4,5 @@ use_frameworks!
 
 target ‘mhml’ do
     pod 'Alamofire', '~> 4.3'
+    pod 'SwiftyJSON', :git =>'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end

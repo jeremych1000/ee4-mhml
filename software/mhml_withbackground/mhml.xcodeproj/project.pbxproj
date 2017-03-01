@@ -13,6 +13,10 @@
 		16B1F3631E5216BF009E0A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1680DC761E4C8BDB009DA146 /* Main.storyboard */; };
 		561F067C1E632C750088FA2B /* Outlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F067A1E632C750088FA2B /* Outlet.swift */; };
 		561F067D1E632C750088FA2B /* OutletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F067B1E632C750088FA2B /* OutletViewController.swift */; };
+		561F06C61E64A5040088FA2B /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F06C51E64A5040088FA2B /* RegisterPageViewController.swift */; };
+		561F06CA1E64A5120088FA2B /* logoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F06C81E64A5120088FA2B /* logoutViewController.swift */; };
+		561F06E81E64B3160088FA2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F06C71E64A5120088FA2B /* LoginViewController.swift */; };
+		568388301E64B9CA00FCE362 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5683882F1E64B9CA00FCE362 /* SwiftyJSON.swift */; };
 		56B146F61E52059900CD3067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC721E4C8BDB009DA146 /* AppDelegate.swift */; };
 		56B146F71E52059900CD3067 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC741E4C8BDB009DA146 /* TabBarController.swift */; };
 		56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF6D821E4D414F00F41198 /* FlightReminder.swift */; };
@@ -122,6 +126,11 @@
 		30E238BCE810A1E642DDA631 /* Pods_mhml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mhml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		561F067A1E632C750088FA2B /* Outlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outlet.swift; sourceTree = "<group>"; };
 		561F067B1E632C750088FA2B /* OutletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutletViewController.swift; sourceTree = "<group>"; };
+		561F06C51E64A5040088FA2B /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
+		561F06C71E64A5120088FA2B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		561F06C81E64A5120088FA2B /* logoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutViewController.swift; sourceTree = "<group>"; };
+		561F072A1E64B84C0088FA2B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/mhml-dssrrpjpwsmmlubxeimkhjzcaqrh/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		5683882F1E64B9CA00FCE362 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
 		56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMCatalogViewController.swift; sourceTree = "<group>"; };
 		56C13B161E5CB1F900D755CB /* mhml.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mhml.entitlements; sourceTree = "<group>"; };
@@ -228,6 +237,7 @@
 		1610A3911E51DCD700946989 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				561F072A1E64B84C0088FA2B /* SwiftyJSON.framework */,
 				56C13B171E5CB1F900D755CB /* HomeKit.framework */,
 				56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */,
 				1610A39E1E51DEAA00946989 /* CoreBluetooth.framework */,
@@ -260,6 +270,10 @@
 		1680DC711E4C8BDB009DA146 /* mhml */ = {
 			isa = PBXGroup;
 			children = (
+				5683882F1E64B9CA00FCE362 /* SwiftyJSON.swift */,
+				561F06C71E64A5120088FA2B /* LoginViewController.swift */,
+				561F06C81E64A5120088FA2B /* logoutViewController.swift */,
+				561F06C51E64A5040088FA2B /* RegisterPageViewController.swift */,
 				561F06791E632C750088FA2B /* Outlet */,
 				56C13B161E5CB1F900D755CB /* mhml.entitlements */,
 				56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */,
@@ -700,6 +714,7 @@
 				56E614221E6329D2002BF657 /* Utility.swift in Sources */,
 				56C13BB21E5CB4AB00D755CB /* UIAlertController+Convenience.swift in Sources */,
 				56C13B791E5CB4AB00D755CB /* ControlsTableViewDataSource.swift in Sources */,
+				568388301E64B9CA00FCE362 /* SwiftyJSON.swift in Sources */,
 				56C13B8C1E5CB4AB00D755CB /* ActionSetViewController.swift in Sources */,
 				56C13AE41E5CAB5D00D755CB /* HMCatalogViewController.swift in Sources */,
 				56C13BB51E5CB4AB00D755CB /* UITableViewController+Convenience.swift in Sources */,
@@ -720,7 +735,9 @@
 				56C13BA11E5CB4AB00D755CB /* MapViewController.swift in Sources */,
 				56C13B871E5CB4AB00D755CB /* CharacteristicsViewController.swift in Sources */,
 				56C13B7B1E5CB4AB00D755CB /* ModifyAccessoryViewController.swift in Sources */,
+				561F06E81E64B3160088FA2B /* LoginViewController.swift in Sources */,
 				56C13BB41E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift in Sources */,
+				561F06CA1E64A5120088FA2B /* logoutViewController.swift in Sources */,
 				56C13B7E1E5CB4AB00D755CB /* SegmentedControlCharacteristicCell.swift in Sources */,
 				56C13BA91E5CB4AB00D755CB /* Array+Sorting.swift in Sources */,
 				56C13BA31E5CB4AB00D755CB /* TimerTriggerViewController.swift in Sources */,
@@ -744,6 +761,7 @@
 				56E614201E6329D2002BF657 /* HMErrorCodeMessage.swift in Sources */,
 				56C13B981E5CB4AB00D755CB /* ConditionCell.swift in Sources */,
 				56C13B891E5CB4AB00D755CB /* ServicesViewController.swift in Sources */,
+				561F06C61E64A5040088FA2B /* RegisterPageViewController.swift in Sources */,
 				56C13B801E5CB4AB00D755CB /* SliderCharacteristicCell.swift in Sources */,
 				56C13BAB1E5CB4AB00D755CB /* HMActionSet+BuiltIn.swift in Sources */,
 				56C13BAC1E5CB4AB00D755CB /* HMCharacteristic+Properties.swift in Sources */,
@@ -929,6 +947,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Pods/build/Debug",
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -951,6 +971,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Pods/build/Debug",
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

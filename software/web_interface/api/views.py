@@ -3,12 +3,15 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework import status, serializers, viewsets
 from rest_framework.decorators import api_view
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 import newML.functions
 from newML import models as ml_model
@@ -21,6 +24,10 @@ from . import csv_functions, serializers, queries
 from MLBlock.views import insert_from_api
 
 
+def csrf(request):
+    return render(request, "personal/blank.html")
+
+
 class random_number(APIView):
     def get(self, request):
         result = random.getrandbits(1)
@@ -31,6 +38,7 @@ class raw_data(APIView):
     file_prefix = "MSBand2_ALL_data_"
 
     def post(self, request):
+        print("raw_data_post", request)
         json_data = json.loads(request.body.decode("utf-8"))
         print("DEBUG: ", json_data)
 
@@ -122,7 +130,10 @@ class realTimeResponse(APIView):
             classifier = pickle.load(open(mlfile.file.path, 'rb'))
         feature = np.array([feature])
         outcome = classifier.predict(feature)
-        json_result["quality"] = outcome[0]
+        #if outcome == True:
+        json_result["quality"] = "0"
+        #else:
+        #    json_result["quality"] = "0"
         return Response(json_result, status=status.HTTP_200_OK)
 
 
@@ -136,7 +147,7 @@ class userFeedback(APIView):
 class stats():
     class last(APIView):
         def get(self, request, feature, days):
-            #print("regex ", feature, " ----days", days)
+            # print("regex ", feature, " ----days", days)
             if request.user.is_authenticated():
                 if feature == 'mean_hr':
                     serializer = queries.heartrate(request, days)
@@ -148,7 +159,7 @@ class stats():
                     serializer = queries.temperature(request, days)
                 elif feature == 'mean_acc':
                     serializer = queries.acceleration(request, days)
-                #elif feature == 'sleep_duration':
+                # elif feature == 'sleep_duration':
                 #    serializer = queries.sleep_duration(request, days)
                 else:
                     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -158,7 +169,7 @@ class stats():
 
     class date_range(APIView):
         def get(self, request, feature, start, end):
-            #print(start, end)
+            # print(start, end)
             start = datetime.strptime(start, '%Y-%m-%d')
             end = datetime.strptime(end, '%Y-%m-%d')
             ret = newML.functions.getFeatureInRange(request.user, start, end)
@@ -182,9 +193,12 @@ class stats():
 
 # http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request):
+        print(request.META)
+        print("adsfasfdadfa", request.META['HTTP_AUTHORIZATION'], request.META['CONTENT_TYPE'])
+
         json_result = "I'm a teapot."
         return Response(json_result, status=418)
-        # return HttpResponse("I'm a teapot.", content_type="application/json", status=418)
-
-        # Todo: Need  a class to handle user quality feedback, add entrey to sleep quality and reinsert label back to each feature entry

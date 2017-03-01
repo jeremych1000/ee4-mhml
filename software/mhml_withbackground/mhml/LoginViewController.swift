@@ -1,0 +1,215 @@
+//
+//  LoginViewController.swift
+//  UserLoginAndRegistration
+//
+//  Created by Sergey Kargopolov on 2015-01-13.
+//  Copyright (c) 2015 Sergey Kargopolov. All rights reserved.
+//
+
+import UIKit
+import Alamofire
+//import SwiftyJSON
+
+class LoginViewController: UIViewController {
+    
+    var token = ""
+    var v = ""
+    var valuet = ""
+    var donedone = 0
+
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var userPasswordTextField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    @IBAction func loginButtonTapped(_ sender: AnyObject) {
+        
+        //let userEmail = userNameTextField.text;
+        let userPassword = userPasswordTextField.text;
+        let userName = userNameTextField.text;
+        
+        let userEmailStored = UserDefaults.standard.string(forKey: "userEmail");
+        
+        let userPasswordStored = UserDefaults.standard.string(forKey: "userPassword");
+        
+        //let userNameStored = U
+        
+        //print("\(userEmail)");
+        print("\(userPassword)");
+        print("\(userEmailStored)")
+        
+        
+        
+        if ( (userPassword?.isEmpty)! || (userName?.isEmpty)!){
+            print("fields are empty")
+            
+        } else {
+            logIn()
+            print("Logged in")
+            if token != nil {
+                print("token valid")
+                self.performSegue(withIdentifier: "showMain", sender: self);
+            }
+        }
+    }
+    
+    // MARK: Function
+    
+    /**
+     Function that logs the user in and stores the session token for later use
+     **/
+    func logIn() {
+        print("\(userNameTextField.text!)")
+        
+        let parameters = [
+            "username": userNameTextField.text!,
+            //"email" : userEmailTextField.text!,
+            "password": userPasswordTextField.text! //password
+        ]
+        var statusCode: Int = 0
+        
+        let sessionManager = Alamofire.SessionManager.default
+        sessionManager.request("http://sleepify.zapto.org/api/csrf/", method: .get)
+            .responseString { response in
+                if let headerFields = response.response?.allHeaderFields as? [String: String],
+                    let URL = response.response?.url {
+                    let csrf_token = headerFields["Set-Cookie"]
+                    var cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
+                    
+                    let startIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy:10)
+                    let endIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy: 73)
+                    
+                    self.v = (csrf_token?[startIndex!...endIndex!])!
+                    
+                    print("v: \(self.v)")
+                    
+                    let headers: HTTPHeaders = [
+                        "X-CSRFToken": self.v,
+                        "Cookie" : ""
+                    ]
+                 
+                    Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders = headers
+                    
+                    Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
+                    sessionManager.request(
+                        "http://sleepify.zapto.org/api/auth/login/",
+                        method: .post,
+                        parameters: parameters,
+                        encoding: JSONEncoding.default,
+                        headers:headers
+                        ).responseJSON { response in
+                            
+                            statusCode = (response.response?.statusCode)! //Gets HTTP status code, useful for debugging
+                            
+                            
+                            if let result = (response.result.value){
+                                
+                                let value = result as! NSDictionary
+                                
+                                print("TOKEN:  \(value)")
+                                self.valuet = value.object(forKey: "key") as! String
+                                
+                                print("TOKEEEN:  \(self.valuet)")
+                                
+                                
+                                let authManager = Alamofire.SessionManager.default
+                                
+                                authManager.session.configuration.httpAdditionalHeaders = [
+                                    "X-CSRFToken" : self.v,
+                                    "Authorization": "Token \(self.valuet)",
+                                    "HTTP_AUTHORIZATION": "Token \(self.valuet)",
+                                    "Token": (self.valuet),
+                                    "Content-Type": "text/json"
+                                ]
+                                
+                                let sessionManagernew = Alamofire.SessionManager.default
+                                
+                                /*
+                                let headersnew:  HTTPHeaders = [
+                                    "X-CSRFToken" : self.v,
+                                    "Authorization": "Token \(self.valuet)",
+                                    "HTTP_AUTHORIZATION": "Token \(self.valuet)",
+                                    "Token": (self.valuet),
+                                ]
+                                */
+ 
+ 
+                                print("CSRFT1 \(self.v)")
+                                //print("header1 \(headersnew) ")
+                                
+                                 //Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders = headersnew
+                                Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
+                                
+                                sessionManagernew.request(
+                                    "http://sleepify.zapto.org/api/make_coffee/",
+                                    method: .get)
+                                    //headers: headersnew)
+                                    .responseData { response in
+                                        debugPrint("All Response info: \(response)")
+                                        
+                                        if let datanew = response.result.value, let return_string = String(data: datanew, encoding: .utf8){
+                                            
+                                            print("return \(return_string)")
+                                        } else {
+                                            print("no tea pot")
+                                        }
+                                        
+                                        
+                                }
+
+                                
+                            } else {
+                                print("error detected")
+                            }
+                        }
+                }
+                
+
+        }
+
+
+        if donedone == 1 {
+        
+        
+
+        
+        
+        
+        
+        
+        
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+
+}

@@ -6,7 +6,7 @@ from django.utils import timezone
 from . import serializers
 
 def last_days(request, days):
-    start_date = timezone.now() + timedelta(-int(days))
+    start_date = timezone.now() - timedelta(int(days))
     user_object = User.objects.get(username="jeremych")
     features = FeatureEntry.objects.all().filter(user=user_object, date__gte=start_date)
     return features

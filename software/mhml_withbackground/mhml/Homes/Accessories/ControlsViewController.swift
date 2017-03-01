@@ -19,14 +19,21 @@ class ControlsViewController: HMCatalogViewController, HMAccessoryDelegate {
     
     // MARK: Properties
     
+    
+    
+    
     var tableViewDataSource: ControlsTableViewDataSource!
     var cellController = AccessoryUpdateController()
+    var abcd = HMService()
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     // MARK: View Methods
     
     /// Sends the selected service into the destination view controller.
+    
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == Identifiers.showServiceSegue {
@@ -38,9 +45,12 @@ class ControlsViewController: HMCatalogViewController, HMAccessoryDelegate {
                 }
                 
                 characteristicsViewController.cellDelegate = cellController
+
             }
         }
     }
+    
+ 
     
     /// Initializes the table view data source.
     override func viewDidLoad() {
@@ -116,4 +126,34 @@ class ControlsViewController: HMCatalogViewController, HMAccessoryDelegate {
     func accessoryDidUpdateName(_ accessory: HMAccessory) {
         reloadData()
     }
+    
+    func setValueFinish(error:Error?) -> (Void) {
+        print("Done")
+    }
+    //testing D:
+    override func tableView(_ tableView: UITableView, didSelectRowAt
+        indexPath: IndexPath){
+        
+        //your code...
+        print ("select")
+        let service:[HMService] = (tableViewDataSource.serviceTable?["Outlet"])!
+        for cha in (service.first?.characteristics)!{
+            if cha.localizedDescription=="Power State"{
+                
+                print ("\(cha.characteristicType)")
+                print ("\(cha.localizedDescription)")
+                if cha.value as! Bool == true{
+                    cha.writeValue(false,completionHandler: setValueFinish)
+                }
+                else{
+                     cha.writeValue(true,completionHandler: setValueFinish)
+                }
+            }
+        }
+
+        
+    }
+    
+    
+    
 }

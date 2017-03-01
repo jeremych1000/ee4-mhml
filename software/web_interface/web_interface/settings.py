@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'myaccount',
     'MLBlock',
     'newML',
-    # 'alpr',
     'daterange_filter',
 
     # REST API
@@ -54,7 +53,7 @@ INSTALLED_APPS = [
     # bootstrap
     'bootstrap3',
 
-    #sphinx docs
+    # sphinx docs
     'docs',
 
     # django defaults
@@ -87,6 +86,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                # custom api template processor
+                'api.context_processors.live_data',
                 # django defaults
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -155,7 +156,7 @@ STATIC_URL = '/static/'
 # List of directories where "./manage.py collectstatic" will look for files, which it puts all together into STATIC_ROOT. Each app that you have can have it's own "static" files directory.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-# This is the "static" files directory where say most of the CSS/JS/IMG files are stored for the project.
+    # This is the "static" files directory where say most of the CSS/JS/IMG files are stored for the project.
 )
 
 # Physical system path where the static files are stored. Files that are being uploaded by the user.
@@ -216,14 +217,15 @@ REST_FRAMEWORK = {
     #'DEFAULT_PERMISSION_CLASSES': (
     #    'rest_framework.permissions.IsAuthenticated',
     #),
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework.authentication.SessionAuthentication',
-    #     'rest_framework.authentication.BasicAuthentication',
-    #     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    # ),
-    # 'FORM_METHOD_OVERRIDE': None,
-    # 'FORM_CONTENT_OVERRIDE': None,
-    # 'FORM_CONTENTTYPE_OVERRIDE': None
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework_jwt.auth#entication.JSONWebTokenAuthentication',
+    ),
+    'FORM_METHOD_OVERRIDE': None,
+    'FORM_CONTENT_OVERRIDE': None,
+    'FORM_CONTENTTYPE_OVERRIDE': None
 }
 
 ###########################################################################
@@ -247,4 +249,4 @@ SENDFILE_BACKEND = 'sendfile.backends.development'
 DOCS_ROOT = os.path.join(BASE_DIR, "docs/_build/html/")
 DOCS_ACCESS = 'public'
 
-USE_TZ=True
+USE_TZ = False # bypass RuntimeWarning: DateTimeField FeatureEntry.date received a naive datetime (2017-02-21 02:00:44) while time zone support is active. RuntimeWarning)
