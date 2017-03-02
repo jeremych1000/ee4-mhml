@@ -103,15 +103,16 @@ class LoginViewController: UIViewController {
                                 
                                 let value = result as! NSDictionary
                                 
-                                print("Response:  \(value)")
-                                self.valuet = (value.object(forKey: "key") as! String)
-                                //self.field_error = value.object(forKey: "non_field_errors") as! String?
                                 
-                                print("TOKEEN: \(self.valuet)")
-                                
+                                print("statuscode: \(statusCode)")
+                                if statusCode == 200 {
+                                    print("Response:  \(value)")
+                                    self.valuet = (value.object(forKey: "key") as! String)
+                                    print("TOKEEN: \(self.valuet)")
+                                }
                 
                                 
-                                
+                                /*
                                 let authManager = Alamofire.SessionManager.default
                                 
                                 authManager.session.configuration.httpAdditionalHeaders = [
@@ -143,13 +144,13 @@ class LoginViewController: UIViewController {
                                         }
                                         
                                         
-                                }
+                                } */
 
                                 
                             }
                             
                             
-                            if self.valuet != "" {
+                            if statusCode == 200{
                                 print("token valid")
                                 self.performSegue(withIdentifier: "showMain", sender: self);
                             } else {
