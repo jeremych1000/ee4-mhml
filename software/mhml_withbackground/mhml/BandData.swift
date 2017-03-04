@@ -222,7 +222,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             }
         })
         
-        print("PPM: \(dataservice[3].characteristics[2].value!) ppm")
+        print("PPM: \(dataservice[3].characteristics[2].value) ppm")
         
         readppm = dataservice[3].characteristics[2]
             
