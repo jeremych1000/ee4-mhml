@@ -38,9 +38,9 @@ class raw_data(APIView):
     file_prefix = "MSBand2_ALL_data_"
 
     def post(self, request):
-        print("raw_data_post", request)
+        # print("raw_data_post", request)
         json_data = json.loads(request.body.decode("utf-8"))
-        print("DEBUG: ", json_data)
+        # print("DEBUG: ", json_data)
 
         username = json_data['username']
 
@@ -116,10 +116,10 @@ class realTimeResponse(APIView):
     def post(self, request):
         json_result = {}
         json_data = json.loads(request.body.decode("utf-8"))
-        print("DEBUG: ", json_data)
+        # print("DEBUG: ", json_data)
         username = json_data['username']
         data = json_data["data"]
-        print('Last timestamp data in json ', data[-1]["timestamp"])
+        # print('Last timestamp data in json ', data[-1]["timestamp"])
         timestamp = datetime.strptime(data[-1]["timestamp"], "%d/%m/%y %H:%M:%S")
         feature = newML.functions.json2Feature(json_data, username, timestamp)
         user_object = User.objects.get(username=username)
@@ -130,10 +130,10 @@ class realTimeResponse(APIView):
             classifier = pickle.load(open(mlfile.file.path, 'rb'))
         feature = np.array([feature])
         outcome = classifier.predict(feature)
-        #if outcome == True:
-        json_result["quality"] = "0"
-        #else:
-        #    json_result["quality"] = "0"
+        if outcome == True:
+            json_result["quality"] = "1"
+        else:
+            json_result["quality"] = "0"
         return Response(json_result, status=status.HTTP_200_OK)
 
 
