@@ -247,8 +247,10 @@ LOGGING = {
     'handlers': {
         'file': {
             'level': 'INFO',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR + '/log.log',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR + '/static/log.log',
+            'maxBytes': 1024*1024*5, # 5 MB
+            'backupCount': 5,
             'formatter':'standard',
         },
         'console':{
