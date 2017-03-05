@@ -76,7 +76,6 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     var roomtempArray = [AnyObject]()
     var airQArray = [AnyObject]()
     var humArray = [AnyObject]()
-    
     var hrArray = [AnyObject]()
     var rrArray = [AnyObject]()
     var hrQArray = [AnyObject]()
@@ -85,6 +84,23 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     var accXArray = [AnyObject]()
     var accYArray = [AnyObject]()
     var accZArray = [AnyObject]()
+    
+    var mastertimeArrayHR = [AnyObject]()
+    var masterhrArray = [AnyObject]()
+    var masterrrArray = [AnyObject]()
+    var masterhrQArray = [AnyObject]()
+    var mastergsrArray = [AnyObject]()
+    var masterskinArray = [AnyObject]()
+    var masteraccXArray = [AnyObject]()
+    var masteraccYArray = [AnyObject]()
+    var masteraccZArray = [AnyObject]()
+    var masterroomtempArray = [AnyObject]()
+    var masterairQArray = [AnyObject]()
+    var masterhumArray = [AnyObject]()
+    
+    
+    
+    
     var hrSwitchT: Int = 1
     var skinSwitchT: Int = 1
     var gsrSwitchT: Int = 1
@@ -206,7 +222,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             }
         })
         
-        print("PPM: \(dataservice[3].characteristics[2].value!) ppm")
+        print("PPM: \(dataservice[3].characteristics[2].value) ppm")
         
         readppm = dataservice[3].characteristics[2]
             
@@ -409,10 +425,10 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                 
                 csv += ",outcome"
                 
-                let count: Int = timeArrayHR.count
-                output("\(count)")
+                let count: Int = mastertimeArrayHR.count
+                output("totlal entries: \(count)")
                 for i in 0..<count {
-                    csv += "\n\(timeArrayHR[i]),\(hrArray[i]),\(rrArray[i]),\(hrQArray[i]),\(gsrArray[i]),\(skinArray[i]),\(accXArray[i]),\(accYArray[i]),\(accZArray[i]),\(roomtempArray[i]),\(humArray[i]),\(airQArray[i])"
+                    csv += "\n\(mastertimeArrayHR[i]),\(masterhrArray[i]),\(masterrrArray[i]),\(masterhrQArray[i]),\(mastergsrArray[i]),\(masterskinArray[i]),\(masteraccXArray[i]),\(masteraccYArray[i]),\(masteraccZArray[i]),\(masterroomtempArray[i]),\(masterhumArray[i]),\(masterairQArray[i])"
                     if(goodBadSwitch.isOn){
                         csv+=",1"
                     } else {
@@ -598,7 +614,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                     
                     self.buffer = self.buffer + 1
                     
-                    if self.buffer == 10 {
+                    if self.buffer == 600 {
                         self.buffer = 0
                         self.globalCounter += 1
                         self.output("buffer full")
@@ -630,12 +646,28 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                             datat.updateValue(self.readppm.value!, forKey: "PPM")
                             datat.updateValue("1", forKey: "outcome")
                             
+                            self.masterroomtempArray.append(self.dataservice[1].characteristics[1].value! as AnyObject)
+                            self.masterhumArray.append(self.dataservice[2].characteristics[1].value! as AnyObject)
+                            self.masterairQArray.append(self.readppm.value! as AnyObject)
+                            
+                            self.mastertimeArrayHR.append(self.timeArrayHR[i] as AnyObject)
+                            self.masterhrArray.append(self.hrArray[i] as AnyObject)
+                            self.masterrrArray.append(self.rrArray[i] as AnyObject)
+                            self.masterhrQArray.append(self.hrQArray[i] as AnyObject)
+                            self.mastergsrArray.append(self.gsrArray[i] as AnyObject)
+                            self.masterskinArray.append(self.skinArray[i] as AnyObject)
+                            self.masteraccXArray.append(self.accXArray[i] as AnyObject)
+                            self.masteraccYArray.append(self.accYArray[i] as AnyObject)
+                            self.masteraccZArray.append(self.accZArray[i] as AnyObject)
+                            
                             data.append(datat)
                         }
-                        
+                
                         parameters["data"] = data
                         
                         print(data)
+                        
+                    
                         
                         
                         let sessionManager = Alamofire.SessionManager.default

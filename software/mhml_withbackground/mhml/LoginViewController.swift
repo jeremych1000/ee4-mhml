@@ -14,7 +14,8 @@ class LoginViewController: UIViewController {
     
     var token = ""
     var v = ""
-    var valuet = ""
+    var valuet:String? = ""
+    var field_error:String? = ""
     var donedone = 0
 
     @IBOutlet weak var userNameTextField: UITextField!
@@ -34,7 +35,6 @@ class LoginViewController: UIViewController {
 
     @IBAction func loginButtonTapped(_ sender: AnyObject) {
         
-        //let userEmail = userNameTextField.text;
         let userPassword = userPasswordTextField.text;
         let userName = userNameTextField.text;
         
@@ -42,24 +42,12 @@ class LoginViewController: UIViewController {
         
         let userPasswordStored = UserDefaults.standard.string(forKey: "userPassword");
         
-        //let userNameStored = U
-        
-        //print("\(userEmail)");
-        print("\(userPassword)");
-        print("\(userEmailStored)")
-        
-        
         
         if ( (userPassword?.isEmpty)! || (userName?.isEmpty)!){
             print("fields are empty")
             
         } else {
             logIn()
-            print("Logged in")
-            if token != nil {
-                print("token valid")
-                self.performSegue(withIdentifier: "showMain", sender: self);
-            }
         }
     }
     
@@ -111,17 +99,20 @@ class LoginViewController: UIViewController {
                             
                             statusCode = (response.response?.statusCode)! //Gets HTTP status code, useful for debugging
                             
-                            
                             if let result = (response.result.value){
                                 
                                 let value = result as! NSDictionary
                                 
-                                print("TOKEN:  \(value)")
-                                self.valuet = value.object(forKey: "key") as! String
                                 
-                                print("TOKEEEN:  \(self.valuet)")
+                                print("statuscode: \(statusCode)")
+                                if statusCode == 200 {
+                                    print("Response:  \(value)")
+                                    self.valuet = (value.object(forKey: "key") as! String)
+                                    print("TOKEEN: \(self.valuet)")
+                                }
+                
                                 
-                                
+                                /*
                                 let authManager = Alamofire.SessionManager.default
                                 
                                 authManager.session.configuration.httpAdditionalHeaders = [
@@ -134,20 +125,8 @@ class LoginViewController: UIViewController {
                                 
                                 let sessionManagernew = Alamofire.SessionManager.default
                                 
-                                /*
-                                let headersnew:  HTTPHeaders = [
-                                    "X-CSRFToken" : self.v,
-                                    "Authorization": "Token \(self.valuet)",
-                                    "HTTP_AUTHORIZATION": "Token \(self.valuet)",
-                                    "Token": (self.valuet),
-                                ]
-                                */
- 
- 
-                                print("CSRFT1 \(self.v)")
-                                //print("header1 \(headersnew) ")
-                                
-                                 //Alamofire.SessionManager.default.session.configuration.httpAdditionalHeaders = headersnew
+                                print("CSRFT: \(self.v)")
+
                                 Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
                                 
                                 sessionManagernew.request(
@@ -165,11 +144,17 @@ class LoginViewController: UIViewController {
                                         }
                                         
                                         
-                                }
+                                } */
 
                                 
+                            }
+                            
+                            
+                            if statusCode == 200{
+                                print("token valid")
+                                self.performSegue(withIdentifier: "showMain", sender: self);
                             } else {
-                                print("error detected")
+                                print("token is not valid, error detected")
                             }
                         }
                 }
@@ -177,27 +162,6 @@ class LoginViewController: UIViewController {
 
         }
 
-
-        if donedone == 1 {
-        
-        
-
-        
-        
-        
-        
-        
-        
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
     
 
