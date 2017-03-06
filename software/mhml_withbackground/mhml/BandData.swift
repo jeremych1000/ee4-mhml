@@ -224,99 +224,13 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         
         print("PPM: \(dataservice[3].characteristics[2].value) ppm")
         
-        readppm = dataservice[3].characteristics[2]
-            
-        //dataservice[3].characteristics[2].enableNotification(true, completionHandler: { (error) -> Void in
-        //    if error != nil {
-        //        print("Something3 went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-        //    }
-        //})
-
-        
-        /*let readtemp = dataservice[3].characteristics[2] as HMCharacteristic
-        readtemp.readValue(completionHandler: {(error: Error?) -> Void in
-            if error == nil {
-                self.output("New PPM: \(readtemp.value)")
-            } else {
-                print("Error")
-            }
-        } )*/
-    
-    
+        if dataservice[3].characteristics[2].value == nil {
+            //readppm.value = 0
+        } else {
+            readppm = dataservice[3].characteristics[2]
+        }
         
         
-        /*let service = dataservice[1] as HMService
-        for characteristic in service.characteristics {
-            print("Service: \(service.name) has characteristicType: \(characteristic.characteristicType) and ReadableCharType: \(characteristicName.getCharacteristicType(characteristic.characteristicType))")
-            
-            if characteristic.characteristicType == HMCharacteristicTypeCurrentTemperature {
-                print("Temperature: \(characteristic.value)")
-                
-                //dataCharacteristic.append(characteristic as HMCharacteristic)
-                
-                characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-                    if error != nil {
-                        print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-                    }
-                })
-            }
-            
-            if characteristic.characteristicType == "E863F10B-079E-48FF-8F27-9C2605A29F52" {
-                print("PPM: \(characteristic.value)")
-            }
-            
-        } */
-
-        
-        
-        
-      /* for service in accessory.services {
-            if service.serviceType == HMServiceTypeThermostat {
-                dataservice.append(service as HMService)
-            }
-            //print("data: \(service)")
-            print("one")
-            for item in service.characteristics {
-                let characteristic = item as HMCharacteristic
-                if characteristic.characteristicType == HMCharacteristicTypeCurrentTemperature {
-                    print("Temperature: \(characteristic.value) : \(characteristic.metadata)")
-                    dataCharacteristic.append(characteristic as HMCharacteristic)
-                    
-                    characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-                        if error != nil {
-                            print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-                        }
-                    })
-                    
-                } else if characteristic.characteristicType == HMCharacteristicTypeCurrentRelativeHumidity {
-                    print("Humidity: \(characteristic.value)")
-                    dataCharacteristic.append(characteristic as HMCharacteristic)
-                    
-                    characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-                        if error != nil {
-                            print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-                        }
-                    })
-                }
-            }
-        } */
-        
-        
-
-        
-   /*     let readtemp = dataCharacteristic[0] as HMCharacteristic
-        readtemp.readValue(completionHandler: { (error: NSError?) -> Void in
-            if error == nil {
-                print("Got OutletInUse value from Outlet \(readtemp.value)")
-            } else {
-                print("Error")
-            }
-        } as! (Error?) -> Void)
- */
-        
-        
-        
-
         // Setup Band
         clientManager?.delegate = self
         if let band = clientManager?.attachedClients().first as! MSBClient! {
