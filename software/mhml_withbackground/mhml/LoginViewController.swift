@@ -21,6 +21,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userPasswordTextField: UITextField!
     
+    @IBOutlet weak var returnlabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +47,7 @@ class LoginViewController: UIViewController {
         
         if ( (userPassword?.isEmpty)! || (userName?.isEmpty)!){
             print("fields are empty")
+            returnlabel.text = "Fields are empty"
             
         } else {
             logIn()
@@ -155,6 +158,7 @@ class LoginViewController: UIViewController {
                                 self.performSegue(withIdentifier: "showMain", sender: self);
                             } else {
                                 print("token is not valid, error detected")
+                                self.returnlabel.text = "Invalid User name or password"
                             }
                         }
                 }
