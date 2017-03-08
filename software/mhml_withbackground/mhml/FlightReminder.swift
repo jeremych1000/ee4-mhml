@@ -15,9 +15,24 @@ class FlightReminder: UIViewController {
     @IBOutlet weak var reminderText: UITextField!
 
     @IBOutlet weak var myDatePicker: UIDatePicker!
+  
+    
+    @IBOutlet weak var setRe: UIButton!
+    
+    
     let appDelegate = UIApplication.shared.delegate
         as! AppDelegate
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setRe.layer.cornerRadius = 8
+        self.myDatePicker.setValue(UIColor.white, forKey: "textColor")
+        // Do any additional setup after loading the view.
+    }
+    
+
     @IBAction func setReminder(_ sender: Any) {
     
     if appDelegate.eventStore == nil {
