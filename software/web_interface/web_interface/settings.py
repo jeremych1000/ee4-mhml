@@ -33,9 +33,7 @@ INSTALLED_APPS = [
     'myaccount',
     'MLBlock',
     'newML',
-    'cal',
     'daterange_filter',
-    'push_notifications',
 
     # REST API
     'rest_framework',
@@ -223,6 +221,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework_jwt.auth#entication.JSONWebTokenAuthentication',
     ),
     'FORM_METHOD_OVERRIDE': None,
     'FORM_CONTENT_OVERRIDE': None,
@@ -268,11 +267,6 @@ LOGGING = {
             'level': 'INFO',
         },
     },
-}
-
-# push notifications
-PUSH_NOTIFICATIONS_SETTINGS = {
-        "FCM_API_KEY": "AIzaSyDWvGUqFxnrZcr0Iwwntq6RBmgqxdxRczA",
 }
 
 # others

@@ -4,6 +4,7 @@ import os
 import csv
 import numpy as np
 import math
+from scipy import stats as st
 
 
 def CSV2Feature(fileURL, winSize):
@@ -31,7 +32,7 @@ def CSV2Feature(fileURL, winSize):
             acc_slice = [math.sqrt(float(ele[6]) ** 2 + float(ele[7]) ** 2 + float(ele[8]) ** 2) for ele in winSlice]
             features.append(
                 [np.mean(hr_slice), np.std(hr_slice), np.mean(rr_slice), np.std(rr_slice), np.mean(gsr_slice),
-                 np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice)])
+                 np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice),st.kurtosis(hr_slice),st.kurtosis(rr_slice),st.kurtosis(gsr_slice)])
             outcomes.append(outcome)
             dateVecs.append(winSlice[0][0])
             rowCount = winSize
@@ -46,13 +47,13 @@ def CSV2Feature(fileURL, winSize):
         acc_slice = [math.sqrt(float(ele[6]) ** 2 + float(ele[7]) ** 2 + float(ele[8]) ** 2) for ele in winSlice]
         dateVecs.append(winSlice[0][0])
         features.append([np.mean(hr_slice), np.std(hr_slice), np.mean(rr_slice), np.std(rr_slice), np.mean(gsr_slice),
-                         np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice)])
+                         np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice),st.kurtosis(hr_slice),st.kurtosis(rr_slice),st.kurtosis(gsr_slice)])
         outcomes.append(outcome)
 
     return dateVecs, features, outcomes
 
 
-datapath=os.path.join('..',os.path.join('media','data'))
+datapath=os.path.join('..',os.path.join('media','data/jeremych'))
 features =[]
 outcomes=[]
 dates=[]
