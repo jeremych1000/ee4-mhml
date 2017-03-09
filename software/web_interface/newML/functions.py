@@ -9,6 +9,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from datetime import datetime
 from datetime import timedelta
+from scipy import stats as st
 
 
 def json2Feature(json, username, timestamp):
@@ -40,7 +41,9 @@ def json2Feature(json, username, timestamp):
         feature["mean_temp"] = np.mean(temp)
         feature["std_temp"] = np.std(temp)
         feature["mean_acc"] = np.mean([math.sqrt(x ** 2 + y ** 2 + z ** 2) for x, y, z in zip(accX, accY, accZ)])
-
+        feature["kurt_hr"] = st.kurtosis(hr)
+        feature["kurt_rr"] = st.kurtosis(rr)
+        feature["kurt_gsr"] = st.kurtosis(gsr)
         # get username from user database
         user_object = User.objects.get(username=username)
 
@@ -55,11 +58,14 @@ def json2Feature(json, username, timestamp):
                                            mean_temp=feature['mean_temp'],
                                            std_temp=feature['std_temp'],
                                            mean_acc=feature['mean_acc'],
+                                           kurt_hr=feature['kurt_hr'],
+                                           kurt_rr=feature['kurt_rr'],
+                                           kurt_gsr=feature['kurt_gsr'],
                                            label=None
                                            )
 
         return [feature["mean_hr"], feature["std_hr"], feature["mean_rr"], feature["std_rr"], feature["mean_gsr"],
-                feature["std_gsr"], feature["mean_temp"], feature["std_temp"], feature["mean_acc"]]
+                feature["std_gsr"], feature["mean_temp"], feature["std_temp"], feature["mean_acc"],feature["kurt_hr"],feature["kurt_gsr"],feature["kurt_rr"]]
 
 
 def FeatureEntry2FeatureOutcome(entryVec):
@@ -67,7 +73,7 @@ def FeatureEntry2FeatureOutcome(entryVec):
     outcomes = [];
     for f in entryVec:
         features.append(
-            [f.mean_hr, f.std_hr, f.mean_rr, f.std_rr, f.mean_gsr, f.std_gsr, f.mean_temp, f.std_temp, f.mean_acc])
+            [f.mean_hr, f.std_hr, f.mean_rr, f.std_rr, f.mean_gsr, f.std_gsr, f.mean_temp, f.std_temp, f.mean_acc,f.kurt_hr,f.kurt_rr,f.kurt_gsr])
         outcomes.append(f.label)
     return features, outcomes
 
@@ -130,7 +136,7 @@ def CSV2Feature(fileURL, winSize):
             acc_slice = [math.sqrt(float(ele[6]) ** 2 + float(ele[7]) ** 2 + float(ele[8]) ** 2) for ele in winSlice]
             features.append(
                 [np.mean(hr_slice), np.std(hr_slice), np.mean(rr_slice), np.std(rr_slice), np.mean(gsr_slice),
-                 np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice)])
+                 np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice),st.kurtosis(hr_slice),st.kurtosis(rr_slice),st.kurtosis(gsr_slice)])
             outcomes.append(outcome)
             dateVecs.append(winSlice[0][0])
             rowCount = winSize
@@ -145,7 +151,7 @@ def CSV2Feature(fileURL, winSize):
         acc_slice = [math.sqrt(float(ele[6]) ** 2 + float(ele[7]) ** 2 + float(ele[8]) ** 2) for ele in winSlice]
         dateVecs.append(winSlice[0][0])
         features.append([np.mean(hr_slice), np.std(hr_slice), np.mean(rr_slice), np.std(rr_slice), np.mean(gsr_slice),
-                         np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice)])
+                         np.std(gsr_slice), np.mean(temp_slice), np.std(temp_slice), np.mean(acc_slice),st.kurtosis(hr_slice),st.kurtosis(rr_slice),st.kurtosis(gsr_slice)])
         outcomes.append(outcome)
 
     return dateVecs, features, outcomes

@@ -46,7 +46,9 @@ def migrateFeature(request):
     for d, f, o in zip(dates, features, outcomes):
         d_obj = datetime.strptime(d,'%d/%m/%y %H:%M:%S')
         models.FeatureEntry.objects.create(user=userObj, date=d_obj, mean_hr=f[0], std_hr=f[1], mean_rr=f[2], std_rr=f[3],
-                                           mean_gsr=f[4], std_gsr=f[5], mean_temp=f[6], std_temp=f[7], mean_acc=f[8],
+                                           mean_gsr=f[4], std_gsr=f[5], mean_temp=f[6], std_temp=f[7], mean_acc=f[8],kurt_hr=f[9],
+                                           kurt_rr=f[10],
+                                           kurt_gsr=f[11],
                                            label=o)
     return HttpResponseRedirect('/')
 
