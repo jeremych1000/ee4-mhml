@@ -15,3 +15,6 @@ class UserProfile(models.Model):
 
 class TestPost(models.Model):
     post_data = models.CharField(max_length=30, blank=True)
+
+
+
