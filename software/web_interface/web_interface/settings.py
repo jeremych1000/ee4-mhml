@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'newML',
     'cal',
     'daterange_filter',
-    'push_notifications',
+    #'push_notifications',
 
     # REST API
     'rest_framework',

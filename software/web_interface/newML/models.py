@@ -11,7 +11,7 @@ import os
 class FeatureEntry(models.Model):
     AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=False)
+    date = models.DateTimeField(auto_now_add=False, unique=True)
     mean_hr = models.FloatField(default=0.0)
     std_hr = models.FloatField(default=0.0)
     mean_rr = models.FloatField(default=0.0)
@@ -21,10 +21,13 @@ class FeatureEntry(models.Model):
     mean_temp = models.FloatField(default=0.0)
     std_temp = models.FloatField(default=0.0)
     mean_acc = models.FloatField(default=0.0)
-    kurt_hr= models.FloatField(default=0.0)
-    kurt_rr=models.FloatField(default=0.0)
-    kurt_gsr=models.FloatField(default=0.0)
+    kurt_hr = models.FloatField(default=0.0)
+    kurt_rr = models.FloatField(default=0.0)
+    kurt_gsr = models.FloatField(default=0.0)
     label = models.NullBooleanField(default="", blank=False, null=True)
+
+    class Meta:
+        unique_together = [("user", "date", "mean_hr")]
 
 
 class ModelFile(models.Model):
