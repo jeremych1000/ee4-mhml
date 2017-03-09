@@ -1,4 +1,4 @@
-//
+ //
 //  BandData.swift
 //  mhml
 //
@@ -76,7 +76,6 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     var roomtempArray = [AnyObject]()
     var airQArray = [AnyObject]()
     var humArray = [AnyObject]()
-    
     var hrArray = [AnyObject]()
     var rrArray = [AnyObject]()
     var hrQArray = [AnyObject]()
@@ -85,6 +84,23 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     var accXArray = [AnyObject]()
     var accYArray = [AnyObject]()
     var accZArray = [AnyObject]()
+    
+    var mastertimeArrayHR = [AnyObject]()
+    var masterhrArray = [AnyObject]()
+    var masterrrArray = [AnyObject]()
+    var masterhrQArray = [AnyObject]()
+    var mastergsrArray = [AnyObject]()
+    var masterskinArray = [AnyObject]()
+    var masteraccXArray = [AnyObject]()
+    var masteraccYArray = [AnyObject]()
+    var masteraccZArray = [AnyObject]()
+    var masterroomtempArray = [AnyObject]()
+    var masterairQArray = [AnyObject]()
+    var masterhumArray = [AnyObject]()
+    
+    
+    
+    
     var hrSwitchT: Int = 1
     var skinSwitchT: Int = 1
     var gsrSwitchT: Int = 1
@@ -206,101 +222,15 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             }
         })
         
-        print("PPM: \(dataservice[3].characteristics[2].value!) ppm")
+        print("PPM: \(dataservice[3].characteristics[2].value) ppm")
         
-        readppm = dataservice[3].characteristics[2]
-            
-        //dataservice[3].characteristics[2].enableNotification(true, completionHandler: { (error) -> Void in
-        //    if error != nil {
-        //        print("Something3 went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-        //    }
-        //})
-
-        
-        /*let readtemp = dataservice[3].characteristics[2] as HMCharacteristic
-        readtemp.readValue(completionHandler: {(error: Error?) -> Void in
-            if error == nil {
-                self.output("New PPM: \(readtemp.value)")
-            } else {
-                print("Error")
-            }
-        } )*/
-    
-    
+        if dataservice[3].characteristics[2].value == nil {
+            //readppm.value = 0
+        } else {
+            readppm = dataservice[3].characteristics[2]
+        }
         
         
-        /*let service = dataservice[1] as HMService
-        for characteristic in service.characteristics {
-            print("Service: \(service.name) has characteristicType: \(characteristic.characteristicType) and ReadableCharType: \(characteristicName.getCharacteristicType(characteristic.characteristicType))")
-            
-            if characteristic.characteristicType == HMCharacteristicTypeCurrentTemperature {
-                print("Temperature: \(characteristic.value)")
-                
-                //dataCharacteristic.append(characteristic as HMCharacteristic)
-                
-                characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-                    if error != nil {
-                        print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-                    }
-                })
-            }
-            
-            if characteristic.characteristicType == "E863F10B-079E-48FF-8F27-9C2605A29F52" {
-                print("PPM: \(characteristic.value)")
-            }
-            
-        } */
-
-        
-        
-        
-      /* for service in accessory.services {
-            if service.serviceType == HMServiceTypeThermostat {
-                dataservice.append(service as HMService)
-            }
-            //print("data: \(service)")
-            print("one")
-            for item in service.characteristics {
-                let characteristic = item as HMCharacteristic
-                if characteristic.characteristicType == HMCharacteristicTypeCurrentTemperature {
-                    print("Temperature: \(characteristic.value) : \(characteristic.metadata)")
-                    dataCharacteristic.append(characteristic as HMCharacteristic)
-                    
-                    characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-                        if error != nil {
-                            print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-                        }
-                    })
-                    
-                } else if characteristic.characteristicType == HMCharacteristicTypeCurrentRelativeHumidity {
-                    print("Humidity: \(characteristic.value)")
-                    dataCharacteristic.append(characteristic as HMCharacteristic)
-                    
-                    characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-                        if error != nil {
-                            print("Something went wrong when enabling notification for a chracteristic. \(error?.localizedDescription)")
-                        }
-                    })
-                }
-            }
-        } */
-        
-        
-
-        
-   /*     let readtemp = dataCharacteristic[0] as HMCharacteristic
-        readtemp.readValue(completionHandler: { (error: NSError?) -> Void in
-            if error == nil {
-                print("Got OutletInUse value from Outlet \(readtemp.value)")
-            } else {
-                print("Error")
-            }
-        } as! (Error?) -> Void)
- */
-        
-        
-        
-
         // Setup Band
         clientManager?.delegate = self
         if let band = clientManager?.attachedClients().first as! MSBClient! {
@@ -409,10 +339,10 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                 
                 csv += ",outcome"
                 
-                let count: Int = timeArrayHR.count
-                output("\(count)")
+                let count: Int = mastertimeArrayHR.count
+                output("totlal entries: \(count)")
                 for i in 0..<count {
-                    csv += "\n\(timeArrayHR[i]),\(hrArray[i]),\(rrArray[i]),\(hrQArray[i]),\(gsrArray[i]),\(skinArray[i]),\(accXArray[i]),\(accYArray[i]),\(accZArray[i]),\(roomtempArray[i]),\(humArray[i]),\(airQArray[i])"
+                    csv += "\n\(mastertimeArrayHR[i]),\(masterhrArray[i]),\(masterrrArray[i]),\(masterhrQArray[i]),\(mastergsrArray[i]),\(masterskinArray[i]),\(masteraccXArray[i]),\(masteraccYArray[i]),\(masteraccZArray[i]),\(masterroomtempArray[i]),\(masterhumArray[i]),\(masterairQArray[i])"
                     if(goodBadSwitch.isOn){
                         csv+=",1"
                     } else {
@@ -598,7 +528,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                     
                     self.buffer = self.buffer + 1
                     
-                    if self.buffer == 10 {
+                    if self.buffer == 600 {
                         self.buffer = 0
                         self.globalCounter += 1
                         self.output("buffer full")
@@ -630,12 +560,28 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                             datat.updateValue(self.readppm.value!, forKey: "PPM")
                             datat.updateValue("1", forKey: "outcome")
                             
+                            self.masterroomtempArray.append(self.dataservice[1].characteristics[1].value! as AnyObject)
+                            self.masterhumArray.append(self.dataservice[2].characteristics[1].value! as AnyObject)
+                            self.masterairQArray.append(self.readppm.value! as AnyObject)
+                            
+                            self.mastertimeArrayHR.append(self.timeArrayHR[i] as AnyObject)
+                            self.masterhrArray.append(self.hrArray[i] as AnyObject)
+                            self.masterrrArray.append(self.rrArray[i] as AnyObject)
+                            self.masterhrQArray.append(self.hrQArray[i] as AnyObject)
+                            self.mastergsrArray.append(self.gsrArray[i] as AnyObject)
+                            self.masterskinArray.append(self.skinArray[i] as AnyObject)
+                            self.masteraccXArray.append(self.accXArray[i] as AnyObject)
+                            self.masteraccYArray.append(self.accYArray[i] as AnyObject)
+                            self.masteraccZArray.append(self.accZArray[i] as AnyObject)
+                            
                             data.append(datat)
                         }
-                        
+                
                         parameters["data"] = data
                         
                         print(data)
+                        
+                    
                         
                         
                         let sessionManager = Alamofire.SessionManager.default

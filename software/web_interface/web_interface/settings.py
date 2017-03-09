@@ -232,6 +232,42 @@ REST_FRAMEWORK = {
 ###########################################################################
 ###########################################################################
 ###########################################################################
+#
+# logging
+# 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR + '/static/log.log',
+            'maxBytes': 1024*1024*5, # 5 MB
+            'backupCount': 5,
+            'formatter':'standard',
+        },
+        'console':{
+            'level':'INFO',
+            'class':'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console',],
+            'level': 'INFO',
+        },
+    },
+}
+
+
 # others
 CSRF_COOKIE_SECURE = False  # allow transportation of CSRF over HTTP
 
