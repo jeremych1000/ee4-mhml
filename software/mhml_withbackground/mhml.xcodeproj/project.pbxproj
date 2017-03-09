@@ -952,11 +952,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhml;
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = com.sleepify.beta;
->>>>>>> 0a884d90778eafcb4b9c1e1b14e9b29a371acc73
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -980,11 +976,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.mhml;
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = com.sleepify.beta;
->>>>>>> 0a884d90778eafcb4b9c1e1b14e9b29a371acc73
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
