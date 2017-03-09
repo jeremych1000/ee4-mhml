@@ -91,7 +91,7 @@ def createNewModel(username):
         #         file_mode = 'rb'
         filehandle = open(model_path, file_mode)
         features, outcomes = FeatureEntry2FeatureOutcome(feature_vec)
-        clf = RandomForestClassifier(n_estimators=30)
+        clf = RandomForestClassifier()
         clf.fit(features, outcomes)
         models.ModelFile.objects.create(file=model_path, user=user_object)
         pickle._dump(clf, filehandle)

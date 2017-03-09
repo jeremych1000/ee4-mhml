@@ -51,4 +51,3 @@ def migrateFeature(request):
                                            kurt_gsr=f[11],
                                            label=o)
     return HttpResponseRedirect('/')
-
