@@ -21,6 +21,9 @@ class FeatureEntry(models.Model):
     mean_temp = models.FloatField(default=0.0)
     std_temp = models.FloatField(default=0.0)
     mean_acc = models.FloatField(default=0.0)
+    kurt_hr= models.FloatField(default=0.0)
+    kurt_rr=models.FloatField(default=0.0)
+    kurt_gsr=models.FloatField(default=0.0)
     label = models.NullBooleanField(default="", blank=False, null=True)
 
 
