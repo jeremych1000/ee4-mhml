@@ -214,9 +214,9 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ###########################################################################
 # rest framework
 REST_FRAMEWORK = {
-    #'DEFAULT_PERMISSION_CLASSES': (
+    # 'DEFAULT_PERMISSION_CLASSES': (
     #    'rest_framework.permissions.IsAuthenticated',
-    #),
+    # ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
@@ -241,32 +241,33 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'standard': {
-            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+            'encoding': 'utf-8'
         },
     },
     'handlers': {
         'file': {
             'level': 'INFO',
-            'class':'logging.handlers.RotatingFileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': BASE_DIR + '/static/log.log',
-            'maxBytes': 1024*1024*5, # 5 MB
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 5,
-            'formatter':'standard',
+            'formatter': 'standard',
+            'encoding': 'utf-8'
         },
-        'console':{
-            'level':'INFO',
-            'class':'logging.StreamHandler',
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
             'formatter': 'standard'
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['file', 'console',],
+            'handlers': ['file', 'console', ],
             'level': 'INFO',
         },
     },
 }
-
 
 # others
 CSRF_COOKIE_SECURE = False  # allow transportation of CSRF over HTTP
@@ -285,4 +286,4 @@ SENDFILE_BACKEND = 'sendfile.backends.development'
 DOCS_ROOT = os.path.join(BASE_DIR, "docs/_build/html/")
 DOCS_ACCESS = 'public'
 
-USE_TZ = False # bypass RuntimeWarning: DateTimeField FeatureEntry.date received a naive datetime (2017-02-21 02:00:44) while time zone support is active. RuntimeWarning)
+USE_TZ = False  # bypass RuntimeWarning: DateTimeField FeatureEntry.date received a naive datetime (2017-02-21 02:00:44) while time zone support is active. RuntimeWarning)

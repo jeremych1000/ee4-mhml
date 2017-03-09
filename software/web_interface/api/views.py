@@ -139,7 +139,9 @@ class realTimeResponse(APIView):
 
 class userFeedback(APIView):
     def post(self, request):
-        json_data = json.loads(request.body.decode("utf-8"))
+        # print("DEBUG: ", dir(request), request.data)
+        json_data = json.loads(request.data.decode("utf-8"))
+        print("DDEBUG: ", json_data)
         newML.functions.labelInsertion(json_data)
         return Response(status=status.HTTP_200_OK)
 
