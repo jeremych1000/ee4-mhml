@@ -21,7 +21,7 @@ def settingDefault(request):
             new_d, new_f, new_out = func.CSV2Feature(filepath, 600)
             features += (new_f)
             outcomes += new_out
-    clf = RandomForestClassifier()
+    clf = RandomForestClassifier(n_estimators = 30)
     clf.fit(features, outcomes)
     pickle.dump(clf, f_handle)
     return HttpResponseRedirect('/')
