@@ -22,13 +22,13 @@ from django.contrib.auth import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-#self
-from MLBlock import views as ml_views
+from .log import log
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
 
     url(r'^', include("personal.urls"), name='home'),
+    url(r'^log/$', log.as_view()),
 
     url(r'^myaccount/', include('myaccount.urls'), name='myaccount'),
     url(r'^ml/', include('MLBlock.urls'), name='ml'),

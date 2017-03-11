@@ -38,13 +38,6 @@ def download(request):
 def privacy(request):
     return render(request, "personal/privacy.html")
 
-@login_required
-def log(request):
-    path = os.path.join(settings.STATICFILES_DIRS[0], 'log.log')
-    # print(path)
-    with open(path, 'r') as myfile:
-        data=myfile.read()
-    return HttpResponse(data, content_type='text/plain')
 
 def blank(request):
     return render(request, "personal/blank.html")
