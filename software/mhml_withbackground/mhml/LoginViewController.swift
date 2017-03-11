@@ -10,6 +10,17 @@ import UIKit
 import Alamofire
 //import SwiftyJSON
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class LoginViewController: UIViewController {
     
     var token = ""
@@ -25,8 +36,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,9 +51,9 @@ class LoginViewController: UIViewController {
         let userPassword = userPasswordTextField.text;
         let userName = userNameTextField.text;
         
-        let userEmailStored = UserDefaults.standard.string(forKey: "userEmail");
+        //let userEmailStored = UserDefaults.standard.string(forKey: "userEmail");
         
-        let userPasswordStored = UserDefaults.standard.string(forKey: "userPassword");
+        //let userPasswordStored = UserDefaults.standard.string(forKey: "userPassword");
         
         
         if ( (userPassword?.isEmpty)! || (userName?.isEmpty)!){
@@ -75,7 +86,7 @@ class LoginViewController: UIViewController {
                 if let headerFields = response.response?.allHeaderFields as? [String: String],
                     let URL = response.response?.url {
                     let csrf_token = headerFields["Set-Cookie"]
-                    var cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
+                    let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
                     
                     let startIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy:10)
                     let endIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy: 73)

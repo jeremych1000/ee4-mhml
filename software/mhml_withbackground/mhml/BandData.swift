@@ -186,8 +186,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             activeHome = home
             if let room = home.rooms.first as HMRoom? {
                 activeRoom = room
-                title = room.name + " Devices"
-                print("room: \(title)")
+                var roomtitle = room.name + " Devices"
+                print("room: \(roomtitle)")
             }
         }
         let accessory = activeRoom!.accessories[0] as HMAccessory
@@ -225,7 +225,16 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         print("PPM: \(dataservice[3].characteristics[2].value) ppm")
         
         if dataservice[3].characteristics[2].value == nil {
-            //readppm.value = 0
+           // readppm.value = 0
+            readppm = dataservice[3].characteristics[2]
+            readppm.readValue(completionHandler: {(error: Error?) -> Void in
+                if error == nil {
+                    self.output("New PPm: \(self.readppm.value!) ppm")
+                } else {
+                    print("Error")
+                }
+            } )
+            
         } else {
             readppm = dataservice[3].characteristics[2]
         }
@@ -528,7 +537,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                     
                     self.buffer = self.buffer + 1
                     
-                    if self.buffer == 600 {
+                    if self.buffer == 30 {
                         self.buffer = 0
                         self.globalCounter += 1
                         self.output("buffer full")

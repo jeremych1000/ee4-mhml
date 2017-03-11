@@ -26,6 +26,11 @@ class CharacteristicsViewController: HMCatalogViewController, HMAccessoryDelegat
         super.viewDidLoad()
      
         tableViewDataSource = CharacteristicsTableViewDataSource(service: service, tableView: tableView, delegate: cellDelegate, showsFavorites: showsFavorites, allowsAllWrites: allowsAllWrites)
+        
+        
+    self.tableView.backgroundColor = UIColor.black
+
+        
     }
     
     /// Reloads the view and enabled notifications for all relevant characteristics.

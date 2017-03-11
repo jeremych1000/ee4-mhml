@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -97,6 +97,7 @@
 		56E614211E6329D2002BF657 /* HMServiceName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141D1E6329D2002BF657 /* HMServiceName.swift */; };
 		56E614221E6329D2002BF657 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141E1E6329D2002BF657 /* Utility.swift */; };
 		685983AD5E417A8C163C8344 /* Pods_mhml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E238BCE810A1E642DDA631 /* Pods_mhml.framework */; };
+		8D1B49621E73ABB1001F13C5 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B49611E73ABB1001F13C5 /* ForgotViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +127,7 @@
 		30E238BCE810A1E642DDA631 /* Pods_mhml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mhml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		561F067A1E632C750088FA2B /* Outlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outlet.swift; sourceTree = "<group>"; };
 		561F067B1E632C750088FA2B /* OutletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutletViewController.swift; sourceTree = "<group>"; };
-		561F06C51E64A5040088FA2B /* RegisterPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
+		561F06C51E64A5040088FA2B /* RegisterPageViewController.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; fileEncoding = 4; path = RegisterPageViewController.swift; sourceTree = "<group>"; };
 		561F06C71E64A5120088FA2B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		561F06C81E64A5120088FA2B /* logoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutViewController.swift; sourceTree = "<group>"; };
 		561F072A1E64B84C0088FA2B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/mhml-dssrrpjpwsmmlubxeimkhjzcaqrh/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -208,6 +209,7 @@
 		56E6141C1E6329D2002BF657 /* HMErrorCodeMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMErrorCodeMessage.swift; sourceTree = "<group>"; };
 		56E6141D1E6329D2002BF657 /* HMServiceName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMServiceName.swift; sourceTree = "<group>"; };
 		56E6141E1E6329D2002BF657 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		8D1B49611E73ABB1001F13C5 /* ForgotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
 		9ABD215F84BDEBC255FB294D /* Pods-mhml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mhml.release.xcconfig"; path = "Pods/Target Support Files/Pods-mhml/Pods-mhml.release.xcconfig"; sourceTree = "<group>"; };
 		E68512D9BEE36A4F718179EC /* Pods-mhml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mhml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mhml/Pods-mhml.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +276,7 @@
 				561F06C71E64A5120088FA2B /* LoginViewController.swift */,
 				561F06C81E64A5120088FA2B /* logoutViewController.swift */,
 				561F06C51E64A5040088FA2B /* RegisterPageViewController.swift */,
+				8D1B49611E73ABB1001F13C5 /* ForgotViewController.swift */,
 				561F06791E632C750088FA2B /* Outlet */,
 				56C13B161E5CB1F900D755CB /* mhml.entitlements */,
 				56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */,
@@ -593,7 +596,6 @@
 				TargetAttributes = {
 					1680DC6E1E4C8BDB009DA146 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = VPJUWG3WEE;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -612,7 +614,7 @@
 				};
 			};
 			buildConfigurationList = 1680DC6A1E4C8BDB009DA146 /* Build configuration list for PBXProject "mhml" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -734,6 +736,7 @@
 				56C13B7C1E5CB4AB00D755CB /* CharacteristicCell.swift in Sources */,
 				56C13BA11E5CB4AB00D755CB /* MapViewController.swift in Sources */,
 				56C13B871E5CB4AB00D755CB /* CharacteristicsViewController.swift in Sources */,
+				8D1B49621E73ABB1001F13C5 /* ForgotViewController.swift in Sources */,
 				56C13B7B1E5CB4AB00D755CB /* ModifyAccessoryViewController.swift in Sources */,
 				561F06E81E64B3160088FA2B /* LoginViewController.swift in Sources */,
 				56C13BB41E5CB4AB00D755CB /* UIStoryboardSegue+IntendedDestination.swift in Sources */,
@@ -952,7 +955,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sleepify.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sleepify.betav1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -976,7 +979,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sleepify.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sleepify.betav1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

@@ -1,80 +1,58 @@
 //
-//  RegisterPageViewController.swift
-//  UserLoginAndRegistration
+//  ForgotViewController.swift
+//  mhml
 //
-//  Created by Sergey Kargopolov on 2015-01-13.
-//  Copyright (c) 2015 Sergey Kargopolov. All rights reserved.
+//  Created by Tszho on 11/03/2017.
+//  Copyright © 2017 Nathalie Wong. All rights reserved.
 //
 
-
-import UIKit
-//import Parse
+import Foundation
 import Alamofire
+//import SwiftyJSON
 
-class RegisterPageViewController: UIViewController {
-
-    @IBOutlet weak var userNameTextField: UITextField!
+class ForgotViewController: UIViewController {
+    
+    
+    @IBOutlet weak var ResetButton: UIButton!
     @IBOutlet weak var userEmailTextField: UITextField!
-    @IBOutlet weak var userPasswordTextField: UITextField!
-    @IBOutlet weak var userRepeatPassTextField: UITextField!
-    @IBOutlet weak var registerButton: UIButton!
+    
+    var token = ""
+    var v = ""
+    var valuet:String? = ""
+    var field_error:String? = ""
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        
-        //view.addGestureRecognizer(tap)
-        
         self.hideKeyboardWhenTappedAround()
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
     //MARK: Action
     
     
-    @IBAction func registerButtonTapped(_ sender: Any) {
-
+    @IBAction func didResetpress(_ sender: Any) {
+        print("Reset User")
+        resetuser()
+    }
     
-        let userEmail = userEmailTextField.text;
-        let userPassword = userPasswordTextField.text;
-        let userRepeatPassword = userRepeatPassTextField.text;
-        let userName = userNameTextField.text;
-        
-        // Check for empty fields
-        if((userEmail?.isEmpty)! || (userPassword?.isEmpty)! || (userRepeatPassword?.isEmpty)! || (userName?.isEmpty)!)
-        {
-            
-            // Display alert message 
-                print("All fields are required")
-            
-//            displayMyAlertMessage("All fields are required");
-            
-//            return;
-       }
-        
-        //Check if passwords match 
-        if(userPassword != userRepeatPassword)
-        {
-           // Display an alert message 
- //           displayMyAlertMessage("Passwords do not match");
- //           return;
-            print("Passwords do not match")
-        
-        }
+    
+    
+    
+    // MARK: Function
+    
+
+    func resetuser() {
+        print("\(userEmailTextField.text!)")
         
         let parameters = [
             "email": userEmailTextField.text!,
-            "username" : userName!,
-            "password1" : userPassword!,
-            "password2" : userRepeatPassword!
             ]
         var statusCode: Int = 0
         
@@ -91,12 +69,12 @@ class RegisterPageViewController: UIViewController {
                     let startIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy:10)
                     let endIndex = csrf_token?.index((csrf_token?.startIndex)!, offsetBy: 73)
                     
-                    let v = (csrf_token?[startIndex!...endIndex!])!
+                    self.v = (csrf_token?[startIndex!...endIndex!])!
                     
-                    print("CSRF_TOKEN: \(v)")
+                    print("CSRF_TOKEN: \(self.v)")
                     
                     let headers: HTTPHeaders = [
-                        "X-CSRFToken": v,
+                        "X-CSRFToken": self.v,
                         "Cookie" : ""
                     ]
                     
@@ -104,7 +82,7 @@ class RegisterPageViewController: UIViewController {
                     
                     Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
                     sessionManager.request(
-                        "http://sleepify.zapto.org/api/auth/registration/",
+                        "http://sleepify.zapto.org/api/auth/password/reset/",
                         method: .post,
                         parameters: parameters,
                         encoding: JSONEncoding.default,
@@ -117,22 +95,25 @@ class RegisterPageViewController: UIViewController {
                                 
                                 let value = result as! NSDictionary
                                 
-                                if statusCode == 201 {
+                                
+                                print("statuscode: \(statusCode)")
+                                if statusCode == 200 {
                                     print("Response:  \(value)")
-                                    //self.valuet = (value.object(forKey: "key") as! String)
-                                    //print("TOKEEN: \(self.valuet)")
+                                    self.valuet = (value.object(forKey: "key") as! String)
+                                    print("TOKEEN: \(self.valuet)")
                                 }
                             }
                     }
                 }
         }
-
     }
     
     
-    // MARK: Helper function
+    
+    
+    
     
 
+
+    
 }
-
-
