@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 //import SwiftyJSON
 
+
+
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -20,6 +22,12 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+public class SharedLogin {
+    static let shareInstance = SharedLogin()
+    var usernameString = String()
+}
+
 
 class LoginViewController: UIViewController {
     
@@ -61,7 +69,9 @@ class LoginViewController: UIViewController {
             returnlabel.text = "Fields are empty"
             
         } else {
+            SharedLogin.shareInstance.usernameString = userName!  // set share instance value here
             logIn()
+            
         }
     }
     

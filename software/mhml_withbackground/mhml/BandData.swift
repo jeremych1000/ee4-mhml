@@ -10,7 +10,7 @@
 import UIKit
 import Alamofire
 import HomeKit
-
+ 
 class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, HMHomeManagerDelegate,HMAccessoryBrowserDelegate, HMAccessoryDelegate {
     
     
@@ -149,38 +149,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         insets.bottom = 60
         txtOutput.textContainerInset = insets
         
-        // Setup background thread for upload data
-        
-        /*
-         beginBackgroundTask(expirationHandler:)
-         let backgroundQueue = DispatchQueue(label: "com.app.queue", attributes: .concurrent)
-         DispatchQueue.global().async {
-         while true {
-         print("dispatched to background queue")
-         }
-         }
-         */
-        
-        //
-        //        //TESTING TESTING TESING
-        //        backgroundTask = application.beginBackgroundTaskWithName("MyBackgroundTask") {
-        //            // This expirationHandler is called when your task expired
-        //            // Cleanup the task here, remove objects from memory, etc
-        //
-        //            application.endBackgroundTask(self.backgroundTask)
-        //            self.backgroundTask = UIBackgroundTaskInvalid
-        //        }
-        //
-        //        // Implement the operation of your task as background task
-        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-        //            // Begin your upload and clean up JSON
-        //            // NSURLSession, AlamoFire, etc
-        //                print("dispatched to background queue")
-        //            // On completion, end your task
-        //            application.endBackgroundTask(self.backgroundTask)
-        //            self.backgroundTask = UIBackgroundTaskInvalid
-        //        }
-        
+        let UserName = SharedLogin.shareInstance.usernameString
+        print("Username is collected: \(UserName)")  // should be working
         
         if let home = homeManager.primaryHome {
             activeHome = home
@@ -222,7 +192,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             }
         })
         
-        print("PPM: \(dataservice[3].characteristics[2].value) ppm")
+        print("PPM: \(dataservice[3].characteristics[2].value!) ppm")
         
         if dataservice[3].characteristics[2].value == nil {
            // readppm.value = 0
@@ -418,16 +388,43 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                                             print(encodingError)
                                         }
                                 })
+                                
+                                /* Upload Start, End time and Sleeping Quality */
+                                
+                                let usernamePassed = SharedLogin.shareInstance.usernameString
+                                
+                                // Set condition to obtain sleeping quality feedback
+                                var FeedbackQuality = 0
+                                if(self.goodBadSwitch.isOn){
+                                    FeedbackQuality = 1
+                                } else {
+                                    FeedbackQuality = 0
+                                }
+                                
+                                let parameters: Parameters = [
+                                    "start" : self.timeArrayHR[0],
+                                    "end" : self.timeArrayHR.last!,
+                                    "quality" : FeedbackQuality,
+                                    "username" : usernamePassed,    // ask Dominic to double check
+                                ]
+                                
+                                print("Para: \(parameters)")
+                                
+                                sessionManager.request(
+                                    "http://sleepify.zapto.org/api/uf/",
+                                    method: .post,
+                                    parameters: parameters,
+                                    encoding: JSONEncoding.default,
+                                    headers: headers)
                             }
                     }
-                    //Session Manager
- 
+
                 }
             }
         }
     }
-    
-    
+ 
+ 
     @IBAction func HRlogSwitch(_ sender: UISwitch) {
         if hrSwitch.isOn{
             hrSwitchT = 1
@@ -437,7 +434,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             output("Log HR data: OFF")
         }
     }
-    
+ 
     @IBAction func SkinLogSwitch(_ sender: UISwitch) {
         if skinSwitch.isOn{
             skinSwitchT = 1
@@ -533,11 +530,9 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                         self.tempHRQ = "Locked"
                     }
                     
-                    
-                    
                     self.buffer = self.buffer + 1
                     
-                    if self.buffer == 30 {
+                    if self.buffer == 600 {
                         self.buffer = 0
                         self.globalCounter += 1
                         self.output("buffer full")
@@ -585,14 +580,11 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                             
                             data.append(datat)
                         }
-                
+                        
                         parameters["data"] = data
                         
                         print(data)
-                        
-                    
-                        
-                        
+                 
                         let sessionManager = Alamofire.SessionManager.default
                         sessionManager.request("http://sleepify.zapto.org/api/csrf/", method: .get)
                             .responseString { response in
@@ -617,7 +609,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                                     
                                     Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
                                     
-                        
+                                    
                                     sessionManager.request(
                                         "http://sleepify.zapto.org/api/raw_data/",
                                         method: .post,
@@ -645,24 +637,14 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                                                 self.writeplugvalue(value: "0")
                                             }
                                         }
-                                    }
-                                    
+                                    } // end response request
                                 }
                         }
-                        
-            
-                        
-                        
                         self.resetArray()
-                        
-                           // api/uf/   //TO DO: upload JSON  stop button.
-                     
 
-                        
                     }
                 })
-                
-                
+
             } catch let error as NSError {
                 output("startHeartRateUpdatesToQueue failed: \(error.description)")
             }
