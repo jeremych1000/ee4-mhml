@@ -31,6 +31,10 @@ from MLBlock.views import insert_from_api
 def csrf(request):
     return render(request, "personal/blank.html")
 
+class dummy(APIView):
+    def post(self, request):
+        json_data = json.loads(request.body.decode("utf-8"))
+        return Response(json_data, status=status.HTTP_200_OK)
 
 class random_number(APIView):
     def get(self, request):
@@ -120,7 +124,8 @@ class realTimeResponse(APIView):
     def post(self, request):
         json_result = {}
         json_data = json.loads(request.body.decode("utf-8"))
-        print("RT DEBUG: ", json_data)
+        if settings.DEBUG_API:
+            print("RT DEBUG: ", json_data)
         username = json_data['username']
         data = json_data["data"]
         # print('Last timestamp data in json ', data[-1]["timestamp"])
@@ -145,10 +150,9 @@ class realTimeResponse(APIView):
 
 class userFeedback(APIView):
     def post(self, request):
-        # print("DEBUG: ", dir(request), request.data)
-        print(len(request.data))
         json_data = json.loads(request.data.decode("utf-8"))
-        print("UF DEBUG: ", json_data)
+        if settings.DEBUG_API:
+            print("UF DEBUG: ", json_data)
         newML.functions.labelInsertion(json_data)
         return Response(status=status.HTTP_200_OK)
 

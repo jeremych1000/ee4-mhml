@@ -39,4 +39,7 @@ urlpatterns = [
 
     url(r'get_cal_events/$', views.get_cal_events.as_view()),
 
+    # for testing
+    url(r'dummy/$', views.dummy.as_view()),
+
 ]

@@ -24,7 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7dn+jianr!9+v(e-zs3*-wybiz#h)4r^+9=_(=*uq0!)fq#t22'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+DEBUG_API = False
 
 ALLOWED_HOSTS = ['jeremych.zapto.org', 'sleepify.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100']
 
@@ -128,9 +129,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
+    #{
+    #    'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    #},
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
@@ -256,7 +257,7 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': BASE_DIR + '/static/log.log',
-            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'maxBytes': 1024 * 1024 * 1,  # 5 MB
             'backupCount': 5,
             'formatter': 'standard',
             'encoding': 'utf-8'
