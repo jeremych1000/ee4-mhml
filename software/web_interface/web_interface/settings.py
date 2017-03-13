@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import sys
+import codecs
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -57,6 +59,9 @@ INSTALLED_APPS = [
 
     # sphinx docs
     'docs',
+
+    # django cron
+    'django_cron',
 
     # django defaults
     'django.contrib.admin',

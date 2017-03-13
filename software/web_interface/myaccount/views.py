@@ -1,15 +1,20 @@
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.db import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist
+from django.utils import timezone
+from django.contrib import messages
+
 from sendfile import sendfile
 
 from datetime import datetime, date, timedelta
-from django.utils import timezone
 
-from myaccount.forms import UserForm, UserProfileForm, TestPostForm
+from myaccount.forms import UserForm, UserProfileForm, TestPostForm, CalendarForm
 from myaccount.models import User
 from web_interface.decorators import login_required, login_required_message_and_redirect
 from newML.models import FeatureEntry
+from cal.models import calendar_link
 
 
 @login_required_message_and_redirect(message="You need to be signed in to view this page.")
@@ -25,20 +30,56 @@ def profile(request):
 
 
 @login_required_message_and_redirect(message="You need to be signed in to view this page.")
-def preferences(request):
+def calendar(request):
     # !!!!!!!!!!!!!!!!!!!!
     # !!!!!!!!!!!!!!!!!!!!
     # should be getting preferences model, not user model
     # !!!!!!!!!!!!!!!!!!!!
     # !!!!!!!!!!!!!!!!!!!!
-    username = None
     if request.user.is_authenticated():
         username = request.user.username
         user = User.objects.get(username=username)
-        # user_profile = UserProfile.objects.get(user=user)
-        return render(request, "myaccount/preferences.html", {'user': user})
+
+        try:
+            cal_obj = calendar_link.objects.get(user=user)
+        except ObjectDoesNotExist:
+            return render(request, "myaccount/calendar.html", {
+                'user': user,
+                'cal_form': CalendarForm,
+            })
+        return render(request, "myaccount/calendar.html", {
+            'user': user,
+            'cal_form': CalendarForm,
+            'link': cal_obj.link
+        })
     else:
-        return render(request, "myaccount/preferences.html")
+        return render(request, "myaccount/calendar.html")
+
+@login_required_message_and_redirect(message="You need to be signed in to view this page.")
+def calendar_add(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username=username)
+
+        link = request.POST["link"]
+        try:
+            cal_obj = calendar_link.objects.create(
+                user=user,
+                link=link,
+            )
+            messages.success(request, "Successfully added.")
+        except IntegrityError:
+            messages.warning(request, "Updated existing record to new record.")
+            cal_obj = calendar_link.objects.get(user=user)
+            cal_obj.link = link
+            cal_obj.save()
+
+        return render(request, "myaccount/calendar.html", {
+            'user': user,
+            'cal_form': CalendarForm,
+            'link': cal_obj.link,
+        })
+    pass
 
 
 @login_required_message_and_redirect(message="You need to be signed in to view this page.")

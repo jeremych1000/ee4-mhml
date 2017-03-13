@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from django.views.generic.base import RedirectView
 from . import views, graphs, push_notifications
 from newML import SetupTesting
+from cal import read
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
@@ -34,4 +35,8 @@ urlpatterns = [
     url(r'^migrate_feature/$', SetupTesting.migrateFeature),
 
     url(r'^push/$', push_notifications.push.as_view()),
+    url(r'^pushy_token/$', views.pushy_token.as_view()),
+
+    url(r'get_cal_events/$', views.get_cal_events.as_view()),
+
 ]

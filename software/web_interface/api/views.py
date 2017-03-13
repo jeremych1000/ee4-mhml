@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.db import IntegrityError
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -16,6 +18,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 import newML.functions
 from newML import models as ml_model
 from datetime import datetime, date, timedelta
+from cal import read as cal_read
+from myaccount import models
 
 import os, re, json, random, pickle, numpy as np
 
@@ -116,7 +120,7 @@ class realTimeResponse(APIView):
     def post(self, request):
         json_result = {}
         json_data = json.loads(request.body.decode("utf-8"))
-        # print("DEBUG: ", json_data)
+        print("RT DEBUG: ", json_data)
         username = json_data['username']
         data = json_data["data"]
         # print('Last timestamp data in json ', data[-1]["timestamp"])
@@ -130,6 +134,8 @@ class realTimeResponse(APIView):
             classifier = pickle.load(open(mlfile.file.path, 'rb'))
         feature = np.array([feature])
         outcome = classifier.predict(feature)
+        temp = np.mean(newML.functions.getTempProfile(username))
+        json_result["temp"] = temp
         if outcome == True:
             json_result["quality"] = "1"
         else:
@@ -140,8 +146,9 @@ class realTimeResponse(APIView):
 class userFeedback(APIView):
     def post(self, request):
         # print("DEBUG: ", dir(request), request.data)
+        print(len(request.data))
         json_data = json.loads(request.data.decode("utf-8"))
-        print("DDEBUG: ", json_data)
+        print("UF DEBUG: ", json_data)
         newML.functions.labelInsertion(json_data)
         return Response(status=status.HTTP_200_OK)
 
@@ -193,7 +200,63 @@ class stats():
             return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-# http://www.ietf.org/rfc/rfc2324.txt
+class get_cal_events(APIView):
+    permission_classes = (AllowAny,)
+
+    def get(self, request):
+        cal_events = cal_read.get_cal_events(request)
+        return Response(cal_events)
+
+
+class pushy_token(APIView):
+    permission_classes = (AllowAny,)
+
+    def post(self, request):
+        json_ret = {}
+
+        if request.user.is_authenticated:
+            json_data = json.loads(request.body.decode("utf-8"))
+            username = json_data['username']
+            token = json_data['token']
+
+            try:
+                user = User.objects.get(username=username)
+            except ObjectDoesNotExist:
+                json_ret["status"] = "fail"
+                json_ret["reason"] = "User doesn't exit"
+                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
+            try:
+                models.PushyToken.objects.create(
+                    user=user,
+                    token=token,
+                )
+
+                json_ret["status"] = "success"
+                json_ret["reason"] = "Successfully added to database"
+                return Response(json_ret, status=status.HTTP_200_OK)
+            except IntegrityError:
+                pushy_obj = models.PushyToken.objects.get(user=user)
+                pushy_obj.token = token
+                try:
+                    pushy_obj.full_clean()
+                except ValidationError as e:
+                    json_ret["status"] = "fail"
+                    json_ret["reason"] = str(e.message_dict)
+                    return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+                json_ret["status"] = "success"
+                json_ret["reason"] = "Successfully updated"
+                pushy_obj.save()
+            return Response(json_ret, status=status.HTTP_200_OK)
+        else:
+            json_ret["status"] = "fail"
+            json_ret["reason"] = "Please login"
+            return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
+
+
+pass  # http://www.ietf.org/rfc/rfc2324.txt
+
+
 class teapot(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)

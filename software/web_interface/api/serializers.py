@@ -62,3 +62,10 @@ class FeatureEntrySerializer():
             # query returns FeatureEntry objects
             model = FeatureEntry
             fields = ('date', 'std_acc')
+
+class calendar_events(serializers.ListSerializer):
+    def to_representation(self, obj):
+        return {
+            'summary': obj[0],
+            'date_start': obj[1],
+        }

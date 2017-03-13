@@ -37,8 +37,17 @@
 {% block content %}
     {% if user.is_authenticated %} <!-- from variable in views.py -->
 
-        <h1>Your preferences</h1>
-        <p>To be created...</p>
+        <h1>Add your calendar</h1>
+        <p>The calendar should be accessible via the web, and be in the iCalendar format (.ics).</p>
+        {% if link %}
+            <p>Your existing calendar link is: <a href="{{ link }}">{{ link }}</a></p>
+        {% endif %}
+
+        <form id="login_form" method="post" action="/myaccount/calendar/add/">
+            {% csrf_token %}
+            {% bootstrap_form cal_form %}
+            {% bootstrap_button "Submit" button_type="submit" button_class="btn-primary" %}
+        </form>
 
     {% else %}
 

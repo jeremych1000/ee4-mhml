@@ -5,6 +5,7 @@ from myaccount.models import UserProfile
 from passwords.fields import PasswordField
 from myaccount.models import TestPost
 
+from cal.models import calendar_link
 
 class UserForm(forms.ModelForm):
     # password = forms.CharField(label='Password',
@@ -37,3 +38,8 @@ class TestPostForm(forms.ModelForm):
     class Meta:
         model = TestPost
         fields = ('post_data',)
+
+class CalendarForm(forms.ModelForm):
+    class Meta:
+        model = calendar_link
+        fields = ('link',)

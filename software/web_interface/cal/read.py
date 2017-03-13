@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 
 from .models import calendar_link
 
 from icalendar import Calendar
-import datetime, requests
+from icalendar import vDatetime, vText
+import datetime, requests, json
 
 """
     %a  Locale’s abbreviated weekday name.
@@ -32,40 +34,52 @@ import datetime, requests
     %%  A literal '%' character.
 """
 
-username = 'jeremych'
-print("31231123123122)")
-user_object = User.objects.get(username=username)
-print("312312)")
-cal_link = calendar_link.objects.get(user=user_object)
 
-# download user ics file
-url = cal_link.link
+def get_cal_events(request):
+    cal_events = []
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username=username)
+        cal_link = calendar_link.objects.get(user=user).link
 
-file = requests.get(url=url)
-gcal = Calendar.from_ical(file.content)
+        file = requests.get(url=cal_link)
+        cal = Calendar.from_ical(file.content)
 
-for component in gcal.walk():
-    if component.name == "VEVENT":
-        summary = component.get('summary')
-        if summary is not None:
-            print(summary)
-        else:
-            raise
+        for component in cal.walk():
+            cal_event_temp = {}
+            if 'summary' in component and 'dtstart' in component and 'dtend' in component:
+                if component.name == "VEVENT":
+                    summary = component.get('summary')
+                    # print(summary, type(summary))
 
-        start = component.get('dtstart').dt
-        if start is not None:
-            print(start, type(start))
-            print(start.year, start.month, start.day)
-        else:
-            raise
+                    summary = vText.from_ical(summary)
+                    # print(summary, type(summary))
+                    if summary is not None:
+                        cal_event_temp["summary"] = summary
+                        # print(summary)
+                    else:
+                        raise
 
-        end = component.get('dtend').dt
-        if end is not None:
-            print(end, type(end))
-        else:
-            raise
+                    start = component.get('dtstart').dt
+                    if start is not None:
+                        cal_event_temp["start"] = start.strftime("%d/%m/%y %H:%M:%S")
+                        # print(start, type(start))
+                        # print(start.year, start.month, start.day)
+                    else:
+                        raise
 
-        if start is not None and end is not None:
-            print(end - start)
+                    end = component.get('dtend').dt
+                    if end is not None:
+                        cal_event_temp["end"] = end.strftime("%d/%m/%y %H:%M:%S %z")
+                        # print(end, type(end))
+                    else:
+                        raise
 
-# <bound method CaselessDict.get of VEVENT({'DTSTART': <icalendar.prop.vDDDTypes object at 0x000001C71290EB00>, 'DTSTAMP': <icalendar.prop.vDDDTypes object at 0x000001C71290E630>, 'SUMMARY': vText('b'CUHK interview''), 'SEQUENCE': 0, 'TRANSP': vText('b'OPAQUE''), 'UID': vText('b'2479705h0rfgeohn278m3g3s2o@google.com''), 'DESCRIPTION': vText('b'''), 'LAST-MODIFIED': <icalendar.prop.vDDDTypes object at 0x000001C71290ECC0>, 'LOCATION': vText('b'''), 'DTEND': <icalendar.prop.vDDDTypes object at 0x000001C71290EB38>, 'CREATED': <icalendar.prop.vDDDTypes object at 0x000001C71290EC50>, 'STATUS': vText('b'CONFIRMED'')})>
+                    if start is not None and end is not None:
+                        pass
+                        # print(end - start)
+                cal_events.append(cal_event_temp)
+                # print(cal_events)
+
+                # print(cal_events, type(cal_events))
+    return cal_events

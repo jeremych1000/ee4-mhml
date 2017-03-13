@@ -16,5 +16,7 @@ class UserProfile(models.Model):
 class TestPost(models.Model):
     post_data = models.CharField(max_length=30, blank=True)
 
-
+class PushyToken(models.Model):
+    user = models.OneToOneField(User, unique=True)
+    token = models.CharField(max_length=50)
 

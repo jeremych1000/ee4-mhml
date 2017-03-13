@@ -15,15 +15,13 @@ class PushyAPI:
         @staticmethod
         def sendPushNotification(data, tokens, notification):
                 # Insert your Pushy Secret API Key here
-                apiKey = settings.PUSHY_API_KEY;
+                apiKey = settings.PUSHY_API_KEY
                 url = 'https://api.pushy.me/push?api_key=' + apiKey
 
                 # Set post variables
                 payload = {
                     "to": tokens,
-                    "data": {
-                        "message": "iiiiii"
-                    },
+                    "data": data,
                     "notification": notification,
                 }
                 headers = {
