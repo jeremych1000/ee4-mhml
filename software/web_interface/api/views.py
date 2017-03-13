@@ -214,7 +214,7 @@ class pushy_token(APIView):
     def post(self, request):
         json_ret = {}
 
-        if request.user.is_authenticated:
+        if request.user.is_authenticated or True:
             json_data = json.loads(request.body.decode("utf-8"))
             username = json_data['username']
             token = json_data['token']
@@ -254,9 +254,7 @@ class pushy_token(APIView):
             return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
 
 
-pass  # http://www.ietf.org/rfc/rfc2324.txt
-
-
+# http://www.ietf.org/rfc/rfc2324.txt
 class teapot(APIView):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)

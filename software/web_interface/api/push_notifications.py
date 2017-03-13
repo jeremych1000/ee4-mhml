@@ -9,6 +9,8 @@ from rest_framework.decorators import api_view
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
+from myaccount import models
+
 import json, requests
 
 class PushyAPI:
@@ -29,7 +31,7 @@ class PushyAPI:
                 }
                 # Set URL to Send Notifications API endpoint
                 r = requests.post(url, data=json.dumps(payload), headers=headers)
-                return r
+                return r.json()
 
 class push(APIView):
     permission_classes = (AllowAny, )
@@ -39,15 +41,16 @@ class push(APIView):
             'message': 'WWWWWWWWWWWWWWWWWW'
         }
         notification = {
-            "body": "WWWWWWWWWWWWWWWWW \u1F984",
+            "body": "It's time to sleep! \u1F984",
             "badge": 1,
             "sound": "ping.aiff"
         }
 
         # The recipient device tokens
-        deviceTokens = 'd568b298815928ac4723c1'
+        token_obj = models.PushyToken.objects.all()
 
-        # Send the push notification with Pushy
-        ret = PushyAPI.sendPushNotification(data, deviceTokens, notification)
-
-        return Response(ret.json(), status=status.HTTP_200_OK)
+        json_ret = []
+        for i in token_obj:
+            ret = PushyAPI.sendPushNotification(data, i.token, notification)
+            json_ret.append(ret)
+        return Response(json_ret, status=status.HTTP_200_OK)

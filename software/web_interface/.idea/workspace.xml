@@ -2,27 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d6df14e-37e0-43a1-a523-a9553011047d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cal/import_events.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/model/default.p" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/myaccount/templates/myaccount/preferences.html" afterPath="$PROJECT_DIR$/myaccount/templates/myaccount/calendar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/model/jeremych.p" afterPath="$PROJECT_DIR$/media/model/jeremych.p" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/push_notifications.py" afterPath="$PROJECT_DIR$/api/push_notifications.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/serializers.py" afterPath="$PROJECT_DIR$/api/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cal/models.py" afterPath="$PROJECT_DIR$/cal/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cal/read.py" afterPath="$PROJECT_DIR$/cal/read.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myaccount/admin.py" afterPath="$PROJECT_DIR$/myaccount/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myaccount/forms.py" afterPath="$PROJECT_DIR$/myaccount/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myaccount/models.py" afterPath="$PROJECT_DIR$/myaccount/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myaccount/templates/myaccount/profile.html" afterPath="$PROJECT_DIR$/myaccount/templates/myaccount/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myaccount/urls.py" afterPath="$PROJECT_DIR$/myaccount/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/myaccount/views.py" afterPath="$PROJECT_DIR$/myaccount/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/personal/templates/personal/base.html" afterPath="$PROJECT_DIR$/personal/templates/personal/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web_interface/settings.py" afterPath="$PROJECT_DIR$/web_interface/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/data/thh13/MSBand2_ALL_data_13_03_17.csv" afterPath="$PROJECT_DIR$/media/data/thh13/MSBand2_ALL_data_13_03_17.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,13 +23,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newML/models.py">
+      <file leaf-file-name="push_notifications.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/push_notifications.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="678">
+              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
-                <element signature="e#0#28#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="228" column="16" lean-forward="true" selection-start-line="228" selection-start-column="16" selection-end-line="228" selection-end-column="16" />
+            <state relative-caret-position="646">
+              <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -168,7 +151,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/api/pushy.py" />
-        <option value="$PROJECT_DIR$/api/push_notifications.py" />
         <option value="$PROJECT_DIR$/personal/templates/personal/base.html" />
         <option value="$PROJECT_DIR$/myaccount/forms.py" />
         <option value="$PROJECT_DIR$/myaccount/templates/myaccount/profile.html" />
@@ -185,6 +167,7 @@
         <option value="$PROJECT_DIR$/myaccount/admin.py" />
         <option value="$PROJECT_DIR$/myaccount/views.py" />
         <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/api/push_notifications.py" />
       </list>
     </option>
   </component>
@@ -786,16 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/push_notifications.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="41" column="48" lean-forward="true" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="746">
@@ -875,7 +848,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -954,10 +927,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="228" column="16" lean-forward="true" selection-start-line="228" selection-start-column="16" selection-end-line="228" selection-end-column="16" />
+        <state relative-caret-position="646">
+          <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/push_notifications.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
