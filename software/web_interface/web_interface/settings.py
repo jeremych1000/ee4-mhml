@@ -24,8 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7dn+jianr!9+v(e-zs3*-wybiz#h)4r^+9=_(=*uq0!)fq#t22'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-DEBUG_API = False
+# With debug turned off Django won't handle static files for you any more - your production web server (Apache or something) should take care of that.
+DEBUG = True
+DEBUG_API = True
 
 ALLOWED_HOSTS = ['jeremych.zapto.org', 'sleepify.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100']
 
@@ -257,7 +258,7 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'filename': BASE_DIR + '/static/log.log',
-            'maxBytes': 1024 * 1024 * 1,  # 5 MB
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
             'backupCount': 5,
             'formatter': 'standard',
             'encoding': 'utf-8'

@@ -150,7 +150,7 @@ class realTimeResponse(APIView):
 
 class userFeedback(APIView):
     def post(self, request):
-        json_data = json.loads(request.data.decode("utf-8"))
+        json_data = json.loads(request.body.decode("utf-8"))
         if settings.DEBUG_API:
             print("UF DEBUG: ", json_data)
         newML.functions.labelInsertion(json_data)
@@ -209,7 +209,10 @@ class get_cal_events(APIView):
 
     def get(self, request):
         cal_events = cal_read.get_cal_events(request)
-        return Response(cal_events)
+        json_ret = {
+            "data": cal_events
+        }
+        return Response(json_ret, status=status.HTTP_200_OK)
 
 
 class pushy_token(APIView):
