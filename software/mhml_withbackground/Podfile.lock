@@ -1,9 +1,11 @@
 PODS:
+  - AES256CBC (1.1.1)
   - Alamofire (4.3.0)
   - Pushy (1.0.5)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - AES256CBC
   - Alamofire (~> 4.3)
   - Pushy (= 1.0.5)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -18,10 +20,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
+  AES256CBC: 22b584fbea28b46ab3c52d44213902ab5c6f801f
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   Pushy: bb1910e5d1dc3ff749f1bbb91beb6d6811c43b39
   SwiftyJSON: 05cf0e98a950e2ba343735264f5a96b81e755d00
 
-PODFILE CHECKSUM: bb00e433d66b593f917e27185cb246a7388bbc09
+PODFILE CHECKSUM: 77f1584d32a712540edaa0ba6129b1a4018d70bc
 
 COCOAPODS: 1.2.1.beta.1

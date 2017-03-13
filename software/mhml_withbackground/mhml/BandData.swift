@@ -10,6 +10,8 @@
 import UIKit
 import Alamofire
 import HomeKit
+import AES256CBC
+ 
  
 class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, HMHomeManagerDelegate,HMAccessoryBrowserDelegate, HMAccessoryDelegate {
     
@@ -208,6 +210,27 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         } else {
             readppm = dataservice[3].characteristics[2]
         }
+        
+        //Setup AES256 CBC
+        
+        let str = "My little secret"
+        //let password = AES256CBC.generatePassword()  // returns random 32 char string
+        
+        let password = "D52kq3wTykHDhfz32PU5KzWQ41EOQ436"
+        
+        let en = "6ChMBaO9HJqXTDq8XBB9xblgFq0JB/W7Pps+zwocuu61qqgvJO6+NQSdS/g="
+        //s9R4Zo214yW6BV42SKqJUji4f4AlBh/YlaoFjxxnKytyesA1fg4FHyjOmaA=
+        
+        
+        print("Passwword: \(password)")
+        
+        // get AES-256 CBC encrypted string
+        let encrypted = AES256CBC.encryptString(str, password: password)
+        
+        // decrypt AES-256 CBC encrypted string
+        let decrypted = AES256CBC.decryptString(encrypted!, password: password)
+        
+        print("Encrypted: \(encrypted!)" + " Decrypted: \(decrypted!)")
         
         
         // Setup Band
