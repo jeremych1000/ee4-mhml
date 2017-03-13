@@ -98,6 +98,7 @@
 		56E614221E6329D2002BF657 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141E1E6329D2002BF657 /* Utility.swift */; };
 		685983AD5E417A8C163C8344 /* Pods_mhml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E238BCE810A1E642DDA631 /* Pods_mhml.framework */; };
 		8D1B49621E73ABB1001F13C5 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B49611E73ABB1001F13C5 /* ForgotViewController.swift */; };
+		8D35C6131E761666000B7573 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D35C6121E761666000B7573 /* PushKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		56E6141D1E6329D2002BF657 /* HMServiceName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMServiceName.swift; sourceTree = "<group>"; };
 		56E6141E1E6329D2002BF657 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		8D1B49611E73ABB1001F13C5 /* ForgotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
+		8D35C6121E761666000B7573 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		9ABD215F84BDEBC255FB294D /* Pods-mhml.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mhml.release.xcconfig"; path = "Pods/Target Support Files/Pods-mhml/Pods-mhml.release.xcconfig"; sourceTree = "<group>"; };
 		E68512D9BEE36A4F718179EC /* Pods-mhml.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mhml.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mhml/Pods-mhml.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D35C6131E761666000B7573 /* PushKit.framework in Frameworks */,
 				56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */,
 				1610A39F1E51DEAA00946989 /* CoreBluetooth.framework in Frameworks */,
 				56C13B181E5CB1F900D755CB /* HomeKit.framework in Frameworks */,
@@ -239,6 +242,7 @@
 		1610A3911E51DCD700946989 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D35C6121E761666000B7573 /* PushKit.framework */,
 				561F072A1E64B84C0088FA2B /* SwiftyJSON.framework */,
 				56C13B171E5CB1F900D755CB /* HomeKit.framework */,
 				56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */,
@@ -604,6 +608,9 @@
 							com.apple.HomeKit = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					1680DC821E4C8BDC009DA146 = {
@@ -703,7 +710,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -945,7 +952,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = mhml/mhml.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VPJUWG3WEE;
+				DEVELOPMENT_TEAM = S75V7GN65D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
@@ -955,7 +962,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sleepify.betav1;
+				PRODUCT_BUNDLE_IDENTIFIER = org.zapto.sleepify.sleepify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -969,7 +976,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = mhml/mhml.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VPJUWG3WEE;
+				DEVELOPMENT_TEAM = S75V7GN65D;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mhml",
@@ -979,7 +986,7 @@
 				);
 				INFOPLIST_FILE = mhml/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sleepify.betav1;
+				PRODUCT_BUNDLE_IDENTIFIER = org.zapto.sleepify.sleepify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "BSwiftHeartRate-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
