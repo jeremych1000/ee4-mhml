@@ -31,7 +31,7 @@ class logoutViewController: UIViewController {
         
         if(!isUserLoggedIn)
         {
-            self.performSegue(withIdentifier: "loginView", sender: self);
+   //         self.performSegue(withIdentifier: "loginView", sender: self);
         }
         
         

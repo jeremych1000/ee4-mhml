@@ -9,6 +9,8 @@
 import UIKit
 import EventKit
 //import MicrosoftBandKit_iOS;/MicrosoftBandKit_iOS.h
+import PushySDK
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Initialize Pushy SDK
+        let pushy = Pushy(UIApplication.shared)
+        
+        // Register the device for push notifications
+        pushy.register({ (error, deviceToken) in
+            // Handle registration errors
+            if error != nil {
+                return print ("Registration failed: \(error!)")
+            }
+            
+            // Print device token to console
+            print("Pushy device token: \(deviceToken)")
+            
+            // Persist the token locally and send it to your backend later
+            UserDefaults.standard.set(deviceToken, forKey: "pushyToken")
+        })
+        
+        // Handle push notifications
+        pushy.setNotificationHandler({ (data, completionHandler) in
+            // Print notification payload data
+            print("Received notification: \(data)")
+            
+            // Fallback message containing data payload
+            var message = "\(data)"
+            
+            // Attempt to extract "message" key from APNs payload
+            if let aps = data["aps"] as? [AnyHashable : Any] {
+                if let payloadMessage = aps["alert"] as? String {
+                    message = payloadMessage
+                }
+            }
+            
+            // Display the notification as an alert
+            let alert = UIAlertController(title: "Incoming Notification", message: message, preferredStyle: UIAlertControllerStyle.alert)
+            
+            // Add an action button
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            // Show the alert dialog
+            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            
+            // You must call this completion handler when you finish processing
+            // the notification (after fetching background data, if applicable)
+            completionHandler(UIBackgroundFetchResult.newData)
+        })
+        
+        // Subscribe the device to a topic
+        pushy.subscribe(topic: "news", handler: { (error) in
+            // Handle errors
+            if error != nil {
+                return print("Subscribe failed: \(error!)")
+            }
+            
+            // Subscribe successful
+            print("Subscribed to topic successfully")
+        })
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         UIApplication.shared.statusBarStyle = .lightContent
         return true

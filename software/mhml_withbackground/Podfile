@@ -3,6 +3,9 @@ platform :ios, '10.2’
 use_frameworks!
 
 target ‘mhml’ do
+    pod 'AES256CBC'
     pod 'Alamofire', '~> 4.3'
+    pod 'Pushy', '1.0.5'
     pod 'SwiftyJSON', :git =>'https://github.com/SwiftyJSON/SwiftyJSON.git'
+    pod 'CircularSlider'
 end
