@@ -52,7 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let payloadMessage = aps["alert"] as? String {
                     message = payloadMessage
                 }
+                if let payloadBadge = aps["badge"] as? String {
+                    var badge = payloadBadge
+                }
             }
+            print("output message: \(message)")
             
             // Display the notification as an alert
             let alert = UIAlertController(title: "Incoming Notification", message: message, preferredStyle: UIAlertControllerStyle.alert)

@@ -21,6 +21,7 @@
 		56B146F71E52059900CD3067 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC741E4C8BDB009DA146 /* TabBarController.swift */; };
 		56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF6D821E4D414F00F41198 /* FlightReminder.swift */; };
 		56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */; };
+		56B8E2E41E770CA500E4C16F /* AES256CBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B8E2E31E770CA500E4C16F /* AES256CBC.framework */; };
 		56C13AE41E5CAB5D00D755CB /* HMCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */; };
 		56C13B181E5CB1F900D755CB /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C13B171E5CB1F900D755CB /* HomeKit.framework */; };
 		56C13B721E5CB4AB00D755CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B191E5CB4AB00D755CB /* Assets.xcassets */; };
@@ -98,7 +99,6 @@
 		56E614221E6329D2002BF657 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141E1E6329D2002BF657 /* Utility.swift */; };
 		685983AD5E417A8C163C8344 /* Pods_mhml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E238BCE810A1E642DDA631 /* Pods_mhml.framework */; };
 		8D1B49621E73ABB1001F13C5 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B49611E73ABB1001F13C5 /* ForgotViewController.swift */; };
-		8D1DC93E1E76C34E007C3FAC /* AES256CBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1DC93D1E76C34E007C3FAC /* AES256CBC.framework */; };
 		8D35C6131E761666000B7573 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D35C6121E761666000B7573 /* PushKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +135,7 @@
 		561F072A1E64B84C0088FA2B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/mhml-dssrrpjpwsmmlubxeimkhjzcaqrh/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		5683882F1E64B9CA00FCE362 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
+		56B8E2E31E770CA500E4C16F /* AES256CBC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AES256CBC.framework; path = "../../../../Library/Developer/Xcode/DerivedData/mhml-dssrrpjpwsmmlubxeimkhjzcaqrh/Build/Products/Debug-iphoneos/AES256CBC/AES256CBC.framework"; sourceTree = "<group>"; };
 		56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMCatalogViewController.swift; sourceTree = "<group>"; };
 		56C13B161E5CB1F900D755CB /* mhml.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mhml.entitlements; sourceTree = "<group>"; };
 		56C13B171E5CB1F900D755CB /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
@@ -223,7 +224,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D1DC93E1E76C34E007C3FAC /* AES256CBC.framework in Frameworks */,
+				56B8E2E41E770CA500E4C16F /* AES256CBC.framework in Frameworks */,
 				8D35C6131E761666000B7573 /* PushKit.framework in Frameworks */,
 				56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */,
 				1610A39F1E51DEAA00946989 /* CoreBluetooth.framework in Frameworks */,
@@ -245,6 +246,7 @@
 		1610A3911E51DCD700946989 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56B8E2E31E770CA500E4C16F /* AES256CBC.framework */,
 				8D1DC93D1E76C34E007C3FAC /* AES256CBC.framework */,
 				8D35C6121E761666000B7573 /* PushKit.framework */,
 				561F072A1E64B84C0088FA2B /* SwiftyJSON.framework */,
@@ -717,7 +719,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
