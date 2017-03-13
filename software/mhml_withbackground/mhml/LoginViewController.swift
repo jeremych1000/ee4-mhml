@@ -26,6 +26,7 @@ extension UIViewController {
 public class SharedLogin {
     static let shareInstance = SharedLogin()
     var usernameString = String()
+    var userTokenString = String()
 }
 
 
@@ -104,6 +105,8 @@ class LoginViewController: UIViewController {
                     self.v = (csrf_token?[startIndex!...endIndex!])!
                     
                     print("v: \(self.v)")
+                    
+                    SharedLogin.shareInstance.userTokenString = self.v
                     
                     let headers: HTTPHeaders = [
                         "X-CSRFToken": self.v,
