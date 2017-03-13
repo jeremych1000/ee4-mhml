@@ -7,4 +7,5 @@ target ‘mhml’ do
     pod 'Alamofire', '~> 4.3'
     pod 'Pushy', '1.0.5'
     pod 'SwiftyJSON', :git =>'https://github.com/SwiftyJSON/SwiftyJSON.git'
+    pod 'CircularSlider'
 end
