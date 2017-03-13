@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from django.views.generic.base import RedirectView
-from . import views, graphs
+from . import views, graphs, push_notifications
 from newML import SetupTesting
 from rest_framework_jwt.views import obtain_jwt_token
 
@@ -32,4 +32,6 @@ urlpatterns = [
     # non REST functions`
     url(r'^make_default/$', SetupTesting.settingDefault),
     url(r'^migrate_feature/$', SetupTesting.migrateFeature),
+
+    url(r'^push/$', push_notifications.push.as_view()),
 ]

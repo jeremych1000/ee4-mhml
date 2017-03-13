@@ -271,9 +271,8 @@ LOGGING = {
 }
 
 # push notifications
-PUSH_NOTIFICATIONS_SETTINGS = {
-        "FCM_API_KEY": "AIzaSyDWvGUqFxnrZcr0Iwwntq6RBmgqxdxRczA",
-}
+PUSHY_API_KEY = 'a725af4ac5ce3a6d9f2e15ac6af2ec294a5ed07e38f75d9c05442387b74f649f'
+
 
 # others
 CSRF_COOKIE_SECURE = False  # allow transportation of CSRF over HTTP
