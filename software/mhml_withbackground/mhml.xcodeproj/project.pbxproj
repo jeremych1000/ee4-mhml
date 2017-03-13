@@ -11,6 +11,7 @@
 		1610A3CE1E52156500946989 /* BandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1610A38F1E5139EB00946989 /* BandData.swift */; };
 		1680DC881E4C8BDC009DA146 /* mhmlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC871E4C8BDC009DA146 /* mhmlTests.swift */; };
 		16B1F3631E5216BF009E0A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1680DC761E4C8BDB009DA146 /* Main.storyboard */; };
+		16FE66A31E76F75A00087DC4 /* CircularTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FE66A21E76F75A00087DC4 /* CircularTemp.swift */; };
 		561F067C1E632C750088FA2B /* Outlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F067A1E632C750088FA2B /* Outlet.swift */; };
 		561F067D1E632C750088FA2B /* OutletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F067B1E632C750088FA2B /* OutletViewController.swift */; };
 		561F06C61E64A5040088FA2B /* RegisterPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561F06C51E64A5040088FA2B /* RegisterPageViewController.swift */; };
@@ -21,7 +22,6 @@
 		56B146F71E52059900CD3067 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1680DC741E4C8BDB009DA146 /* TabBarController.swift */; };
 		56B146F91E52059900CD3067 /* FlightReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF6D821E4D414F00F41198 /* FlightReminder.swift */; };
 		56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */; };
-		56B8E2E41E770CA500E4C16F /* AES256CBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B8E2E31E770CA500E4C16F /* AES256CBC.framework */; };
 		56C13AE41E5CAB5D00D755CB /* HMCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */; };
 		56C13B181E5CB1F900D755CB /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C13B171E5CB1F900D755CB /* HomeKit.framework */; };
 		56C13B721E5CB4AB00D755CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56C13B191E5CB4AB00D755CB /* Assets.xcassets */; };
@@ -99,6 +99,7 @@
 		56E614221E6329D2002BF657 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E6141E1E6329D2002BF657 /* Utility.swift */; };
 		685983AD5E417A8C163C8344 /* Pods_mhml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E238BCE810A1E642DDA631 /* Pods_mhml.framework */; };
 		8D1B49621E73ABB1001F13C5 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B49611E73ABB1001F13C5 /* ForgotViewController.swift */; };
+		8D1DC93E1E76C34E007C3FAC /* AES256CBC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1DC93D1E76C34E007C3FAC /* AES256CBC.framework */; };
 		8D35C6131E761666000B7573 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D35C6121E761666000B7573 /* PushKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,7 @@
 		1680DC871E4C8BDC009DA146 /* mhmlTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mhmlTests.swift; sourceTree = "<group>"; };
 		1680DC891E4C8BDC009DA146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16EF6D821E4D414F00F41198 /* FlightReminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightReminder.swift; sourceTree = "<group>"; };
+		16FE66A21E76F75A00087DC4 /* CircularTemp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularTemp.swift; sourceTree = "<group>"; };
 		30E238BCE810A1E642DDA631 /* Pods_mhml.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mhml.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		561F067A1E632C750088FA2B /* Outlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Outlet.swift; sourceTree = "<group>"; };
 		561F067B1E632C750088FA2B /* OutletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutletViewController.swift; sourceTree = "<group>"; };
@@ -135,7 +137,6 @@
 		561F072A1E64B84C0088FA2B /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/mhml-dssrrpjpwsmmlubxeimkhjzcaqrh/Build/Products/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		5683882F1E64B9CA00FCE362 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		56B146FA1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
-		56B8E2E31E770CA500E4C16F /* AES256CBC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AES256CBC.framework; path = "../../../../Library/Developer/Xcode/DerivedData/mhml-dssrrpjpwsmmlubxeimkhjzcaqrh/Build/Products/Debug-iphoneos/AES256CBC/AES256CBC.framework"; sourceTree = "<group>"; };
 		56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMCatalogViewController.swift; sourceTree = "<group>"; };
 		56C13B161E5CB1F900D755CB /* mhml.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = mhml.entitlements; sourceTree = "<group>"; };
 		56C13B171E5CB1F900D755CB /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
@@ -224,7 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56B8E2E41E770CA500E4C16F /* AES256CBC.framework in Frameworks */,
+				8D1DC93E1E76C34E007C3FAC /* AES256CBC.framework in Frameworks */,
 				8D35C6131E761666000B7573 /* PushKit.framework in Frameworks */,
 				56B146FB1E52072A00CD3067 /* MicrosoftBandKit_iOS.framework in Frameworks */,
 				1610A39F1E51DEAA00946989 /* CoreBluetooth.framework in Frameworks */,
@@ -246,7 +247,6 @@
 		1610A3911E51DCD700946989 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				56B8E2E31E770CA500E4C16F /* AES256CBC.framework */,
 				8D1DC93D1E76C34E007C3FAC /* AES256CBC.framework */,
 				8D35C6121E761666000B7573 /* PushKit.framework */,
 				561F072A1E64B84C0088FA2B /* SwiftyJSON.framework */,
@@ -292,6 +292,7 @@
 				56C13AA11E5CAB5D00D755CB /* HMCatalogViewController.swift */,
 				1680DC721E4C8BDB009DA146 /* AppDelegate.swift */,
 				1680DC741E4C8BDB009DA146 /* TabBarController.swift */,
+				16FE66A21E76F75A00087DC4 /* CircularTemp.swift */,
 				1680DC761E4C8BDB009DA146 /* Main.storyboard */,
 				1610A38F1E5139EB00946989 /* BandData.swift */,
 				16EF6D821E4D414F00F41198 /* FlightReminder.swift */,
@@ -741,6 +742,7 @@
 				56C13B781E5CB4AB00D755CB /* AccessoryUpdateController.swift in Sources */,
 				56C13B751E5CB4AB00D755CB /* FavoritesManager.swift in Sources */,
 				56C13B8A1E5CB4AB00D755CB /* ActionCell.swift in Sources */,
+				16FE66A31E76F75A00087DC4 /* CircularTemp.swift in Sources */,
 				56C13B8D1E5CB4AB00D755CB /* HomeKitObjectCollection.swift in Sources */,
 				561F067C1E632C750088FA2B /* Outlet.swift in Sources */,
 				56C13B821E5CB4AB00D755CB /* SwitchCharacteristicCell.swift in Sources */,
