@@ -35,10 +35,9 @@ import datetime, requests, json
 """
 
 
-def get_cal_events(request):
-    cal_events = []
-    if request.user.is_authenticated:
-        username = request.user.username
+def get_cal_events(username=None):
+    if username is not None:
+        cal_events = []
         user = User.objects.get(username=username)
         cal_link = calendar_link.objects.get(user=user).link
 
@@ -50,8 +49,6 @@ def get_cal_events(request):
             if 'summary' in component and 'dtstart' in component and 'dtend' in component:
                 if component.name == "VEVENT":
                     summary = component.get('summary')
-                    # print(summary, type(summary))
-
                     summary = vText.from_ical(summary)
                     # print(summary, type(summary))
                     if summary is not None:
@@ -62,7 +59,7 @@ def get_cal_events(request):
 
                     start = component.get('dtstart').dt
                     if start is not None:
-                        cal_event_temp["start"] = start.strftime("%d/%m/%y %H:%M:%S")
+                        cal_event_temp["start"] = start.strftime("%d/%m/%y %H:%M:%S %z")
                         # print(start, type(start))
                         # print(start.year, start.month, start.day)
                     else:
@@ -82,4 +79,6 @@ def get_cal_events(request):
                 # print(cal_events)
 
                 # print(cal_events, type(cal_events))
-    return cal_events
+        return {"data": cal_events}
+    else:
+        return {}

@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^pushy_token/$', views.pushy_token.as_view()),
 
     url(r'get_cal_events/$', views.get_cal_events.as_view()),
+    url(r'import_cal_events/$', views.import_cal_events.as_view()),
 
     # for testing
     url(r'dummy/$', views.dummy.as_view()),
