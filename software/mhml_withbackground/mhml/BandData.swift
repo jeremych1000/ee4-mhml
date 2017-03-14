@@ -51,7 +51,6 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     var TargetRoomTemp: Double = 0.0
     var CurrentBodyTemp: Double = 0.0
     var CurrentRoomTemp: Double = 0.0
-    var overrideTemp: Double = 37.7
 
     var globalCounter = 0
     var tempHR: Double = 0.0
@@ -111,7 +110,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     var skinSwitchT: Int = 1
     var gsrSwitchT: Int = 1
     var accSwitchT: Int = 1
-    var overrideT: Int = 1
+    var overrideT: Int = 0
     
     var jsonString = ""
     //testing
@@ -140,8 +139,10 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     
    
     @IBOutlet weak var goodBadSwitch: UISwitch!
-    @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var currentLabel: UILabel!
+    @IBOutlet weak var targetBodyLabel: UILabel!
+    @IBOutlet weak var currentRoomLabel: UILabel!
+    @IBOutlet weak var currentBodyLabel: UILabel!
+
     
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var circSlider: CircularSlider!
@@ -296,8 +297,9 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                 print("Targetroom : \(self.TargetRoomTemp)")
                 print("Currentroom : \(self.CurrentRoomTemp)")
                 
-                self.targetLabel.text = NSString(format: "%3u", self.TargetRoomTemp) as String
-                self.currentLabel.text = NSString(format: "%3u", self.CurrentRoomTemp) as String
+                self.targetBodyLabel.text = NSString(format: "%.1f", self.TargetBodyTemp) as String
+                self.currentRoomLabel.text = NSString(format: "%.1f", self.CurrentRoomTemp) as String
+                self.currentBodyLabel.text = NSString(format: "%.1f", self.CurrentBodyTemp) as String
                 
                 
             } else {
@@ -479,12 +481,11 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         
         if overrideT == 1{
             //markoverride(true)
-            overrideButton.backgroundColor = UIColor.red
+            overrideButton.backgroundColor = UIColor.black
             overrideT = 0
-            self.TargetRoomTemp = Double(circSlider.value)
         }
         else {
-            overrideButton.backgroundColor = UIColor.brown
+            overrideButton.backgroundColor = UIColor.red
             //markoverride(false)
             overrideT = 1
         }
@@ -600,7 +601,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                     
                     self.buffer = self.buffer + 1
                     
-                    if self.buffer == 600 {
+                    if self.buffer == 10 {
                         self.buffer = 0
                         self.globalCounter += 1
                         self.output("buffer full")
@@ -709,42 +710,59 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                                             }*/
                                             
                                             /* receive and update temperature feature here */
+                                            self.TargetRoomTemp = Double(self.circSlider.value)
                                             self.TargetBodyTemp = value.object(forKey: "temp") as! Double // obtain optimal body temp
                                             
                                             print("Target body temp:  \(self.TargetBodyTemp)")
-                                            var CurrentBodyTemp = self.skinArray.last as? Double  // set current body temp
-                                            var CurrentRoomTemp = (self.dataservice[1].characteristics[1].value!) as! Double // set current room temp
+                                            self.CurrentBodyTemp = self.masterskinArray.last as! Double  // set current body temp
+                                            self.CurrentRoomTemp = self.masterroomtempArray.last as! Double // set current room temp
+                                            print("Current body temp: \(self.CurrentBodyTemp)")
+                                            
+                                            // if quality == 0
+                                            if self.overrideT == 0 {
+                                                if self.CurrentBodyTemp > self.TargetBodyTemp {
+                                                    self.writeplugvalue(value: "0")  // off
+                                                    self.output("Plug off")
+                                                }
+                                                else if self.CurrentBodyTemp < self.TargetBodyTemp {
+                                                    self.writeplugvalue(value: "1")  // on
+                                                    self.output("Plug on")
+                                                }
+                                                else {
+                                                    self.writeplugvalue(value: "0")  // off
+                                                    self.output("Plug off")
+                                                }
+                                            }
+                                            else{
+                                                if self.CurrentRoomTemp > self.TargetRoomTemp {
+                                                    self.writeplugvalue(value: "0")
+                                                    self.output("Plug off")
+                                                }
+                                                else if self.CurrentRoomTemp < self.TargetRoomTemp {
+                                                    self.writeplugvalue(value: "1")
+                                                    self.output("Plug on")
+                                                }
+                                                else {
+                                                    self.writeplugvalue(value: "0")
+                                                    self.output("Plug off")
+                                                }
+                                            }
+                                            // end of if quality == 0
                                             
                                             
-                                            if CurrentBodyTemp! > self.TargetBodyTemp {
-                                                self.writeplugvalue(value: "0")  // off
-                                                self.output("Plug off")
-                                                if self.overrideTemp == 0{
-                                                    self.TargetRoomTemp = CurrentRoomTemp - 1.0
-                                                }
-                                            }
-                                            else if CurrentBodyTemp! < self.TargetBodyTemp {
-                                                self.writeplugvalue(value: "1")  // on
-                                                self.output("Plug on")
-                                                if self.overrideTemp == 0 {
-                                                    self.TargetRoomTemp = CurrentRoomTemp + 1.0
-                                                }
-                                            }
-                                            else {
-                                                self.writeplugvalue(value: "0")  // off
-                                                if self.overrideTemp == 0 {
-                                                    self.TargetRoomTemp = CurrentRoomTemp
-                                                }
-                                            }
+                                            
                                             
                                             print("Targetroom : \(self.TargetRoomTemp)")
                                             print("Currentroom : \(self.CurrentRoomTemp)")
                                             
                                             //self.targetLabel.text = NSString(format: "%3u", self.TargetRoomTemp) as String
                                             //self.currentLabel.text = NSString(format: "%3u", self.CurrentRoomTemp) as String
-                                            self.targetLabel.text = String("\(self.TargetRoomTemp)")
-                                            self.currentLabel.text = String("\(self.CurrentRoomTemp)")
+                                            self.targetBodyLabel.text = NSString(format: "%.1f", self.TargetBodyTemp) as String
+                                            self.currentRoomLabel.text = NSString(format: "%.1f", self.CurrentRoomTemp) as String
+                                            self.currentBodyLabel.text = NSString(format: "%.1f", self.CurrentBodyTemp) as String
                                             
+                                            
+                    
                                             
                                         }
                                     } // end response request
