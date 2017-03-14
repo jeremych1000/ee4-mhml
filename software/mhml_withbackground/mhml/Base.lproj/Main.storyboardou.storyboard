@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jaa-wR-ZIk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e2s-71-6sz">
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jaa-wR-ZIk">
+>>>>>>> 96431a2de9c9b9290e98417e558734a195b7447e
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -246,7 +251,7 @@
                                 <rect key="frame" x="288" y="267" width="60" height="30"/>
                                 <state key="normal" title="Override"/>
                                 <connections>
-                                    <action selector="didtapoverrideButton:" destination="Bmo-P7-uzX" eventType="touchUpInside" id="p2P-hO-b0e"/>
+                                    <action selector="override:" destination="Bmo-P7-uzX" eventType="touchUpInside" id="f9g-zB-GFT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -264,12 +269,12 @@
                     <tabBarItem key="tabBarItem" title="Data" image="data" id="E2z-Sn-Wy2"/>
                     <connections>
                         <outlet property="accLabel" destination="wRT-js-V62" id="Yns-Fv-9mm"/>
-                        <outlet property="circSlider" destination="8Jq-DA-o0i" id="Om3-ca-Ue0"/>
+                        <outlet property="circSlider" destination="8Jq-DA-o0i" id="gxw-2o-z6v"/>
                         <outlet property="currentLabel" destination="z5U-Zl-pw1" id="2X4-qT-byg"/>
                         <outlet property="goodBadSwitch" destination="Nyf-l6-Ouy" id="2uZ-vW-Yj1"/>
                         <outlet property="gsrLabel" destination="QtT-7y-Lp2" id="dCi-1b-Cmr"/>
                         <outlet property="hrLabel" destination="sp8-Yq-O2s" id="RCb-vF-7LA"/>
-                        <outlet property="overrideButton" destination="jsO-DF-MzU" id="6zg-ru-8wZ"/>
+                        <outlet property="overrideButton" destination="jsO-DF-MzU" id="Rhu-wO-99T"/>
                         <outlet property="plugswitch" destination="1mg-Gt-PDI" id="7IH-gb-q2n"/>
                         <outlet property="rrLabel" destination="EsD-e5-VCF" id="rt6-LS-lcs"/>
                         <outlet property="skinLabel" destination="M14-KZ-abk" id="WRL-Ej-f78"/>
@@ -598,7 +603,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8XJ-yh-Lpf">
-                                        <rect key="frame" x="126" y="28" width="13" height="16"/>
+                                        <rect key="frame" x="126.5" y="28" width="12.5" height="16"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>

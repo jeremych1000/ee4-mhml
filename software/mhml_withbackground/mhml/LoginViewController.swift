@@ -27,6 +27,7 @@ public class SharedLogin {
     static let shareInstance = SharedLogin()
     var usernameString = String()
     var userTokenString = String()
+    var userdeviceTokenString = String()
 }
 
 
@@ -135,56 +136,46 @@ class LoginViewController: UIViewController {
                                 if statusCode == 200 {
                                     print("Response:  \(value)")
                                     self.valuet = (value.object(forKey: "key") as! String)
-                                    print("TOKEEN: \(self.valuet)")
+                                    //print("TOKEEN: \(self.valuet)")
                                 }
-                
-                                
-                                /*
-                                let authManager = Alamofire.SessionManager.default
-                                
-                                authManager.session.configuration.httpAdditionalHeaders = [
-                                    "X-CSRFToken" : self.v,
-                                    "Authorization": "Token \(self.valuet)",
-                                    "HTTP_AUTHORIZATION": "Token \(self.valuet)",
-                                    "Token": (self.valuet),
-                                    "Content-Type": "text/json"
-                                ]
-                                
-                                let sessionManagernew = Alamofire.SessionManager.default
-                                
-                                print("CSRFT: \(self.v)")
-
-                                Alamofire.SessionManager.default.session.configuration.httpCookieStorage?.setCookie(cookies.first!)
-                                
-                                sessionManagernew.request(
-                                    "http://sleepify.zapto.org/api/make_coffee/",
-                                    method: .get)
-                                    //headers: headersnew)
-                                    .responseData { response in
-                                        debugPrint("All Response info: \(response)")
-                                        
-                                        if let datanew = response.result.value, let return_string = String(data: datanew, encoding: .utf8){
-                                            
-                                            print("return \(return_string)")
-                                        } else {
-                                            print("no tea pot")
-                                        }
-                                        
-                                        
-                                } */
 
                                 
                             }
-                            
-                            
+
                             if statusCode == 200{
                                 print("token valid")
+                                
+                                
+                                let packets: Parameters = [
+                                    "usernmae" : self.userNameTextField.text!,
+                                    "token" : SharedLogin.shareInstance.userdeviceTokenString
+                                ]
+                                
+                                print("Data: \(packets)")
+                                
+                                sessionManager.request(
+                                    "http://sleepify.zapto.org/api/pushy_token/",
+                                    method: .post,
+                                    parameters: packets,
+                                    encoding: JSONEncoding.default,
+                                    headers: headers
+                                    ).responseJSON { response in
+                                        
+                                        statusCode = (response.response?.statusCode)!
+                                        
+                                        if let result = (response.result.value){
+                                            let value = result as! NSDictionary
+                                            print("result: \(value)")
+                                        }
+                                }
+                                
                                 self.performSegue(withIdentifier: "showMain", sender: self);
                             } else {
                                 print("token is not valid, error detected")
                                 self.returnlabel.text = "Invalid User name or password"
                             }
                         }
+                    
                 }
                 
 
