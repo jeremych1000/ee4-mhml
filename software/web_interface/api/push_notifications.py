@@ -41,7 +41,7 @@ class push(APIView):
             'message': 'WWWWWWWWWWWWWWWWWW'
         }
         notification = {
-            "body": "time to go to school! \u1F984",
+            "body": "Time to go to bed! Sleep now to wake up on time for tomorrow's meeting at 10:40 am.",
             "badge": 1,
             "sound": "ping.aiff"
         }

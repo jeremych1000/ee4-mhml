@@ -157,6 +157,7 @@ class realTimeResponse(APIView):
             json_result["quality"] = "1"
         else:
             json_result["quality"] = "0"
+        print("RT RETURN ", json_result)
         return Response(json_result, status=status.HTTP_200_OK)
 
 
@@ -227,7 +228,7 @@ class import_cal_events(APIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request):
-        days = 3
+        days = 1
         exception_list = import_events.import_all(days)
         if len(exception_list) == 0:
             return Response(status=status.HTTP_200_OK)
@@ -240,7 +241,7 @@ class pushy_token(APIView):
     def post(self, request):
         json_ret = {}
 
-        if request.user.is_authenticated or True:
+        if request.user.is_authenticated:
             json_data = json.loads(request.body.decode("utf-8"))
             username = json_data['username']
             token = json_data['token']

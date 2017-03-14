@@ -9,7 +9,7 @@ function plotLineChart(days, feature, tagname) {
         height = 270 - margin.top - margin.bottom;
 
     // Parse the date / time
-    var parseDate = d3.timeParse("%Y-%m-%dT%H:%M:%S");
+    var parseDate = d3.timeParse("%Y-%m-%dT%H:%M:%SZ");
     var formatTime = d3.timeFormat("%H:%M:%S");
 
     // Set the ranges

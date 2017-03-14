@@ -11,8 +11,13 @@ from icalendar import vDatetime, vText
 import datetime, requests, json, pytz
 
 
-def import_all(days=3):
-    calendar_link_obj = calendar_link.objects.all()
+def import_all(days=3, username=None):
+    if username is None:
+        calendar_link_obj = calendar_link.objects.all()
+    else:
+        user_obj = User.objects.get(username=username)
+        calendar_link_obj = calendar_link.objects.get(user=user_obj)
+
     timedelta = datetime.timedelta(days=days)
     time_now = timezone.now()
 
