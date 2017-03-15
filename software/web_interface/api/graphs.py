@@ -73,7 +73,7 @@ def simple_graph(request, feature, days=None, start=None, end=None):
 
         for i in data:
             #timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
-            timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%S'))
+            timestamp.append(datetime.strptime(i["date"], '%Y-%m-%dT%H:%M:%SZ'))
             temp.append(i[feature])
 
         if len(timestamp) != 0 and len(temp) != 0:
@@ -86,7 +86,7 @@ def simple_graph(request, feature, days=None, start=None, end=None):
         if request.method == 'GET' and 'dl' in request.GET:
             response['Content-Disposition'] = 'attachment; filename="%s.png"' % (
                 feature+'_last_' + days + '_days_from_' + str(
-                    datetime.strptime(data[0]["date"], '%Y-%m-%dT%H:%M:%S')))
+                    datetime.strptime(data[0]["date"], '%Y-%m-%dT%H:%M:%SZ')))
         canvas.print_png(response)
         # clear and close plots to prevent memory problems
         fig.clf()

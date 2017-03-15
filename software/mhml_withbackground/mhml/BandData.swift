@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 import HomeKit
 import AES256CBC
+import CircularSlider
  
  
 class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, HMHomeManagerDelegate,HMAccessoryBrowserDelegate, HMAccessoryDelegate {
@@ -37,17 +38,19 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     
     var dataCharacteristic = [HMCharacteristic]()
     
-    @IBOutlet weak var picker: UIPickerView!
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
        homeManager.delegate = self
-
-        
     }
     
     var valuet = ""
+    
+    var realQaulity = ""
+    var TargetBodyTemp: Double = 0.0
+    var TargetRoomTemp: Double = 0.0
+    var CurrentBodyTemp: Double = 0.0
+    var CurrentRoomTemp: Double = 0.0
 
     var globalCounter = 0
     var tempHR: Double = 0.0
@@ -107,6 +110,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     var skinSwitchT: Int = 1
     var gsrSwitchT: Int = 1
     var accSwitchT: Int = 1
+    var overrideT: Int = 0
     
     var jsonString = ""
     //testing
@@ -135,6 +139,16 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     
    
     @IBOutlet weak var goodBadSwitch: UISwitch!
+    @IBOutlet weak var targetBodyLabel: UILabel!
+    @IBOutlet weak var currentRoomLabel: UILabel!
+    @IBOutlet weak var currentBodyLabel: UILabel!
+
+    
+    @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var circSlider: CircularSlider!
+    
+    @IBOutlet weak var overrideButton: UIButton!
+    
     
     var client: MSBClient!
     fileprivate var clientManager = MSBClientManager.shared()
@@ -142,6 +156,9 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+//       setupCircularSlider()
+        //targetLabel.text = "0"
+        //currentLabel.text = "0"
         
         // Setup View
         markSampleReady(false)
@@ -277,6 +294,14 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                 startSkinUpdates()
                 
                 
+                print("Targetroom : \(self.TargetRoomTemp)")
+                print("Currentroom : \(self.CurrentRoomTemp)")
+                
+                self.targetBodyLabel.text = NSString(format: "%.1f", self.TargetBodyTemp) as String
+                self.currentRoomLabel.text = NSString(format: "%.1f", self.CurrentRoomTemp) as String
+                self.currentBodyLabel.text = NSString(format: "%.1f", self.CurrentBodyTemp) as String
+                
+                
             } else {
                 output("Requesting user consent for accessing HeartRate...")
                 client.sensorManager.requestHRUserConsent(completion: { (userConsent: Bool, error: Error?) in
@@ -297,6 +322,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     
     @IBAction func didTapStopHRSensorButton(_ sender: Any) {
     
+        print ("\(circSlider.value)")
         if let client = self.client{
             if client.sensorManager.heartRateUserConsent() == MSBUserConsent.granted{
                 stopHeartRateUpdates()
@@ -446,6 +472,25 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
             }
         }
     }
+    
+    
+    @IBAction func didtapoverrideButton(_ sender: Any) {
+
+        print("\(circSlider.value)")
+        
+        
+        if overrideT == 1{
+            //markoverride(true)
+            overrideButton.backgroundColor = UIColor.black
+            overrideT = 0
+        }
+        else {
+            overrideButton.backgroundColor = UIColor.red
+            //markoverride(false)
+            overrideT = 1
+        }
+    }
+    
  
  
     @IBAction func HRlogSwitch(_ sender: UISwitch) {
@@ -510,6 +555,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         }
     }
     
+
     
     //MARK: Function
     
@@ -555,7 +601,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                     
                     self.buffer = self.buffer + 1
                     
-                    if self.buffer == 600 {
+                    if self.buffer == 10 {
                         self.buffer = 0
                         self.globalCounter += 1
                         self.output("buffer full")
@@ -563,7 +609,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                         
                         
                         var parameters : Parameters = [
-                            "username" : "jeremych",
+                            "username" : SharedLogin.shareInstance.usernameString,
                             "data" : [Parameters]()
                         ]
                         
@@ -640,6 +686,8 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                                         encoding: JSONEncoding.default,
                                         headers: headers)
                                     
+                                    
+  
                                     // Obtain sleep quality state every 10mins
                                     Alamofire.request("http://sleepify.zapto.org/api/rt/",method: .post, parameters: parameters, encoding:JSONEncoding.default, headers: headers).responseJSON { response in
                                         debugPrint("All Response info: \(response)")
@@ -647,18 +695,75 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
                                         if let data = response.result.value{
                                             
                                             let value = data as! NSDictionary
+
                                             
-                                            self.valuet = value.object(forKey: "quality") as! String
+                                            //self.valuet = value.object(forKey: "quality") as! String
+    
                                             
-                                            
-                                            if self.valuet == "0" {
+                                           /* if self.valuet == "0" {
                                                 self.output("Sleep Quality: Good")
                                                 self.writeplugvalue(value: "1")
                                             }
                                             else {
                                                 self.output("Sleep Quality: Bad")
                                                 self.writeplugvalue(value: "0")
+                                            }*/
+                                            
+                                            /* receive and update temperature feature here */
+                                            self.TargetRoomTemp = Double(self.circSlider.value)
+                                            self.TargetBodyTemp = value.object(forKey: "temp") as! Double // obtain optimal body temp
+                                            
+                                            print("Target body temp:  \(self.TargetBodyTemp)")
+                                            self.CurrentBodyTemp = self.masterskinArray.last as! Double  // set current body temp
+                                            self.CurrentRoomTemp = self.masterroomtempArray.last as! Double // set current room temp
+                                            print("Current body temp: \(self.CurrentBodyTemp)")
+                                            
+                                            // if quality == 0
+                                            if self.overrideT == 0 {
+                                                if self.CurrentBodyTemp > self.TargetBodyTemp {
+                                                    self.writeplugvalue(value: "0")  // off
+                                                    self.output("Plug off")
+                                                }
+                                                else if self.CurrentBodyTemp < self.TargetBodyTemp {
+                                                    self.writeplugvalue(value: "1")  // on
+                                                    self.output("Plug on")
+                                                }
+                                                else {
+                                                    self.writeplugvalue(value: "0")  // off
+                                                    self.output("Plug off")
+                                                }
                                             }
+                                            else{
+                                                if self.CurrentRoomTemp > self.TargetRoomTemp {
+                                                    self.writeplugvalue(value: "0")
+                                                    self.output("Plug off")
+                                                }
+                                                else if self.CurrentRoomTemp < self.TargetRoomTemp {
+                                                    self.writeplugvalue(value: "1")
+                                                    self.output("Plug on")
+                                                }
+                                                else {
+                                                    self.writeplugvalue(value: "0")
+                                                    self.output("Plug off")
+                                                }
+                                            }
+                                            // end of if quality == 0
+                                            
+                                            
+                                            
+                                            
+                                            print("Targetroom : \(self.TargetRoomTemp)")
+                                            print("Currentroom : \(self.CurrentRoomTemp)")
+                                            
+                                            //self.targetLabel.text = NSString(format: "%3u", self.TargetRoomTemp) as String
+                                            //self.currentLabel.text = NSString(format: "%3u", self.CurrentRoomTemp) as String
+                                            self.targetBodyLabel.text = NSString(format: "%.1f", self.TargetBodyTemp) as String
+                                            self.currentRoomLabel.text = NSString(format: "%.1f", self.CurrentRoomTemp) as String
+                                            self.currentBodyLabel.text = NSString(format: "%.1f", self.CurrentBodyTemp) as String
+                                            
+                                            
+                    
+                                            
                                         }
                                     } // end response request
                                 }
@@ -1054,6 +1159,11 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         self.stopHRSensorButton.alpha = ready ? 0.2 : 1.0
     }
     
+    func markoverride(_ ready: Bool){
+        self.overrideButton.isEnabled = ready
+        self.overrideButton.alpha = ready ? 1.0 : 0.2
+    }
+    
     func output(_ message: String) {
         self.txtOutput.text = String("\(self.txtOutput.text!)\n\(message)")
         self.txtOutput.layoutIfNeeded()
@@ -1104,6 +1214,13 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
         output("Failed to connect to Band \(client.name!).")
         output((error! as NSError).description)
     }
+    
+    //MARK:circularslider
+    
+    func circularSlider(circularSlider: CircularSlider, valueForValue value: Float) -> Float {
+        return floorf(value)
+    }
+    
     
 }
 

@@ -7,6 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db import IntegrityError
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
+from django_cron import CronJobBase, Schedule
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
@@ -18,10 +20,10 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 import newML.functions
 from newML import models as ml_model
 from datetime import datetime, date, timedelta
-from cal import read as cal_read
+from cal import read as cal_read, import_events
 from myaccount import models
 
-import os, re, json, random, pickle, numpy as np
+import os, re, json, random, pickle, requests, numpy as np
 
 from . import csv_functions, serializers, queries
 
@@ -31,9 +33,19 @@ from MLBlock.views import insert_from_api
 def csrf(request):
     return render(request, "personal/blank.html")
 
+class MyCronJob(CronJobBase):
+    RUN_EVERY_MINS = 1 # every 2 hours
+
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = 'api.mycronjob'    # a unique code
+
+    def do(self):
+        requests.options('http://sleepify.zapto.org/api/dummy/')
+
 class dummy(APIView):
     def post(self, request):
         json_data = json.loads(request.body.decode("utf-8"))
+        print("Dummy DEBUG: ", json_data)
         return Response(json_data, status=status.HTTP_200_OK)
 
 class random_number(APIView):
@@ -145,6 +157,7 @@ class realTimeResponse(APIView):
             json_result["quality"] = "1"
         else:
             json_result["quality"] = "0"
+        print("RT RETURN ", json_result)
         return Response(json_result, status=status.HTTP_200_OK)
 
 
@@ -160,7 +173,7 @@ class userFeedback(APIView):
 class stats():
     class last(APIView):
         def get(self, request, feature, days):
-            # print("regex ", feature, " ----days", days)
+            days = int(days)
             if request.user.is_authenticated():
                 if feature == 'mean_hr':
                     serializer = queries.heartrate(request, days)
@@ -208,12 +221,19 @@ class get_cal_events(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request):
-        cal_events = cal_read.get_cal_events(request)
-        json_ret = {
-            "data": cal_events
-        }
-        return Response(json_ret, status=status.HTTP_200_OK)
+        cal_events = cal_read.get_cal_events(request.user.username)
+        return Response(cal_events, status=status.HTTP_200_OK)
 
+class import_cal_events(APIView):
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        days = 1
+        exception_list = import_events.import_all(days)
+        if len(exception_list) == 0:
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response({"exceptions": exception_list}, status=status.HTTP_400_BAD_REQUEST)
 
 class pushy_token(APIView):
     permission_classes = (AllowAny,)
@@ -221,7 +241,7 @@ class pushy_token(APIView):
     def post(self, request):
         json_ret = {}
 
-        if request.user.is_authenticated or True:
+        if request.user.is_authenticated:
             json_data = json.loads(request.body.decode("utf-8"))
             username = json_data['username']
             token = json_data['token']

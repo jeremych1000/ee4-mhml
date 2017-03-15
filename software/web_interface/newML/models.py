@@ -11,7 +11,7 @@ import os
 class FeatureEntry(models.Model):
     AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now_add=False, unique=True)
+    date = models.DateTimeField(auto_now_add=False)
     mean_hr = models.FloatField(default=0.0)
     std_hr = models.FloatField(default=0.0)
     mean_rr = models.FloatField(default=0.0)

@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // Print device token to console
             print("Pushy device token: \(deviceToken)")
+            SharedLogin.shareInstance.userdeviceTokenString = deviceToken
             
             // Persist the token locally and send it to your backend later
             UserDefaults.standard.set(deviceToken, forKey: "pushyToken")
@@ -51,6 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let aps = data["aps"] as? [AnyHashable : Any] {
                 if let payloadMessage = aps["alert"] as? String {
                     message = payloadMessage
+                }
+                if let payloadBadge = aps["badge"] as? String {
+                    var badge = payloadBadge
                 }
             }
             

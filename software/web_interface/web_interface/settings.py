@@ -280,6 +280,11 @@ LOGGING = {
 # push notifications
 PUSHY_API_KEY = 'a725af4ac5ce3a6d9f2e15ac6af2ec294a5ed07e38f75d9c05442387b74f649f'
 
+# cron
+CRON_CLASSES = [
+    "api.views.MyCronJob",
+]
+DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
 # others
 CSRF_COOKIE_SECURE = False  # allow transportation of CSRF over HTTP
@@ -297,5 +302,3 @@ SENDFILE_BACKEND = 'sendfile.backends.development'
 
 DOCS_ROOT = os.path.join(BASE_DIR, "docs/_build/html/")
 DOCS_ACCESS = 'public'
-
-USE_TZ = False  # bypass RuntimeWarning: DateTimeField FeatureEntry.date received a naive datetime (2017-02-21 02:00:44) while time zone support is active. RuntimeWarning)
