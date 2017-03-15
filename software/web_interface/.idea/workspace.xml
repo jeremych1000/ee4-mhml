@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d6df14e-37e0-43a1-a523-a9553011047d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/aes.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cal/cron_jet_lag.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../documents/demo/sleepify.pptx" afterPath="$PROJECT_DIR$/../../documents/demo/sleepify.pptx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/graphs.py" afterPath="$PROJECT_DIR$/api/graphs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/push_notifications.py" afterPath="$PROJECT_DIR$/api/push_notifications.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/queries.py" afterPath="$PROJECT_DIR$/api/queries.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cal/import_events.py" afterPath="$PROJECT_DIR$/cal/import_events.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/data/jeremych/MSBand2_ALL_data_14_03_17.csv" afterPath="$PROJECT_DIR$/media/data/jeremych/MSBand2_ALL_data_14_03_17.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/personal/templates/personal/download.html" afterPath="$PROJECT_DIR$/personal/templates/personal/download.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/d3_graph.js" afterPath="$PROJECT_DIR$/static/js/d3_graph.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,7 +35,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="download.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="download.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/personal/templates/personal/download.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="669">
@@ -68,8 +58,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2532">
-              <caret line="71" column="55" lean-forward="true" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
+            <state relative-caret-position="374">
+              <caret line="184" column="67" lean-forward="true" selection-start-line="184" selection-start-column="67" selection-end-line="184" selection-end-column="67" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -131,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="queries.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="queries.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/queries.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+            <state relative-caret-position="136">
+              <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -184,13 +174,13 @@
         <option value="$PROJECT_DIR$/cal/models.py" />
         <option value="$PROJECT_DIR$/cal/import_events.py" />
         <option value="$PROJECT_DIR$/cal/cron_jet_lag.py" />
-        <option value="$PROJECT_DIR$/api/views.py" />
         <option value="$PROJECT_DIR$/static/js/d3_graph.js" />
         <option value="$PROJECT_DIR$/api/graphs.py" />
-        <option value="$PROJECT_DIR$/api/queries.py" />
         <option value="$PROJECT_DIR$/api/aes.py" />
         <option value="$PROJECT_DIR$/api/push_notifications.py" />
         <option value="$PROJECT_DIR$/personal/templates/personal/download.html" />
+        <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/api/queries.py" />
       </list>
     </option>
   </component>
@@ -651,7 +641,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="2576" height="1416" extended-state="1" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -956,16 +946,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/queries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="59" lean-forward="true" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/graphs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="729">
@@ -980,16 +960,6 @@
           <caret line="29" column="50" lean-forward="true" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2532">
-          <caret line="71" column="55" lean-forward="true" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1009,6 +979,26 @@
         <state relative-caret-position="669">
           <caret line="51" column="71" lean-forward="true" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="184" column="67" lean-forward="true" selection-start-line="184" selection-start-column="67" selection-end-line="184" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/queries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

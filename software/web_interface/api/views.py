@@ -173,7 +173,7 @@ class userFeedback(APIView):
 class stats():
     class last(APIView):
         def get(self, request, feature, days):
-            # print("regex ", feature, " ----days", days)
+            days = int(days)
             if request.user.is_authenticated():
                 if feature == 'mean_hr':
                     serializer = queries.heartrate(request, days)
