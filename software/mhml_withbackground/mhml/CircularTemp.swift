@@ -5,6 +5,7 @@
 //  Created by Nathalie Wong on 13/3/2017.
 //  Copyright © 2017 Nathalie Wong. All rights reserved.
 //
+// Helper Class for CircularTemp wheel
 
 import UIKit
 

@@ -2,9 +2,10 @@
 //  ForgotViewController.swift
 //  mhml
 //
-//  Created by Tszho on 11/03/2017.
-//  Copyright © 2017 Nathalie Wong. All rights reserved.
+//  Created by Sleepify Team
+//  Copyright (c) 2017 Sleepify UK Ltd. All rights reserved.
 //
+// This is the forgot password view controller, where the user can enter than email account and recieve a forgot password email.  
 
 import Foundation
 import Alamofire

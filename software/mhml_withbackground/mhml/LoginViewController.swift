@@ -2,8 +2,11 @@
 //  LoginViewController.swift
 //  UserLoginAndRegistration
 //
-//  Created by Sergey Kargopolov on 2015-01-13.
-//  Copyright (c) 2015 Sergey Kargopolov. All rights reserved.
+//  Created by Sleepify Team
+//  Copyright (c) 2017 Sleepify UK Ltd. All rights reserved.
+//
+//  This is the LoginViewController, it provides classes and methods for user to login.
+//  It also handles feedback from the server to see if the login is valid. 
 //
 
 import UIKit
@@ -11,7 +14,7 @@ import Alamofire
 //import SwiftyJSON
 
 
-
+//Declare extension to hide keyboard when user tap outside of the keyboard.
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -23,6 +26,7 @@ extension UIViewController {
     }
 }
 
+//Declare publice class to share variables
 public class SharedLogin {
     static let shareInstance = SharedLogin()
     var usernameString = String()
@@ -30,7 +34,7 @@ public class SharedLogin {
     var userdeviceTokenString = String()
 }
 
-
+//Actual class for LoginViewController
 class LoginViewController: UIViewController {
     
     var token = ""
@@ -56,16 +60,12 @@ class LoginViewController: UIViewController {
     }
     
 
+    // MARK: Action
     @IBAction func loginButtonTapped(_ sender: AnyObject) {
         
         let userPassword = userPasswordTextField.text;
         let userName = userNameTextField.text;
-        
-        //let userEmailStored = UserDefaults.standard.string(forKey: "userEmail");
-        
-        //let userPasswordStored = UserDefaults.standard.string(forKey: "userPassword");
-        
-        
+    
         if ( (userPassword?.isEmpty)! || (userName?.isEmpty)!){
             print("fields are empty")
             returnlabel.text = "Fields are empty"
@@ -87,11 +87,12 @@ class LoginViewController: UIViewController {
         
         let parameters = [
             "username": userNameTextField.text!,
-            //"email" : userEmailTextField.text!,
             "password": userPasswordTextField.text! //password
         ]
         var statusCode: Int = 0
         
+        
+        //Start a Alamofire Session
         let sessionManager = Alamofire.SessionManager.default
         sessionManager.request("http://sleepify.zapto.org/api/csrf/", method: .get)
             .responseString { response in
@@ -109,6 +110,7 @@ class LoginViewController: UIViewController {
                     
                     SharedLogin.shareInstance.userTokenString = self.v
                     
+                    //Create headers for packets
                     let headers: HTTPHeaders = [
                         "X-CSRFToken": self.v,
                         "Cookie" : ""
@@ -133,6 +135,8 @@ class LoginViewController: UIViewController {
                                 
                                 
                                 print("statuscode: \(statusCode)")
+                                
+                                //StatusCode = 200, meaning login successful
                                 if statusCode == 200 {
                                     print("Response:  \(value)")
                                     self.valuet = (value.object(forKey: "key") as! String)
@@ -169,6 +173,7 @@ class LoginViewController: UIViewController {
                                         }
                                 }
                                 
+                                //If login sucessfully, move into the next view
                                 self.performSegue(withIdentifier: "showMain", sender: self);
                             } else {
                                 print("token is not valid, error detected")

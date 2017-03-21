@@ -2,21 +2,36 @@
 //  ViewController.swift
 //  UserLoginAndRegistration
 //
-//  Created by Sergey Kargopolov on 2015-01-08.
-//  Copyright (c) 2015 Sergey Kargopolov. All rights reserved.
-//
+//  Created by Sleepify Team
+//  Copyright (c) 2017 Sleepify UK Ltd. All rights reserved.
+// 
+//  This is the logout view controller, at the moment, it only returns to the login page. 
+//  In the future, this is be implemented according to the Logout out Django specificaiton. 
 
 import UIKit
 
 class logoutViewController: UIViewController {
+    
+    //MARK: Outlets
     
     @IBOutlet weak var logoutButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
                 logoutButton.layer.cornerRadius = 8
-        
     }
+    
+    //MARK: Action
+    
+    @IBAction func logoutButtonTapped(_ sender: Any) {
+        UserDefaults.standard.set(false,forKey:"isUserLoggedIn");
+        UserDefaults.standard.synchronize();
+        
+        self.performSegue(withIdentifier: "loginView", sender: self);
+    }
+    
+    
+    //MARK: Override Function
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -36,19 +51,7 @@ class logoutViewController: UIViewController {
         
         
     }
-    
-    
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        UserDefaults.standard.set(false,forKey:"isUserLoggedIn");
-        UserDefaults.standard.synchronize();
-        
-        self.performSegue(withIdentifier: "loginView", sender: self);
-        
-        
-    }
-    
-    
-    
+
     
 }
 

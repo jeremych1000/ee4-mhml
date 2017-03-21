@@ -2,9 +2,10 @@
 //  RegisterPageViewController.swift
 //  UserLoginAndRegistration
 //
-//  Created by Sergey Kargopolov on 2015-01-13.
-//  Copyright (c) 2015 Sergey Kargopolov. All rights reserved.
+//  Created by Sleepify Team
+//  Copyright (c) 2017 Sleepify UK Ltd. All rights reserved.
 //
+// This is the registration page, where users can create a new acconnt in this view
 
 
 import UIKit
@@ -12,6 +13,8 @@ import UIKit
 import Alamofire
 
 class RegisterPageViewController: UIViewController {
+    
+    //MARK: Outlets
 
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var userEmailTextField: UITextField!
@@ -22,12 +25,6 @@ class RegisterPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        
-        //view.addGestureRecognizer(tap)
-        
         self.hideKeyboardWhenTappedAround()
         
     }
@@ -54,20 +51,13 @@ class RegisterPageViewController: UIViewController {
             
             // Display alert message 
                 print("All fields are required")
-            
-//            displayMyAlertMessage("All fields are required");
-            
-//            return;
+
        }
         
         //Check if passwords match 
         if(userPassword != userRepeatPassword)
         {
-           // Display an alert message 
- //           displayMyAlertMessage("Passwords do not match");
- //           return;
             print("Passwords do not match")
-        
         }
         
         let parameters = [
@@ -117,6 +107,7 @@ class RegisterPageViewController: UIViewController {
                                 
                                 let value = result as! NSDictionary
                                 
+                                //statusCode Registered sucessful
                                 if statusCode == 201 {
                                     print("Response:  \(value)")
                                     //self.valuet = (value.object(forKey: "key") as! String)

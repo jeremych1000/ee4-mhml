@@ -2,13 +2,15 @@
 //  AppDelegate.swift
 //  mhml
 //
-//  Created by Nathalie Wong on 9/2/2017.
-//  Copyright © 2017 Nathalie Wong. All rights reserved.
+//  Created by Sleepify Team
+//  Copyright (c) 2017 Sleepify UK Ltd. All rights reserved.
 //
+// This AppDelegate handles the push notification in the background as well as creating new Device Token upon first launch of the app. 
+// The device token is then registered with the server along with the login user name, overwriting exisitng data on the server.
+// This enables up-to-date user login association with devices allowing user specific notifications. 
 
 import UIKit
 import EventKit
-//import MicrosoftBandKit_iOS;/MicrosoftBandKit_iOS.h
 import PushySDK
 
 
@@ -82,16 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Subscribe successful
             print("Subscribed to topic successfully")
         })
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         UIApplication.shared.statusBarStyle = .lightContent
