@@ -9,6 +9,24 @@
 2. Download the Sleepify App from _link_ or compile it yourself.
 3. OPTIONAL: Create a user account using `http://sleepify.zapto.org/accounts/signup/`
 > This can be done later using the mobile app too.
+---
+
+### API Reference
+All API links should be pre-pended with `http://sleepify.zapto.org/api/`. POST requests should have a CSRF token in the header/cookies to prevent Cross Site Request Forgery.
+
+| Link | Available Methods | Description| JSON Format |
+| --- | --- | --- | --- |
+| /csrf/  | GET | Returns a CSRF token in the cookies for use when POSTing.
+|  /auth/registration/ | POST  |  Register a new user. | <ul><li>item1</li><li>item2</li></ul> |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+
+---
+### Development
+You are welcome to clone the repository and develop Sleepify yourself. Please give credit where credit is due.
 #### Web server
 Sleepify runs at the following URL: `http://sleepify.zapto.org`. However, this is dependent on the host. If you want to develop Sleepify locally, or run Sleepify using your own web server, follow these instructions.
 1. Assuming you already have cloned the repository, install the required libraries using 
