@@ -1,41 +1,31 @@
-# ee4-mhml
-[project progress and activity tracking](https://github.com/jeremych1000/ee4-mhml/projects/1)
-
-[google drive folder](https://drive.google.com/drive/folders/0B-5OPn6ItLXTMkJGVUJ4NVd1cWc)
-
-## current best idea
-room temperature, link to smart home products
-
-predict going home or after exercise, change temp of room
-
-detcet body and ambient temperature
-
-say how hot cold you want your room to be so it can auto adjust
-
-check stages of REM sleep, auto adjust room temp
+![Sleepify logo](http://mufff.in/i/logo2.png)
+## ee4-mhml (2016-2017) Coursework
+---
+### Abstract
 
 ---
-
-## other ideas
-
-diabetes, send alert to eat or pump insulin
-
-swimming, use accelerometer to check stroke, training programme?
-
-selfie camera, see how fat face, you are very fat, eat less
-
-oral camera, check colours of teeth to see if there is tooth decay, cavity
-
-hair loss
-
-camera to detect what food, get calories
-
-camera to detect medicine, get uses of medicine
-
-excrement detection
-
-sitting and standing posture
-
-ambient light detection
-
-audio sound recognition
+### Usage
+1. Clone the github repository using `git clone https://github.com/jeremych1000/ee4-mhml`
+2. Download the Sleepify App from _link_ or compile it yourself.
+3. OPTIONAL: Create a user account using `http://sleepify.zapto.org/accounts/signup/`
+> This can be done later using the mobile app too.
+#### Web server
+Sleepify runs at the following URL: `http://sleepify.zapto.org`. However, this is dependent on the host. If you want to develop Sleepify locally, or run Sleepify using your own web server, follow these instructions.
+1. Assuming you already have cloned the repository, install the required libraries using 
+> Windows `ee4-mhml/software/web_interface/get_pip_stuff.cmd`
+> UNIX `ee4-mhml/software/web_interface/get_pip_stuff.sh`
+2. Decide on a port to run the webserver on, and forward that port to your hosting server/PC. Detailed instructions depending on your router can be found [here](https://portforward.com/router.htm).
+> HTTP server default: 80
+> Django development server default: 8000
+3. Setup the Django databases using `python manage.py makemigrations; python manage.py migrate`
+4. Run the webserver with the following command: `python manage.py runserver 0.0.0.0:80` and verify that the server is running by visiting `http://<your-ip>/`, `http://localhost:80/`, or `http://127.0.0.1:80/`.
+> To run the server just locally, `python manage.py runserver localhost:8000` or `python manage.py runserver 127.0.0.1:8000`.
+> Replace 8000 with whatever port you have forwarded.
+#### iOS Application
+The iOS application can be downloaded at _link_, but to develop it yourself, follow these instructions (macOS only):
+1. Assuming you have cloned the repository, install Cocoapods using `sudo gem install cocoapods`
+2. Go to the app folder, `ee4-mhml/software/mhml_withbackground/`, and run `pod install`. It should automatically pick out the `Podfile` inside the app folder and install the required dependencies.
+3. Open the workspace using XCode, not the project - `mhml.xcworkspace`
+---
+### Development
+You are welcome to issue pull requests, the Sleepify team will be on hand to deal with that, alongside issues. We aim to provide a response within 7 working days.
