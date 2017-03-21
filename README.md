@@ -6,7 +6,7 @@
 ---
 ### Usage
 1. Clone the github repository using `git clone https://github.com/jeremych1000/ee4-mhml`
-2. Download the Sleepify App from _link_ or compile it yourself.
+2. Download the Sleepify App from \<not available at the moment on the app store\> or compile it yourself.
 3. OPTIONAL: Create a user account using `http://sleepify.zapto.org/accounts/signup/`
 > This can be done later using the mobile app too.
 ---
@@ -49,7 +49,11 @@ Sleepify runs at the following URL: `http://sleepify.zapto.org`. However, this i
 > To run the server just locally, `python manage.py runserver localhost:8000` or `python manage.py runserver 127.0.0.1:8000`.
 > Replace 8000 with whatever port you have forwarded.
 #### iOS Application
-The iOS application can be downloaded at _link_, but to develop it yourself, follow these instructions (macOS only):
+At the moment, the application development is still at a provisional stage where the mobile application is only tested by a few specific users of specific iOS devices.  In order for it to be available on the App Store for distrubtion., the app has to be submitted for publication to the App Store. This involves review process by Apple to insure the app meets their guidelines for quality and content.  
+
+In order to try out our app as a beta user, we would need to download the app directly to your iOS devices, this involves us connecting your devices to our Macs.
+
+To develop it yourself, follow these instructions (macOS only):
 1. Assuming you have cloned the repository, install Cocoapods using `sudo gem install cocoapods`
 2. Go to the app folder, `ee4-mhml/software/mhml_withbackground/`, and run `pod install`. It should automatically pick out the `Podfile` inside the app folder and install the required dependencies.
 3. Open the workspace using XCode, not the project - `mhml.xcworkspace`
