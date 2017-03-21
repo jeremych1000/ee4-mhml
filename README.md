@@ -14,15 +14,24 @@
 ### API Reference
 All API links should be pre-pended with `http://sleepify.zapto.org/api/`. POST requests should have a CSRF token in the header/cookies to prevent Cross Site Request Forgery.
 
-| Link | Available Methods | Description| JSON Format |
+| Link | Available Methods | Description| Notes |
 | --- | --- | --- | --- |
 | /csrf/  | GET | Returns a CSRF token in the cookies for use when POSTing.
-|  /auth/registration/ | POST  |  Register a new user. | <ul><li>item1</li><li>item2</li></ul> |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
-|   |   |   |
+|  /auth/registration/ | POST  |  Register a new user. | <ul><li>username</li><li>email</li><li>password1</li><li>password2</li></ul> |
+|  /auth/login/ | POST  |  Login a user. | <ul><li>username</li><li>email</li><li>password</li></ul> Returns token key. |
+|  /auth/logout/ | POST  | Logout a user.  |  |
+|  /auth/password/reset/ | POST  | Reset a forgotten password.  | <ul><li>email</li></ul> |
+|  /auth/user/ | GET, PUT, PATCH  | Edit user details.  | <ul><li>username</li><li>first\_name</li><li>last\_name</li></ul> |
+|  /raw_data/ | POST  | Send raw sensor data to the database.  | <ul><li>username</li><li>data<ul><li>timestamp</li><li>HR</li><li>RR</li><li>GSR</li><li>mode</li><li>AccX</li><li>AccY</li><li>AccZ</li></ul></li></ul> |
+| /stats/last/`<number_of_days>`/`feature`/ | GET  | Returns a JSON object of the logged in user's raw data for the past X days. | |
+| /stats/last/`<number_of_days>`/`feature`/graph/ | GET | Returns a 640x480 graph plotted by _matplotlib_ | |
+| /stats/from/`<timestamp>`/to/`<timestamp>`/`feature`/|GET  |Returns a JSON object of the logged in user's raw data from timestamp to timestamp. | |
+| /make\_default/ | GET | Make a default user model. | _For development._ |
+| /migrate\_feature/ | GET | Put raw data in CSV files to database. |  _For development._ |
+| /get\_cal\_events/ | GET | Get a list of calendar events for the logged in user for the next day. | |
+| /import\_cal\_events/ | GET | Import the logged in user's calendar into the database. | Calling this URL will update the database, deleting all previous entries of the user's events. |
+| /dummy/ | POST | Show whatever you have sent in the POST request. | _For debugging purposes._ |
+
 
 ---
 ### Development
