@@ -1,10 +1,27 @@
- //
+//
 //  BandData.swift
 //  mhml
 //
-//  Created by Nathalie Wong on 13/2/2017.
-//  Copyright © 2017 Nathalie Wong. All rights reserved.
+//  Created by Sleepify Team
+//  Copyright (c) 2017 Sleepify UK Ltd. All rights reserved.
 //
+// This is the main function view of the app, BandData.  This viewcontroller handles
+// Conneciton with Mircosoft Band and HomeKit Devices
+// Data collection from the Mircosoft band and homekit devices
+// Packet data into JSON format and transmit data to the server
+// Recieve control data from the server to actuate homekit devices
+
+// The code at the moment is hard-wired to the Homekit devcies in the Primary Room, 
+// the first devices in Primary room should be the Elgato Home Sense,
+// The second devices in Primanary room should be the Elgato smart plug.
+// The can be easily set via the Home app. In the future this should be implemented where user can choose the homekit devices.
+// Framework for this is set in place, under, HMCatalog, Home, Utilites, Supporting Files, folder.  
+
+// This class also contains funciton to write and read homekit devices services. 
+// 
+
+// This class also contains the feedback system to change the state of homekit smart plug.
+// Since the server does return optimal temperature, this can be used to directly control homekit enabled theromstats
 
 
 import UIKit
@@ -492,7 +509,7 @@ class BandData: UIViewController, UITextViewDelegate, MSBClientManagerDelegate, 
     }
     
  
- 
+    // UN USED Function buttons
     @IBAction func HRlogSwitch(_ sender: UISwitch) {
         if hrSwitch.isOn{
             hrSwitchT = 1

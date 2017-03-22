@@ -5,6 +5,7 @@
 //  Created by Nathalie Wong on 9/2/2017.
 //  Copyright © 2017 Nathalie Wong. All rights reserved.
 //
+//  Secondary features
 
 import UIKit
 import EventKit

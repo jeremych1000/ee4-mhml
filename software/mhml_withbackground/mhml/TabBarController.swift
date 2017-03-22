@@ -2,9 +2,10 @@
 //  ViewController.swift
 //  mhml
 //
-//  Created by Nathalie Wong on 9/2/2017.
-//  Copyright © 2017 Nathalie Wong. All rights reserved.
+//  Created by Sleepify Team
+//  Copyright (c) 2017 Sleepify UK Ltd. All rights reserved.
 //
+//  This is the tab bar controller.
 
 import UIKit
 
@@ -19,7 +20,6 @@ class TabBarController: UITabBarController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
