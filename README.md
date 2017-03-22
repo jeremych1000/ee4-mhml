@@ -2,7 +2,7 @@
 ## ee4-mhml (2016-2017) Coursework
 [Presentation](https://github.com/jeremych1000/ee4-mhml/blob/master/documents/demo/sleepify.pdf)
 
-[Final Report](https://github.com/jeremych1000/ee4-mhml/blob/master/documents/final%20report/final_report_everything_tgt.docx)
+[Final Report](https://github.com/jeremych1000/ee4-mhml/blob/master/documents/final%20report/final_report_everything_tgt.pdf)
 
 [Link to website](http://sleepify.zapto.org/)
 
