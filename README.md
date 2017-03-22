@@ -7,7 +7,9 @@
 [Link to website](http://sleepify.zapto.org/)
 
 ---
+
 ### Abstract
+Given the rapid adoption of smartphones, mobile healthcare is an area which deals with acquiring, transporting, storing, processing and securing data from sensors or the phone to improve the health of a user. This project aims to investigate the relationship between room temperature and human sleeping quality by developing a mobile healthcare system to improve sleeping quality based on the current body and room temperature of the user. Sleepify utilizes advanced machine learning techniques to classify the user’s sleep quality; this data is then fed to HomeKit compatible devices to control the heating of the user during their sleep. Both an app and web interface are offered. Initial testing and evaluation show positive feedback.
 
 ---
 ### Usage
