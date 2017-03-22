@@ -1,5 +1,9 @@
 ![Sleepify logo](http://mufff.in/i/logo2.png)
 ## ee4-mhml (2016-2017) Coursework
+[Presentation](https://github.com/jeremych1000/ee4-mhml/blob/master/documents/demo/sleepify.pdf)
+
+[Final Report](https://github.com/jeremych1000/ee4-mhml/blob/master/documents/final%20report/final_report_everything_tgt.docx)
+
 ---
 ### Abstract
 
@@ -40,13 +44,16 @@ You are welcome to clone the repository and develop Sleepify yourself. Please gi
 Sleepify runs at the following URL: `http://sleepify.zapto.org`. However, this is dependent on the host. If you want to develop Sleepify locally, or run Sleepify using your own web server, follow these instructions.
 1. Assuming you already have cloned the repository, install the required libraries using 
 > Windows `ee4-mhml/software/web_interface/get_pip_stuff.cmd`
+
 > UNIX `ee4-mhml/software/web_interface/get_pip_stuff.sh`
 2. Decide on a port to run the webserver on, and forward that port to your hosting server/PC. Detailed instructions depending on your router can be found [here](https://portforward.com/router.htm).
 > HTTP server default: 80
+
 > Django development server default: 8000
 3. Setup the Django databases using `python manage.py makemigrations; python manage.py migrate`
 4. Run the webserver with the following command: `python manage.py runserver 0.0.0.0:80` and verify that the server is running by visiting `http://<your-ip>/`, `http://localhost:80/`, or `http://127.0.0.1:80/`.
 > To run the server just locally, `python manage.py runserver localhost:8000` or `python manage.py runserver 127.0.0.1:8000`.
+
 > Replace 8000 with whatever port you have forwarded.
 #### iOS Application
 At the moment, the application development is still at a provisional stage where the mobile application is only tested by a few specific users of specific iOS devices.  In order for it to be available on the App Store for distrubtion., the app has to be submitted for publication to the App Store. This involves review process by Apple to insure the app meets their guidelines for quality and content.  
