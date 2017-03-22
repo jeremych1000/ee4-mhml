@@ -67,7 +67,7 @@ for file in os.listdir(datapath):
         dates += new_d
 
 train_f,test_f,train_o,test_o=train_test_split(features, outcomes, test_size=0.2,random_state=0)
-clf = RandomForestClassifier()
+clf = RandomForestClassifier(class_weight='balanced')
 clf.fit(train_f,train_o)
 test_r= clf.predict(test_f)
 print(test_r)
